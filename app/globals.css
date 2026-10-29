@@ -1,26 +1,25 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f7fb; font-family: Arial, "Noto Sans KR", sans-serif; }
+button, select, textarea, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .48; }
+.control-input { width: 100%; min-height: 42px; border: 1px solid #e2e8f0; border-radius: 12px; background: #f8fafc; padding: 9px 12px; font-size: 12px; color: #334155; outline: none; transition: border .15s, box-shadow .15s; }
+.control-input:focus, .kr-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px #6366f11f; }
+.mode-button { display: flex; flex: 1; align-items: center; justify-content: center; gap: 6px; border-radius: 9px; padding: 8px 7px; font-size: 11px; font-weight: 600; color: #64748b; transition: .15s; }
+.mode-button-active { background: white; color: #24265f; box-shadow: 0 1px 4px #0f172a14; }
+.primary-button, .soft-button { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; gap: 8px; border-radius: 11px; padding: 9px 14px; font-size: 12px; font-weight: 700; transition: .15s; }
+.primary-button { background: #4f46e5; color: white; box-shadow: 0 3px 8px #4f46e524; }
+.primary-button:hover:not(:disabled) { background: #4338ca; transform: translateY(-1px); }
+.soft-button { border: 1px solid #e2e8f0; background: white; color: #475569; }
+.soft-button:hover:not(:disabled) { border-color: #c7d2fe; background: #eef2ff; color: #3730a3; }
+.kr-input { width: 100%; resize: vertical; border: 1px solid #cbd5e1; border-radius: 14px; padding: 12px 14px; font-family: "Noto Sans KR", Arial, sans-serif; font-size: 14px; line-height: 1.7; outline: none; transition: border .15s, box-shadow .15s; }
+.section-label { font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #64748b; }
+.kr-font { font-family: "Noto Sans KR", Arial, sans-serif; }
+.hint-panel { border-radius: 13px; padding: 14px; }
+.hint-blue { border: 1px solid #bfdbfe; background: #eff6ff; color: #1e40af; }
+.hint-amber { border: 1px solid #fde68a; background: #fffbeb; color: #92400e; }
+.custom-scroll { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }
+::selection { background: #c7d2fe; color: #1e1b4b; }

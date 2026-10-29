@@ -1,0 +1,1677 @@
+[
+  {
+    "sourceId": "seed-1",
+    "topic": "Kinh tế",
+    "level": "TOPIK 5",
+    "viText": "Dù suy thoái kinh tế toàn cầu đang kéo dài, xuất khẩu của doanh nghiệp chúng ta vẫn đạt mức tăng trưởng kỷ lục nhờ đổi mới công nghệ.",
+    "koSampleAnswer": "세계적인 경기 침체가 장기화되고 있음에도 불구하고, 우리 기업의 수출은 기술 혁신에 힘입어 역대 최고 성장률을 기록했다.",
+    "keyGrammar": [
+      "-에도 불구하고 (dù/mặc dù)",
+      "-에 힘입어 (nhờ có/dựa vào)"
+    ],
+    "keyVocab": [
+      "경기 침체 (suy thoái kinh tế)",
+      "장기화되다 (kéo dài)",
+      "~에 힘입어 (nhờ có)",
+      "역대 최고 (kỷ lục từ trước tới nay)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-2",
+    "topic": "Kinh tế",
+    "level": "TOPIK 5",
+    "viText": "Do áp lực lạm phát kéo dài, Ngân hàng Trung ương đã quyết định tăng lãi suất cơ bản nhằm ổn định giá cả thị trường.",
+    "koSampleAnswer": "인플레이션 압박이 지속됨에 따라 한국은행은 물가 안정을 도모하기 위해 기준금리를 인상하기로 결정했다.",
+    "keyGrammar": [
+      "-함에 따라 (theo/khi... kéo theo)",
+      "-기 위해 (để)"
+    ],
+    "keyVocab": [
+      "인플레이션 압박 (áp lực lạm phát)",
+      "기준금리 (lãi suất cơ bản)",
+      "물가 안정 (ổn định giá cả)",
+      "도모하다 (mưu cầu/hướng tới)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-3",
+    "topic": "Kinh tế",
+    "level": "TOPIK 6",
+    "viText": "Để thúc đẩy sự phát triển của các doanh nghiệp khởi nghiệp, chính phủ cần nới lỏng các quy định pháp lý phức tạp và mở rộng hỗ trợ tài chính.",
+    "koSampleAnswer": "스타트업의 성장을 도모하기 위해서는 복잡한 규제를 완화하고 금융 지원을 확대할 필요가 있다.",
+    "keyGrammar": [
+      "-기 위해서는 (để làm được... thì)",
+      "-ㄹ 필요가 있다 (cần phải)"
+    ],
+    "keyVocab": [
+      "스타트업 (doanh nghiệp khởi nghiệp)",
+      "규제 완화 (nới lỏng quy định/nới lỏng chế tài)",
+      "금융 지원 (hỗ trợ tài chính)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-4",
+    "topic": "Kinh tế",
+    "level": "TOPIK 4",
+    "viText": "Khi tâm lý tiêu dùng của người dân bị thu hẹp đáng kể, các thị trường bán lẻ đang đối mặt với nguy cơ sụt giảm doanh thu nghiêm trọng.",
+    "koSampleAnswer": "소비자들의 소비 심리가 크게 위축되면서 소매 시장은 매출 감소라는 심각한 위기에 직면하고 있다.",
+    "keyGrammar": [
+      "-면서 (khi/đồng thời)",
+      "~(이)라는 (gọi là/mang tên)"
+    ],
+    "keyVocab": [
+      "소비 심리 (tâm lý tiêu dùng)",
+      "위축되다 (bị thu hẹp/co cụm)",
+      "소매 시장 (thị trường bán lẻ)",
+      "직면하다 (đối mặt với)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-5",
+    "topic": "Kinh tế",
+    "level": "TOPIK 6",
+    "viText": "Sự bùng nổ của thương mại điện tử đã làm thay đổi căn bản chuỗi cung ứng logistics toàn cầu cũng như thói quen mua sắm.",
+    "koSampleAnswer": "전자상거래의 급성장은 글로벌 물류 공급망은 물론 소비자들의 쇼핑 습관까지 근본적으로 변화시켰다.",
+    "keyGrammar": [
+      "~은/는 물론 (không chỉ... mà còn)",
+      "-게 변화시키다 (làm biến đổi)"
+    ],
+    "keyVocab": [
+      "전자상거래 (thương mại điện tử)",
+      "물류 공급망 (chuỗi cung ứng logistics)",
+      "근본적으로 (một cách căn bản)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-6",
+    "topic": "Kinh tế",
+    "level": "TOPIK 5",
+    "viText": "Giá nguyên vật liệu thô tăng vọt làm tăng chi phí sản xuất, dẫn đến nguy cơ suy giảm rốt cuộc tính cạnh tranh của mặt hàng xuất khẩu.",
+    "koSampleAnswer": "원자재 가격의 급등은 생산 원가를 상승시켜 결국 수출 상품의 가격 경쟁력을 약화시키는 결과를 초래한다.",
+    "keyGrammar": [
+      "-아/어 (nguyên nhân kết quả)",
+      "-는 결과를 초래하다 (dẫn đến kết quả là)"
+    ],
+    "keyVocab": [
+      "원자재 (nguyên vật liệu thô)",
+      "급등 (tăng vọt)",
+      "생산 원가 (chi phí sản xuất)",
+      "초래하다 (dẫn đến/gây ra)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-7",
+    "topic": "Kinh tế",
+    "level": "TOPIK 4",
+    "viText": "Doanh nghiệp cần phải xây dựng chiến lược tiếp thị linh hoạt để đáp ứng nhu cầu đa dạng của khách hàng trẻ tuổi.",
+    "koSampleAnswer": "기업은 젊은 소비자층의 다양한 니즈에 부응하기 위해 유연한 마케팅 전략을 수립해야 한다.",
+    "keyGrammar": [
+      "-에 부응하기 위해 (để đáp ứng...)",
+      "-해야 한다 (phải)"
+    ],
+    "keyVocab": [
+      "니즈에 부응하다 (đáp ứng nhu cầu)",
+      "유연하다 (linh hoạt)",
+      "마케팅 전략 (chiến lược marketing)",
+      "수립하다 (thiết lập/xây dựng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-8",
+    "topic": "Kinh tế",
+    "level": "TOPIK 6",
+    "viText": "Các nhà kinh tế học cảnh báo rằng nợ gia tăng quá mức sẽ trở thành gánh nặng lớn đối với sự tăng trưởng kinh tế lâu dài.",
+    "koSampleAnswer": "경제학자들은 가계 부채의 과도한 증가가 장기적인 경제 성장에 큰 부담으로 작용할 것이라고 경고했다.",
+    "keyGrammar": [
+      "-라고 경고하다 (cảnh báo rằng)",
+      "-ㄹ 것이라고 (rằng sẽ)"
+    ],
+    "keyVocab": [
+      "가계 부채 (nợ gia đình/nợ hộ tiêu dùng)",
+      "과도하다 (quá độ/quá mức)",
+      "부담으로 작용하다 (đóng vai trò là gánh nặng)",
+      "경고하다 (cảnh báo)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-9",
+    "topic": "Kinh tế",
+    "level": "TOPIK 5",
+    "viText": "Việc thu hút vốn đầu tư nước ngoài (FDI) đóng vai trò then chốt trong việc thúc đẩy tái cơ cấu ngành công nghiệp nội địa.",
+    "koSampleAnswer": "외국인 직간접 투자 유치는 국내 산업 구조 개편을 촉진하는 데 결정적인 역할을 한다.",
+    "keyGrammar": [
+      "-는 데 (trong việc...)",
+      "~역할을 하다 (đóng vai trò)"
+    ],
+    "keyVocab": [
+      "외국인 투자 유치 (thu hút đầu tư nước ngoài)",
+      "산업 구조 개편 (tái cơ cấu ngành công nghiệp)",
+      "촉진하다 (thúc đẩy)",
+      "결정적 (then chốt/quyết định)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-10",
+    "topic": "Kinh tế",
+    "level": "TOPIK 5",
+    "viText": "Sự phân cực thị trường lao động đang khiến khoảng cách thu nhập giữa người lao động chính thức và phi chính thức ngày càng sâu sắc.",
+    "koSampleAnswer": "노동 시장의 양극화로 인해 정규직과 비정규직 간의 임금 격차가 갈수록 심화되고 있는 실정이다.",
+    "keyGrammar": [
+      "-로 인해 (do/bởi)",
+      "-고 있는 실정이다 (đang ở trong thực trạng)"
+    ],
+    "keyVocab": [
+      "양극화 (sự phân cực)",
+      "정규직/비정규직 (chính thức/phi chính thức)",
+      "임금 격차 (khoảng cách tiền lương)",
+      "심화되다 (trở nên sâu sắc/trầm trọng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-11",
+    "topic": "Kinh tế",
+    "level": "TOPIK 4",
+    "viText": "Nhiều công ty đang áp dụng mô hình làm việc từ xa nhằm nâng cao năng suất và mức độ hài lòng của nhân viên.",
+    "koSampleAnswer": "많은 기업들이 직원들의 생산성과 만족도를 높이기 위해 원격 근무 제도를 도입하고 있다.",
+    "keyGrammar": [
+      "-기 위해 (để)",
+      "-고 있다 (đang)"
+    ],
+    "keyVocab": [
+      "원격 근무 (làm việc từ xa)",
+      "생산성 (năng suất)",
+      "도입하다 (áp dụng/đưa vào)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-12",
+    "topic": "Kinh tế",
+    "level": "TOPIK 6",
+    "viText": "Sự sụp đổ của chuỗi cung ứng toàn cầu trong đại dịch đã cho thấy tầm quan trọng của việc tự chủ sản xuất các linh kiện chiến lược.",
+    "koSampleAnswer": "팬데믹 당시 글로벌 공급망의 마비는 핵심 전략 부품의 자급자족이 얼마나 중요한지를 여실히 보여주었다.",
+    "keyGrammar": [
+      "-이/가 얼마나 ~지 (rằng ... đến nhường nào)",
+      "-아/어 보여주다 (cho thấy)"
+    ],
+    "keyVocab": [
+      "공급망 마비 (tê liệt/sụp đổ chuỗi cung ứng)",
+      "자급자족 (tự cung tự cấp/tự chủ)",
+      "여실히 (rõ ràng/chân thực)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-13",
+    "topic": "Kinh tế",
+    "level": "TOPIK 5",
+    "viText": "Cán cân thanh toán quốc tế cải thiện là tín hiệu tích cực cho thấy sức khỏe nền kinh tế đang dần phục hồi.",
+    "koSampleAnswer": "국제수지 개선은 국가 경제의 건전성이 회복되고 있음을 보여주는 긍정적인 신호이다.",
+    "keyGrammar": [
+      "-ㅁ/음 (biến mệnh đề thành danh từ)",
+      "-는 긍정적인 신호이다 (là tín hiệu tích cực)"
+    ],
+    "keyVocab": [
+      "국제수지 (cán cân thanh toán quốc tế)",
+      "개선 (cải thiện)",
+      "건전성 (sức khỏe/tính lành mạnh)",
+      "신호 (tín hiệu)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-14",
+    "topic": "Kinh tế",
+    "level": "TOPIK 4",
+    "viText": "Nếu không cải thiện môi trường đầu tư kinh doanh, rất khó để thu hút các tập đoàn công nghệ hàng đầu thế giới.",
+    "koSampleAnswer": "기업 투자 환경을 개선하지 않는다면 세계적인 기술 기업들을 유치하기란 매우 어렵다.",
+    "keyGrammar": [
+      "-지 않는다면 (nếu không)",
+      "-기란 어렵다 (việc... là rất khó)"
+    ],
+    "keyVocab": [
+      "투자 환경 (môi trường đầu tư)",
+      "기업을 유치하다 (thu hút doanh nghiệp)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-15",
+    "topic": "Kinh tế",
+    "level": "TOPIK 6",
+    "viText": "Xu hướng thanh toán không dùng tiền mặt đang lan rộng với tốc độ chóng mặt nhờ sự phát triển của nền tảng FinTech.",
+    "koSampleAnswer": "핀테크 플랫폼의 발달에 힘입어 현금 없는 결제 추세가 빠른 속도로 확산되고 있다.",
+    "keyGrammar": [
+      "-에 힘입어 (nhờ vào)",
+      "-고 있다 (đang)"
+    ],
+    "keyVocab": [
+      "핀테크 (FinTech)",
+      "현금 없는 결제 (thanh toán không dùng tiền mặt)",
+      "추세 (xu hướng)",
+      "확산되다 (lan rộng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-16",
+    "topic": "Xã hội",
+    "level": "TOPIK 5",
+    "viText": "Hiện tượng già hóa dân số nhanh chóng cùng với tỷ lệ sinh giảm kỷ lục đang đe dọa trực tiếp đến tính bền vững của hệ thống an sinh xã hội.",
+    "koSampleAnswer": "급격한 고령화와 역대 최저 수준의 저출생 현상은 사회보장 제도의 지속 가능성을 직접적으로 위협하고 있다.",
+    "keyGrammar": [
+      "-와/과 cùng với",
+      "-고 있다 (đang)"
+    ],
+    "keyVocab": [
+      "고령화 (già hóa dân số)",
+      "저출생 (tỷ lệ sinh thấp)",
+      "사회보장 제도 (hệ thống an sinh xã hội)",
+      "지속 가능성 (tính bền vững)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-17",
+    "topic": "Xã hội",
+    "level": "TOPIK 4",
+    "viText": "Văn hóa K-Pop không chỉ đơn thuần là giải trí mà đã trở thành cầu nối quan trọng gắn kết thanh thiếu niên trên toàn thế giới.",
+    "koSampleAnswer": "케이팝 문화는 단순한 오락거리를 넘어 전 세계 청소년들을 연결하는 중요한 교량 역할을 하고 있다.",
+    "keyGrammar": [
+      "-를 넘어 (vượt qua/không đơn thuần chỉ là)",
+      "~역할을 하다 (đóng vai trò)"
+    ],
+    "keyVocab": [
+      "오락거리 (trò giải trí)",
+      "교량 역할 (vai trò cầu nối)",
+      "청소년 (thanh thiếu niên)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-18",
+    "topic": "Xã hội",
+    "level": "TOPIK 6",
+    "viText": "Hiện tượng đơn thân gia tăng (hộ gia đình 1 người) đang làm thay đổi diện mạo của các ngành dịch vụ và mô hình nhà ở đô thị.",
+    "koSampleAnswer": "1인 가구의 급증은 도시 주거 형태뿐만 아니라 관련 서비스 산업의 지형까지 바꾸어 놓았다.",
+    "keyGrammar": [
+      "-뿐만 아니라 ~까지 (không những... mà đến cả)",
+      "-아/어 놓다 (đã thay đổi xong)"
+    ],
+    "keyVocab": [
+      "1인 가구 (hộ gia đình 1 người)",
+      "주거 형태 (mô hình nhà ở)",
+      "지형 (diện mạo/địa hình kinh doanh)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-19",
+    "topic": "Xã hội",
+    "level": "TOPIK 5",
+    "viText": "Để giải quyết xung đột thế hệ trong workplace, sự thấu hiểu và giao tiếp cởi mở giữa các thế hệ là yếu tố tiên quyết.",
+    "koSampleAnswer": "직장 내 세대 갈등을 해소하기 위해서는 세대 간의 상호 이해와 개방적인 소통이 선행되어야 한다.",
+    "keyGrammar": [
+      "-기 위해서는 (để...)",
+      "-어야 하다 (phải)"
+    ],
+    "keyVocab": [
+      "세대 갈등 (xung đột thế hệ)",
+      "해소하다 (giải tỏa/giải quyết)",
+      "상호 이해 (sự thấu hiểu lẫn nhau)",
+      "선행되다 (phải làm trước/tiên quyết)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-20",
+    "topic": "Xã hội",
+    "level": "TOPIK 4",
+    "viText": "Việc bảo tồn di sản văn hóa truyền thống đồng thời phát triển du lịch bền vững là một thách thức lớn với các thành phố cổ.",
+    "koSampleAnswer": "전통 문화유산을 보존하는 동시에 지속 가능한 관광을 발전시키는 것은 고도(古都)의 큰 과제이다.",
+    "keyGrammar": [
+      "-는 동시에 (đồng thời với việc)",
+      "-는 것은 (việc... thì)"
+    ],
+    "keyVocab": [
+      "문화유산 보존 (bảo tồn di sản văn hóa)",
+      "지속 가능한 관광 (du lịch bền vững)",
+      "과제 (thách thức/nhiệm vụ)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-21",
+    "topic": "Xã hội",
+    "level": "TOPIK 6",
+    "viText": "Sự phân hóa giàu nghèo và bất bình đẳng cơ hội giáo dục có nguy cơ làm trầm trọng thêm tình trạng suy giảm tính di động xã hội.",
+    "koSampleAnswer": "빈부 격차와 교육 기회의 불평등은 사회적 계층 이동성을 저해하는 주요 원인으로 지적되고 있다.",
+    "keyGrammar": [
+      "-는 주요 원인으로 지적되다 (được chỉ ra là nguyên nhân chính)"
+    ],
+    "keyVocab": [
+      "빈부 격차 (khoảng cách giàu nghèo)",
+      "계층 이동성 (tính di động xã hội/chuyển dịch tầng lớp)",
+      "저해하다 (gây cản trở/suy giảm)",
+      "지적되다 (bị chỉ ra)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-22",
+    "topic": "Xã hội",
+    "level": "TOPIK 5",
+    "viText": "Chúng ta cần nâng cao nhận thức cộng đồng về tầm quan trọng của sức khỏe tinh thần trong xã hội hiện đại đầy áp lực.",
+    "koSampleAnswer": "치열한 현대 사회에서 정신 건강의 중요성에 대한 대중의 인식을 제고할 필요가 있다.",
+    "keyGrammar": [
+      "-에 대한 (về...)",
+      "-ㄹ 필요가 있다 (cần)"
+    ],
+    "keyVocab": [
+      "치열하다 (gay gắt/áp lực)",
+      "정신 건강 (sức khỏe tinh thần)",
+      "인식 제고 (nâng cao nhận thức)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-23",
+    "topic": "Xã hội",
+    "level": "TOPIK 4",
+    "viText": "Số lượng gia đình đa văn hóa gia tăng đòi hỏi chính sách hỗ trợ hòa nhập xã hội toàn diện và thực chất hơn.",
+    "koSampleAnswer": "다문화 가구의 증가에 따라 실질적이고 종합적인 사회 통합 지원 정책이 요구된다.",
+    "keyGrammar": [
+      "-에 따라 (theo/kéo theo)",
+      "-이/가 요구된다 (được yêu cầu/đòi hỏi)"
+    ],
+    "keyVocab": [
+      "다문화 가구 (gia đình đa văn hóa)",
+      "실질적 (thực chất)",
+      "사회 통합 (hòa nhập xã hội)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-24",
+    "topic": "Xã hội",
+    "level": "TOPIK 6",
+    "viText": "Nhiều bạn trẻ ngày nay lựa chọn lối sống tối giản như một phản ứng chống lại văn hóa tiêu dùng phung phí.",
+    "koSampleAnswer": "오늘날 많은 젊은이들은 과소비 문화에 대한 반작용으로 미니멀리즘 삶의 방식을 선택하고 있다.",
+    "keyGrammar": [
+      "-에 대한 (về/đối với)",
+      "-고 있다 (đang)"
+    ],
+    "keyVocab": [
+      "과소비 (tiêu dùng phung phí)",
+      "반작용 (phản ứng lại)",
+      "미니멀리즘 (lối sống tối giản)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-25",
+    "topic": "Xã hội",
+    "level": "TOPIK 5",
+    "viText": "Sự thâm nhập của mạng xã hội khiến ranh giới giữa đời sống riêng tư và đời sống công cộng ngày càng trở nên mờ nhạt.",
+    "koSampleAnswer": "소셜 미디어의 확산으로 사생활과 공적 영역 간의 경계가 갈수록 모호해지고 있다.",
+    "keyGrammar": [
+      "-로 인해/으로 (do/bởi)",
+      "-아/어지다 (trở nên)"
+    ],
+    "keyVocab": [
+      "사생활 (đời tư)",
+      "공적 영역 (lĩnh vực công cộng)",
+      "경계 (ranh giới)",
+      "모호해지다 (mờ nhạt/mơ hồ)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-26",
+    "topic": "Xã hội",
+    "level": "TOPIK 4",
+    "viText": "Chính phủ đang triển khai nhiều chương trình việc làm nhằm giúp đỡ người cao tuổi tiếp tục đóng góp cho cộng đồng.",
+    "koSampleAnswer": "정부는 노인들이 지역사회에 지속적으로 기여할 수 있도록 다양한 일자리 프로그램을 추진하고 있다.",
+    "keyGrammar": [
+      "-도록 (để...)",
+      "-고 있다 (đang)"
+    ],
+    "keyVocab": [
+      "지역사회에 기여하다 (đóng góp cho cộng đồng)",
+      "일자리 (việc làm)",
+      "추진하다 (đẩy mạnh/triển khai)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-27",
+    "topic": "Xã hội",
+    "level": "TOPIK 6",
+    "viText": "Biến đổi cấu trúc gia đình từ gia đình đại gia đình sang gia đình hạt nhân đã kéo theo sự thay đổi sâu sắc trong phương thức chăm sóc người già.",
+    "koSampleAnswer": "대가족에서 핵가족으로의 가족 구조 변화는 노인 부양 방식의 근본적인 변화를 불러일으켰다.",
+    "keyGrammar": [
+      "~에서 ~로의 (từ... sang...)"
+    ],
+    "keyVocab": [
+      "핵가족 (gia đình hạt nhân)",
+      "노인 부양 (chăm sóc phụng dưỡng người già)",
+      "불러일으키다 (kéo theo/gợi lên)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-28",
+    "topic": "Xã hội",
+    "level": "TOPIK 5",
+    "viText": "Việc sử dụng quá đà ngôn ngữ viết tắt trên Internet đang gây ra mối lo ngại về sự thoái hóa của tiếng mẹ đẻ.",
+    "koSampleAnswer": "인터넷 줄임말의 과도한 사용은 모국어의 오염과 파괴에 대한 우려를 낳고 있다.",
+    "keyGrammar": [
+      "-은/는 ~우려를 낳고 있다 (đang gây ra mối lo ngại rằng)"
+    ],
+    "keyVocab": [
+      "줄임말 (từ viết tắt)",
+      "모국어 (tiếng mẹ đẻ)",
+      "우려를 낳다 (gây ra mối lo ngại)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-29",
+    "topic": "Xã hội",
+    "level": "TOPIK 4",
+    "viText": "Hoạt động tình nguyện không chỉ giúp đỡ những người có hoàn cảnh khó khăn mà còn mang lại cảm giác hạnh phúc cho người tham gia.",
+    "koSampleAnswer": "봉사활동은 소외된 이웃을 도울 뿐만 아니라 참여자 gđ에게도 큰 보람을 안겨준다.",
+    "keyGrammar": [
+      "-ㄹ 뿐만 아니라 (không những... mà còn)"
+    ],
+    "keyVocab": [
+      "소외된 이웃 (người khó khăn/bị bỏ lại)",
+      "보람을 안겨주다 (mang lại ý nghĩa/hạnh phúc)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-30",
+    "topic": "Xã hội",
+    "level": "TOPIK 6",
+    "viText": "Bảo vệ bản quyền văn hóa nghệ thuật là tiền đề cốt lõi để thúc đẩy sáng tạo và phát triển ngành công nghiệp văn hóa.",
+    "koSampleAnswer": "문화예술 저작권 보호는 창작을 활성화하고 문화 산업을 발전시키기 위한 핵심 전제 조건이다.",
+    "keyGrammar": [
+      "-기 위한 (để...)"
+    ],
+    "keyVocab": [
+      "저작권 보호 (bảo vệ bản quyền)",
+      "활성화하다 (thúc đẩy/làm sôi động)",
+      "전제 조건 (tiền đề cốt lõi)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-31",
+    "topic": "Công nghệ",
+    "level": "TOPIK 5",
+    "viText": "Sự phát triển đột phá của Trí tuệ nhân tạo (AI) đang định hình lại toàn bộ quy trình sản xuất và quản trị doanh nghiệp.",
+    "koSampleAnswer": "인공지능(AI) 기술의 획기적인 발전은 전 산업의 생산 공정과 기업 관리 방식을 재편하고 있다.",
+    "keyGrammar": [
+      "-고 있다 (đang)"
+    ],
+    "keyVocab": [
+      "획기적 (đột phá/mang tính bước ngoặt)",
+      "생산 공정 (quy trình sản xuất)",
+      "재편하다 (định hình lại/tái cơ cấu)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-32",
+    "topic": "Công nghệ",
+    "level": "TOPIK 6",
+    "viText": "Mặc dù ô tô tự lái đem lại nhiều tiện ích, chúng ta vẫn cần phải giải quyết triệt để các vấn đề về đạo đức và trách nhiệm pháp lý.",
+    "koSampleAnswer": "자율주행차가 많은 편의를 제공함에도 불구하고 윤리적 문제와 법적 책임 소재를 명확히 해결해야 한다.",
+    "keyGrammar": [
+      "-에도 불구하고 (mặc dù)",
+      "-해야 한다 (phải)"
+    ],
+    "keyVocab": [
+      "자율주행차 (xe tự lái)",
+      "법적 책임 소재 (trách nhiệm pháp lý thuộc về ai)",
+      "명확히 (rõ ràng/triệt để)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-33",
+    "topic": "Công nghệ",
+    "level": "TOPIK 4",
+    "viText": "Công nghệ mạng 5G cho phép truyền dữ liệu với tốc độ siêu nhanh, làm nền tảng cho sự phát triển của Internet vạn vật (IoT).",
+    "koSampleAnswer": "5G 통신 기술은 초고속 데이터 전송을 가능하게 하여 사물인터넷(IoT) 발전의 기반이 되고 있다.",
+    "keyGrammar": [
+      "-게 하다 (làm cho...)",
+      "-고 있다 (đang)"
+    ],
+    "keyVocab": [
+      "초고속 (tốc độ siêu nhanh)",
+      "전송 (truyền tải dữ liệu)",
+      "사물인터넷 (Internet vạn vật IoT)",
+      "기반 (nền tảng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-34",
+    "topic": "Công nghệ",
+    "level": "TOPIK 5",
+    "viText": "Rủi ro rò rỉ thông tin cá nhân ngày càng gia tăng khi dịch vụ đám mây và lưu trữ số hóa trở nên phổ biến.",
+    "koSampleAnswer": "클라우드 서비스와 디지털 저장 방식이 보편화됨에 따라 개인정보 유출 위험이 커지고 있다.",
+    "keyGrammar": [
+      "-함에 따라 (theo/khi... kéo theo)",
+      "-아/어지고 있다 (đang trở nên)"
+    ],
+    "keyVocab": [
+      "보편화되다 (trở nên phổ biến)",
+      "개인정보 유출 (rò rỉ thông tin cá nhân)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-35",
+    "topic": "Công nghệ",
+    "level": "TOPIK 6",
+    "viText": "Công nghệ sinh học hiện đại đang mở ra một kỷ nguyên mới trong việc điều trị các bệnh hiểm nghèo thông qua liệu pháp gen.",
+    "koSampleAnswer": "현대 생명공학은 유전자 치료를 통해 난치병 치료의 새로운 지평을 열어가고 있다.",
+    "keyGrammar": [
+      "-를 통해 (thông qua)",
+      "-아/어 가다 (đang dần)"
+    ],
+    "keyVocab": [
+      "생명공학 (công nghệ sinh học)",
+      "유전자 치료 (liệu pháp gen)",
+      "난치병 (bệnh hiểm nghèo)",
+      "지평을 열다 (mở ra kỷ nguyên/tầm nhìn mới)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-36",
+    "topic": "Công nghệ",
+    "level": "TOPIK 4",
+    "viText": "Việc học trực tuyến kết hợp thực tế ảo (VR) giúp học sinh trải nghiệm không gian học tập sống động hơn.",
+    "koSampleAnswer": "가상현실(VR)을 결합한 온라인 학습은 학생들에게 더욱 생생한 학습 경험을 제공한다.",
+    "keyGrammar": [
+      "-를 결합한 (kết hợp với...)"
+    ],
+    "keyVocab": [
+      "가상현실 (thực tế ảo VR)",
+      "결합하다 (kết hợp)",
+      "생생하다 (sống động/chân thực)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-37",
+    "topic": "Công nghệ",
+    "level": "TOPIK 5",
+    "viText": "Công nghệ Blockchain được kỳ vọng sẽ mang lại độ tin cậy tuyệt đối cho các giao dịch tài chính nhờ tính minh bạch cao.",
+    "koSampleAnswer": "블록체인 기술은 높은 투명성을 바탕으로 금융 거래의 절대적인 신뢰성을 가져올 것으로 기대된다.",
+    "keyGrammar": [
+      "-를 바탕으로 (dựa trên nền tảng)",
+      "-ㄹ 것으로 기대되다 (được kỳ vọng là sẽ)"
+    ],
+    "keyVocab": [
+      "투명성 (tính minh bạch)",
+      "절대적 신뢰성 (độ tin cậy tuyệt đối)",
+      "기대되다 (được kỳ vọng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-38",
+    "topic": "Công nghệ",
+    "level": "TOPIK 6",
+    "viText": "Sự suy giảm đa dạng sinh học do công nghệ canh tác nông nghiệp hóa chất đòi hỏi phải chuyển đổi sang nông nghiệp sinh thái.",
+    "koSampleAnswer": "화학 농업 기술로 인한 생물 다양한 감소는 친환경 생태 농업으로의 전환을 절실히 요구하고 있다.",
+    "keyGrammar": [
+      "-로 인한 (do/bởi)",
+      "~로의 전환 (sự chuyển đổi sang)"
+    ],
+    "keyVocab": [
+      "생물 다양성 (đa dạng sinh học)",
+      "친환경 생태 농업 (nông nghiệp sinh thái thân thiện môi trường)",
+      "절실히 (tha thiết/cấp thiết)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-39",
+    "topic": "Công nghệ",
+    "level": "TOPIK 4",
+    "viText": "Các nhà khoa học đang nỗ lực phát triển pin thế hệ mới với dung lượng lớn hơn và thời gian sạc ngắn hơn.",
+    "koSampleAnswer": "과학자들은 용량이 더 크고 충전 시간이 짧은 차세대 배터리를 개발하기 위해 노력하고 있다.",
+    "keyGrammar": [
+      "-기 위해 노력하다 (nỗ lực để)"
+    ],
+    "keyVocab": [
+      "용량 (dung lượng)",
+      "차세대 배터리 (pin thế hệ mới)",
+      "충전 (sạc pin)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-40",
+    "topic": "Công nghệ",
+    "level": "TOPIK 5",
+    "viText": "Tự động hóa nhà máy tuy giúp nâng cao năng suất nhưng cũng dấy lên lo ngại về việc thợ thủ công mất việc làm.",
+    "koSampleAnswer": "공장 자동화는 생산성을 향상시키지만 숙련 노동자들의 일자리 상실에 대한 우려를 낳기도 한다.",
+    "keyGrammar": [
+      "-지만 (nhưng)",
+      "-에 대한 (về)"
+    ],
+    "keyVocab": [
+      "공장 자동화 (tự động hóa nhà máy)",
+      "숙련 노동자 (lực lượng lao động có tay nghề/thợ thủ công)",
+      "일자리 상실 (mất việc làm)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-41",
+    "topic": "Công nghệ",
+    "level": "TOPIK 6",
+    "viText": "Việc nghiên cứu không gian vũ trụ không chỉ thỏa mãn tò mò của con người mà còn đóng góp trực tiếp vào phát triển công nghệ viễn thông.",
+    "koSampleAnswer": "우주 탐사는 인간의 호기심을 충족시킬 뿐만 아니라 통신 기술 발전에도 직접적으로 기여한다.",
+    "keyGrammar": [
+      "-ㄹ 뿐만 아니라 (không những... mà còn)"
+    ],
+    "keyVocab": [
+      "우주 탐사 (thám hiểm vũ trụ)",
+      "호기심을 충족시키다 (thỏa mãn sự tò mò)",
+      "통신 기술 (công nghệ viễn thông)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-42",
+    "topic": "Công nghệ",
+    "level": "TOPIK 4",
+    "viText": "Ứng dụng điện thoại thông minh đang làm thay đổi thói quen quản lý sức khỏe hàng ngày của người tiêu dùng.",
+    "koSampleAnswer": "스마트폰 애플리케이션은 현대인의 일상적인 건강 관리 습관을 바꾸어 놓았다.",
+    "keyGrammar": [
+      "-아/어 놓았다 (đã làm thay đổi)"
+    ],
+    "keyVocab": [
+      "애플리케이션 (ứng dụng app)",
+      "일상적 (hàng ngày/thường nhật)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-43",
+    "topic": "Công nghệ",
+    "level": "TOPIK 5",
+    "viText": "Cuộc cách mạng công nghiệp 4.0 đòi hỏi nguồn nhân lực phải có khả năng tư duy liên ngành và sáng tạo số.",
+    "koSampleAnswer": "4차 산업혁명은 융합적 사고 능력과 디지털 창의성을 갖춘 인재를 요구하고 있다.",
+    "keyGrammar": [
+      "-를 갖춘 (được trang bị/có khả năng)"
+    ],
+    "keyVocab": [
+      "융합적 사고 (tư duy liên ngành/tích hợp)",
+      "디지털 창의성 (sáng tạo số)",
+      "인재 (nhân tài/nguồn nhân lực)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-44",
+    "topic": "Công nghệ",
+    "level": "TOPIK 6",
+    "viText": "Việc xây dựng hệ thống an ninh mạng vững chắc là điều kiện bắt buộc để bảo vệ hạ tầng quốc gia khỏi các cuộc tấn công mạng.",
+    "koSampleAnswer": "강력한 사이버 안보 체계 구축은 국가 기반 시설을 사이버 공격으로부터 보호하기 위한 필수 조건이다.",
+    "keyGrammar": [
+      "-하기 위한 (để làm...)"
+    ],
+    "keyVocab": [
+      "사이버 안보 체계 (hệ thống an ninh mạng)",
+      "기반 시설 (hạ tầng cơ sở)",
+      "필수 조건 (điều kiện bắt buộc)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-45",
+    "topic": "Công nghệ",
+    "level": "TOPIK 5",
+    "viText": "Trí tuệ nhân tạo tạo sinh (Generative AI) đang tạo ra tranh cãi gay gắt liên quan đến quyền sở hữu trí tuệ đối với các tác phẩm sáng tạo.",
+    "koSampleAnswer": "생성형 AI는 창작물에 대한 지식재산권 소유 문제를 둘러싸고 치열한 논쟁을 불러일으키고 있다.",
+    "keyGrammar": [
+      "~을 둘러싸고 (xoay quanh vấn đề...)"
+    ],
+    "keyVocab": [
+      "생성형 AI (AI tạo sinh)",
+      "지식재산권 (quyền sở hữu trí tuệ)",
+      "~을 둘러싸고 (xoay quanh/liên quan tới)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-46",
+    "topic": "Môi trường",
+    "level": "TOPIK 5",
+    "viText": "Hiện tượng biến đổi khí hậu đang làm gia tăng tần suất các thiên tai bất thường như hạn hán, lũ lụt trên toàn cầu.",
+    "koSampleAnswer": "기후 변화 현상으로 인해 전 세계적으로 가뭄과 폭우 같은 이상 기후 발생 빈도가 높아지고 있다.",
+    "keyGrammar": [
+      "-로 인해 (do bởi)",
+      "-아/어지고 있다 (đang trở nên)"
+    ],
+    "keyVocab": [
+      "가뭄 (hạn hán)",
+      "폭우 (lũ lụt/mưa lớn)",
+      "이상 기후 (thời tiết bất thường)",
+      "발생 빈도 (tần suất xuất hiện)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-47",
+    "topic": "Môi trường",
+    "level": "TOPIK 6",
+    "viText": "Việc đạt được mục tiêu trung hòa carbon (Net Zero) đòi hỏi sự chuyển đổi toàn diện sang các nguồn năng lượng tái tạo như điện gió và điện mặt trời.",
+    "koSampleAnswer": "탄소 중립 목표를 달성하기 위해서는 풍력 및 태양광 등 재생가능 에너지로의 전면적인 전환이 요구된다.",
+    "keyGrammar": [
+      "-기 위해서는 (để...)",
+      "~로의 (sang...)"
+    ],
+    "keyVocab": [
+      "탄소 중립 (trung hòa carbon)",
+      "재생가능 에너지 (năng lượng tái tạo)",
+      "전면적 전환 (chuyển đổi toàn diện)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-48",
+    "topic": "Môi trường",
+    "level": "TOPIK 4",
+    "viText": "Để giảm thiểu rác thải nhựa, nhiều siêu thị đã quyết định thay thế túi nilon bằng túi giấy thân thiện với môi trường.",
+    "koSampleAnswer": "플라스틱 쓰레기를 줄이기 위해 많은 슈퍼마켓이 비닐봉지 대신 친환경 종이봉투를 사용하기로 했다.",
+    "keyGrammar": [
+      "- 대신에 (thay vì)",
+      "-기로 하다 (quyết định làm gì)"
+    ],
+    "keyVocab": [
+      "플라스틱 쓰레기 (rác thải nhựa)",
+      "비닐봉지 (túi nilon)",
+      "친환경 (thân thiện môi trường)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-49",
+    "topic": "Môi trường",
+    "level": "TOPIK 5",
+    "viText": "Ô nhiễm rác thải nhựa đại dương đang đe dọa nghiêm trọng đến hệ sinh thái biển và sức khỏe của con người thông qua chuỗi thức ăn.",
+    "koSampleAnswer": "해양 플라스틱 오염은 먹이 사슬을 통해 해양 생태계는 물론 인간의 건강까지 심각하게 위협하고 있다.",
+    "keyGrammar": [
+      "-를 통해 (thông qua)",
+      "~은/는 물론 ~까지 (không những... mà đến cả)"
+    ],
+    "keyVocab": [
+      "먹이 사슬 (chuỗi thức ăn)",
+      "해양 생태계 (hệ sinh thái biển)",
+      "위협하다 (đe dọa)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-50",
+    "topic": "Môi trường",
+    "level": "TOPIK 6",
+    "viText": "Sự tàn phá rừng nhiệt đới không chỉ làm mất đi nơi cư trú của vô số loài động thực vật mà còn làm tăng tốc độ nóng lên toàn cầu.",
+    "koSampleAnswer": "열대우림 파괴는 수많은 동식물의 서식지를 앗아갈 뿐만 아니라 지구 온난화를 가속화하고 있다.",
+    "keyGrammar": [
+      "-ㄹ 뿐만 아니라 (không những... mà còn)"
+    ],
+    "keyVocab": [
+      "열대우림 (rừng nhiệt đới)",
+      "서식지 (nơi cư trú)",
+      "앗아가다 (cướp đi/mất đi)",
+      "가속화하다 (gia tăng tốc độ/gấp rút)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-51",
+    "topic": "Môi trường",
+    "level": "TOPIK 4",
+    "viText": "Việc phân loại rác thải tại nguồn là hành động thiết thực nhất mà mỗi cá nhân có thể làm để bảo vệ môi trường.",
+    "koSampleAnswer": "쓰레기 분리배출은 환경을 보호하기 위해 개인이 실천할 수 있는 가장 확실한 행동이다.",
+    "keyGrammar": [
+      "-기 위해 (để)",
+      "-ㄹ 수 있는 (có thể)"
+    ],
+    "keyVocab": [
+      "쓰레기 분리배출 (분리수거 - phân loại rác tại nguồn)",
+      "실천하다 (thực hành/thực thực hiện)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-52",
+    "topic": "Môi trường",
+    "level": "TOPIK 5",
+    "viText": "Nhiều quốc gia đang ban hành các quy định nghiêm ngặt nhằm đánh thuế xả thải carbon đối với các ngành công nghiệp gây ô nhiễm.",
+    "koSampleAnswer": "많은 국가들이 오염 유발 산업에 탄소배출세를 부과하는 등 엄격한 규제를 시행하고 있다.",
+    "keyGrammar": [
+      "-는 등 (như là...)",
+      "-고 있다 (đang)"
+    ],
+    "keyVocab": [
+      "탄소배출세 (thuế xả thải carbon)",
+      "부과하다 (đánh thuế/áp đặt)",
+      "엄격한 규제 (quy định nghiêm ngặt)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-53",
+    "topic": "Môi trường",
+    "level": "TOPIK 6",
+    "viText": "Nạn thiếu nước sạch nghiêm trọng do ô nhiễm nguồn nước đang trở thành một trong những mối đe dọa an ninh phi truyền thống lớn nhất.",
+    "koSampleAnswer": "수질 오염으로 인한 심각한 식수 부족 문제는 가장 큰 비전통 안보 위협 중 하나로 떠오르고 있다.",
+    "keyGrammar": [
+      "-로 인한 (do)",
+      "~ 중 하나로 떠오르다 (nổi lên như một trong những...)"
+    ],
+    "keyVocab": [
+      "수질 오염 (ô nhiễm nguồn nước)",
+      "식수 부족 (thiếu nước sạch/nước uống)",
+      "비전통 안보 위협 (mối đe dọa an ninh phi truyền thống)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-54",
+    "topic": "Môi trường",
+    "level": "TOPIK 4",
+    "viText": "Sử dụng các phương tiện giao thông công cộng thay cho xe cá nhân sẽ góp phần làm giảm bụi mịn trong không khí.",
+    "koSampleAnswer": "자가용 대신 대중교통을 이용하는 것은 대기 중 미세먼지를 줄이는 데 기여할 것이다.",
+    "keyGrammar": [
+      "- 대신 (thay vì)",
+      "-는 데 기여하다 (góp phần vào việc...)"
+    ],
+    "keyVocab": [
+      "자가용 (xe riêng/xe cá nhân)",
+      "미세먼지 (bụi mịn)",
+      "대기 (không khí/khí quyển)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-55",
+    "topic": "Môi trường",
+    "level": "TOPIK 5",
+    "viText": "Mô hình kinh tế tuần hoàn hướng tới việc tái chế tối đa tài nguyên và giảm bớt lượng chất thải ra môi trường.",
+    "koSampleAnswer": "순환 경제 모델은 자원의 재활용을 극대화하고 환경으로 배출되는 폐기물을 최소화하는 것을 지향한다.",
+    "keyGrammar": [
+      "-는 것을 지향하다 (hướng tới việc...)"
+    ],
+    "keyVocab": [
+      "순환 경제 (kinh tế tuần hoàn)",
+      "극대화하다 (tối đa hóa)",
+      "폐기물 (chất thải)",
+      "지향하다 (hướng tới)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-56",
+    "topic": "Môi trường",
+    "level": "TOPIK 6",
+    "viText": "Sự băng tan ở hai cực do Trái đất nóng lên đang khiến mực nước biển dâng cao, đe dọa trực tiếp các vùng duyên hải thấp.",
+    "koSampleAnswer": "지구 온난화로 인한 극지방의 빙하 해빙은 해수면을 상승시켜 저지대 해안 지역을 직접적으로 위협하고 있다.",
+    "keyGrammar": [
+      "-로 인한 (do bởi)",
+      "-아/어 (kết quả)"
+    ],
+    "keyVocab": [
+      "극지방 (vùng cực)",
+      "빙하 해빙 (băng tan)",
+      "해수면 상승 (dâng mực nước biển)",
+      "저지대 (vùng đất thấp)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-57",
+    "topic": "Môi trường",
+    "level": "TOPIK 4",
+    "viText": "Chúng ta cần tăng cường giáo dục môi trường cho học sinh ngay từ bậc tiểu học.",
+    "koSampleAnswer": "초등학교 시절부터 학생들에게 환경 교육을 강화할 필요가 있다.",
+    "keyGrammar": [
+      "~부터 (từ...)",
+      "-ㄹ 필요가 있다 (cần)"
+    ],
+    "keyVocab": [
+      "초등학교 (trường tiểu học)",
+      "환경 교육 (giáo dục môi trường)",
+      "강화하다 (tăng cường)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-58",
+    "topic": "Môi trường",
+    "level": "TOPIK 5",
+    "viText": "Việc phát triển các tòa nhà xanh tiết kiệm năng lượng là giải pháp hữu hiệu để giảm tiêu thụ điện năng tại các đô thị lớn.",
+    "koSampleAnswer": "에너지 절약형 친환경 건축물의 개발은 대도시의 전력 소비를 줄이기 위한 효과적인 대안이다.",
+    "keyGrammar": [
+      "-기 위한 (để...)"
+    ],
+    "keyVocab": [
+      "에너지 절약형 (kiểu tiết kiệm năng lượng)",
+      "친환경 건축물 (công trình xanh)",
+      "대안 (giải pháp thay thế/hữu hiệu)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-59",
+    "topic": "Môi trường",
+    "level": "TOPIK 6",
+    "viText": "Sự suy thoái đất do lạm dụng phân bón hóa học đang đe dọa nghiêm trọng đến an ninh lương thực toàn cầu.",
+    "koSampleAnswer": "화학 비료의 과다 사용으로 인한 토양 황폐화는 전 세계 식량 안보를 위협하는 심각한 요인이다.",
+    "keyGrammar": [
+      "-로 인한 (do)",
+      "-는 요인이다 (là yếu tố...)"
+    ],
+    "keyVocab": [
+      "화학 비료 (phân bón hóa học)",
+      "토양 황폐화 (sự suy thoái/hoang hóa đất)",
+      "식량 안보 (an ninh lương thực)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-60",
+    "topic": "Môi trường",
+    "level": "TOPIK 5",
+    "viText": "Chính sách khuyến khích người dân sử dụng xe điện đang nhận được phản hồi tích cực nhờ các khoản trợ cấp của chính phủ.",
+    "koSampleAnswer": "정부의 보조금 지원에 힘입어 전기차 보급 정책이 시민들로부터 큰 호응을 얻고 있다.",
+    "keyGrammar": [
+      "-에 힘입어 (nhờ có)",
+      "-từ..."
+    ],
+    "keyVocab": [
+      "보조금 지원 (hỗ trợ trợ cấp)",
+      "전기차 보급 (phổ cập xe điện)",
+      "호응을 얻다 (nhận được phản hồi tích cực/đón nhận)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-61",
+    "topic": "Giáo dục",
+    "level": "TOPIK 5",
+    "viText": "Thay vì phương pháp giáo dục nhồi nhét truyền thống, giáo dục hiện đại chú trọng nuôi dưỡng khả năng tư duy phản biện và sáng tạo.",
+    "koSampleAnswer": "주입식 교육에서 벗어나 현대 교육은 비판적 사고 능력과 창의성을 함양하는 데 중점을 두고 있다.",
+    "keyGrammar": [
+      "-에서 벗어나 (thoát khỏi...)",
+      "-는 데 중점을 두다 (chú trọng vào việc...)"
+    ],
+    "keyVocab": [
+      "주입식 교육 (giáo dục nhồi nhét)",
+      "비판적 사고 (tư duy phản biện)",
+      "함양하다 (nuôi dưỡng/bồi đắp)",
+      "중점을 두다 (chú trọng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-62",
+    "topic": "Giáo dục",
+    "level": "TOPIK 6",
+    "viText": "Sự gia tăng chi phí giáo dục tư nhân (học thêm) đang trở thành gánh nặng kinh tế lớn cho các gia đình và là nguyên nhân dẫn đến tỷ lệ sinh thấp.",
+    "koSampleAnswer": "사교육비의 과도한 증가가 가계에 큰 경제적 부담을 줄 뿐만 아니라 저출생의 주요 원인으로 작용하고 있다.",
+    "keyGrammar": [
+      "-ㄹ 뿐만 아니라 (không những... mà còn)"
+    ],
+    "keyVocab": [
+      "사교육비 (chi phí học thêm/dạy thêm)",
+      "경제적 부담 (gánh nặng kinh tế)",
+      "원인으로 작용하다 (đóng vai trò là nguyên nhân)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-63",
+    "topic": "Giáo dục",
+    "level": "TOPIK 4",
+    "viText": "Khen ngợi và khuyến khích đúng lúc giúp trẻ phát triển sự tự tin và lòng tự trọng cao hơn.",
+    "koSampleAnswer": "적절한 칭찬과 격려는 아이의 자존감과 자신감을 향상시키는 데 큰 도움이 된다.",
+    "keyGrammar": [
+      "-는 데 도움이 되다 (giúp ích cho việc...)"
+    ],
+    "keyVocab": [
+      "격려 (khuyến khích/động viên)",
+      "자존감 (lòng tự trọng)",
+      "자신감 (sự tự tin)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-64",
+    "topic": "Giáo dục",
+    "level": "TOPIK 5",
+    "viText": "Hội chứng kiệt sức (Burnout) ở học sinh xuất phát từ áp lực thành tích học tập quá mức và kỳ vọng cao từ gia đình.",
+    "koSampleAnswer": "학생들의 번아웃 증후군은 과도한 학업 성적 압박과 부모의 높은 기대감에서 비롯된다.",
+    "keyGrammar": [
+      "~에서 비롯되다 (bắt nguồn từ...)"
+    ],
+    "keyVocab": [
+      "번아웃 증후군 (hội chứng kiệt sức)",
+      "학업 성적 (thành tích học tập)",
+      "기대감 (sự kỳ vọng)",
+      "비롯되다 (bắt nguồn từ)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-65",
+    "topic": "Giáo dục",
+    "level": "TOPIK 6",
+    "viText": "Khái niệm học tập suốt đời đang trở thành yêu cầu tất yếu để con người duy trì khả năng thích ứng trong một xã hội thay đổi nhanh chóng.",
+    "koSampleAnswer": "평생학습의 개념은 급변하는 사회에서 적응력을 유지하기 위한 필수적인 요구가 되었다.",
+    "keyGrammar": [
+      "-기 위한 (để...)"
+    ],
+    "keyVocab": [
+      "평생학습 (học tập suốt đời)",
+      "적응력 (khả năng thích ứng)",
+      "필수적 (tất yếu/bắt buộc)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-66",
+    "topic": "Giáo dục",
+    "level": "TOPIK 4",
+    "viText": "Đọc sách thường xuyên không chỉ mở rộng kiến thức mà còn giúp phát triển trí tưởng tượng phong phú.",
+    "koSampleAnswer": "꾸준한 독서는 지식을 넓힐 뿐만 아니라 풍부한 상상력을 키우는 데도 기여한다.",
+    "keyGrammar": [
+      "-ㄹ 뿐만 아니라 (không những... mà còn)"
+    ],
+    "keyVocab": [
+      "독서 (đọc sách)",
+      "상상력 (trí tưởng tượng)",
+      "키우다 (nuôi dưỡng/phát triển)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-67",
+    "topic": "Giáo dục",
+    "level": "TOPIK 5",
+    "viText": "Sự bất bình đẳng về cơ hội tiếp cận công nghệ thông tin (khoảng cách kỹ thuật số) có thể làm trầm trọng thêm khoảng cách học lực giữa các học sinh.",
+    "koSampleAnswer": "디지털 정보 격차는 학생 간의 학력 격차를 더욱 심화시킬 우려가 있다.",
+    "keyGrammar": [
+      "-ㄹ 우려가 있다 (có lo ngại rằng...)"
+    ],
+    "keyVocab": [
+      "디지털 정보 격차 (khoảng cách kỹ thuật số/thông tin)",
+      "학력 격차 (khoảng cách học lực)",
+      "심화시키다 (làm trầm trọng thêm)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-68",
+    "topic": "Giáo dục",
+    "level": "TOPIK 6",
+    "viText": "Trí tuệ cảm xúc (EQ) đóng vai trò quan trọng không kém gì chỉ số thông minh (IQ) trong việc quyết định sự thành công và hạnh phúc của một cá nhân.",
+    "koSampleAnswer": "개인의 성공과 행복을 결정하는 데 있어 감성 지능(EQ)은 지능 지수(IQ) 못지않게 중요한 역할을 한다.",
+    "keyGrammar": [
+      "-는 데 있어 (trong việc...)",
+      "~ 못지않게 (không kém gì)"
+    ],
+    "keyVocab": [
+      "감성 지능 (trí tuệ cảm xúc EQ)",
+      "지능 지수 (chỉ số thông minh IQ)",
+      "못지않게 (không kém gì)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-69",
+    "topic": "Giáo dục",
+    "level": "TOPIK 4",
+    "viText": "Nhà trường cần tạo môi trường học tập an toàn để ngăn chặn triệt để nạn bạo lực học đường.",
+    "koSampleAnswer": "학교는 학교 폭력을 근절하기 위해 안전한 학습 환경을 조성해야 한다.",
+    "keyGrammar": [
+      "-기 위해 (để)",
+      "-해야 한다 (phải)"
+    ],
+    "keyVocab": [
+      "학교 폭력 (bạo lực học đường)",
+      "근절하다 (triệt tiêu/ngăn chặn triệt để)",
+      "조성하다 (tạo dựng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-70",
+    "topic": "Giáo dục",
+    "level": "TOPIK 5",
+    "viText": "Mô hình lớp học đảo ngược (Flipped Learning), nơi học sinh tự học lý thuyết trước khi đến lớp, đang nhận được sự chú ý lớn.",
+    "koSampleAnswer": "학생이 수업 전 이론을 미리 학습하는 플립러닝(거꾸로 학습)이 큰 주목을 받고 있다.",
+    "keyGrammar": [
+      "-는 (định ngữ mệnh đề)"
+    ],
+    "keyVocab": [
+      "플립러닝/거꾸로 학습 (mô hình lớp học đảo ngược)",
+      "이론 (lý thuyết)",
+      "주목을 받다 (nhận được sự chú ý)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-71",
+    "topic": "Giáo dục",
+    "level": "TOPIK 6",
+    "viText": "Tâm lý so sánh bản thân với người khác trên mạng xã hội là nguyên nhân hàng đầu gây ra trầm cảm ở lứa tuổi thanh thiếu niên.",
+    "koSampleAnswer": "SNS상에서 타인과 자신을 비교하는 심리는 청소년 우울증을 유발하는 주요 원인으로 지목된다.",
+    "keyGrammar": [
+      "-는 주요 원인으로 지목되다 (được chỉ ra là nguyên nhân chính)"
+    ],
+    "keyVocab": [
+      "타인 (người khác)",
+      "비교하다 (so sánh)",
+      "우울증 (trầm cảm)",
+      "유발하다 (gây ra)",
+      "지목되다 (bị chỉ ra)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-72",
+    "topic": "Giáo dục",
+    "level": "TOPIK 4",
+    "viText": "Học ngoại ngữ từ nhỏ giúp nâng cao khả năng tư duy linh hoạt và sự hiểu biết đa văn hóa.",
+    "koSampleAnswer": "어릴 때부터 외국어를 배우는 것은 유연한 사고 능력과 다문화 이해도를 높여준다.",
+    "keyGrammar": [
+      "-는 것은 (việc...)",
+      "-아/어 giu다 (giúp/mang lại)"
+    ],
+    "keyVocab": [
+      "사고 능력 (khả năng tư duy)",
+      "다문화 이해도 (hiểu biết đa văn hóa)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-73",
+    "topic": "Giáo dục",
+    "level": "TOPIK 5",
+    "viText": "Chương trình hướng nghiệp thực tế giúp học sinh khám phá tiềm năng và định hướng tương lai phù hợp với sở thích.",
+    "koSampleAnswer": "실질적인 진로 체험 프로그램은 학생들이 잠재력을 발견하고 적성에 맞는 미래를 설계하도록 돕는다.",
+    "keyGrammar": [
+      "-도록 돕다 (giúp để làm...)"
+    ],
+    "keyVocab": [
+      "진로 체험 (trải nghiệm hướng nghiệp)",
+      "잠재력 (tiềm năng)",
+      "적성 (sở thích/năng khiếu)",
+      "설계하다 (thiết kế/định hướng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-74",
+    "topic": "Giáo dục",
+    "level": "TOPIK 6",
+    "viText": "Thất bại không phải là mộc kết thúc mà là tài sản quý giá cung cấp những bài học kinh nghiệm sâu sắc cho sự trưởng thành.",
+    "koSampleAnswer": "실패는 끝이 아니라 성장을 위한 깊은 교훈을 제공하는 귀중한 자산이다.",
+    "keyGrammar": [
+      "A-이/가 아니라 B (không phải A mà là B)"
+    ],
+    "keyVocab": [
+      "교훈 (bài học kinh nghiệm)",
+      "귀중한 자산 (tài sản quý giá)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-75",
+    "topic": "Giáo dục",
+    "level": "TOPIK 5",
+    "viText": "Việc rèn luyện thói quen tự quản lý thời gian là chìa khóa then chốt giúp sinh viên đạt được sự cân bằng giữa học tập và cuộc sống.",
+    "koSampleAnswer": "스스로 시간을 관리하는 습관을 기르는 것은 학업과 생활의 균형을 이루는 핵심 열쇠이다.",
+    "keyGrammar": [
+      "-는 것은 (việc...)"
+    ],
+    "keyVocab": [
+      "습관을 기르다 (rèn luyện thói quen)",
+      "균형을 이루다 (đạt được sự cân bằng)",
+      "핵심 열쇠 (chìa khóa then chốt)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-76",
+    "topic": "Thời sự",
+    "level": "TOPIK 5",
+    "viText": "Việc tăng cường hợp tác kinh tế song phương giữa hai nước góp phần quan trọng vào việc đảm bảo hòa bình và thịnh vượng khu vực.",
+    "koSampleAnswer": "양국 간의 양자 경제 협력 강화는 지역의 평화와 번영을 확보하는 데 크게 기여한다.",
+    "keyGrammar": [
+      "-는 데 기여하다 (góp phần vào việc...)"
+    ],
+    "keyVocab": [
+      "양자 협력 (hợp tác song phương)",
+      "평화와 번영 (hòa bình và thịnh vượng)",
+      "확보하다 (đảm bảo/nắm giữ)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-77",
+    "topic": "Thời sự",
+    "level": "TOPIK 6",
+    "viText": "Trước tình hình địa chính trị biến động phức tạp, các quốc gia cần đa dạng hóa đối tác thương mại để giảm thiểu rủi ro.",
+    "koSampleAnswer": "복잡한 지경학적 정세 속에서 각국은 리스크를 최소화하기 위해 무역 파트너를 다변화할 필요가 있다.",
+    "keyGrammar": [
+      "-속에서 (trong...)",
+      "-ㄹ 필요가 있다 (cần)"
+    ],
+    "keyVocab": [
+      "지경학적 정세 (tình hình địa chính trị/kinh tế)",
+      "다변화하다 (đa dạng hóa)",
+      "리스크 (rủi ro)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-78",
+    "topic": "Thời sự",
+    "level": "TOPIK 4",
+    "viText": "Chuyến thăm chính thức của Tổng thống đã mở ra một chương mới trong quan hệ đối tác chiến lược giữa hai quốc gia.",
+    "koSampleAnswer": "대통령의 공식 방문은 양국 간 전략적 동반자 관계의 새로운 장을 열었다.",
+    "keyGrammar": [
+      "-의 (của)"
+    ],
+    "keyVocab": [
+      "공식 방문 (chuyến thăm chính thức)",
+      "전략적 동반자 관계 (quan hệ đối tác chiến lược)",
+      "장을 열다 (mở ra một chương mới)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-79",
+    "topic": "Thời sự",
+    "level": "TOPIK 5",
+    "viText": "Các hiệp định thương mại tự do (FTA) đóng vai trò thúc đẩy gỡ bỏ các hàng rào thuế quan và mở rộng giao lưu thương mại.",
+    "koSampleAnswer": "자유무역협정(FTA)은 관세 장벽을 철폐하고 무역 교류를 확대하는 역할을 한다.",
+    "keyGrammar": [
+      "-는 역할을 하다 (đóng vai trò...)"
+    ],
+    "keyVocab": [
+      "자유무역협정 (Hiệp định thương mại tự do FTA)",
+      "관세 장벽 (hàng rào thuế quan)",
+      "철폐하다 (gỡ bỏ/bãi bỏ)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-80",
+    "topic": "Thời sự",
+    "level": "TOPIK 6",
+    "viText": "Sự hỗ trợ nhân đạo quốc tế dành cho các khu vực chịu thiên tai cần được thực hiện một cách nhanh chóng và không tính toán lợi ích chính trị.",
+    "koSampleAnswer": "재난 지역에 대한 국제 사회의 인도적 지원은 정치적 이해관계를 떠나 신속하게 이루어져야 한다.",
+    "keyGrammar": [
+      "~을 떠나 (không tính đến/vượt qua...)",
+      "-어야 하다 (phải được thực hiện)"
+    ],
+    "keyVocab": [
+      "인도적 지원 (hỗ trợ nhân đạo)",
+      "이해관계 (lợi ích/mối quan hệ liên quan)",
+      "신속하게 (nhanh chóng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-81",
+    "topic": "Thời sự",
+    "level": "TOPIK 4",
+    "viText": "Giao lưu văn hóa và du lịch đóng vai trò cầu nối tăng cường sự thấu hiểu lẫn nhau giữa nhân dân hai nước.",
+    "koSampleAnswer": "문화 및 관광 교류는 양국 국민 간의 상호 이해를 증진하는 다리 역할을 한다.",
+    "keyGrammar": [
+      "-는 다리 역할을 하다 (đóng vai trò là chiếc cầu nối...)"
+    ],
+    "keyVocab": [
+      "양국 국민 (nhân dân hai nước)",
+      "상호 이해 (sự thấu hiểu lẫn nhau)",
+      "증진하다 (tăng cường/thúc đẩy)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-82",
+    "topic": "Thời sự",
+    "level": "TOPIK 5",
+    "viText": "Chính phủ đang nỗ lực giải quyết vấn đề việc làm cho thanh niên thông qua các chính sách cải cách thị trường lao động.",
+    "koSampleAnswer": "정부는 노동 시장 개혁 정책을 통해 청년 일자리 문제를 해결하기 위해 노력을 기울이고 있다.",
+    "keyGrammar": [
+      "-를 통해 (thông qua)",
+      "-기 위해 (để)"
+    ],
+    "keyVocab": [
+      "노동 시장 개혁 (cải cách thị trường lao động)",
+      "노력을 기울이다 (nỗ lực/dốc sức)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-83",
+    "topic": "Thời sự",
+    "level": "TOPIK 6",
+    "viText": "Việc bảo đảm an ninh năng lượng và an ninh lương thực đã trở thành nhiệm vụ cấp bách hàng đầu của tất cả các quốc gia.",
+    "koSampleAnswer": "에너지 안보와 식량 안보의 확보는 전 세계 모든 국가의 최우선 과제로 떠올랐다.",
+    "keyGrammar": [
+      "-는 ~과제로 떠올랐다 (đã nổi lên như nhiệm vụ...)"
+    ],
+    "keyVocab": [
+      "에너지 안보 (an ninh năng lượng)",
+      "최우선 과제 (nhiệm vụ ưu tiên hàng đầu)",
+      "떠오르다 (trở thành/nổi lên)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-84",
+    "topic": "Thời sự",
+    "level": "TOPIK 4",
+    "viText": "Hội nghị thượng đỉnh lần này tập trung thảo luận về giải pháp ứng phó với khủng hoảng kinh tế toàn cầu.",
+    "koSampleAnswer": "이번 정상회의는 세계 경제 위기 대응 방안을 논의하는 데 집중했다.",
+    "keyGrammar": [
+      "-는 데 집중하다 (tập trung vào việc...)"
+    ],
+    "keyVocab": [
+      "정상회의 (Hội nghị thượng đỉnh)",
+      "위기 대응 방안 (giải pháp ứng phó khủng hoảng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-85",
+    "topic": "Thời sự",
+    "level": "TOPIK 5",
+    "viText": "Sự gia tăng nhanh chóng của dòng người nhập cư đòi hỏi phải có các chính sách đa văn hóa mang tính bao trùm và tôn trọng sự khác biệt.",
+    "koSampleAnswer": "이민자의 급격한 증가로 인해 차이를 존중하고 포용적인 다문화 정책이 요구되고 있다.",
+    "keyGrammar": [
+      "-로 인해 (do)",
+      "-고 있다 (đang được yêu cầu)"
+    ],
+    "keyVocab": [
+      "이민자 (người nhập cư)",
+      "포용적 (mang tính bao trùm/đón nhận)",
+      "존중하다 (tôn trọng)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-86",
+    "topic": "Thời sự",
+    "level": "TOPIK 6",
+    "viText": "Quyền lực mềm văn hóa (Soft Power) đang trở thành công cụ ngoại giao quan trọng nâng cao vị thế của một quốc gia trên trường quốc tế.",
+    "koSampleAnswer": "문화적 소프트 파워는 국제 무대에서 국가 위상을 높이는 중요한 외교적 도구가 되고 있다.",
+    "keyGrammar": [
+      "-는 중요한 도구가 되고 있다 (đang trở thành công cụ quan trọng...)"
+    ],
+    "keyVocab": [
+      "소프트 파워 (Quyền lực mềm)",
+      "국가 위상 (vị thế quốc gia)",
+      "국제 무대 (trường quốc tế)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-87",
+    "topic": "Thời sự",
+    "level": "TOPIK 4",
+    "viText": "Việc ký kết biên bản ghi nhớ hợp tác (MOU) tạo nền tảng vững chắc cho sự phát triển của dự án trong tương lai.",
+    "koSampleAnswer": "양해각서(MOU) 체결은 향후 프로젝트 발전의 견고한 기반을 마련했다.",
+    "keyGrammar": [
+      "-을/를 마련하다 (chuẩn bị/tạo dựng)"
+    ],
+    "keyVocab": [
+      "양해각서 (Biên bản ghi nhớ MOU)",
+      "체결 (ký kết)",
+      "향후 (trong tương lai/sau này)",
+      "견고한 기반 (nền tảng vững chắc)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-88",
+    "topic": "Thời sự",
+    "level": "TOPIK 5",
+    "viText": "Cộng đồng quốc tế cần chung tay tháo gỡ khó khăn cho các quốc gia đang phát triển trong cuộc chiến chống đại dịch.",
+    "koSampleAnswer": "국제사회는 감염병 퇴치를 위해 개발도상국이 겪는 어려움을 해결하는 데 힘을 모아야 한다.",
+    "keyGrammar": [
+      "-는 데 힘을 모아야 한다 (cần chung tay vào việc...)"
+    ],
+    "keyVocab": [
+      "감염병 퇴치 (đẩy lùi bệnh truyền nhiễm/đại dịch)",
+      "개발도상국 (quốc gia đang phát triển)",
+      "힘을 모으다 (chung tay/góp sức)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-89",
+    "topic": "Thời sự",
+    "level": "TOPIK 6",
+    "viText": "Sự phân tranh thương mại giữa các nước lớn đang gây ra biến động mạnh cho thị trường tài chính và chứng khoán toàn cầu.",
+    "koSampleAnswer": "강대국 간의 무역 분쟁은 글로벌 금융 및 주식 시장에 큰 변동성을 유발하고 있다.",
+    "keyGrammar": [
+      "-고 있다 (đang gây ra)"
+    ],
+    "keyVocab": [
+      "무역 분쟁 (tranh chấp/phân tranh thương mại)",
+      "주식 시장 (thị trường chứng khoán)",
+      "변동성 (biến động)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-90",
+    "topic": "Thời sự",
+    "level": "TOPIK 5",
+    "viText": "Sự minh bạch trong quản trị công là yếu tố nền tảng để củng cố niềm tin của nhân dân vào chính phủ.",
+    "koSampleAnswer": "공공 행정의 투명성은 정부에 대한 국민의 신뢰를 공고히 하는 바탕이다.",
+    "keyGrammar": [
+      "-는 바탕이다 (là nền tảng...)"
+    ],
+    "keyVocab": [
+      "공공 행정 (quản trị công/hành chính công)",
+      "투명성 (tính minh bạch)",
+      "공고히 하다 (củng cố/làm vững chắc)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-91",
+    "topic": "Đời sống",
+    "level": "TOPIK 4",
+    "viText": "Hạnh phúc chân thật không đến từ việc sở hữu nhiều tài sản mà đến từ sự bình yên trong tâm hồn.",
+    "koSampleAnswer": "진정한 행복은 많은 재산을 소유하는 데서 오는 것이 아니라 마음의 평화에서 온다.",
+    "keyGrammar": [
+      "A-에서 오는 것이 아니라 B-에서 온다 (Không đến từ A mà đến từ B)"
+    ],
+    "keyVocab": [
+      "진정한 행복 (hạnh phúc chân thật)",
+      "재산 소유 (sở hữu tài sản)",
+      "마음의 평화 (bình yên trong tâm hồn)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-92",
+    "topic": "Đời sống",
+    "level": "TOPIK 5",
+    "viText": "Thái độ ứng xử tích cực trước nghịch cảnh quyết định thành bại của một đời người hơn là năng lực bẩm sinh.",
+    "koSampleAnswer": "시련에 대응하는 긍정적인 태도는 타고난 능력보다 인생의 성패를 결정짓는 데 더 중요한 역할을 한다.",
+    "keyGrammar": [
+      "~보다 (hơn là...)",
+      "-는 데 더 중요한 역할을 하다 (đóng vai trò quan trọng hơn trong việc...)"
+    ],
+    "keyVocab": [
+      "시련 (thử thách/nghịch cảnh)",
+      "타고난 능력 (năng lực bẩm sinh)",
+      "성패를 결정짓다 (quyết định sự thành bại)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-93",
+    "topic": "Đời sống",
+    "level": "TOPIK 6",
+    "viText": "Dũng cảm không phải là không biết sợ hãi, mà là quyết định tiến lên phía trước dù trong lòng đang mang nỗi sợ.",
+    "koSampleAnswer": "용기란 두려움이 없는 것이 아니라, 두려움에도 불구하고 앞으로 나아가기로 결정하는 것이다.",
+    "keyGrammar": [
+      "~란 A-이 아니라 B-이다 (Dũng cảm có nghĩa là không phải A mà là B)"
+    ],
+    "keyVocab": [
+      "용기 (lòng dũng cảm)",
+      "두려움 (nỗi sợ hãi)",
+      "앞으로 나아가다 (tiến lên phía trước)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-94",
+    "topic": "Đời sống",
+    "level": "TOPIK 4",
+    "viText": "Hãy học cách lắng nghe nhiều hơn nói, bởi vì sự lắng nghe chân thành là khởi đầu của mọi mối quan hệ tốt đẹp.",
+    "koSampleAnswer": "말하기보다 경청하는 법을 배워라. 진심 어린 경청이야말로 좋은 관계의 시작이다.",
+    "keyGrammar": [
+      "~보다 (hơn là...)",
+      "~이야말로 (chính là...)"
+    ],
+    "keyVocab": [
+      "경청하다 (lắng nghe chân thành)",
+      "진심 어린 (chân thành)",
+      "시작 (khởi đầu)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-95",
+    "topic": "Đời sống",
+    "level": "TOPIK 5",
+    "viText": "Thời gian là tài sản công bằng nhất trao cho tất cả mọi người, nhưng giá trị của nó phụ thuộc vào cách mỗi người sử dụng.",
+    "koSampleAnswer": "시간은 모두에게 공평하게 주어진 자산이지만, 그 가치는 각자가 어떻게 활용하느냐에 달려 있다.",
+    "keyGrammar": [
+      "-지만 (nhưng)",
+      "-느냐에 달려 있다 (phụ thuộc vào việc...)"
+    ],
+    "keyVocab": [
+      "공평하게 (một cách công bằng)",
+      "주어진 자산 (tài sản được ban cho)",
+      "~에 달려 있다 (phụ thuộc vào...)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-96",
+    "topic": "Đời sống",
+    "level": "TOPIK 6",
+    "viText": "Sự kiên trì vượt qua từng thất bại nhỏ chính là chìa khóa duy nhất giúp con người chạm tới những thành tựu vĩ đại.",
+    "koSampleAnswer": "작은 실패들을 끊임없이 극복해 나가는 인내심이야말로 위대한 성취에 도달하게 하는 유일한 열쇠이다.",
+    "keyGrammar": [
+      "-아/어 나가는 (tiếp tục vượt qua...)",
+      "~이야말로 (chính là...)"
+    ],
+    "keyVocab": [
+      "끊임없이 (không ngừng nghỉ)",
+      "인내심 (lòng kiên trì)",
+      "성취에 도달하다 (chạm tới thành tựu)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-97",
+    "topic": "Đời sống",
+    "level": "TOPIK 4",
+    "viText": "Đừng so sánh cuộc đời mình với người khác, bởi mỗi người đều có một hành trình và mốc thời gian riêng.",
+    "koSampleAnswer": "남과 자신의 삶을 비교하지 마라. 사람마다 각자의 여정과 속도가 다르기 때문이다.",
+    "keyGrammar": [
+      "-지 마라 (đừng làm...)",
+      "-기 때문이다 (là vì...)"
+    ],
+    "keyVocab": [
+      "비교하다 (so sánh)",
+      "여정 (hành trình)",
+      "속도 (tốc độ/mốc thời gian)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-98",
+    "topic": "Đời sống",
+    "level": "TOPIK 5",
+    "viText": "Sự tha thứ không phải là xóa bỏ quá khứ, mà là tự giải thoát bản thân khỏi những gánh nặng tổn thương để bước tiếp.",
+    "koSampleAnswer": "용서는 과거를 지우는 것이 아니라, 상처의 무게로부터 자신을 해방시켜 나아가는 것이다.",
+    "keyGrammar": [
+      "A-이 아니라 B-이다 (Không phải A mà là B)"
+    ],
+    "keyVocab": [
+      "용서 (sự tha thứ)",
+      "상처의 무게 (gánh nặng tổn thương)",
+      "해방시키다 (giải thoát)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-99",
+    "topic": "Đời sống",
+    "level": "TOPIK 6",
+    "viText": "Một thói quen nhỏ được duy trì đều đặn hàng ngày sẽ tạo nên sự thay đổi kỳ diệu vượt xa mong đợi theo thời gian.",
+    "koSampleAnswer": "매일 꾸준히 실천하는 작은 습관은 시간이 흐름에 따라 기대 이상의 경이로운 변화를 만들어낸다.",
+    "keyGrammar": [
+      "-함에 따라 (theo thời gian...)"
+    ],
+    "keyVocab": [
+      "꾸준히 (đều đặn)",
+      "경이로운 변화 (thay đổi kỳ diệu)",
+      "기대 이상 (vượt xa mong đợi)",
+      "만들어내다 (tạo nên)"
+    ],
+    "isAiGenerated": false
+  },
+  {
+    "sourceId": "seed-100",
+    "topic": "Đời sống",
+    "level": "TOPIK 5",
+    "viText": "Cuộc sống không phải là việc chờ đợi ngọn bão qua đi, mà là học cách nhảy múa ngay dưới những cơn mưa.",
+    "koSampleAnswer": "인생은 폭풍우가 지나가기를 기다리는 것이 아니라, 빗속에서 춤추는 법을 배우는 것이다.",
+    "keyGrammar": [
+      "-기 기다리는 것이 아니라 (không phải chờ đợi... mà là)"
+    ],
+    "keyVocab": [
+      "폭풍우 (cơn bão/폭풍)",
+      "빗속 (dưới mưa)",
+      "춤추는 법 (cách nhảy múa)"
+    ],
+    "isAiGenerated": false
+  }
+]

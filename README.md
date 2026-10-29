@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Luyện Dịch Việt – Hàn
 
-## Getting Started
+Ứng dụng luyện dịch Việt–Hàn TOPIK 4–6 dùng Next.js, OpenRouter và MongoDB. Docker Compose khởi chạy MongoDB 8 cùng ứng dụng; dữ liệu database được giữ trong volume `mongo_data`. 100 bài tập từ HTML tham khảo được đóng gói trong `data/seed-sentences.json` và tự nhập idempotently khi danh sách bài tập được tải lần đầu.
 
-First, run the development server:
+## Chạy tại máy
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Cài Node.js 20.9 trở lên.
+2. Sao chép `.env.example` thành `.env`; điền `OPENROUTER_API_KEY` và chọn `OPENROUTER_MODEL` (mặc định `qwen/qwen3.8-flash`). MongoDB URI mặc định trỏ tới dịch vụ Docker nội bộ.
+3. Chạy `npm ci`, sau đó `npm run dev` và mở `http://localhost:3000`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Chỉ cần MongoDB để xem ngân hàng bài tập; OpenRouter key được yêu cầu khi sinh câu hoặc chấm bài. URI mặc định `mongodb://mongo:27017/korean_practice` dành cho ứng dụng chạy trong Docker Compose. Nếu chạy Next.js trực tiếp bằng `npm run dev`, hãy dùng MongoDB URI có thể truy cập từ máy chủ đó. Không commit `.env`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Docker
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tạo `.env` như trên rồi chạy `docker compose up --build`. Ứng dụng lắng nghe cổng 3000; MongoDB chỉ được truy cập trong mạng Docker và lưu dữ liệu vào volume `mongo_data`.
 
-## Learn More
+### Log production
 
-To learn more about Next.js, take a look at the following resources:
+Log API là JSON theo từng dòng, có `timestamp`, `level`, `event`, `requestId`, route, HTTP status và thời gian xử lý. Mỗi API response trả header `x-request-id`; dùng ID này để tìm các lỗi liên quan. Request body, bản dịch và API key không được ghi log. Mức log mặc định là `info`; đặt `LOG_LEVEL=debug|info|warn|error` trong `.env` để thay đổi.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Xem log trực tiếp bằng `docker compose logs -f --tail=100 app`, hoặc Docker Desktop → Containers → `langz-app-1` → Logs. Docker giữ tối đa 5 tệp log, mỗi tệp 10 MB để giới hạn dung lượng.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## API
 
-## Deploy on Vercel
+- `GET /api/sentences?topic=ALL&level=ALL&page=1&limit=20`
+- `POST /api/sentences/generate` với `{ "topic": "Kinh tế", "level": "TOPIK 5", "count": 5 }`
+- `POST /api/submissions/grade` với `{ "sentenceId": "...", "userTranslation": "..." }` và header `x-user-id`
+- `GET /api/user/stats` với header `x-user-id`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Định danh người học là UUID được tạo và lưu trong trình duyệt. Không có tài khoản hoặc đồng bộ giữa các thiết bị trong phiên bản này.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tra từ KRdict
+
+Tính năng tra nghĩa trực tiếp cần `KRDICT_API_KEY` (khóa 32 ký tự hex) từ Open API của [한국어기초사전 (KRdict)](https://krdict.korean.go.kr/kor/openApi/openApiInfo). Điền khóa trong `.env` rồi khởi động lại Docker Compose. Khi chưa có khóa, vẫn có thể mở trang KRdict và nghe phát âm bằng Web Speech API.
+
+## Dữ liệu nguồn
+
+`data/seed-sentences.json` chứa 100 câu đã trích xuất từ HTML đầu vào. Để tái tạo JSON từ bản HTML gốc, chạy `npm run seed:extract -- "đường-dẫn-tới-html" "data/seed-sentences.json"` (cần Python 3).
