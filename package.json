@@ -12,7 +12,9 @@
     "worker": "tsx scripts/worker.ts",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "legacy:import": "tsx scripts/import-legacy.ts"
+    "legacy:import": "tsx scripts/import-legacy.ts",
+    "docs:check": "node scripts/check-documentation.mjs",
+    "docs:sync": "node scripts/check-documentation.mjs --refresh"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1159.0",

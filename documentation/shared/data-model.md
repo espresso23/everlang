@@ -1,0 +1,21 @@
+# Nguồn dữ liệu và schema
+
+Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 002](../../migrations/002_vectors.sql), [migration 003](../../migrations/003_exam_concurrency.sql). [Auth Drizzle schema](../../lib/sql/schema.ts) và [SQL pool](../../lib/sql/index.ts).
+
+| Nơi lưu | Nhóm dữ liệu | Ràng buộc / sử dụng |
+|---|---|---|
+| PostgreSQL | auth_user/session/account/verification | Better Auth; tài khoản, cookie session, credential/provider |
+| PostgreSQL | profiles | Một row/user; level/goal/minutes/timezone |
+| PostgreSQL | drafts, favorites, submissions | Theo user; nháp optimistic version; snapshot đề và báo cáo JSONB |
+| PostgreSQL | vocabulary, review_logs | Card FSRS JSON, due/version/algorithm; review transaction và request ID |
+| PostgreSQL | daily_plans, study_days | Unique user/day địa phương; snapshot task và streak |
+| PostgreSQL | legacy_imports | Ánh xạ UUID cũ đã xác nhận, import idempotent |
+| PostgreSQL | recordings | User → object key riêng tư, transcript/feedback |
+| PostgreSQL | exam_attempts | Snapshot đề, answers, deadline, result/version; unique active attempt |
+| PostgreSQL/pgvector | tutor_chunks | Published content/version/text, embedding 1536 |
+| MongoDB | Sentence, Exam | Nội dung, nguồn/quyền, phiên bản, draft/reviewed/published |
+| MongoDB | Submission/UserState cũ | Giữ lưu trữ; không tự nhập cho user mới |
+| Redis | Queue/cache/rate limit | Dữ liệu tạm; không thay thế PostgreSQL tiến độ |
+| S3 | Audio riêng tư | Signed URL có hạn, không public bucket |
+
+Sao lưu trước migration/import; PostgreSQL và MongoDB là hai nguồn khác trách nhiệm, không giả định transaction xuyên database. Không chuyển mật khẩu/session/provider token vào response profile hay tài liệu. Các câu SQL dữ liệu cá nhân luôn ràng buộc user lấy từ session.

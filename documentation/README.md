@@ -23,12 +23,29 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 
 ## Mục lục feature
 
-| Feature ID | Tên | Tài liệu chuẩn | Code/điểm vào | Trạng thái | Audit |
+| Feature ID | Tên | Tài liệu chuẩn | Code/điểm vào | Hiện thực | Audit |
 |---|---|---|---|---|---|
+| `identity-auth` | Tài khoản và xác thực | [Đặc tả](features/identity-auth/README.md) | [Functions](features/identity-auth/functions.md) | `implemented` | [Audit](features/identity-auth/audit.md) |
+| `user-profile` | Hồ sơ và mục tiêu học | [Đặc tả](features/user-profile/README.md) | [Functions](features/user-profile/functions.md) | `implemented` | [Audit](features/user-profile/audit.md) |
+| `translation-practice` | Luyện dịch tiếng Hàn | [Đặc tả](features/translation-practice/README.md) | [Functions](features/translation-practice/functions.md) | `implemented` | [Audit](features/translation-practice/audit.md) |
+| `learning-records` | Nháp, lịch sử, yêu thích và thống kê | [Đặc tả](features/learning-records/README.md) | [Functions](features/learning-records/functions.md) | `implemented` | [Audit](features/learning-records/audit.md) |
+| `ai-grading` | Chấm AI bất đồng bộ | [Đặc tả](features/ai-grading/README.md) | [Functions](features/ai-grading/functions.md) | `implemented` | [Audit](features/ai-grading/audit.md) |
+| `vocabulary-srs` | Kho từ và lặp lại ngắt quãng | [Đặc tả](features/vocabulary-srs/README.md) | [Functions](features/vocabulary-srs/functions.md) | `implemented` | [Audit](features/vocabulary-srs/audit.md) |
+| `daily-dashboard` | Dashboard và lịch học | [Đặc tả](features/daily-dashboard/README.md) | [Functions](features/daily-dashboard/functions.md) | `implemented` | [Audit](features/daily-dashboard/audit.md) |
+| `dictionary` | Tra cứu từ điển tiếng Hàn | [Đặc tả](features/dictionary/README.md) | [Functions](features/dictionary/functions.md) | `implemented` | [Audit](features/dictionary/audit.md) |
+| `content-authoring` | Kho học liệu và kiểm duyệt | [Đặc tả](features/content-authoring/README.md) | [Functions](features/content-authoring/functions.md) | `implemented` | [Audit](features/content-authoring/audit.md) |
+| `immersive-learning` | Đọc, nghe và luyện nói | [Đặc tả](features/immersive-learning/README.md) | [Functions](features/immersive-learning/functions.md) | `blocked` | [Audit](features/immersive-learning/audit.md) |
+| `ai-tutor` | Trợ giảng truy xuất học liệu | [Đặc tả](features/ai-tutor/README.md) | [Functions](features/ai-tutor/functions.md) | `blocked` | [Audit](features/ai-tutor/audit.md) |
+| `exam-practice` | Bài luyện TOPIK II PBT | [Đặc tả](features/exam-practice/README.md) | [Functions](features/exam-practice/functions.md) | `implemented` | [Audit](features/exam-practice/audit.md) |
+| `design-system` | App shell và nhận diện | [Đặc tả](features/design-system/README.md) | [Functions](features/design-system/functions.md) | `implemented` | [Audit](features/design-system/audit.md) |
+| `platform-operations` | Hạ tầng, hợp đồng dùng chung và vận hành | [Đặc tả](features/platform-operations/README.md) | [Functions](features/platform-operations/functions.md) | `implemented` | [Audit](features/platform-operations/audit.md) |
 
-Mục lục theo chuẩn mới chưa được lập cho các feature legacy. Khi triển khai hoặc sửa một feature, đăng ký một hàng với liên kết thực tế, bổ sung bộ tài liệu và audit trong cùng thay đổi. Không tạo liên kết tới tài liệu chưa tồn tại hoặc suy diễn rằng feature đã verified.
+14 feature/domain hiện có đã được backfill theo source baseline, gồm các giới hạn và thiếu sót. `implemented` chỉ có nghĩa code đã có; trạng thái xác minh nằm trong audit, không tự coi Google/STT/S3/Tutor/full exam đã hoàn tất.
 
-Trạng thái: `planned` → `implemented` → `verified`; dùng `blocked` khi thiếu điều kiện bắt buộc và ghi rõ giới hạn. Không ghi `verified` khi còn yêu cầu bắt buộc `FAIL` hoặc `NOT VERIFIED`.
+- [System design toàn dự án](shared/architecture.md) · [Tech stack thực tế](shared/tech-stack.md)
+- [Màn hình đã implement](shared/screens.md) · [Dữ liệu](shared/data-model.md) · [Auth/API](shared/auth-and-api.md)
+- [Vận hành](shared/operations.md) · [Bằng chứng](shared/baseline-evidence.md) · [Audit tích hợp](audits/baseline-integration.md)
+- [Code map](code-map.json): file/symbol/hash và feature owner duy nhất; `npm run docs:check` phát hiện source drift/link sai. Sau review code + docs, dùng `npm run docs:sync` để cập nhật hash; không thay thế audit ngữ nghĩa.
 
 ## Quy trình
 
@@ -38,4 +55,4 @@ Trạng thái: `planned` → `implemented` → `verified`; dùng `blocked` khi t
 4. Audit feature và các kết nối bị ảnh hưởng. Nếu có nhóm feature liên quan, thêm audit nhóm theo cấu trúc [mẫu audit](templates/feature/audit.md).
 5. Kiểm tra tham chiếu hai chiều, cập nhật mục lục và [HANDOFF.md](../HANDOFF.md). Không ghi credential, token, dữ liệu người dùng thật hoặc URL chứa thông tin xác thực vào bằng chứng.
 
-Các thay đổi chỉ bổ sung quy tắc/tài liệu không yêu cầu backfill toàn bộ ứng dụng trong cùng lượt. Những feature legacy được chạm tới từ sau quy tắc này phải được chuẩn hóa trước khi bàn giao thay đổi của feature đó.
+Bộ tài liệu baseline đã được backfill cho toàn bộ source/màn hình hiện có. Mỗi thay đổi tiếp theo cập nhật đúng feature, code map và audit trong cùng lượt; không tạo bản đặc tả thứ hai cho cùng feature.

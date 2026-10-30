@@ -1,0 +1,59 @@
+# Function description — platform-operations
+
+[Đặc tả và contract](README.md) · [System design](system-design.md)
+
+## File + symbol → trách nhiệm
+
+Các callback vô danh nằm trong component/handler được mô tả cùng component chủ. Schema/constant có thể là binding chứ không phải hàm; không tạo thêm API ngoài code.
+
+| Code/symbol | Chữ ký/binding hiện tại | Hành vi, I/O và side effect |
+|---|---|---|
+| [lib/api.ts](../../../lib/api.ts) · `api` | `export function api(   path: string,   handler: (r: NextRequest, u: Viewer) => Promise<unknown>,   admin = false, )` | Bọc handler với session, verified email, role, Origin/content-type và chuẩn hóa lỗi. |
+| [lib/client.ts](../../../lib/client.ts) · `request` | `export async function request<T = Record<string, unknown>>(   url: string,   method = "GET",   body?: unknown, ): Promise<T>` | Hàm/binding `request` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/client.ts](../../../lib/client.ts) · `speak` | `export function speak(text: string)` | Hàm/binding `speak` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/db.ts](../../../lib/db.ts) · `connectDb` | `export async function connectDb()` | Kết nối/cache MongoDB bằng Mongoose. |
+| [lib/logger.ts](../../../lib/logger.ts) · `configuredLevel` | `function configuredLevel(): LogLevel` | Hàm/binding `configuredLevel` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/logger.ts](../../../lib/logger.ts) · `redact` | `function redact(value: string): string` | Hàm/binding `redact` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/logger.ts](../../../lib/logger.ts) · `safeFields` | `function safeFields(fields: LogFields): LogFields` | Hàm/binding `safeFields` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/logger.ts](../../../lib/logger.ts) · `log` | `export function log(level: LogLevel, event: string, fields: LogFields =` | Ghi structured JSON đã redact, theo LOG_LEVEL. |
+| [lib/logger.ts](../../../lib/logger.ts) · `logError` | `export function logError(event: string, error: unknown, fields: LogFields =` | Chuẩn hóa Error trước gửi log có redaction. |
+| [lib/logger.ts](../../../lib/logger.ts) · `incomingRequestId` | `function incomingRequestId(request: NextRequest): string` | Hàm/binding `incomingRequestId` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/logger.ts](../../../lib/logger.ts) · `withApiLogging` | `export function withApiLogging(route: string, handler: ApiHandler)` | Gắn requestId, đo duration/status và xử lý lỗi ngoài handler, không log body. |
+| [lib/redis.ts](../../../lib/redis.ts) · `redis` | `export const redis` | Hàm/binding `redis` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/redis.ts](../../../lib/redis.ts) · `getGradingQueue` | `export function getGradingQueue()` | Khởi tạo lazy BullMQ Queue để import module lúc build không kết nối Redis. |
+| [lib/redis.ts](../../../lib/redis.ts) · `rateLimit` | `export async function rateLimit(userId: string, action: string, max = 20)` | Đếm request theo action/user/phút bằng Redis; không phải quota thương mại. |
+| [lib/sql/index.ts](../../../lib/sql/index.ts) · `pool` | `export const pool` | Hàm/binding `pool` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/sql/index.ts](../../../lib/sql/index.ts) · `db` | `export const db` | Hàm/binding `db` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/sql/index.ts](../../../lib/sql/index.ts) · `query` | `export async function query<T extends QueryResultRow = QueryResultRow>(   sql: string,   values: unknown[] = [], )` | Thực thi SQL parameterized qua pg Pool và trả rows. |
+| [lib/types.ts](../../../lib/types.ts) · `TOPICS` | `export const TOPICS` | Component/type `TOPICS` thuộc luồng hạ tầng, hợp đồng dùng chung và vận hành; hành vi và trạng thái UI ở [ui.md](ui.md). |
+| [lib/types.ts](../../../lib/types.ts) · `LEVELS` | `export const LEVELS` | Component/type `LEVELS` thuộc luồng hạ tầng, hợp đồng dùng chung và vận hành; hành vi và trạng thái UI ở [ui.md](ui.md). |
+| [scripts/backup.ps1](../../../scripts/backup.ps1) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [scripts/migrate.ts](../../../scripts/migrate.ts) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [scripts/start-standalone.mjs](../../../scripts/start-standalone.mjs) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [migrations/001_beta.sql](../../../migrations/001_beta.sql) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [migrations/002_vectors.sql](../../../migrations/002_vectors.sql) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [migrations/003_exam_concurrency.sql](../../../migrations/003_exam_concurrency.sql) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [tests/e2e/beta.spec.ts](../../../tests/e2e/beta.spec.ts) · `signup` | `async function signup(client: typeof a, email: string)` | Hàm/binding `signup` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [tests/unit/grading.test.ts](../../../tests/unit/grading.test.ts) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [tests/unit/learning.test.ts](../../../tests/unit/learning.test.ts) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [package.json](../../../package.json) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [package-lock.json](../../../package-lock.json) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [next.config.ts](../../../next.config.ts) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [tsconfig.json](../../../tsconfig.json) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [eslint.config.mjs](../../../eslint.config.mjs) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [Dockerfile](../../../Dockerfile) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [docker-compose.yml](../../../docker-compose.yml) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [Caddyfile](../../../Caddyfile) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [.dockerignore](../../../.dockerignore) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [playwright.config.ts](../../../playwright.config.ts) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [vitest.config.ts](../../../vitest.config.ts) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [scripts/check-documentation.mjs](../../../scripts/check-documentation.mjs) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+
+## Input, output và lỗi theo điểm vào
+
+- api(path,handler,admin) — guard và JSON/error wrapper.
+- query(sql,values), connectDb(), rateLimit(), getGradingQueue(), log/withApiLogging là module shared.
+
+Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared.
+
+Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).

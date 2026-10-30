@@ -1,0 +1,28 @@
+# Hạ tầng, hợp đồng dùng chung và vận hành
+
+- Feature ID: `platform-operations`
+- Trạng thái hiện thực: `implemented`; snapshot 2026-10-30, baseline `1d0fbad`.
+- Phân biệt code hiện có với kết quả xác minh trong [audit](audit.md); không phải chứng nhận toàn bộ feature hoàn tất.
+
+## Yêu cầu và traceability
+
+| ID | Hành vi hiện tại/tiêu chí | Tham chiếu hiện thực | Xác minh |
+|---|---|---|---|
+| platform-operations-REQ-01 | Node24/Next standalone và worker riêng; PostgreSQL/Mongo/Redis nội bộ, app bind loopback, Caddy profile production. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
+| platform-operations-REQ-02 | Migration có advisory lock và transaction; backup riêng tư; không commit credential. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
+| platform-operations-REQ-03 | API chung xác minh session/email/role, Origin và JSON cho mutation; query SQL parameterized. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
+| platform-operations-REQ-04 | Logger có requestId, redaction; docs checker đối chiếu file/symbol/hash/link, không thay semantic audit. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
+
+## Hợp đồng hiện có
+
+- api(path,handler,admin) — guard và JSON/error wrapper.
+- query(sql,values), connectDb(), rateLimit(), getGradingQueue(), log/withApiLogging là module shared.
+
+## Tài liệu chuẩn
+
+- [System design](system-design.md) · [Function description](functions.md) · [UI](ui.md) · [Audit](audit.md).
+- [Kiến trúc toàn hệ thống](../../shared/architecture.md) · [Tech stack](../../shared/tech-stack.md) · [Màn hình](../../shared/screens.md).
+
+## Giới hạn và việc còn lại
+
+Local Mailpit không chuyển email tới Gmail. Production cần SMTP/domain/HTTPS thật. Tên ảnh worker vẫn chứa dependencies development; chưa tối ưu kích thước image. docs:check chỉ là kiểm tra cấu trúc.

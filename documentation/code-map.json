@@ -1,0 +1,713 @@
+{
+  "version": 1,
+  "snapshotDate": "2026-10-30",
+  "baselineCommit": "1d0fbad",
+  "features": [
+    {
+      "id": "identity-auth",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "lib/auth.ts",
+          "symbols": [
+            "isAdmin",
+            "sendMail",
+            "createAuth",
+            "getAuth"
+          ],
+          "sha256": "50ec3c57b617776bed68a86be3ff42b524df37b67d5fe5ffc0ae74f9d5c644dc"
+        },
+        {
+          "file": "lib/auth-client.ts",
+          "symbols": [
+            "authClient"
+          ],
+          "sha256": "0e16bb7453403546d91492f9ff458786ad085b7e739a213d148d71fd0065b079"
+        },
+        {
+          "file": "lib/sql/schema.ts",
+          "symbols": [
+            "user",
+            "session",
+            "account",
+            "verification"
+          ],
+          "sha256": "0c50cd0bd4dcfb06b8eb880b17056e3f4d3b3a337dcb94b365710cd63932c3d0"
+        },
+        {
+          "file": "app/sign-in/page.tsx",
+          "symbols": [
+            "Form",
+            "submit",
+            "SignIn"
+          ],
+          "sha256": "bec9f1ae2f0e8fd5f7aad95c7640ac93ea746275da6fe6e2d5a3fb9103bbdc2f"
+        },
+        {
+          "file": "app/api/auth/[...all]/route.ts",
+          "symbols": [
+            "runtime",
+            "GET",
+            "POST"
+          ],
+          "sha256": "17d3b7fe39e4fc491678c09c4a6f722d3c5752062ec1bb2883962d729bfbcd86"
+        },
+        {
+          "file": "app/api/config/route.ts",
+          "symbols": [
+            "dynamic",
+            "GET"
+          ],
+          "sha256": "987d874ea4c4e0e248475fcef6349565a4c529d4b90e8613b62324c337898b0a"
+        }
+      ]
+    },
+    {
+      "id": "user-profile",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/profile/page.tsx",
+          "symbols": [
+            "Profile",
+            "LegacyDraftImport"
+          ],
+          "sha256": "95c19d7045cb644adb077847800c034dd548ddf7e72cab85483f6650fd1afca5"
+        },
+        {
+          "file": "app/api/profile/route.ts",
+          "symbols": [
+            "GET",
+            "PUT"
+          ],
+          "sha256": "fd68f4405e9ef3d300870e41c630b57c29a86a6a2c34a9d83704a274ee968bd7"
+        }
+      ]
+    },
+    {
+      "id": "translation-practice",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/practice/page.tsx",
+          "symbols": [
+            "Page"
+          ],
+          "sha256": "e1372ee6d3c7a4d7dc025c52ca27df6cc45b7d6468404c5e3f45ae191301ab34"
+        },
+        {
+          "file": "components/practice.tsx",
+          "symbols": [
+            "apiErrorMessage",
+            "SaveKnowledge",
+            "KoreanLinkedText",
+            "Practice",
+            "changeFilter",
+            "saveDraft",
+            "speak",
+            "submit",
+            "viewSaved",
+            "openLibrary",
+            "toggleFavorite",
+            "toggleAnswer",
+            "copyText",
+            "SourceText",
+            "AnswerInput",
+            "AnswerDetails",
+            "VocabHints",
+            "HintPanel",
+            "ExerciseCard",
+            "EmptyLibrary",
+            "GradeModal",
+            "FeedbackSection",
+            "DictionarySelectionLookup",
+            "openLookup",
+            "inspectSelection",
+            "handleAutoLookup",
+            "dismissOutside",
+            "speakSelection",
+            "DictionaryResultCard",
+            "useLookup"
+          ],
+          "sha256": "b601ad0b1f77505c49343a0bc27bde1adcf51ef16e10ee39c5fe3d1fe1a43b15"
+        },
+        {
+          "file": "app/api/sentences/route.ts",
+          "symbols": [
+            "runtime",
+            "dynamic",
+            "handleGet",
+            "GET"
+          ],
+          "sha256": "d017ab3f1a1785134daac367a5b4fc3e79d1e66b286374cb1805ed26bf7a9ae9"
+        }
+      ]
+    },
+    {
+      "id": "learning-records",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/api/drafts/route.ts",
+          "symbols": [
+            "GET",
+            "PUT"
+          ],
+          "sha256": "ad107844c4b21d8332e372f6e14571765c9bf35620bd23190abc068fe64085bb"
+        },
+        {
+          "file": "app/api/submissions/route.ts",
+          "symbols": [
+            "GET"
+          ],
+          "sha256": "0b15a48133630aa61bbd80eebc86b5c3ed1270af5d3bda5ebcdfbcf560322e22"
+        },
+        {
+          "file": "app/api/user/favorites/route.ts",
+          "symbols": [
+            "GET",
+            "POST"
+          ],
+          "sha256": "175e154ac96fd47d5bd969db680fa03ff3d080347c5596c913fabe1637e006c5"
+        },
+        {
+          "file": "app/api/user/stats/route.ts",
+          "symbols": [
+            "GET"
+          ],
+          "sha256": "8dd9cbded2dd9956762cfb3830e2b1560d42888a43347863d72e76bcdcb70cf3"
+        },
+        {
+          "file": "lib/learning/submissions.ts",
+          "symbols": [
+            "reportView",
+            "statistics"
+          ],
+          "sha256": "1c5475a53f9699afc64bfbd4667f7767a10e9080ed6a9e08acf217702a1b8442"
+        },
+        {
+          "file": "lib/models/Submission.ts",
+          "symbols": [
+            "Submission"
+          ],
+          "sha256": "cd551c87ddc49e4f805bf0f0bae2887207971892ed8a84ebf28afbfe35d9eecd"
+        },
+        {
+          "file": "lib/models/UserSentenceState.ts",
+          "symbols": [
+            "UserSentenceState"
+          ],
+          "sha256": "089d4f9d837c90b40c50cc30657577680972de8a57d5525ad47848f4fcc467e4"
+        },
+        {
+          "file": "scripts/import-legacy.ts",
+          "symbols": [],
+          "sha256": "67f2dcdc519dd2ebbe62b3400ff5acd7d9803552a59a0d49cac4066c8eff6517"
+        }
+      ]
+    },
+    {
+      "id": "ai-grading",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/api/submissions/grade/route.ts",
+          "symbols": [
+            "POST"
+          ],
+          "sha256": "1f8f3a0a0f19c5078d3e7885fba13f82abe018922702908ddc581ec8934eaa0c"
+        },
+        {
+          "file": "app/api/jobs/route.ts",
+          "symbols": [
+            "GET"
+          ],
+          "sha256": "ee9adcfbbe7ee8a25fa53bd46a45819f03f0a2411334ee4a00718a9be27c5b11"
+        },
+        {
+          "file": "lib/ai.ts",
+          "symbols": [
+            "gradeSchema",
+            "generateJson",
+            "generateExercises",
+            "gradeTranslation",
+            "aiErrorResponse"
+          ],
+          "sha256": "ecd47924539c2fcf8f1a2db0907d1107dd88b491ccfa3ddcdc288916d7dedfc3"
+        },
+        {
+          "file": "scripts/worker.ts",
+          "symbols": [
+            "recover"
+          ],
+          "sha256": "279eda62303c337bd628c2883360ffff86cc6f24a95f75eaf54c121724925348"
+        }
+      ]
+    },
+    {
+      "id": "vocabulary-srs",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/vocabulary/page.tsx",
+          "symbols": [
+            "Vocabulary",
+            "save",
+            "rate",
+            "Page"
+          ],
+          "sha256": "4d97f19a1486561eeaa580c64f747ee47cfa0bc0a63a34089be75d8c6da8ec23"
+        },
+        {
+          "file": "app/api/vocabulary/route.ts",
+          "symbols": [
+            "GET",
+            "POST",
+            "PUT"
+          ],
+          "sha256": "9623691bb60a878719133beace133581a55830cd8c365e116c8a02a9bd173401"
+        },
+        {
+          "file": "app/api/reviews/route.ts",
+          "symbols": [
+            "POST"
+          ],
+          "sha256": "8ff3f6af449f6a12d057c30ff94afad5df8554265981de04bee0a6bc743d4d28"
+        },
+        {
+          "file": "lib/learning/srs.ts",
+          "symbols": [
+            "ALGORITHM",
+            "newCard",
+            "reviewCard"
+          ],
+          "sha256": "e8e9fc8ba9cdacb970ad2e8dd608ab0cfd98a423f113223307aa5a2e00c93468"
+        }
+      ]
+    },
+    {
+      "id": "daily-dashboard",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/page.tsx",
+          "symbols": [
+            "Home"
+          ],
+          "sha256": "f14006ae23e1d7f495afecc1b4100b16ce617b6f119fd8dd7ab0b64a11c3480d"
+        },
+        {
+          "file": "components/dashboard.tsx",
+          "symbols": [
+            "Dashboard",
+            "change"
+          ],
+          "sha256": "27bde2cae047f2dac2a86b8c1fb6fc7dcae941f7ccf4949651ffb692b8c0058a"
+        },
+        {
+          "file": "app/api/dashboard/route.ts",
+          "symbols": [
+            "GET",
+            "PATCH"
+          ],
+          "sha256": "0ab7e303412ee5a165f871c48e633e100bfd65d27b9ca384990130ea798ab9e2"
+        },
+        {
+          "file": "lib/learning/schedule.ts",
+          "symbols": [
+            "localDay",
+            "makePlan",
+            "streak"
+          ],
+          "sha256": "90db1a4f925576b4510019f32b9a4a03bb051c21830ed34a529d84e3e80b99aa"
+        }
+      ]
+    },
+    {
+      "id": "dictionary",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/api/dictionary/route.ts",
+          "symbols": [
+            "runtime",
+            "asArray",
+            "text",
+            "handleGet",
+            "search",
+            "GET"
+          ],
+          "sha256": "bd5adfe22a38915b8f7468bdf89232f5c9761fd30a638e7821a68f0dd1df9f35"
+        }
+      ]
+    },
+    {
+      "id": "content-authoring",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/admin/page.tsx",
+          "symbols": [
+            "Admin",
+            "transition",
+            "AdvancedTools"
+          ],
+          "sha256": "5b098159f203df8c42fcc4e6e3357a69bd44debf9f39bc34a7d10c6dbdd039e0"
+        },
+        {
+          "file": "app/api/admin/content/route.ts",
+          "symbols": [
+            "GET",
+            "POST",
+            "PATCH"
+          ],
+          "sha256": "d4dc3afbe606e945617fbfb8dd40f1d330a317f221c5c10f89f9b2c391a9057b"
+        },
+        {
+          "file": "app/api/sentences/generate/route.ts",
+          "symbols": [
+            "POST"
+          ],
+          "sha256": "b9599f039402f4ad9b2ced802149ec697f3f783080682f3f6cb90450a56820ea"
+        },
+        {
+          "file": "lib/models/Sentence.ts",
+          "symbols": [
+            "Sentence"
+          ],
+          "sha256": "2cc92fb0c9e027910a2801c06f406d7ec78d5e7b21143af524e4e880151b4d06"
+        },
+        {
+          "file": "lib/content.ts",
+          "symbols": [
+            "initializeContent",
+            "publishedSentence",
+            "ensureContent"
+          ],
+          "sha256": "124bf99aba5347a22999d96771d45088851b91743fedb2efdb43d9f73348ccd2"
+        },
+        {
+          "file": "data/seed-sentences.json",
+          "symbols": [],
+          "sha256": "e5ed3b26b6fb4b4379e7cf38da74d888418c27d3b8e16a9b682fac9b516d5140"
+        },
+        {
+          "file": "scripts/extract-seed.py",
+          "symbols": [],
+          "sha256": "52f944a68de346f363fd318cb261179752f833edfae63d0621cfe116a8f71328"
+        }
+      ]
+    },
+    {
+      "id": "immersive-learning",
+      "status": "blocked",
+      "code": [
+        {
+          "file": "app/library/page.tsx",
+          "symbols": [
+            "Library",
+            "record",
+            "send"
+          ],
+          "sha256": "540786a8cff37daf7b604f7cde9d59777bf1af198c9429aa72d5d80c4451ddd8"
+        },
+        {
+          "file": "data/reading-lessons.ts",
+          "symbols": [
+            "readingLessons"
+          ],
+          "sha256": "2d1b24e3016e07360ffe37b0d395511cd7cb5a85f06ee7138bf9cce4c9f569c3"
+        },
+        {
+          "file": "app/api/recordings/route.ts",
+          "symbols": [
+            "GET",
+            "POST"
+          ],
+          "sha256": "971350baaf9ad198ad1a69010ad7aaafaa23a854bd7ef8670d7c62dff74fa4fc"
+        },
+        {
+          "file": "lib/media.ts",
+          "symbols": [
+            "mediaConfigured",
+            "storage",
+            "saveAudio",
+            "audioUrl"
+          ],
+          "sha256": "a02626971c5e60685ef2f8f7ac709301bc4034dfa787109944736b84bb1e2202"
+        }
+      ]
+    },
+    {
+      "id": "ai-tutor",
+      "status": "blocked",
+      "code": [
+        {
+          "file": "app/api/tutor/route.ts",
+          "symbols": [
+            "POST",
+            "PUT"
+          ],
+          "sha256": "9df1b37af1e874d0ec93cefe7b401bc3110186b99b88879bb1570c08b058f63c"
+        },
+        {
+          "file": "lib/tutor.ts",
+          "symbols": [
+            "embed"
+          ],
+          "sha256": "62baa71c2c709593e6f477c834bd09d409e1f784a66f4db9553e758aa8cf1009"
+        }
+      ]
+    },
+    {
+      "id": "exam-practice",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "app/exams/page.tsx",
+          "symbols": [
+            "Exams"
+          ],
+          "sha256": "13d4c62c0820875e1c5ec9f351a8b98c61a9b564872411b4488908bc0c250ba6"
+        },
+        {
+          "file": "app/api/exams/route.ts",
+          "symbols": [
+            "GET",
+            "POST",
+            "PATCH",
+            "PUT"
+          ],
+          "sha256": "c9ba109118c17646a6d07b04e343faf7b21637b0e74e19a818703a6f4ca7752e"
+        },
+        {
+          "file": "lib/exams.ts",
+          "symbols": [
+            "questionSchema",
+            "examSchema",
+            "publicExam",
+            "scoreExam"
+          ],
+          "sha256": "36488c03d627aebfd986a28ab326653f1e7d801c67c6394ea325cc7252088a3a"
+        },
+        {
+          "file": "lib/models/Exam.ts",
+          "symbols": [
+            "ExamModel"
+          ],
+          "sha256": "266619ccba1962b63e6dbce8306f34d25736b429294006b1b2237651c50d90f8"
+        }
+      ]
+    },
+    {
+      "id": "design-system",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "components/shell.tsx",
+          "symbols": [
+            "Shell"
+          ],
+          "sha256": "c862a3a81ce411f6f3fe166724b77facb45ec16629cbdfc95c01e5b5f4a3aeb5"
+        },
+        {
+          "file": "app/layout.tsx",
+          "symbols": [
+            "metadata",
+            "RootLayout"
+          ],
+          "sha256": "3b326261c27e2d304f69642dd769d1adb9018bc65743b57182b86dc3f5da9891"
+        },
+        {
+          "file": "app/globals.css",
+          "symbols": [],
+          "sha256": "01e8c0695887a3e67f8a971b72e3898e16d737ccaa84eac9172f1172f35eb381"
+        },
+        {
+          "file": "app/icon.svg",
+          "symbols": [],
+          "sha256": "716d3c86b491a5d9f530dcfcfbb13961d473a11d7f17f43f77e7883b9df38a26"
+        },
+        {
+          "file": "app/favicon.ico",
+          "symbols": [],
+          "sha256": "e0b310dee2cf91cfe525879fe41982e21ea139e0fa70c72cec595272b27252d3"
+        }
+      ]
+    },
+    {
+      "id": "platform-operations",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "lib/api.ts",
+          "symbols": [
+            "api"
+          ],
+          "sha256": "aa7fbec90ae019527562b24997d27435cd739e3dc3ea6eaa824e33f74d0553f8"
+        },
+        {
+          "file": "lib/client.ts",
+          "symbols": [
+            "request",
+            "speak"
+          ],
+          "sha256": "c9e2eb6f391b4e4a054a3875387004f022f9389ccc96ba8de8df1169a0832c13"
+        },
+        {
+          "file": "lib/db.ts",
+          "symbols": [
+            "connectDb"
+          ],
+          "sha256": "e7ae2addc32913dc27bb4fce6dc692b483be13a6fbfeacea28cabc624349ceea"
+        },
+        {
+          "file": "lib/logger.ts",
+          "symbols": [
+            "configuredLevel",
+            "redact",
+            "safeFields",
+            "log",
+            "logError",
+            "incomingRequestId",
+            "withApiLogging"
+          ],
+          "sha256": "d599edb6b74d8ea115b871743da695db050cb5ebeff4e5befca785718c22900b"
+        },
+        {
+          "file": "lib/redis.ts",
+          "symbols": [
+            "redis",
+            "getGradingQueue",
+            "rateLimit"
+          ],
+          "sha256": "d6f190b8ff1b2e3eb070730baa4f5270a1c23468574456ad385ba23e2e5b0ced"
+        },
+        {
+          "file": "lib/sql/index.ts",
+          "symbols": [
+            "pool",
+            "db",
+            "query"
+          ],
+          "sha256": "01ab47a885085941ea753dfbd4b4dc2bdbe77836194fb2e2814bef59415d4ea6"
+        },
+        {
+          "file": "lib/types.ts",
+          "symbols": [
+            "TOPICS",
+            "LEVELS"
+          ],
+          "sha256": "f7f7cb4ec2b3bf0fc11228dbc5c95ff1ac47fde4d656c353c00b5c223c607354"
+        },
+        {
+          "file": "scripts/backup.ps1",
+          "symbols": [],
+          "sha256": "53a6d9b351c9a65174b1a418399d2c8985eed3571b7143adcff80b3285097c5e"
+        },
+        {
+          "file": "scripts/migrate.ts",
+          "symbols": [],
+          "sha256": "7fe9e3495d9ee83ca707fb2c485641cfc1592bb179af2ffbad6f859a786a77a6"
+        },
+        {
+          "file": "scripts/start-standalone.mjs",
+          "symbols": [],
+          "sha256": "d3e5a052c7fd5d1e8b0ac7f9011727de39ed398f1bc005fe363679019463af43"
+        },
+        {
+          "file": "migrations/001_beta.sql",
+          "symbols": [],
+          "sha256": "ad2a4c92d82cde1e12ab2dc745aab65c580ed2ac776c4d4cf7aeb646340ca120"
+        },
+        {
+          "file": "migrations/002_vectors.sql",
+          "symbols": [],
+          "sha256": "9215882e1d47d26c7b9fa58d59ec4be95f4a3c2335c91d3d206ddd248fe3191b"
+        },
+        {
+          "file": "migrations/003_exam_concurrency.sql",
+          "symbols": [],
+          "sha256": "ea599012381c161f5dc016e062e2ea090273a3d90618a2558a5ca5c5865119f9"
+        },
+        {
+          "file": "tests/e2e/beta.spec.ts",
+          "symbols": [
+            "signup"
+          ],
+          "sha256": "a00e9b4d3b8a189ca4b82a012b505e1bc74e3e3352cebf50f4aef79332ae6a84"
+        },
+        {
+          "file": "tests/unit/grading.test.ts",
+          "symbols": [],
+          "sha256": "6d886087835ac60f496c54a750aae296953040d3feafc26dc6667e5bebcea33e"
+        },
+        {
+          "file": "tests/unit/learning.test.ts",
+          "symbols": [],
+          "sha256": "a1f4c66c04a80d43b728f6185cd5fd4016a6676c91714851ecf1b9b0e0681188"
+        },
+        {
+          "file": "package.json",
+          "symbols": [],
+          "sha256": "ce0c120c3d2873d501c1b7e037def6fdf3a7bfab794eb15f0b9bb18493c2e21a"
+        },
+        {
+          "file": "package-lock.json",
+          "symbols": [],
+          "sha256": "259279ca0133d0b61e3a18124b800a4b2c95e2cde08d9a67fb9db7ded1c38220"
+        },
+        {
+          "file": "next.config.ts",
+          "symbols": [],
+          "sha256": "cbc3210d038b1b658ce2d2911b52adaf4afb60d772d242c6a05762144166010a"
+        },
+        {
+          "file": "tsconfig.json",
+          "symbols": [],
+          "sha256": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3"
+        },
+        {
+          "file": "eslint.config.mjs",
+          "symbols": [],
+          "sha256": "870f1adccecf3051cbcd9fd307cef51d7633cf510979c181a81f4b1797273493"
+        },
+        {
+          "file": "Dockerfile",
+          "symbols": [],
+          "sha256": "0ad4cf7d4c9f5b7453e6682f448081b314d3245d9417ad96edfcc78644c4b660"
+        },
+        {
+          "file": "docker-compose.yml",
+          "symbols": [],
+          "sha256": "6f6b60bdd022e3fc86eb8a37d1ce14e2641e76aedf3e351fe8a063de26de0ea6"
+        },
+        {
+          "file": "Caddyfile",
+          "symbols": [],
+          "sha256": "bcb2fefff1bce5074210473394f47ad68a08d907833ffbbf565be404d1fabc43"
+        },
+        {
+          "file": ".dockerignore",
+          "symbols": [],
+          "sha256": "4a67f3b61adb1f7c5057aefe049f4990df2a1a1b43131f8a41a198c5baa06078"
+        },
+        {
+          "file": "playwright.config.ts",
+          "symbols": [],
+          "sha256": "e7ff6c2a2ef0def6ca1ce028219fbedb856cbcaac6d1bebeafa6c2a577ba0eeb"
+        },
+        {
+          "file": "vitest.config.ts",
+          "symbols": [],
+          "sha256": "3b31fce9b8be4c50269378637cb1ad4626cf90fc0ed95fab32067f3a578277ad"
+        },
+        {
+          "file": "scripts/check-documentation.mjs",
+          "symbols": [],
+          "sha256": "df8c051f6dedb94446982b70acc1102d7b80f9b878138be786e6e27474023de5"
+        }
+      ]
+    }
+  ]
+}

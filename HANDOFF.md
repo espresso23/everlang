@@ -4,6 +4,14 @@ Cập nhật gần nhất: 2026-10-30
 
 ## Trạng thái hiện tại
 
+### 2026-10-30 — Commit nền beta và đồng bộ documentation trước profile
+
+- Đã commit nền beta/UI/quy tắc phát triển tại `1d0fbad`; không gom thay đổi riêng thư mục project-idea của người dùng.
+- Backfill `/documentation` cho 14 feature: đặc tả, system design, function description, UI, audit; bổ sung architecture, stack thực tế, 8 màn hình, dữ liệu, API và vận hành. Source/symbol/hash có canonical owner trong code-map.
+- Thêm `scripts/check-documentation.mjs`, `docs:check`/`docs:sync`: kiểm file, symbol, source drift và link; không thay thế review ngữ nghĩa. Kiểm tra đạt 14 feature, 82 file, 960 link; `git diff --check` đạt.
+- Trace runtime xác định Google callback lỗi invalid_client trước khi tạo session. Người dùng đã cập nhật cấu hình; dummy refresh-token probe không còn invalid_client. Chưa xác minh đăng nhập Google thật thành công. Shell baseline chưa render avatar và còn hiện nút đăng nhập khi session pending; sẽ sửa cùng feature profile sau commit tài liệu.
+- Mailpit là inbox SMTP local cho verify/reset, không tham gia Google OAuth. Dịch vụ ngoài STT/S3/Tutor và bộ đề đầy đủ vẫn chưa kiểm chứng; trạng thái ghi rõ trong audit. Không in hoặc lưu secret trong tài liệu.
+
 - EverLang beta đã build và chạy Docker local tại `http://localhost:3000`; chỉ bind loopback. App/worker đang chạy, PostgreSQL/MongoDB/Redis healthy; Mailpit local tại cổng 8025. Migration 001–003 hoàn tất.
 - Đã có đăng ký/đăng nhập email, xác minh/reset mật khẩu qua Mailpit; Google đã cấu hình và bật nút; callback đã được Google chấp nhận, đã tới trang đăng nhập Google. Chưa xác minh token exchange/session sau khi chủ tài khoản đăng nhập.
 - Đã triển khai dashboard, kho từ/SRS FSRS-7, lịch học, nháp cloud, history/favorites theo session PostgreSQL và worker chấm AI; tên/theme EverLang xanh–vàng.
