@@ -1,26 +1,105 @@
-# HANDOFF — Luyện Dịch Việt–Hàn
+# HANDOFF — EverLang
 
-Cập nhật gần nhất: 2026-10-29
+Cập nhật gần nhất: 2026-10-30
 
 ## Trạng thái hiện tại
 
-- Ứng dụng Next.js chạy bằng Docker Compose tại `http://localhost:3000`; lần kiểm tra trong phiên này trả HTTP 200.
-- Hai container đang hoạt động: `langz-app-1` và `langz-mongo-1`; MongoDB healthcheck healthy, dữ liệu lưu trong volume `mongo_data`.
-- Model OpenRouter đang cấu hình là `qwen/qwen3.8-flash`. Kiểm tra trực tiếp OpenRouter trong phiên trước trả JSON hợp lệ với `finish_reason: stop`; không thực hiện chấm một bài dịch đầy đủ với model mới.
-- `data/seed-sentences.json` có đúng 100 bài. API danh sách tự nhập seed theo cách idempotent khi cần.
-- Không có đăng nhập. Tiến độ, yêu thích và bài đã chấm gắn với UUID bền vững trong trình duyệt; không đồng bộ liên thiết bị.
-- Chưa có tính năng/việc triển khai dở dang được biết đến. Các lưu ý và việc nên làm tiếp theo ở cuối tài liệu.
+- EverLang beta đã build và chạy Docker local tại `http://localhost:3000`; chỉ bind loopback. App/worker đang chạy, PostgreSQL/MongoDB/Redis healthy; Mailpit local tại cổng 8025. Migration 001–003 hoàn tất.
+- Đã có đăng ký/đăng nhập email, xác minh/reset mật khẩu qua Mailpit; Google đã cấu hình và bật nút; callback đã được Google chấp nhận, đã tới trang đăng nhập Google. Chưa xác minh token exchange/session sau khi chủ tài khoản đăng nhập.
+- Đã triển khai dashboard, kho từ/SRS FSRS-7, lịch học, nháp cloud, history/favorites theo session PostgreSQL và worker chấm AI; tên/theme EverLang xanh–vàng.
+- Bộ 100 bài và 5 báo cáo MongoDB gốc được giữ. Không tự gán lịch sử cũ cho tài khoản mới; có CLI nhập idempotent sau đối chiếu chủ dữ liệu.
+- OpenRouter đã chấm thật qua hàng đợi/lưu PostgreSQL; kết quả QA cuối 98/100 cho đáp án tham khảo. Không dùng smoke test này thay đánh giá chất lượng bằng bộ bài có người chấm.
+- Có nền tảng nghe/đọc/thu âm, S3/STT/Tutor pgvector và mini exam; dịch vụ ngoài/nội dung đầy đủ còn điều kiện. Xem `FEATURE_AUDIT.md` để phân biệt đã kiểm chứng và chưa kiểm chứng.
+- Tài khoản QA và học liệu test đã được dọn; mọi email có thể đăng ký, chỉ email chủ dự án giữ quyền admin trong môi trường cục bộ. Không có mật khẩu mặc định.
 
 ## Tính năng đã có
 
 - Luyện dịch với chế độ danh sách/thẻ, lọc chủ đề và TOPIK, tìm kiếm, phân trang, tiến độ, gợi ý từ vựng ngắn, nhập câu trả lời, xem đáp án/ngữ pháp và nghe câu mẫu bằng Web Speech API `ko-KR`.
 - Tạo bài mới và chấm bản dịch bằng OpenRouter; schema đầu ra được kiểm tra bằng Zod, JSON lỗi được thử phục hồi bằng `jsonrepair`, lỗi API được ghi log JSON có `requestId`.
 - Chấm lại cùng nội dung dùng báo cáo đã lưu; người học có thể chủ động yêu cầu chấm lại. Điểm thống kê đếm bài/câu riêng biệt theo `sentenceId`, không tăng theo số lần gọi chấm.
-- Xem lịch sử bài đã chấm, câu yêu thích, điểm/nhận xét đã lưu. Dữ liệu submission và trạng thái yêu thích ở MongoDB theo `userId` của trình duyệt.
+- Xem lịch sử bài đã chấm, câu yêu thích, điểm/nhận xét đã lưu. Dữ liệu submission, nháp và trạng thái yêu thích hiện ở PostgreSQL theo tài khoản đã xác thực; bản MongoDB cũ chỉ giữ để lưu trữ/nhập có kiểm soát.
 - Từ/cụm tiếng Hàn có thể chọn để tra; có popup từ điển, nghĩa/loại mục từ khi KRdict trả dữ liệu, liên kết mở KRdict và phát âm. Tra cứu qua API yêu cầu `KRDICT_API_KEY`; Web Speech vẫn dùng được khi thiếu khóa.
 - Docker Compose khởi chạy ứng dụng và MongoDB 8; volume giữ dữ liệu MongoDB qua lần khởi động lại. Không đưa MongoDB vào Atlas trong cấu hình mặc định hiện tại.
 
 ## Lịch sử công việc của phiên
+
+### 2026-10-30 — Chốt baseline trước đồng bộ tài liệu và feature hồ sơ
+
+- Chuẩn bị commit các thay đổi EverLang đã thực hiện trong phiên, gồm quy tắc branch/tài liệu/audit; không đưa `.env`, log riêng tư hoặc thay đổi di chuyển `Project_IDEA.md` của người dùng vào commit.
+- Truy vết lỗi được báo: log runtime ghi Google token exchange thất bại `invalid_client` / client secret không hợp lệ; database chưa có Google account và không có active session tại thời điểm kiểm tra. Chọn tài khoản Google chưa đồng nghĩa đăng nhập EverLang thành công.
+- Chuỗi 401/409/404/403 trong log người dùng gửi khớp bài test quyền truy cập/concurrency ở `tests/e2e/beta.spec.ts`, không phải bằng chứng riêng của lỗi OAuth.
+- UI Shell hiện chưa render `user.image`; đây là thiếu sót độc lập sẽ xử lý cùng feature profile sau khi đồng bộ docs hiện trạng.
+- Đã yêu cầu người dùng cập nhật chính xác `GOOGLE_CLIENT_SECRET` trực tiếp trong môi trường cục bộ; chưa tự thay giá trị bằng suy đoán từ ảnh.
+
+
+### 2026-10-30 — Quy tắc branch, audit và tài liệu feature đối chiếu code
+
+- Bổ sung `AGENTS.md`: branch có prefix theo mục đích + mô tả kebab-case + ticket tùy chọn; audit từng feature/nhóm feature và các kết nối UI–auth–API–worker–DB–UI trước bàn giao.
+- Bắt buộc tài liệu chuẩn tại `documentation/features/<feature-id>/`: đặc tả/tiêu chí và traceability, system design, function description, UI và audit. Code/docs đối chiếu hai chiều theo ID + file/symbol/route + bằng chứng; không đánh dấu hoàn tất khi yêu cầu bắt buộc chưa đạt/chưa kiểm chứng.
+- Tạo `documentation/README.md` và 5 file mẫu tại `documentation/templates/feature/`; thêm liên kết mục lục trong README root. Tài liệu shared và audit nhóm có vị trí chuẩn, được tạo khi cần.
+- Đây là thay đổi quy tắc/tài liệu; chưa backfill hoặc tuyên bố mọi feature legacy đã đạt chuẩn mới. Khi sửa feature cũ phải bổ sung bộ tài liệu cùng thay đổi.
+- Kiểm tra: 19 liên kết nội bộ trong AGENTS/bộ tài liệu mới hợp lệ; 5 tên branch mẫu qua `git check-ref-format --branch`; `git diff --check` đạt. Không cần build/recreate hoặc chạy test ứng dụng cho thay đổi chỉ tài liệu này.
+- File: `AGENTS.md`, `README.md`, `documentation/README.md`, `documentation/templates/feature/{README,system-design,functions,ui,audit}.md`, `HANDOFF.md`.
+
+
+### 2026-10-30 — Theme màu phẳng xanh cobalt và vàng chanh theo ảnh tham khảo
+
+- Chuyển từ nền xanh nhạt/gradient sang palette xanh cobalt và vàng chanh lấy cảm hứng từ hai ảnh người dùng: hero/trang giới thiệu vàng chanh, CTA và điều hướng xanh, thẻ nội dung trắng, sổ tay xanh tương phản.
+- Loại gradient, quầng sáng, backdrop blur và bóng trang trí; dùng mảng màu phẳng, khoảng cách và viền mảnh. Giữ logo chữ e và viền nhẹ, đồng bộ icon SVG.
+- File: `app/globals.css`, `components/dashboard.tsx`, `app/icon.svg`.
+- Xác minh đạt: lint/typecheck, Docker production build/recreate app và 2 scenario Playwright hiện có. Đã xem trực tiếp trang đăng nhập, ảnh dashboard desktop 1440px/mobile 390px; không tràn ngang. Đã dọn hai tài khoản QA sau test. Ảnh trong `.local/everlang-dashboard-desktop.png` và `.local/everlang-dashboard-mobile.png` (gitignored).
+
+
+### 2026-10-30 — Khôi phục logo chữ e, giảm độ đậm viền
+
+- Theo yêu cầu người dùng, thay logo sách mới bằng chữ e trắng nghiêng trên nền xanh và điểm nhấn ngôi sao nhỏ như nhận diện cũ; viền xanh mảnh 1px, bóng mềm, đồng bộ favicon SVG.
+- File: `components/shell.tsx`, `app/globals.css`, `app/icon.svg`.
+- Xác minh đạt: lint/typecheck, Docker production build/recreate app và smoke Playwright responsive/anonymous isolation. Đã xem trực tiếp logo chữ e viền mảnh trên trang đăng nhập, đồng bộ favicon SVG.
+
+
+### 2026-10-30 — Thay Neo-brutalism bằng giao diện hiện đại, tối giản
+
+- Thiết kế lại hệ màu/surface dùng chung: nền xanh xám rất nhạt, thẻ trắng, viền mảnh, bóng mềm, chữ xanh đậm; giảm vàng thành điểm nhấn, tăng khoảng thở và chuẩn hóa input/button/nav.
+- Thay logo viền đen/bóng cứng bằng biểu tượng sách gradient; cập nhật icon SVG. Dashboard dùng thẻ từ vựng nhẹ thay minh họa nghiêng; trang đăng nhập dùng khối màu mềm, bỏ nét đen dày.
+- File: `app/globals.css`, `app/icon.svg`, `components/shell.tsx`, `components/dashboard.tsx`, `app/sign-in/page.tsx`.
+- Xác minh đạt: lint/typecheck, production Docker build/recreate app và 2 scenario Playwright hiện có. Đã xem ảnh desktop 1440px/mobile 390px, không tràn ngang; luồng email, nháp, SRS và dashboard vẫn hoạt động. Đã dọn tài khoản QA sau test. Ảnh kiểm thử trong `.local/everlang-dashboard-desktop.png` và `.local/everlang-dashboard-mobile.png` (gitignored).
+
+
+### 2026-10-30 — Xác nhận callback Google đã khớp
+
+- Người dùng bổ sung ảnh cấu hình Authorized JavaScript origins/redirect URIs. Đã thử lại nút Google từ EverLang trong phiên trình duyệt mới.
+- Kết quả: Google đã chuyển đến trang đăng nhập với nhãn ứng dụng EverLang; không còn lỗi `redirect_uri_mismatch`. Không lưu URL OAuth chứa state vào tài liệu.
+- Giới hạn: chưa đăng nhập tài khoản Google/đồng ý quyền nên chưa xác minh token exchange và session cuối cùng. Không thay mã hay credential trong lượt này.
+
+
+### 2026-10-30 — Cấu hình Google OAuth từ thông tin người dùng cung cấp
+
+- Lưu `GOOGLE_CLIENT_ID` và `GOOGLE_CLIENT_SECRET` vào `.env` cục bộ (gitignored), recreate app/worker/migrate bằng image hiện tại. Không ghi giá trị credential vào source/tài liệu/log.
+- Xác minh: `GET /api/config` trả HTTP 200 với `google: true`; tải lại trang đăng nhập đã hiển thị và bật nút Google. Bấm nút chuyển sang accounts.google.com thành công nhưng Google trả HTTP OAuth error 400 `redirect_uri_mismatch`.
+- Callback app gửi: `http://localhost:3000/api/auth/callback/google`. Cần thêm chính xác URL này vào Authorized redirect URIs của OAuth client trong Google Cloud; không sửa callback chuẩn của app để đoán URL đã đăng ký.
+- Chưa kiểm thử được token exchange/tạo session Google. Google Cloud Console trong trình duyệt của phiên hiện tại yêu cầu đăng nhập nên chưa thể chỉnh cấu hình tài khoản bên ngoài. OAuth consent screen trong ảnh còn Testing; cần Production để dùng mọi tài khoản Google.
+- File liên quan: `.env` cục bộ; `HANDOFF.md`, `FEATURE_AUDIT.md`. Không thay mã ứng dụng trong lượt này.
+
+
+### 2026-10-30 — Mở đăng ký/đăng nhập cho mọi email
+
+- Bỏ hoàn toàn kiểm tra danh sách mời ở Better Auth và API cá nhân; loại `BETA_ALLOWED_EMAILS` khỏi Compose, cấu hình mẫu và môi trường cục bộ. Giữ xác minh email, session, quyền sở hữu và phân quyền admin qua `ADMIN_EMAILS`.
+- Giao diện đăng nhập không còn thông báo email được mời; nút Google luôn hiển thị và chỉ bật khi có cấu hình OAuth. Config API trả no-store để phản ánh cấu hình hiện tại.
+- File: `lib/auth.ts`, `lib/api.ts`, `app/sign-in/page.tsx`, `app/api/config/route.ts`, `docker-compose.yml`, `.env.example`, `README.md`, `tests/e2e/beta.spec.ts`.
+- Kiểm tra đạt: lint/typecheck, 10 unit tests, production Docker build/recreate và 2 scenario Playwright. Hai email QA đăng ký/xác minh/đăng nhập thành công khi không còn cấu hình mời; kiểm tra nháp, SRS, quyền sở hữu và reset mật khẩu vẫn đạt. Đã dọn hai tài khoản QA sau kiểm thử. Google chưa kiểm thử thật do thiếu credential.
+- Google: môi trường cục bộ chưa có `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET`; đã yêu cầu người dùng điền credential mới vào `.env`, không gửi secret qua chat. Chưa thể xác nhận đăng nhập Google thật.
+
+
+### 2026-10-29 — Triển khai và audit EverLang beta
+
+- Đổi thương hiệu/theme; tách module practice và thêm dashboard, tài khoản, kho từ/SRS, quản trị, nghe–đọc–nói, trợ giảng và engine bài luyện thi.
+- Stack: Better Auth + PostgreSQL/Drizzle cho dữ liệu cá nhân; MongoDB cho học liệu; Redis/BullMQ cho cache/hàng đợi; tích hợp S3, Google Speech và pgvector qua cấu hình môi trường.
+- File chính: `app/`, `components/`, `lib/sql/`, `lib/learning/`, `scripts/`, `migrations/`, Docker/Compose, `FEATURE_AUDIT.md`.
+- Sao lưu MongoDB trong `.local/backups/` (gitignored); đã phục hồi thử vào database riêng: 100 học liệu, 5 bài chấm, 0 lỗi. Không sửa dữ liệu gốc khi nhập lịch sử.
+- Xác minh: 10 unit tests, lint/typecheck, Docker production build và 2 scenario Playwright đạt; có kiểm thử AI thật, email verify/reset, admin lifecycle, mini exam, quyền sở hữu và cạnh tranh SRS. PostgreSQL dump/restore đã xác minh ở database riêng; CLI import fixture lần đầu 1/lặp lại 0. Google OAuth/STT/S3/Tutor chưa kiểm thử dịch vụ thật.
+- Bảo mật: chỉ cấu hình tên biến trong tài liệu; OAuth secret trong ảnh phải thay, không đưa vào source/handoff. Email quản trị được cấu hình trong môi trường cục bộ.
+- Việc còn lại: credential Google mới, chủ tài khoản đăng ký/xác minh và xác nhận UUID legacy; dịch vụ speech/storage/Tutor, kiểm định nội dung và rollout VPS. Bằng chứng/giới hạn chi tiết trong `FEATURE_AUDIT.md`.
+
 
 ### 2026-10-29 — Bỏ qua dấu câu khi chấm bản dịch
 

@@ -3,6 +3,12 @@ import { LEVELS, TOPICS, type Level, type Topic } from "@/lib/types";
 
 export interface ISentence extends mongoose.Document {
   sourceId?: string;
+  language: string;
+  skill: string;
+  contentVersion: number;
+  status: 'draft' | 'reviewed' | 'published';
+  source: string;
+  rights: string;
   topic: Topic;
   level: Level;
   viText: string;
@@ -14,6 +20,12 @@ export interface ISentence extends mongoose.Document {
 }
 
 const SentenceSchema = new Schema<ISentence>({
+  language: { type: String, default: 'ko', enum: ['ko'] },
+  skill: { type: String, default: 'translation' },
+  contentVersion: { type: Number, default: 1 },
+  status: { type: String, enum: ['draft','reviewed','published'], default: 'draft', index: true },
+  source: { type: String, default: '' },
+  rights: { type: String, default: '' },
   sourceId: { type: String, unique: true, sparse: true },
   topic: { type: String, enum: TOPICS, required: true, index: true },
   level: { type: String, enum: LEVELS, required: true, index: true },

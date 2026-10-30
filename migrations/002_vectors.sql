@@ -1,0 +1,2 @@
+CREATE EXTENSION IF NOT EXISTS vector;
+ALTER TABLE tutor_chunks ADD COLUMN IF NOT EXISTS embedding vector(1536);

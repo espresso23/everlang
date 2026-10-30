@@ -20,6 +20,8 @@ function redact(value: string): string {
     .replace(/sk-or-v1-[a-z\d_-]+/gi, "[REDACTED_OPENROUTER_KEY]")
     .replace(/AIza[\w-]{20,}/g, "[REDACTED_GOOGLE_KEY]")
     .replace(/Bearer\s+[^\s"']+/gi, "Bearer [REDACTED]")
+    .replace(/GOCSPX-[\w-]+/g, "[REDACTED_GOOGLE_SECRET]")
+    .replace(/postgres(?:ql)?:\/\/[^\s"'<>]+/gi, "postgresql://[REDACTED]")
     .replace(/mongodb(?:\+srv)?:\/\/[^\s"']+/gi, "mongodb://[REDACTED]");
 }
 
@@ -35,7 +37,7 @@ export function log(level: LogLevel, event: string, fields: LogFields = {}) {
   const entry = {
     timestamp: new Date().toISOString(),
     level,
-    service: "langz",
+    service: "everlang",
     event,
     requestId: requestContext.getStore()?.requestId,
     ...safeFields(fields),
