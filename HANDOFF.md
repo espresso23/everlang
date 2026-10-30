@@ -35,7 +35,7 @@ Cập nhật gần nhất: 2026-10-31
 
 - Branch docs/self-study-wbs-sprints từ4eb249c. User xác nhận solo và có khả năng duyệt tiếng Hàn; giờ/tuần/capacity/date TBD, không giả có nhiều người song song hoặc chốt deadline.
 - documentation/planning/work-items.json là nguồn duy nhất:14 baseline domains tách riêng,33 PBIs (24 scheduled proposal +9 deferred),72 leaf task,6 sprint đề xuất2 tuần; Core/Stretch, acceptance, dependencies, verification/evidence và4 milestones. Tất cả task bổ sung Todo; không tính0% thành tiến độ toàn app.
-- scripts/planning.mjs + npm plan:sync/plan:check sinh/check7 MD/CSV views (Dashboard/WBS/backlog/sprints/task board/2 CSV). Chặn dependency cycle, Done thiếu evidence/Pass, upstream chưa Done, Core dựa Stretch, sai commitment capacity. LF/CRLF được normalize.
+- scripts/planning.mjs + npm plan:sync/plan:check sinh/check7 MD/CSV views (Dashboard/WBS/backlog/sprints/task board/2 CSV). Chặn dependency cycle, Done thiếu evidence/Pass, upstream chưa Done, Core dựa Stretch, sai commitment capacity. LF/CRLF được normalize; Markdown luôn kết thúc đúng một newline để diff sạch.
 - Scope solo: pilot5 rồi15 bài grammar;5 bài đọc/3 audio. S1-S2 refine trước, S3-S6 forecast;25% capacity dự phòng. Luyện thi/đa ngôn ngữ/billing/gamification để backlog, không tự triển khai.
 - Cập nhật AGENTS rule tracking, mục lục/status,5 docs platform-operations và code-map. Hướng dẫn tại documentation/planning/README.md; audit documentation/audits/project-planning.md.
 - Kiểm:31 unit (8 planning), lint/typecheck/production build, docs:check/plan:check đạt; thử sửa generated view bị phát hiện, CRLF không tạo drift giả. Build lần đầu checkout chính thiếu Inter package; npm ci theo lockfile khắc phục, không đổi version/source UI.

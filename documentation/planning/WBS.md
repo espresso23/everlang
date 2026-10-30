@@ -171,4 +171,3 @@ Giữ trong backlog, chưa cam kết sprint
   - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
 - **WBS-6.33 / PB-033 — Lộ trình nhập môn Hangul/sơ cấp** (P2, Deferred, Unscheduled).
   - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
-

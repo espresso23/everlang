@@ -178,10 +178,10 @@ function run() {
   const write = process.argv.includes("--write");
   for (const [name, body] of Object.entries(outputs)) {
     const file = path.join(root, name);
-    if (write) fs.writeFileSync(file, body + (name.endsWith(".md") ? "\n" : ""));
-    else if (!fs.existsSync(file) || fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n") !== (body + (name.endsWith(".md") ? "\n" : "")).replaceAll("\r\n", "\n")) throw new Error("Generated planning view stale: " + file + "; run npm run plan:sync");
+    const output = name.endsWith(".md") ? body.trimEnd() + "\n" : body;
+    if (write) fs.writeFileSync(file, output);
+    else if (!fs.existsSync(file) || fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n") !== output.replaceAll("\r\n", "\n")) throw new Error("Generated planning view stale: " + file + "; run npm run plan:sync");
   }
   console.info("Planning " + (write ? "synced" : "checked") + ": " + model.baseline.length + " baseline domains, " + model.features.length + " PBIs, " + model.tasks.length + " tasks, " + model.sprints.length + " proposed sprints.");
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) run();
-

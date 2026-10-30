@@ -87,4 +87,3 @@
 
 
 S1-S2 cần refinement/capacity trước khi Active; S3-S6 forecast, không phải cam kết12 tuần. Sprint không tự bắt đầu bằng việc sinh kế hoạch. Release cần PO go/no-go.
-

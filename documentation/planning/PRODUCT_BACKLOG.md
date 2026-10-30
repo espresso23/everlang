@@ -43,4 +43,3 @@ P0: core self-study/release gates. P1: context expansion. P2: sau beta. Core/Str
 *Estimate dev sơ bộ; content/review không được coi là0 effort. Các feature ID mới chưa có source/docs phải tạo5 docs chuẩn trước code. Existing feature dùng đúng canonical docs, không tạo bản spec trùng.
 
 [Tasks CSV](tasks.csv) · [Backlog CSV](product-backlog.csv) · [Baseline](../project-status.md).
-
