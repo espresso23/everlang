@@ -1,0 +1,19 @@
+/* Canonical values: documentation/design/README.md. Layout tokens stay in globals.css. */
+:root {
+  --font-ui: "Inter Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-learning: "Inter Variable", "Malgun Gothic", "Noto Sans KR", Arial, sans-serif;
+  --paper: #f4f4f2;
+  --surface: #ffffff;
+  --ink: #111111;
+  --muted: #595959;
+  --brand: #244ce0;
+  --brand-dark: #1838ae;
+  --tint: #eef1ff;
+  --line: #d8d8d4;
+  --control-line: #858585;
+  --positive: #166534;
+  --negative: #b42318;
+  --shadow: none;
+  /* Compatibility alias for existing surfaces; lemon is retired. */
+  --yellow: #ececea;
+}

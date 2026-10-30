@@ -1,0 +1,590 @@
+{
+  "/": {
+    ".app-header": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "120px",
+        "padding-bottom": "0px",
+        "padding-left": "120px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ],
+    ".app-nav": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "6px",
+        "padding-top": "18px",
+        "padding-right": "24px",
+        "padding-bottom": "0px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".page": [
+      {
+        "display": "block",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "normal",
+        "padding-top": "36px",
+        "padding-right": "24px",
+        "padding-bottom": "64px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".hero": [
+      {
+        "display": "grid",
+        "grid-template-columns": "565.078px 470.922px",
+        "flex-direction": "row",
+        "gap": "28px",
+        "padding-top": "42px",
+        "padding-right": "44px",
+        "padding-bottom": "42px",
+        "padding-left": "44px",
+        "max-width": "none",
+        "width": "1152px"
+      }
+    ],
+    ".hero-art": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "normal",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "470.922px"
+      }
+    ],
+    ".stats-grid": [
+      {
+        "display": "grid",
+        "grid-template-columns": "276px 276px 276px 276px",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "1152px"
+      }
+    ],
+    ".dashboard-grid": [
+      {
+        "display": "grid",
+        "grid-template-columns": "668.172px 460.812px",
+        "flex-direction": "row",
+        "gap": "23px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "1152px"
+      }
+    ],
+    ".auth-layout": [],
+    ".form-stack": [],
+    ".practice": []
+  },
+  "/sign-in": {
+    ".app-header": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "120px",
+        "padding-bottom": "0px",
+        "padding-left": "120px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ],
+    ".app-nav": [],
+    ".page": [
+      {
+        "display": "grid",
+        "grid-template-columns": "569.547px 542.453px",
+        "flex-direction": "row",
+        "gap": "40px",
+        "padding-top": "54px",
+        "padding-right": "24px",
+        "padding-bottom": "58px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".hero": [],
+    ".hero-art": [],
+    ".stats-grid": [],
+    ".dashboard-grid": [],
+    ".auth-layout": [
+      {
+        "display": "grid",
+        "grid-template-columns": "569.547px 542.453px",
+        "flex-direction": "row",
+        "gap": "40px",
+        "padding-top": "54px",
+        "padding-right": "24px",
+        "padding-bottom": "58px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".form-stack": [
+      {
+        "display": "grid",
+        "grid-template-columns": "468.453px",
+        "flex-direction": "row",
+        "gap": "17px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "468.453px"
+      }
+    ],
+    ".practice": []
+  },
+  "/practice": {
+    ".app-header": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "120px",
+        "padding-bottom": "0px",
+        "padding-left": "120px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ],
+    ".app-nav": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "6px",
+        "padding-top": "18px",
+        "padding-right": "24px",
+        "padding-bottom": "0px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".page": [],
+    ".hero": [],
+    ".hero-art": [],
+    ".stats-grid": [],
+    ".dashboard-grid": [],
+    ".auth-layout": [],
+    ".form-stack": [],
+    ".practice": [
+      {
+        "display": "block",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "normal",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ]
+  },
+  "/profile": {
+    ".app-header": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "120px",
+        "padding-bottom": "0px",
+        "padding-left": "120px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ],
+    ".app-nav": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "6px",
+        "padding-top": "18px",
+        "padding-right": "24px",
+        "padding-bottom": "0px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".page": [
+      {
+        "display": "block",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "normal",
+        "padding-top": "36px",
+        "padding-right": "24px",
+        "padding-bottom": "64px",
+        "padding-left": "24px",
+        "max-width": "800px",
+        "width": "800px"
+      }
+    ],
+    ".hero": [],
+    ".hero-art": [],
+    ".stats-grid": [],
+    ".dashboard-grid": [],
+    ".auth-layout": [],
+    ".form-stack": [
+      {
+        "display": "grid",
+        "grid-template-columns": "696px",
+        "flex-direction": "row",
+        "gap": "18px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "696px"
+      },
+      {
+        "display": "grid",
+        "grid-template-columns": "696px",
+        "flex-direction": "row",
+        "gap": "18px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "696px"
+      }
+    ],
+    ".practice": []
+  },
+  "/vocabulary": {
+    ".app-header": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "120px",
+        "padding-bottom": "0px",
+        "padding-left": "120px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ],
+    ".app-nav": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "6px",
+        "padding-top": "18px",
+        "padding-right": "24px",
+        "padding-bottom": "0px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".page": [
+      {
+        "display": "block",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "normal",
+        "padding-top": "36px",
+        "padding-right": "24px",
+        "padding-bottom": "64px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".hero": [],
+    ".hero-art": [],
+    ".stats-grid": [],
+    ".dashboard-grid": [
+      {
+        "display": "grid",
+        "grid-template-columns": "668.172px 460.812px",
+        "flex-direction": "row",
+        "gap": "23px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "1152px"
+      }
+    ],
+    ".auth-layout": [],
+    ".form-stack": [
+      {
+        "display": "grid",
+        "grid-template-columns": "612.172px",
+        "flex-direction": "row",
+        "gap": "18px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "612.172px"
+      }
+    ],
+    ".practice": []
+  },
+  "/library": {
+    ".app-header": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "120px",
+        "padding-bottom": "0px",
+        "padding-left": "120px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ],
+    ".app-nav": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "6px",
+        "padding-top": "18px",
+        "padding-right": "24px",
+        "padding-bottom": "0px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".page": [
+      {
+        "display": "block",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "normal",
+        "padding-top": "36px",
+        "padding-right": "24px",
+        "padding-bottom": "64px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".hero": [],
+    ".hero-art": [],
+    ".stats-grid": [],
+    ".dashboard-grid": [
+      {
+        "display": "grid",
+        "grid-template-columns": "668.172px 460.812px",
+        "flex-direction": "row",
+        "gap": "23px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "1152px"
+      }
+    ],
+    ".auth-layout": [],
+    ".form-stack": [],
+    ".practice": []
+  },
+  "/exams": {
+    ".app-header": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "120px",
+        "padding-bottom": "0px",
+        "padding-left": "120px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ],
+    ".app-nav": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "6px",
+        "padding-top": "18px",
+        "padding-right": "24px",
+        "padding-bottom": "0px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".page": [
+      {
+        "display": "block",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "normal",
+        "padding-top": "36px",
+        "padding-right": "24px",
+        "padding-bottom": "64px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".hero": [],
+    ".hero-art": [],
+    ".stats-grid": [],
+    ".dashboard-grid": [
+      {
+        "display": "grid",
+        "grid-template-columns": "668.172px 460.812px",
+        "flex-direction": "row",
+        "gap": "23px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "1152px"
+      }
+    ],
+    ".auth-layout": [],
+    ".form-stack": [],
+    ".practice": []
+  },
+  "/admin": {
+    ".app-header": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "16px",
+        "padding-top": "0px",
+        "padding-right": "120px",
+        "padding-bottom": "0px",
+        "padding-left": "120px",
+        "max-width": "none",
+        "width": "1440px"
+      }
+    ],
+    ".app-nav": [
+      {
+        "display": "flex",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "6px",
+        "padding-top": "18px",
+        "padding-right": "24px",
+        "padding-bottom": "0px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".page": [
+      {
+        "display": "block",
+        "grid-template-columns": "none",
+        "flex-direction": "row",
+        "gap": "normal",
+        "padding-top": "36px",
+        "padding-right": "24px",
+        "padding-bottom": "64px",
+        "padding-left": "24px",
+        "max-width": "1200px",
+        "width": "1200px"
+      }
+    ],
+    ".hero": [],
+    ".hero-art": [],
+    ".stats-grid": [],
+    ".dashboard-grid": [
+      {
+        "display": "grid",
+        "grid-template-columns": "668.172px 460.812px",
+        "flex-direction": "row",
+        "gap": "23px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "1152px"
+      }
+    ],
+    ".auth-layout": [],
+    ".form-stack": [
+      {
+        "display": "grid",
+        "grid-template-columns": "612.172px",
+        "flex-direction": "row",
+        "gap": "18px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "612.172px"
+      },
+      {
+        "display": "grid",
+        "grid-template-columns": "1096px",
+        "flex-direction": "row",
+        "gap": "18px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "max-width": "none",
+        "width": "1096px"
+      }
+    ],
+    ".practice": []
+  }
+}

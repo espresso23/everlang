@@ -86,11 +86,13 @@ export default function Dashboard() {
           </Link>
         </div>
         <div className="hero-art" aria-hidden="true">
+          <span className="editorial-margin-note">EVERLANG / STUDY JOURNAL</span>
           <div className="study-preview">
+            <span className="editorial-quote">“</span>
             <div className="study-preview-label">
               <span className="preview-dot" /> MỖI NGÀY MỘT CHÚT
             </div>
-            <div className="study-word">꾸준히</div>
+            <div className="study-word" data-word="꾸준히">꾸준히</div>
             <p>Đều đặn. Bền bỉ. Tiến bộ.</p>
             <div className="study-preview-footer">
               <BookOpen size={16} />
@@ -126,7 +128,7 @@ export default function Dashboard() {
           <div className="section-heading">
             <div>
               <p className="eyebrow">DÀNH RIÊNG CHO BẠN</p>
-              <h2>Lịch học hôm nay</h2>
+              <h2><span className="editorial-title">Lịch học hôm nay</span></h2>
             </div>
             <span className="tag yellow">{data?.plan.day || "Đang tải"}</span>
           </div>
@@ -220,7 +222,7 @@ export default function Dashboard() {
         </section>
         <aside className="panel notebook">
           <p className="eyebrow">BIẾN LỖI SAI THÀNH KIẾN THỨC</p>
-          <h2>Sổ tay của bạn</h2>
+          <h2><span className="editorial-title">Sổ tay của bạn</span></h2>
           <p>Những lỗi gần đây, để lần sau viết tốt hơn.</p>
           {data?.errors.length ? (
             data.errors.slice(0, 4).map((e) => (

@@ -26,6 +26,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Tài liệu feature và đối chiếu 1:1 với code
 
+- Mọi công việc frontend bắt buộc đọc và tuân thủ [EverLang Editorial Design](documentation/design/README.md): tokens, typography, nội dung học, component, accessibility và gate audit. Giữ wireframe hiện hành; chỉ đổi layout khi người dùng yêu cầu. Không tái sử dụng palette/theme cũ để tạo giao diện song song.
+
 - `/documentation` là thư mục tài liệu kỹ thuật chuẩn của dự án. Mỗi feature có một `feature-id` duy nhất dạng kebab-case và đúng một thư mục chuẩn tại `documentation/features/<feature-id>/`; đăng ký trong [mục lục tài liệu](documentation/README.md).
 - Trước khi viết hoặc sửa code, đọc tài liệu feature và các thành phần phụ thuộc. Feature mới phải có đặc tả, system design, function description và UI dự kiến trước khi triển khai; cập nhật chúng theo kết quả thực tế trong cùng lượt thay đổi.
 - Mỗi feature bắt buộc có `README.md`, `system-design.md`, `functions.md`, `ui.md`, `audit.md`, theo [bộ mẫu](documentation/templates/feature/README.md). Với tính năng không có UI, ghi rõ lý do trong `ui.md` thay vì bỏ file.

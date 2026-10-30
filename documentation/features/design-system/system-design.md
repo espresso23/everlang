@@ -1,33 +1,24 @@
-# System design — design-system
+# System design — editorial skin
 
-[Đặc tả](README.md) · [Functions](functions.md) · [UI](ui.md)
-
-## Luồng thực tế
-
-RootLayout → Shell/useSession → navigation + page → shared CSS tokens
+[Quy chuẩn](../../design/README.md) · [Yêu cầu](README.md).
 
 ```mermaid
 flowchart LR
-  UI["UI / caller"] --> API["Session / API / service"]
-  API --> Data["Data / provider"]
-  Data --> Result["Result / error"]
-  Result --> UI
+  Package[Fontsource Inter 5.3.0] --> Layout[RootLayout imports]
+  Layout --> Global[globals.css: existing layout + Tailwind palette]
+  Tokens[design-tokens.css] --> Global
+  Global --> Skin[editorial.css: typography / color / ornament]
+  Skin --> Shell[Shell and existing route components]
+  Guide[Design guide + AGENTS] --> Review[Wireframe / UI / accessibility audit]
+  Shell --> Review
 ```
 
-Sơ đồ khái quát ranh giới; chuỗi phía trên nêu rõ worker/provider/storage có áp dụng cho feature này.
+RootLayout import order: Fontsource CSS → globals.css (imports tokens) → editorial.css. Next bundles CSS/font files; no runtime Google Fonts dependency. OFL license shipped in public/fonts. Inter Variable includes Vietnamese subset; browser fonts.ready/check verified separately from a declared font-family string. Korean uses system fallback; actual device rendering remains device-dependent.
 
-## Dữ liệu và ownership
+globals.css giữ layout rules/breakpoints hiện có. Token indigo alias trỏ sang Cobalt, slate/amber aliases chuyển neutral để học liệu cũ không tạo theme vàng riêng; semantic đúng/sai giữ màu và nhãn. --yellow là compatibility alias neutral, không còn là màu thương hiệu.
 
-Không có database riêng; Shell đọc Better Auth session; design tokens trong globals.css là nguồn CSS chuẩn.
+editorial.css chỉ đổi presentation. Các span heading nằm trong h2 cũ; decorations absolute trong hero-art aria-hidden hiện có, pointer-events none, biến mất cùng breakpoint760px. Không thêm cột hoặc tác vụ học. Ngoại lệ sửa inset nội bộ: honor class pl-10 đã có cho search input để chữ không đè icon; khung field và padding container không đổi.
 
-Shell dùng session để chọn UI; quyền truy cập cuối cùng được bảo vệ ở API, không dựa vào việc ẩn nút.
+Session/auth/API/queue/database untouched. CSS không cấp quyền hay thay rubric. Source owner Dashboard vẫn daily-dashboard; design-system tham chiếu component và docs dashboard trỏ ngược guide.
 
-## Hợp đồng tích hợp
-
-- Không thêm public API; dùng /api/auth/get-session từ authClient.
-
-## Failure modes và vận hành
-
-Session pending/avatar đã sửa trong feature/user-profile; xem [audit tích hợp](../../audits/profile-auth-integration.md). Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.
-
-Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [storage/migrations](../../shared/data-model.md), [vận hành](../../shared/operations.md). Chỉ tên biến môi trường được ghi ở docs; không đưa token, cookie hay credential vào ví dụ/log.
+Regression guard lưu computed display/grid/flex/gap/padding/max-width/width của container trên 8 route tại1440/390/320. Guard không đo equality chiều cao vì font mới có reflow tự nhiên; review ảnh đối chiếu thêm overflow, order và affordances. Không tự cập nhật baseline để làm test xanh.

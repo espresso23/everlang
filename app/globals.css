@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./design-tokens.css";
 
 :root {
   color-scheme: light;
@@ -142,29 +143,41 @@ button:disabled {
 }
 
 @theme inline {
-  --color-indigo-50: #f3f3fd;
-  --color-indigo-100: #e7e7fa;
-  --color-indigo-200: #d2d2f2;
-  --color-indigo-300: #acace7;
-  --color-indigo-400: #8384df;
-  --color-indigo-500: #6263d7;
-  --color-indigo-600: #4546c7;
-  --color-indigo-700: #3436a5;
-  --color-indigo-800: #303289;
-  --color-indigo-900: #30325d;
-  --color-indigo-950: #17243b;
+  --color-amber-50: #f4f4f2;
+  --color-amber-100: #ececea;
+  --color-amber-200: #dededb;
+  --color-amber-300: #b8b8b3;
+  --color-amber-400: #767676;
+  --color-amber-500: #595959;
+  --color-amber-600: #3d3d3d;
+  --color-amber-700: #262626;
+  --color-amber-800: #171717;
+  --color-amber-900: #111111;
+  --color-amber-950: #111111;
+  --color-slate-50: #f8f8f7;
+  --color-slate-100: #f0f0ee;
+  --color-slate-200: #dededb;
+  --color-slate-300: #b8b8b3;
+  --color-slate-400: #767676;
+  --color-slate-500: #626262;
+  --color-slate-600: #525252;
+  --color-slate-700: #3d3d3d;
+  --color-slate-800: #262626;
+  --color-slate-900: #171717;
+  --color-slate-950: #111111;
+  --color-indigo-50: #f2f4ff;
+  --color-indigo-100: #e5eaff;
+  --color-indigo-200: #c8d3ff;
+  --color-indigo-300: #a5b7ff;
+  --color-indigo-400: #7894f5;
+  --color-indigo-500: #4c6ce8;
+  --color-indigo-600: #244ce0;
+  --color-indigo-700: #1838ae;
+  --color-indigo-800: #17308c;
+  --color-indigo-900: #17265e;
+  --color-indigo-950: #111a3d;
 }
-:root {
-  --brand: #4546c7;
-  --brand-dark: #3436a5;
-  --yellow: #f9fa91;
-  --ink: #30325d;
-  --paper: #fafaf7;
-  --surface: #ffffff;
-  --line: #e3e3ef;
-  --muted: #686985;
-  --shadow: none;
-}
+
 body {
   background: var(--paper);
   color: var(--ink);
@@ -1154,7 +1167,7 @@ h3 {
   }
 }
 /* Provider avatars share geometry across the header and profile. */
-.user-avatar { display: inline-flex; flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; align-items: center; justify-content: center; background: #eeeeff; color: #4546c7; font-size: 12px; font-weight: 700; }
+.user-avatar { display: inline-flex; flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; align-items: center; justify-content: center; background: #eeeeff; color: #244ce0; font-size: 12px; font-weight: 700; }
 .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .user-avatar-large { width: 72px; height: 72px; font-size: 24px; }
 .profile-identity { display: flex; gap: 18px; align-items: center; }

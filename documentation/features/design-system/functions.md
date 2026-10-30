@@ -1,24 +1,15 @@
-# Function description — design-system
+# Function/component description — design-system
 
-[Đặc tả và contract](README.md) · [System design](system-design.md)
+| Source / symbol | Trách nhiệm và contract |
+|---|---|
+| [app/layout.tsx](../../../app/layout.tsx) · RootLayout | Imports self-host font, globals, editorial in order; wraps Shell, lang vi, giữ children và metadata |
+| [app/layout.tsx](../../../app/layout.tsx) · metadata | Title/description hiện có, không sửa nội dung SEO trong lượt theme |
+| [components/shell.tsx](../../../components/shell.tsx) · Shell | Header/nav/session/avatar/footer giữ hành vi; class styles kế thừa skin mới |
+| [components/dashboard.tsx](../../../components/dashboard.tsx) · Dashboard | Owner daily-dashboard; thêm aria-hidden quote/vertical note, data-word và editorial-title span trong khối cũ; không sửa task/data |
+| [app/design-tokens.css](../../../app/design-tokens.css) · :root | Font/palette semantic và aliases; source chuẩn cho CSS/guide |
+| [app/globals.css](../../../app/globals.css) · @theme | Existing layout và Tailwind palette aliases, import design tokens |
+| [app/editorial.css](../../../app/editorial.css) | Skin visual theo guide: headings, controls, cards, reading exceptions, focus, artwork |
+| [app/icon.svg](../../../app/icon.svg), [app/favicon.ico](../../../app/favicon.ico) | Giữ nguyên asset e hiện có; header logo chỉ đổi palette bằng CSS |
+| [tests/e2e/editorial-design.spec.ts](../../../tests/e2e/editorial-design.spec.ts) | Mock identity/content cố định, không viết DB; before capture chỉ khi DESIGN_BASELINE=1, default compare structural snapshots; font/focus/spacing assertions |
 
-## File + symbol → trách nhiệm
-
-Các callback vô danh nằm trong component/handler được mô tả cùng component chủ. Schema/constant có thể là binding chứ không phải hàm; không tạo thêm API ngoài code.
-
-| Code/symbol | Chữ ký/binding hiện tại | Hành vi, I/O và side effect |
-|---|---|---|
-| [components/shell.tsx](../../../components/shell.tsx) · `Shell` | `export function Shell(` | Component/type `Shell` thuộc luồng app shell và nhận diện; hành vi và trạng thái UI ở [ui.md](ui.md). |
-| [app/layout.tsx](../../../app/layout.tsx) · `metadata` | `export const metadata` | Hàm/binding `metadata` phục vụ app shell và nhận diện; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [app/layout.tsx](../../../app/layout.tsx) · `RootLayout` | `export default function RootLayout(` | Component/type `RootLayout` thuộc luồng app shell và nhận diện; hành vi và trạng thái UI ở [ui.md](ui.md). |
-| [app/globals.css](../../../app/globals.css) | Cấu hình/schema/asset/script | Không có database riêng; Shell đọc Better Auth session; design tokens trong globals.css là nguồn CSS chuẩn. |
-| [app/icon.svg](../../../app/icon.svg) | Cấu hình/schema/asset/script | Không có database riêng; Shell đọc Better Auth session; design tokens trong globals.css là nguồn CSS chuẩn. |
-| [app/favicon.ico](../../../app/favicon.ico) | Cấu hình/schema/asset/script | Không có database riêng; Shell đọc Better Auth session; design tokens trong globals.css là nguồn CSS chuẩn. |
-
-## Input, output và lỗi theo điểm vào
-
-- Không thêm public API; dùng /api/auth/get-session từ authClient.
-
-Không có database riêng; Shell đọc Better Auth session; design tokens trong globals.css là nguồn CSS chuẩn.
-
-Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+Không thêm public function/API ngoài component hiện có. [Guide](../../design/README.md), [audit](audit.md), [UI](ui.md).

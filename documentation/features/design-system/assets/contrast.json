@@ -1,0 +1,32 @@
+[
+  {
+    "foreground": "ink",
+    "background": "paper",
+    "ratio": 17.15,
+    "minimum": 4.5
+  },
+  {
+    "foreground": "muted",
+    "background": "paper",
+    "ratio": 6.36,
+    "minimum": 4.5
+  },
+  {
+    "foreground": "surface",
+    "background": "brand",
+    "ratio": 6.59,
+    "minimum": 4.5
+  },
+  {
+    "foreground": "brand",
+    "background": "tint",
+    "ratio": 5.86,
+    "minimum": 4.5
+  },
+  {
+    "foreground": "control-line",
+    "background": "surface",
+    "ratio": 3.69,
+    "minimum": 3
+  }
+]

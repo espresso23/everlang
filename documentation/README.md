@@ -1,5 +1,7 @@
 # Tài liệu EverLang
 
+Frontend bắt buộc tuân thủ [EverLang Editorial Design](design/README.md); [screen gallery hiện tại](design/screens.md).
+
 Thư mục này chứa đặc tả, system design, function description, UI và audit chuẩn cho từng feature. Quy tắc bắt buộc nằm trong [AGENTS.md](../AGENTS.md).
 
 ## Cấu trúc

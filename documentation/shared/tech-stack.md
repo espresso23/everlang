@@ -17,3 +17,5 @@ Nguồn phiên bản: [package.json](../../package.json), [lockfile](../../packa
 | Vận hành | Docker, Node 24, Caddy | App standalone và worker riêng |
 
 Mô hình không tách NestJS/microservice. Chưa có billing/quota kinh doanh. Mở tiếng Hàn trước; cấu trúc language/skill/level/contentVersion được giữ để mở rộng sau. Phiên bản Next hiện tại có thay đổi API: trước sửa code đọc guide tương ứng trong `node_modules/next/dist/docs/`.
+
+Visual layer: Fontsource Inter Variable **5.3.0** self-host; app/design-tokens.css + app/editorial.css. [Quy chuẩn frontend](../design/README.md).

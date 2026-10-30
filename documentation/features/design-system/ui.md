@@ -1,21 +1,15 @@
-# UI — design-system
+# UI — EverLang Editorial
 
-[Đặc tả](README.md) · [Functions](functions.md)
+[Quy chuẩn bắt buộc](../../design/README.md) · [Source contracts](functions.md).
 
-## Màn hình và hành vi đã implement
+Áp dụng đủ 8 route: dashboard, sign-in, practice, vocabulary/SRS, library/Tutor, exams, profile và admin. Thứ tự nội dung, navigation và khung wireframe giữ nguyên; token/corner/typography thay theo style mới.
 
-Áp dụng mọi route; header hiển thị UserAvatar từ session.image hoặc initials. Pending hiển thị trạng thái tải; lỗi kết nối có retry; private page chỉ mount khi session hợp lệ. Xem [profile UI](../user-profile/ui.md).
+H1/H2 UI uppercase weight800–850, tracking chặt; nhãn phụ tracking rộng vừa. Tên user/profile, từ SRS, textarea/câu mẫu và Hangul không uppercase/giãn chữ. Hero và sign-in dùng ink/Cobalt trên paper; section label đen/trắng. Số thống kê tabular/Cobalt. Notebook đảo mực. Quote, vertical note và layered Hangul nằm trong hero artwork aria-hidden cũ; không chặn nội dung/click.
 
-## Luồng UI ↔ dữ liệu
+Card nền trắng viền mảnh, góc8px; CTA Cobalt, secondary trắng/ink, focus Cobalt rõ. Inputs trắng, biên control đủ tương phản. Search input khôi phục inset pl-10 đã khai báo để tránh icon đè chữ. Lỗi/feedback semantic giữ nhãn và màu phù hợp, không thay logic.
 
-RootLayout → Shell/useSession → navigation + page → shared CSS tokens
+Trạng thái loading/error/empty/success/disabled/session/avatar không đổi hành vi. Mobile giữ nav cuộn ngang, hero-art ẩn, dashboard2→1 cột theo breakpoint cũ. Typography có thể wrap tự nhiên; không clip text để giữ chiều cao ảnh.
 
-## Trạng thái và giới hạn
+## Bằng chứng trước/sau
 
-Session pending/avatar đã sửa trong feature/user-profile; xem [audit tích hợp](../../audits/profile-auth-integration.md). Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.
-
-Đối chiếu route/component/source và trạng thái trong [screen inventory](../../shared/screens.md). Với API/CLI không có màn hình độc lập, UI tiêu thụ contract nằm ở màn hình nêu trên; không coi N/A là bỏ qua tích hợp.
-
-## Thiết kế dùng chung
-
-[Design system](../design-system/README.md): logo e, cobalt/lemon/trắng, màu phẳng, viền mảnh, không bóng cứng. API errors hiển thị message; auth và ownership cuối cùng vẫn kiểm phía server. Các ảnh được ghi rõ viewport/ngày và dữ liệu QA trong [bằng chứng baseline](../../shared/baseline-evidence.md).
+Fixture giả lập chỉ để review UI, không là bằng chứng API/provider chạy thật. Mỗi route có ảnh1440 và390;320 kiểm overflow/structure không lưu ảnh để giảm trùng. Xem [gallery](../../design/screens.md), [audit](audit.md), wireframe [1440](assets/wireframe-1440.json), [390](assets/wireframe-390.json), [320](assets/wireframe-320.json).

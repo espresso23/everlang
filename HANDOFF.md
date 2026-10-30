@@ -14,7 +14,7 @@ Cập nhật gần nhất: 2026-10-30
 
 - EverLang beta đã build và chạy Docker local tại `http://localhost:3000`; chỉ bind loopback. App/worker đang chạy, PostgreSQL/MongoDB/Redis healthy; Mailpit local tại cổng 8025. Migration 001–003 hoàn tất.
 - Đã có đăng ký/đăng nhập email, xác minh/reset mật khẩu qua Mailpit; Google đã đăng nhập thật thành công sau khi người dùng cập nhật cấu hình; database có provider/image/session. Avatar và session UI đã sửa, profile lưu/refetch đồng bộ.
-- Đã triển khai dashboard, kho từ/SRS FSRS-7, lịch học, nháp cloud, history/favorites theo session PostgreSQL và worker chấm AI; tên/theme EverLang xanh–vàng.
+- Đã triển khai dashboard, kho từ/SRS FSRS-7, lịch học, nháp cloud, history/favorites theo session PostgreSQL và worker chấm AI; tên EverLang, theme editorial paper/ink/Cobalt theo documentation/design.
 - Bộ 100 bài và 5 báo cáo MongoDB gốc được giữ. Không tự gán lịch sử cũ cho tài khoản mới; có CLI nhập idempotent sau đối chiếu chủ dữ liệu.
 - OpenRouter đã chấm thật qua hàng đợi/lưu PostgreSQL; kết quả QA cuối 98/100 cho đáp án tham khảo. Không dùng smoke test này thay đánh giá chất lượng bằng bộ bài có người chấm.
 - Có nền tảng nghe/đọc/thu âm, S3/STT/Tutor pgvector và mini exam; dịch vụ ngoài/nội dung đầy đủ còn điều kiện. Xem `FEATURE_AUDIT.md` để phân biệt đã kiểm chứng và chưa kiểm chứng.
@@ -30,6 +30,15 @@ Cập nhật gần nhất: 2026-10-30
 - Docker Compose khởi chạy ứng dụng và MongoDB 8; volume giữ dữ liệu MongoDB qua lần khởi động lại. Không đưa MongoDB vào Atlas trong cấu hình mặc định hiện tại.
 
 ## Lịch sử công việc của phiên
+
+### 2026-10-30 — Editorial typography và quy chuẩn frontend
+
+- Branch feature/editorial-design-system từ80e4247. Áp dụng Inter Variable5.3.0 self-host có Vietnamese, paper/white/ink/Cobalt; giữ logo e, wireframe, grid/container/spacing/breakpoint và logic học/auth.
+- Thêm app/design-tokens.css, app/editorial.css, font license; cập nhật layout imports/Tailwind aliases và typography Dashboard. Headings UI uppercase, black labels, Cobalt số; quote/vertical/layer chỉ trong aria-hidden hero-art. Tên user, input, SRS/Hangul giữ tự nhiên; focus notebook nền đen dùng trắng. Khôi phục inset pl-10 cho search không đè icon.
+- Lưu documentation/design/README.md và gallery8 màn hình trước/sau; AGENTS bắt buộc mọi FE đọc và tuân thủ. Sync feature UI, design-system contracts, code-map và audit nhóm documentation/audits/editorial-learning-ui.md.
+- Kiểm: 23 unit, 11 E2E trên Docker production, lint/typecheck/build đạt; đối chiếu8 route ×1440/390/320 structural props, kiểm font/focus/text-spacing/overflow và review ảnh. Contrast token chính đạt mục tiêu; không tuyên bố toàn bộ WCAG hay tác dụng tâm lý tăng trí nhớ.
+- Không migration, không đổi quyền/credential. E2E fixture users được dọn riêng, giữ dữ liệu/session thật. Rollback bằng code baseline80e4247, giữ volume. Native browser zoom200%/screen reader và dịch vụ ngoài không được chứng nhận lại trong lượt visual này.
+
 
 ### 2026-10-30 — Profile, Google avatar và audit tích hợp
 

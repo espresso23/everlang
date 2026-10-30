@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import "@fontsource-variable/inter";
 import "./globals.css";
+import "./editorial.css";
 import { Shell } from "@/components/shell";
 
 export const metadata: Metadata = {

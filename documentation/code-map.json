@@ -335,7 +335,7 @@
             "Dashboard",
             "change"
           ],
-          "sha256": "27bde2cae047f2dac2a86b8c1fb6fc7dcae941f7ccf4949651ffb692b8c0058a"
+          "sha256": "d69b1d50f4a1671299010333b15ef3a852375a6736289074876b14219490670d"
         },
         {
           "file": "app/api/dashboard/route.ts",
@@ -549,12 +549,12 @@
             "metadata",
             "RootLayout"
           ],
-          "sha256": "3b326261c27e2d304f69642dd769d1adb9018bc65743b57182b86dc3f5da9891"
+          "sha256": "e6d4f1d511406485b692b5c51647f9e4a185c4f158c80edfc51d92ec6267d2aa"
         },
         {
           "file": "app/globals.css",
           "symbols": [],
-          "sha256": "31244332c33665f46b842f603f90c36f28aaa3ad9fcf684787a6ea525e452ca8"
+          "sha256": "e4dd9a7e620fc2ff370d1a31903db4e2a821b8f878650358a100824440a40d06"
         },
         {
           "file": "app/icon.svg",
@@ -565,6 +565,26 @@
           "file": "app/favicon.ico",
           "symbols": [],
           "sha256": "e0b310dee2cf91cfe525879fe41982e21ea139e0fa70c72cec595272b27252d3"
+        },
+        {
+          "file": "app/design-tokens.css",
+          "symbols": [],
+          "sha256": "5db650e35a1fd5abd35ddd1a21248980b01bb319531fe858e568f0bf1ec834de"
+        },
+        {
+          "file": "app/editorial.css",
+          "symbols": [],
+          "sha256": "eecc93b2b9fdb0af52f7f7a92ecdda3ef71b1e19bfea12848acbcd50795ec6e5"
+        },
+        {
+          "file": "public/fonts/INTER-LICENSE.txt",
+          "symbols": [],
+          "sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345"
+        },
+        {
+          "file": "tests/e2e/editorial-design.spec.ts",
+          "symbols": [],
+          "sha256": "59a0491b703c15ab4e9b4c44438c309945c017b663cfc4d0f04479fedefea5f4"
         }
       ]
     },
@@ -683,12 +703,12 @@
         {
           "file": "package.json",
           "symbols": [],
-          "sha256": "ce0c120c3d2873d501c1b7e037def6fdf3a7bfab794eb15f0b9bb18493c2e21a"
+          "sha256": "4fdd406f5f7d93ac94bd537893a403ebdef1bf68575acca2e8fc23a3ca5dd0d3"
         },
         {
           "file": "package-lock.json",
           "symbols": [],
-          "sha256": "259279ca0133d0b61e3a18124b800a4b2c95e2cde08d9a67fb9db7ded1c38220"
+          "sha256": "774de1205b507059c4b643dcc31c41b6a8f50932d4646d786b2ddfbc6f0eb4ad"
         },
         {
           "file": "next.config.ts",

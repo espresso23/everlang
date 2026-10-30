@@ -1,3 +1,27 @@
+# Audit — Editorial Design System
+
+Ngày 2026-10-30, feature/editorial-design-system, baseline80e4247. Review riêng sau implement và kiểm production Docker.
+
+| Requirement | Kết quả | Bằng chứng |
+|---|---|---|
+| DS-01 font thật/self-host/Vietnamese | PASS | Fontsource5.3.0, font request same-origin, document.fonts.ready/check với HỌC TIẾNG VIỆT; license public/fonts |
+| DS-02 palette, visual skin | PASS review | [contrast pairs](assets/contrast.json), [gallery](../../design/screens.md); không gradient/bóng nổi; semantic feedback giữ riêng |
+| DS-03 editorial hierarchy/decor | PASS review | H1/H2 uppercase, black/white labels, Cobalt stats, quote/vertical/layer trong aria-hidden hero-art |
+| DS-04 giữ wireframe | PASS | 8 route × 1440/390/320px; computed structural props equality với before snapshot, overflow false; không cam kết text height pixel-identical |
+| DS-05 giữ học liệu/auth behavior | PASS | Input Hangul/Vietnamese/lowercase giữ nguyên; review/SRS/name exceptions; auth/profile/SRS/dashboard regression E2E |
+| DS-06 accessibility scope | PASS phạm vi test; NOT VERIFIED full WCAG | Keyboard focus, token contrast, text-spacing override. Native zoom200%, screen reader và contrast mọi trạng thái legacy chưa audit exhaustive |
+| DS-07 docs/mandatory policy | PASS | AGENTS rule → design/README → source/code-map + UI contracts, docs:check |
+
+Lệnh kiểm: npm run lint; npx tsc --noEmit; npm test (23/23); production Docker build; E2E_AUTH_TESTS=1 npx playwright test (11/11 trên container). Ca design riêng chạy lại sau chỉnh inverse focus. Before snapshots chỉ ghi với DESIGN_BASELINE=1 trước sửa runtime; không refresh baseline để bỏ qua regression.
+
+Contrast measured từ token: ink/paper17.15:1, muted/paper6.36:1, white/Cobalt6.59:1, Cobalt/tint5.86:1, input border/white3.69:1. Những số này không là chứng nhận mọi tổ hợp màu trong app.
+
+Review ảnh1440/390, overflow320; tất cả fixture UI là synthetic, không có ảnh Google thật. Source diff giữ container layout rules; search text inset pl-10 được khôi phục, không đổi field box. New decorations nằm ngoài reading flow và mobile ẩn theo breakpoint760 cũ.
+
+[Audit tích hợp](../../audits/editorial-learning-ui.md) · [Design guide](../../design/README.md) · [Gallery](../../design/screens.md).
+
+## Lịch sử audit trước theme editorial
+
 # Audit cập nhật — 2026-10-30, feature/user-profile
 
 PASS phạm vi sửa: 23 unit, 7 Playwright; lint/typecheck và Docker production build. Profile API/DB/session/header dùng hai fixture email thật; trạng thái session/avatar/error dùng mock có chủ đích. Google login thật được chủ tài khoản xác nhận và SQL kiểm provider/image/session; explicit linking và SMTP production chưa kiểm end-to-end.
