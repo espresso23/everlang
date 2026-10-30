@@ -30,7 +30,6 @@ test("Google profile renders avatar, falls back on image failure, and hides cred
   await expect(page.getByRole("heading", { name: user.name })).toBeVisible();
   await expect(page.getByRole("img", { name: `Ảnh đại diện của ${user.name}` })).toHaveCount(2);
   await expect(page.locator(".user-avatar").first()).toHaveText("EQ");
-  await expect(page.getByText("Google đã được liên kết với tài khoản này.", { exact: true })).toBeVisible();
   await expect(page.getByLabel("Mật khẩu hiện tại")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Đăng nhập", exact: true })).toHaveCount(0);
   await page.setViewportSize({ width: 1440, height: 1000 });
@@ -39,6 +38,69 @@ test("Google profile renders avatar, falls back on image failure, and hides cred
   await expect(page.locator("header .user-avatar")).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: "documentation/features/user-profile/assets/profile-mobile.png", fullPage: true });
+  await page.getByRole("button", { name: "Chỉnh sửa hồ sơ" }).click();
+  await expect(page.getByLabel("Tên", { exact: true })).toBeFocused();
+  await page.screenshot({ path: "documentation/features/user-profile/assets/profile-edit-mobile.png", fullPage: true });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.screenshot({ path: "documentation/features/user-profile/assets/profile-edit-desktop.png", fullPage: true });
+  await page.getByRole("button", { name: "Hủy thay đổi" }).click();
+  await page.getByText("Bảo mật & đăng nhập", { exact: true }).click();
+  await expect(page.getByText("Google đã được liên kết với tài khoản này.", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Mật khẩu hiện tại")).toHaveCount(0);
+});
+
+test("profile edit cancels without writes and preserves input on failure before saving to view", async ({ page }) => {
+  let current = structuredClone(profile);
+  let attempts = 0;
+  let release!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  await page.route("**/api/auth/get-session**", route => route.fulfill({ json: { ...session, user: current.user } }));
+  await page.route(user.image, route => route.fulfill({ status: 404 }));
+  await page.route("**/api/profile", async route => {
+    if (route.request().method() !== "PUT") return route.fulfill({ json: current });
+    attempts++;
+    if (attempts === 1) return route.fulfill({ status: 503, json: { error: "Chưa lưu được hồ sơ" } });
+    await gate;
+    const body = route.request().postDataJSON();
+    current = { ...current, user: { ...current.user, name: body.name }, profile: body };
+    await route.fulfill({ json: { saved: true } });
+  });
+  await page.goto("/profile");
+  await page.getByRole("button", { name: "Chỉnh sửa hồ sơ" }).click();
+  await page.getByLabel("Tên", { exact: true }).fill("Discarded name");
+  await page.getByRole("button", { name: "Hủy thay đổi" }).click();
+  expect(attempts).toBe(0);
+  await expect(page.getByRole("heading", { name: user.name })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Chỉnh sửa hồ sơ" })).toBeFocused();
+  await page.getByRole("button", { name: "Chỉnh sửa hồ sơ" }).click();
+  await expect(page.getByLabel("Tên", { exact: true })).toHaveValue(user.name);
+  await page.getByLabel("Tên", { exact: true }).fill("Updated Profile QA");
+  await page.getByRole("textbox", { name: /^Mục tiêu/ }).fill("Đọc tiểu thuyết tiếng Hàn");
+  await page.getByRole("button", { name: "Lưu cài đặt" }).click();
+  await expect(page.getByRole("alert").filter({ hasText: "Chưa lưu được hồ sơ" })).toBeVisible();
+  await expect(page.getByLabel("Tên", { exact: true })).toHaveValue("Updated Profile QA");
+  await page.getByRole("button", { name: "Lưu cài đặt" }).click();
+  await expect(page.getByRole("button", { name: "Đang lưu…" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Hủy thay đổi" })).toBeDisabled();
+  release();
+  await expect(page.getByRole("heading", { name: "Updated Profile QA" })).toBeVisible();
+  await expect(page.locator(".profile-goal")).toHaveText("Đọc tiểu thuyết tiếng Hàn");
+  await expect(page.locator("header .user-link")).toContainText("Updated Profile QA");
+  await expect(page.getByLabel("Tên", { exact: true })).toHaveCount(0);
+});
+
+test("profile view and editor handle long identity and goals on 320px", async ({ page }) => {
+  const long = { ...profile, user: { ...user, name: "Người học ".repeat(8).trim(), email: "long-address-" + "a".repeat(70) + "@example.test" },
+    profile: { ...profile.profile, goal: "목표".repeat(150) } };
+  await page.route("**/api/auth/get-session**", route => route.fulfill({ json: { ...session, user: long.user } }));
+  await page.route("**/api/profile", route => route.fulfill({ json: long }));
+  await page.route(user.image, route => route.fulfill({ status: 404 }));
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.goto("/profile");
+  await expect(page.locator(".profile-goal")).toHaveText(long.profile.goal);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.getByRole("button", { name: "Chỉnh sửa hồ sơ" }).click();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test("OAuth callback error is explained without reflecting arbitrary query text", async ({ page }) => {

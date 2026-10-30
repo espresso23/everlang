@@ -14,3 +14,6 @@
 | admin | [ảnh](../features/design-system/assets/before-admin-1440.png) | [ảnh](../features/design-system/assets/editorial-admin-1440.png) | [ảnh](../features/design-system/assets/before-admin-390.png) | [ảnh](../features/design-system/assets/editorial-admin-390.png) |
 
 [Design guide](README.md) · [Audit](../features/design-system/audit.md). Các ảnh cũ ở feature riêng là lịch sử trước theme mới; gallery này là appearance hiện tại.
+
+
+Profile đã được yêu cầu redesign: [view/edit hiện tại](../features/user-profile/ui.md). Wireframe cũ giữ lịch sử;7 route khác không đổi.

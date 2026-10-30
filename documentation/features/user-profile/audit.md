@@ -1,3 +1,20 @@
+# Audit cập nhật — Learning Passport / profile view & edit
+
+2026-10-30, feature/profile-editorial-layout, baseline f7fa4cf.
+
+| Yêu cầu | Kết quả | Bằng chứng |
+|---|---|---|
+| REQ-01..08 auth/ownership/validation/avatar/settings/security | PASS regression phạm vi thay đổi; giới hạn provider thật giữ nguyên | beta E2E thật, profile UI mocks; API/schema không sửa |
+| REQ-09 view/edit/cancel/failure/save/lock/focus/responsive | PASS | 7 profile UI tests; cancel0 PUT, 503 giữ input, retry hiện view/header mới; dài320px, view/edit1440/390 |
+| Bố cục còn lại | PASS | 7 route khác so sánh baseline cũ; profile ngoại lệ user cho phép, không refresh JSON |
+| Kiểm tra chung | PASS | lint, tsc, 23 unit; production Docker build;13 E2E54.1s |
+| Google linking/Google-only reset thật, screen reader/native zoom200% | NOT VERIFIED end-to-end trong lượt này | Giữ giới hạn từ audit trước, không giả UI fixture thành OAuth thật |
+
+[Audit nhóm](../../audits/profile-layout-integration.md) · [View/edit UI và ảnh](ui.md).
+Không migration. AccountSecurity tách local status/busy; LegacyDraftImport giữ confirm/version0. Dữ liệu test được dọn chính xác, account thật giữ nguyên.
+
+## Lịch sử audit trước layout passport
+
 # Audit — user-profile
 
 2026-10-30, feature/user-profile. Review sau triển khai, nền d151dcb.

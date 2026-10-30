@@ -62,3 +62,10 @@ Nguồn chuẩn: [W3C contrast](https://www.w3.org/WAI/WCAG21/Understanding/cont
 2. Đối chiếu wireframe trước/sau: DOM order, grid, width/padding/gap/breakpoint; thay bố cục cần yêu cầu riêng.
 3. Kiểm desktop1440/mobile390 và320, tên/nội dung dài, tiếng Việt có dấu/Hangul, keyboard/focus, lỗi/loading/empty, text-spacing override và zoom.
 4. Lưu ảnh QA và kết quả audit tại [design-system](../features/design-system/audit.md); cập nhật code map, UI docs và HANDOFF trong cùng thay đổi. Không thay hash để bỏ qua khác biệt chưa review.
+
+
+## Ngoại lệ layout được yêu cầu: /profile
+
+2026-10-30: người dùng yêu cầu view/edit profile chuyên nghiệp và khác biệt hơn. [Learning Passport](../features/user-profile/ui.md) được phép thay layout: sidebar Cobalt + mục tiêu/nhịp học, inline editor, security/data disclosures. Dùng dữ liệu thật; Cancel/Save rõ, input giữ khi lỗi và focus có quản lý. Mobile identity compact để nhường chỗ cho mục tiêu.
+
+Không dùng ngoại lệ này đổi7 route khác. Structural JSON baseline giữ làm lịch sử; so sánh7 route còn lại, /profile kiểm view/edit/state/error/responsive riêng.

@@ -23,3 +23,6 @@ Các trạng thái tải/lỗi/rỗng và giới hạn từng route được ghi
 2026-10-30, 1440px desktop, dữ liệu synthetic: [dashboard](../features/daily-dashboard/assets/screen-learner-desktop.png), [profile email thật](../features/user-profile/assets/screen-learner-desktop.png), [luyện dịch](../features/translation-practice/assets/screen-learner-desktop.png), [kho từ](../features/vocabulary-srs/assets/screen-learner-desktop.png), [thư viện đọc](../features/immersive-learning/assets/screen-learner-desktop.png), [mini exam](../features/exam-practice/assets/screen-learner-desktop.png). [Profile desktop/mobile](../features/user-profile/ui.md) gồm fallback Google mô phỏng. Các ảnh không chứng minh STT/Tutor/microphone hoặc đề đầy đủ hoạt động; sign-in/admin được inventory qua source và audit quyền riêng, chưa có ảnh mới trong lượt này.
 
 Theme mới theo [design guide](../design/README.md), [8 màn hình trước/sau](../design/screens.md). Ảnh feature riêng trước lượt này giữ làm lịch sử.
+
+
+/profile hiện có learning passport view, inline editor và disclosure bảo mật/dữ liệu. Xem [UI mới](../features/user-profile/ui.md). Đây là ngoại lệ layout theo yêu cầu sau skin editorial.

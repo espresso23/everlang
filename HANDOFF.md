@@ -31,6 +31,16 @@ Cập nhật gần nhất: 2026-10-30
 
 ## Lịch sử công việc của phiên
 
+### 2026-10-30 — Learning Passport: thiết kế lại view và edit profile
+
+- Branch feature/profile-editorial-layout từ f7fa4cf; người dùng cho phép đổi layout /profile. Giữ editorial tokens, logo e và wireframe7 route khác.
+- app/profile/page.tsx + profile.css: passport Cobalt với identity thật; goal nổi bật, phút/ngày lớn, facts; default view và inline editor hai cột. Mobile compact identity,320px chuyển một cột khi cần. Security/legacy import thành disclosure, giữ provider actions và ownership.
+- View→Edit focus Tên; Cancel không PUT/discard form/return focus; saving khóa controls; failure giữ draft/alert; success PUT→GET→session refresh→view và header cập nhật. AccountSecurity tách state/status local.
+- Sync profile README/system design/functions/UI/audit; design guide ghi ngoại lệ user-authorized; code-map thêm CSS và symbol. Audit nhóm documentation/audits/profile-layout-integration.md, ảnh view/edit desktop/mobile trong profile assets.
+- Kiểm: lint/tsc/production Docker build,23 unit và13 E2E54.1s đều đạt. E2E gồm session/API/DB thật + mock UI cho cancel/failure/lock/long content;7 route khác so baseline không đổi. JSON wireframe gốc giữ nguyên, profile kiểm riêng do thay layout có yêu cầu.
+- Không API/schema/migration mới, không thêm thông tin thành tích giả. Dọn riêng2 user QA; dữ liệu/session thật giữ nguyên. Google linking/reset Google-only thật, native zoom/screen reader không được chứng nhận lại; xem audit. Rollback bằng baseline f7fa4cf, giữ volume.
+
+
 ### 2026-10-30 — Editorial typography và quy chuẩn frontend
 
 - Branch feature/editorial-design-system từ80e4247. Áp dụng Inter Variable5.3.0 self-host có Vietnamese, paper/white/ink/Cobalt; giữ logo e, wireframe, grid/container/spacing/breakpoint và logic học/auth.

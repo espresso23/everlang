@@ -345,13 +345,18 @@ test("email verification, cloud drafts, SRS concurrency, daily plan, and isolati
   await page.context().addCookies((await a.storageState()).cookies);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/profile");
+  await page.getByRole("button", { name: "Chỉnh sửa hồ sơ" }).click();
   await expect(page.getByLabel("Tên", { exact: true })).toHaveValue(preferences.name);
   await page.getByLabel("Tên", { exact: true }).fill("EverLang Updated QA");
   await page.getByRole("button", { name: "Lưu cài đặt", exact: true }).click();
   await expect(page.getByRole("status").filter({ hasText: "Đã lưu." })).toBeVisible();
   await expect(page.locator("header .user-link")).toContainText("EverLang Updated QA");
   await page.reload();
+  await expect(page.getByRole("heading", { name: "EverLang Updated QA" })).toBeVisible();
+  await page.getByRole("button", { name: "Chỉnh sửa hồ sơ" }).click();
   await expect(page.getByLabel("Tên", { exact: true })).toHaveValue("EverLang Updated QA");
+  await page.getByRole("button", { name: "Hủy thay đổi" }).click();
+  await page.getByText("Bảo mật & đăng nhập", { exact: true }).click();
   await expect(page.getByLabel("Mật khẩu hiện tại")).toBeVisible();
   if (process.env.E2E_DOCUMENTATION_SCREENSHOTS === "1") {
     for (const [route, feature] of [
@@ -361,7 +366,7 @@ test("email verification, cloud drafts, SRS concurrency, daily plan, and isolati
       await page.goto(route);
       await expect(page.locator("header .user-link")).toContainText("EverLang Updated QA");
       await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
-      if (route === "/profile") await expect(page.getByLabel("Tên", { exact: true })).toHaveValue("EverLang Updated QA");
+      if (route === "/profile") await expect(page.getByRole("heading", { name: "EverLang Updated QA" })).toBeVisible();
       if (route === "/") await expect(page.getByRole("heading", { name: "Lịch học hôm nay" })).toBeVisible();
       if (route === "/vocabulary") await expect(page.getByText("꾸준하다", { exact: true }).first()).toBeVisible();
       if (route === "/practice") await expect(page.getByPlaceholder("Nhập câu trả lời tiếng Hàn...").first()).toBeVisible();

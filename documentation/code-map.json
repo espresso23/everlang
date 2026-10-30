@@ -78,9 +78,11 @@
           "file": "app/profile/page.tsx",
           "symbols": [
             "Profile",
+            "saveProfile",
+            "AccountSecurity",
             "LegacyDraftImport"
           ],
-          "sha256": "d3ab314b8b2a2695079463d92328897fe77a180f9323c4a620911db4463f95f1"
+          "sha256": "b3a349374db286f56e108c2c86d89b2d58cffe37992c22551e26730c1c3ea90b"
         },
         {
           "file": "app/api/profile/route.ts",
@@ -113,7 +115,12 @@
         {
           "file": "tests/e2e/profile-ui.spec.ts",
           "symbols": [],
-          "sha256": "0357d2bd387e6739d1ebf1d702badad6051f9c57b80273c74b7d82773dca4059"
+          "sha256": "be06d3ab34a2740d29e6148cb24dcc054c57e02b3463582988333ed17ab39169"
+        },
+        {
+          "file": "app/profile/profile.css",
+          "symbols": [],
+          "sha256": "b360ab6c9ca796bab4bd086b8707db8ff7b5a9602be9dea9c4c66dc598fd9fc3"
         }
       ]
     },
@@ -584,7 +591,7 @@
         {
           "file": "tests/e2e/editorial-design.spec.ts",
           "symbols": [],
-          "sha256": "59a0491b703c15ab4e9b4c44438c309945c017b663cfc4d0f04479fedefea5f4"
+          "sha256": "23695f01340c926653cdbf9df4c91ae180b896db43cdc5e11b392f41b62f1cb3"
         }
       ]
     },
@@ -688,7 +695,7 @@
           "symbols": [
             "signup"
           ],
-          "sha256": "401d7c13bd1284b1ae7d98881530b6d0b37c08e3b48e1de65dea3ce6cb27852d"
+          "sha256": "b21f64f8001a2989f1312298a972cd24a7d9ede9e92d6208cddf8cfe7f1a9570"
         },
         {
           "file": "tests/unit/grading.test.ts",

@@ -30,3 +30,12 @@ Default profiles tạo idempotent trên GET. Provider query luôn WHERE user_id=
 Ảnh HTTPS remote được render bằng Next Image unoptimized; không proxy ảnh provider qua server. referrerPolicy no-referrer, kích thước cố định, ảnh lỗi dùng initials. Không tải ảnh riêng hoặc sửa image qua profile API.
 
 Profile không thay snapshot daily_plans đã có. Security actions dùng Better Auth APIs; không tự ghi password/account liên kết bằng SQL. Không có migration mới. Hai tab lưu settings dùng last successful commit; SRS/dashboard giữ version riêng, profile chưa có optimistic conflict UI.
+
+
+## View/edit state machine — 2026-10-30
+
+Loading → View hoặc loadError/Retry. View → Editing khi CTA, focus name. Editing → View khi Cancel không ghi; Editing → Saving khi submit. Saving → Editing khi PUT/GET failure, giữ input; Saving → View khi PUT + GET + session refetch xong, cập nhật tên/header và return focus.
+
+State owner Profile: data/editing/saving/loadError/saveError/message và focus refs. Uncontrolled form được mount từ saved data, không unmount khi error. saveProfile giữ API/schema/transaction hiện tại. AccountSecurity tách local busy/message, native details đảm nhận open/close; LegacyDraftImport giữ confirm/version0. Không thêm DB hoặc migration.
+
+CSS route-scoped profile-, không thay các route khác. Profile layout đổi theo yêu cầu trực tiếp; structural test loại riêng /profile khỏi comparison với baseline cũ và kiểm state/responsive riêng, không regenerate JSON.

@@ -13,3 +13,6 @@ Trạng thái loading/error/empty/success/disabled/session/avatar không đổi 
 ## Bằng chứng trước/sau
 
 Fixture giả lập chỉ để review UI, không là bằng chứng API/provider chạy thật. Mỗi route có ảnh1440 và390;320 kiểm overflow/structure không lưu ảnh để giảm trùng. Xem [gallery](../../design/screens.md), [audit](audit.md), wireframe [1440](assets/wireframe-1440.json), [390](assets/wireframe-390.json), [320](assets/wireframe-320.json).
+
+
+Chỉ /profile được yêu cầu đổi layout sang [Learning Passport](../user-profile/ui.md). Bảy route khác giữ wireframe; baseline JSON không bị ghi đè, profile có kiểm thử state/overflow riêng.

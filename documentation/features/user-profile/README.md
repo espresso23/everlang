@@ -3,6 +3,12 @@
 Feature ID: user-profile. Branch: feature/user-profile. Ngày: 2026-10-30.
 Trạng thái triển khai: implemented; xác minh cụ thể trong [audit](audit.md).
 
+## Delta thiết kế được yêu cầu — feature/profile-editorial-layout
+
+Người dùng cho phép đổi layout riêng /profile. View mặc định là learning passport hai cột: identity Cobalt, mục tiêu và nhịp học bằng dữ liệu thật; một hành động Chỉnh sửa hồ sơ mở inline editor. Editor có Hủy, Lưu, trạng thái lỗi/saving và focus rõ; hủy không gọi API. Lưu thành công quay về view và refetch header/session. Lỗi giữ nguyên dữ liệu đang nhập. Security và nhập nháp nằm trong disclosure riêng, không bị mất chức năng. Mobile xếp một cột; các route khác giữ wireframe đã chốt.
+
+REQ-09: phân biệt view/edit, cancel không ghi, failure giữ draft, saving khóa hành động cạnh tranh, responsive320/390/1440, tên/goal/email dài không tràn, chỉ hiển thị thông tin thật. Không thêm upload ảnh, số thành tích hoặc mã học viên giả. API/schema/quyền giữ nguyên.
+
 | Yêu cầu | Hành vi | Source và kiểm tra |
 |---|---|---|
 | REQ-01 | Chỉ chủ session đọc/lưu profile; email/role/user_id không được sửa qua body | [route GET/PUT](../../../app/api/profile/route.ts), [profileInput](../../../lib/profile.ts), [E2E thật](../../../tests/e2e/beta.spec.ts) |
