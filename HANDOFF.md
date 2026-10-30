@@ -31,6 +31,13 @@ Cập nhật gần nhất: 2026-10-30
 
 ## Lịch sử công việc của phiên
 
+### 2026-10-30 — Bàn giao main, tài liệu ý tưởng và tổng kết dự án
+
+- Theo yêu cầu người dùng, giữ6 commit app/docs/UI đã có trên main và gom phần đã stage: chuyển Project_IDEA.md vào project-idea/ cùng ảnh mô phỏng giấy Writing. Đây là tài liệu ý tưởng, không coi là feature đã triển khai.
+- Thêm documentation/project-status.md: tổng kết14 nhóm feature/8 màn hình, tách đã kiểm chứng với nền tảng còn thiếu; đề xuất2 hướng: hoàn thiện beta tự học (ưu tiên), sau đó môi trường beta thật.
+- Đích đồng bộ origin/main bằng push thông thường, không force. Đối chiếu local HEAD và origin/main sau push; kết quả commit/remote được báo ở cuối lượt bàn giao.
+- Kiểm thay đổi staged, pattern credential/private paths và docs:check. Không thay source runtime, schema hoặc dữ liệu; không chạy lại unit/E2E/build vì lượt này chỉ tài liệu/Git. .env, cache và log không được đưa vào commit.
+
 ### 2026-10-30 — Làm nhẹ sổ tay và shared surfaces
 
 - Branch bugfix/lighten-editorial-surfaces từ50197f5. Theo ảnh/phản hồi, bỏ nền đen notebook, title labels, ngày/Beta, task hoàn thành và auth art note; dùng white/paper/tint + ink/muted/Cobalt. Làm nhẹ quote/layer chữ, giữ layout và profile passport.

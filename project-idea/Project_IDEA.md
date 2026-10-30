@@ -20,7 +20,8 @@ Nguồn dữ liệu Kho từ vựng & Từ điển lấy từ đâu?
 Nguồn 1: Dữ liệu mở công khai (Open-Source Dictionaries) — Miễn phí & Cốt lõi
 B. Kỹ thuật Tách từ & Phân tích ngữ pháp (Morphological Analysis / Tokenization)Khi người dùng bôi đen/copy cả một câu tiếng Hàn/Trung/Nhật và bấm "Tra từ", hệ thống phải tự tách câu thành các từ đơn lẻ:Tiếng Nhật: Dùng thư viện MeCab hoặc SudachiPy để phân tích câu $\rightarrow$ tách Kana/Kanji $\rightarrow$ tự chuyển động từ về dạng nguyên thể (Dictionary Form) để tra dictionary.Tiếng Trung: Dùng Jieba hoặc HanLP để phân tích câu không có khoảng trắng thành các từ ghép có nghĩa.Tiếng Hàn: Dùng KoNLPy (Mecab-ko) để tách trợ từ (은/는/이/가) ra khỏi danh từ và đưa động từ chia quá khứ/tương lai về dạng gốc (-다).
 
-
+Caching & Queue	Redis
+Lưu session tính giờ, cache bảng xếp hạng, quản lý hàng chờ xử lý bài chấm AI (Background Jobs).
 
 Feature in todo list:
 Writing và Speaking được AI chấm và chỉ lỗi khá kỹ: sai ở đâu, sửa thành gì, vì sao. Có bản viết lại để đối chiếu, cụm nào hay thì lưu thẳng vào kho từ vựng để ôn sau.
@@ -35,3 +36,5 @@ Listening và Reading làm tính giờ, chấm tự động ra band luôn
 EverLang là ứng dụng học và luyện thi đa ngôn ngữ (IELTS, TOPIK, HSK, JLPT) tích hợp AI cá nhân hóa.
 
 Sở hữu kho đề thi thực tế chuẩn format thật, EverLang tự động chấm điểm Listening/Reading và ứng dụng AI chấm chữa chi tiết Writing/Speaking từng lỗi sai. Kết hợp cùng thuật toán Lặp lại ngắt quãng (SRS) xóa bỏ tình trạng "học trước quên sau" và Smart Dashboard tự động xếp lịch học mỗi ngày, EverLang giúp bạn chinh phục mọi chứng chỉ hiệu quả và tiết kiệm thời gian nhất.
+
+Topil writing exam has writing paper simulation
