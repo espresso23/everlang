@@ -24,7 +24,7 @@ Node.js 24 trở lên. App dùng Next.js/TypeScript/Tailwind, Better Auth và Po
 
 ## API và dữ liệu
 
-- `/api/auth/*`: Better Auth. `/api/profile`, `/api/drafts`: hồ sơ và nháp có kiểm tra version để tránh ghi đè nhiều thiết bị.
+- `/api/auth/*`: Better Auth. `/api/profile`, `/api/drafts`: hồ sơ cập nhật nguyên tử, nháp có kiểm tra version để tránh ghi đè nhiều thiết bị. Hồ sơ hiện dùng last successful save; chi tiết ở documentation/features/user-profile.
 - `/api/submissions/grade`: POST `{sentenceId,userTranslation,requestId,forceRegrade}`; `requestId` là UUID. Trả báo cáo cache hoặc `202 {jobId}`; đọc kết quả tại `/api/jobs?id=...`.
 - `/api/submissions`: lịch sử từng lần; `/api/user/stats`, `/api/user/favorites`: thống kê/yêu thích.
 - `/api/vocabulary`, `/api/reviews`, `/api/dashboard`: kho từ, ôn SRS, lịch ngày. Mutation gửi JSON và version đang đọc.

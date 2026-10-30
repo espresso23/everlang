@@ -24,4 +24,4 @@
 
 ## Giới hạn và việc còn lại
 
-Hai thiếu sót session UI/avatar được ghi cho feature user-profile tiếp theo. Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.
+Session pending/avatar đã sửa trong feature/user-profile; xem [audit tích hợp](../../audits/profile-auth-integration.md). Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.

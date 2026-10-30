@@ -1,5 +1,7 @@
 # EverLang — feature audit
 
+Cập nhật 2026-10-30: Google login thật đã được xác nhận; profile/avatar/session UI đã sửa, 23 unit + 7 Playwright đạt. Tài liệu chuẩn hiện tại ở [documentation](documentation/README.md), [audit profile/auth](documentation/audits/profile-auth-integration.md). Bảng dưới giữ bằng chứng lịch sử.
+
 Ngày: 2026-10-29. Audit sau triển khai trên Docker local. Không coi việc có mã nguồn là bằng chứng dịch vụ ngoài đã hoạt động.
 
 | Wave | Chức năng đã triển khai | Trạng thái xác minh |

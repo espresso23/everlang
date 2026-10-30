@@ -13,7 +13,7 @@ Cập nhật gần nhất: 2026-10-30
 - Mailpit là inbox SMTP local cho verify/reset, không tham gia Google OAuth. Dịch vụ ngoài STT/S3/Tutor và bộ đề đầy đủ vẫn chưa kiểm chứng; trạng thái ghi rõ trong audit. Không in hoặc lưu secret trong tài liệu.
 
 - EverLang beta đã build và chạy Docker local tại `http://localhost:3000`; chỉ bind loopback. App/worker đang chạy, PostgreSQL/MongoDB/Redis healthy; Mailpit local tại cổng 8025. Migration 001–003 hoàn tất.
-- Đã có đăng ký/đăng nhập email, xác minh/reset mật khẩu qua Mailpit; Google đã cấu hình và bật nút; callback đã được Google chấp nhận, đã tới trang đăng nhập Google. Chưa xác minh token exchange/session sau khi chủ tài khoản đăng nhập.
+- Đã có đăng ký/đăng nhập email, xác minh/reset mật khẩu qua Mailpit; Google đã đăng nhập thật thành công sau khi người dùng cập nhật cấu hình; database có provider/image/session. Avatar và session UI đã sửa, profile lưu/refetch đồng bộ.
 - Đã triển khai dashboard, kho từ/SRS FSRS-7, lịch học, nháp cloud, history/favorites theo session PostgreSQL và worker chấm AI; tên/theme EverLang xanh–vàng.
 - Bộ 100 bài và 5 báo cáo MongoDB gốc được giữ. Không tự gán lịch sử cũ cho tài khoản mới; có CLI nhập idempotent sau đối chiếu chủ dữ liệu.
 - OpenRouter đã chấm thật qua hàng đợi/lưu PostgreSQL; kết quả QA cuối 98/100 cho đáp án tham khảo. Không dùng smoke test này thay đánh giá chất lượng bằng bộ bài có người chấm.
@@ -30,6 +30,16 @@ Cập nhật gần nhất: 2026-10-30
 - Docker Compose khởi chạy ứng dụng và MongoDB 8; volume giữ dữ liệu MongoDB qua lần khởi động lại. Không đưa MongoDB vào Atlas trong cấu hình mặc định hiện tại.
 
 ## Lịch sử công việc của phiên
+
+### 2026-10-30 — Profile, Google avatar và audit tích hợp
+
+- Branch feature/user-profile, nền tài liệu d151dcb (đồng bộ 14 feature và 8 màn hình trước viết code mới). Google lỗi invalid_client đã hết sau cập nhật môi trường của người dùng; chủ tài khoản xác nhận login thành công, SQL xác nhận provider/image/session.
+- Thêm components/user-avatar.tsx, lib/profile.ts và lib/auth-errors.ts; sửa Shell pending/error/guest, avatar HTTPS/fallback và mobile selector chỉ ẩn tên. Không mount private page khi session chưa xác định. Giữ logo e và palette phẳng hiện hành.
+- Profile GET chỉ trả safe user fields/provider names. PUT schema strict + transaction auth_user/profiles. UI có load/retry/save, refetch tên trên header, Google-linked notice và form password theo provider. Callback error có thông báo an toàn, wrapper log không chứa code/state/query.
+- Kiểm tra cuối: 23/23 unit, 7/7 Playwright (32.2s), lint/typecheck, production Docker build và recreate app đều đạt. Playwright gồm email/session/API/DB thật và các UI mock để tái hiện failure; Google thật có xác nhận riêng. Đã xem ảnh desktop 1440/mobile390, không tràn ngang, avatar mobile visible.
+- Cập nhật documentation profile/auth/design-system, code-map, audit nhóm và ảnh QA 6 màn hình. Nguồn chuẩn: documentation/audits/profile-auth-integration.md. Không có migration mới; cleanup đúng hai user QA, giữ nguyên account/session của chủ dự án và volume.
+- Giới hạn: Google linking/Google-only tạo password chưa end-to-end với account thật; SMTP production, thiết bị thật thứ hai, STT/S3/Tutor và đề đầy đủ còn cần kiểm riêng. Mailpit chỉ inbox local verify/reset, không tham gia Google OAuth. Không push remote.
+
 
 ### 2026-10-30 — Chốt baseline trước đồng bộ tài liệu và feature hồ sơ
 

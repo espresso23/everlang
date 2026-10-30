@@ -99,6 +99,19 @@ test("email verification, cloud drafts, SRS concurrency, daily plan, and isolati
   }
   await signup(a, process.env.E2E_EMAIL_A || "everlang-qa-a@example.test");
   await signup(b, process.env.E2E_EMAIL_B || "everlang-qa-b@example.test");
+  const preferences = { name: "EverLang Profile QA", level: "Cao cấp", goal: "Đọc báo tiếng Hàn", minutes: 30, timezone: "Asia/Ho_Chi_Minh" };
+  expect((await a.put("/api/profile", { data: preferences })).status()).toBe(200);
+  const updatedProfile = await (await a.get("/api/profile")).json();
+  expect(updatedProfile.user.name).toBe(preferences.name);
+  expect(updatedProfile.profile.minutes).toBe(30);
+  expect(updatedProfile.providers).toEqual(["credential"]);
+  expect(Object.keys(updatedProfile.user).sort()).toEqual(["admin", "email", "emailVerified", "id", "image", "name"].sort());
+  expect((await (await a.get("/api/auth/get-session")).json()).user.name).toBe(preferences.name);
+  expect((await (await b.get("/api/profile")).json()).user.name).toBe("EverLang QA");
+  for (const invalid of [{ minutes: 121 }, { timezone: "invalid/zone" }, { admin: true }, { user_id: "other" }]) {
+    expect((await a.put("/api/profile", { data: { ...preferences, ...invalid } })).status()).toBe(400);
+  }
+  expect((await (await a.get("/api/profile")).json()).profile.minutes).toBe(30);
   const lessons = await (await a.get("/api/sentences?limit=50")).json();
   expect(lessons.total).toBeGreaterThanOrEqual(100);
   const id = lessons.items[0]._id;
@@ -331,6 +344,31 @@ test("email verification, cloud drafts, SRS concurrency, daily plan, and isolati
   }
   await page.context().addCookies((await a.storageState()).cookies);
   await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/profile");
+  await expect(page.getByLabel("Tên", { exact: true })).toHaveValue(preferences.name);
+  await page.getByLabel("Tên", { exact: true }).fill("EverLang Updated QA");
+  await page.getByRole("button", { name: "Lưu cài đặt", exact: true }).click();
+  await expect(page.getByRole("status").filter({ hasText: "Đã lưu." })).toBeVisible();
+  await expect(page.locator("header .user-link")).toContainText("EverLang Updated QA");
+  await page.reload();
+  await expect(page.getByLabel("Tên", { exact: true })).toHaveValue("EverLang Updated QA");
+  await expect(page.getByLabel("Mật khẩu hiện tại")).toBeVisible();
+  if (process.env.E2E_DOCUMENTATION_SCREENSHOTS === "1") {
+    for (const [route, feature] of [
+      ["/", "daily-dashboard"], ["/profile", "user-profile"], ["/practice", "translation-practice"],
+      ["/vocabulary", "vocabulary-srs"], ["/library", "immersive-learning"], ["/exams", "exam-practice"],
+    ]) {
+      await page.goto(route);
+      await expect(page.locator("header .user-link")).toContainText("EverLang Updated QA");
+      await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
+      if (route === "/profile") await expect(page.getByLabel("Tên", { exact: true })).toHaveValue("EverLang Updated QA");
+      if (route === "/") await expect(page.getByRole("heading", { name: "Lịch học hôm nay" })).toBeVisible();
+      if (route === "/vocabulary") await expect(page.getByText("꾸준하다", { exact: true }).first()).toBeVisible();
+      if (route === "/practice") await expect(page.getByPlaceholder("Nhập câu trả lời tiếng Hàn...").first()).toBeVisible();
+      if (route === "/exams") await expect(page.getByRole("button", { name: /Bắt đầu/ }).first()).toBeVisible();
+      await page.screenshot({ path: `documentation/features/${feature}/assets/screen-learner-desktop.png`, fullPage: true });
+    }
+  }
   await page.goto("/");
   await expect(
     page.getByRole("heading", { name: "Lịch học hôm nay" }),

@@ -28,6 +28,6 @@ Shell dùng session để chọn UI; quyền truy cập cuối cùng được b�
 
 ## Failure modes và vận hành
 
-Hai thiếu sót session UI/avatar được ghi cho feature user-profile tiếp theo. Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.
+Session pending/avatar đã sửa trong feature/user-profile; xem [audit tích hợp](../../audits/profile-auth-integration.md). Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.
 
 Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [storage/migrations](../../shared/data-model.md), [vận hành](../../shared/operations.md). Chỉ tên biến môi trường được ghi ở docs; không đưa token, cookie hay credential vào ví dụ/log.

@@ -12,3 +12,5 @@ Baseline code đã commit: `1d0fbad`. Backfill tài liệu ghi hiện trạng tr
 | Source Shell baseline | Header chỉ icon UserRound, pending render sign-in | Avatar chưa được implement dù Google có image |
 
 Không lưu secret hoặc URL chứa token vào evidence. [Audit nhóm](../audits/baseline-integration.md) phân biệt đã kiểm/chưa kiểm và các giới hạn dịch vụ ngoài.
+
+Cập nhật sau baseline: người dùng xác nhận Google vào trang học; DB có provider google, image và active session. Avatar/profile đã sửa và deploy; kết quả 23 unit / 7 E2E cùng ảnh QA tại [audit mới](../audits/profile-auth-integration.md). Bảng baseline ở trên được giữ làm lịch sử điều tra.

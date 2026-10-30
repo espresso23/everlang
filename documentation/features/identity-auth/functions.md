@@ -28,9 +28,15 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 
 ## Input, output và lỗi theo điểm vào
 
+[lib/auth-errors.ts](../../../lib/auth-errors.ts) · authErrorMessage(code:string|null) → thông báo tiếng Việt cố định: account_not_linked, token hết hạn, Google lỗi hoặc generic. Không phản chiếu query. [Auth route](../../../app/api/auth/[...all]/route.ts) · handleAuth(NextRequest) → Better Auth Response, logging callback đã redacted theo whitelist.
+
 - GET/POST /api/auth/* — handler Better Auth cho sign-up/email, sign-in/email, sign-in/social, callback/google, get-session, verify-email, reset/change password, sign-out.
 - GET /api/config — {google:boolean}, no-store; không trả credential.
 
 auth_user, auth_account, auth_session, auth_verification trong PostgreSQL; SMTP/Mailpit chỉ phục vụ email, không tham gia OAuth.
 
 Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+
+## Cập nhật profile/auth 2026-10-30
+
+Google login thực tế đã được chủ tài khoản xác nhận sau cập nhật secret; DB xác nhận provider/image/session (không ghi danh tính/token). Sign-in social và linkSocial dùng errorCallbackURL=/sign-in; lỗi account_not_linked hướng dẫn explicit linking, lỗi khác hiển thị thông báo chung, không phản chiếu raw query. [Auth route](../../../app/api/auth/[...all]/route.ts) handleAuth bọc withApiLogging và log callback outcome/mã whitelist, không query/Location/code/state. Redirected chỉ có nghĩa HTTP redirect, không tự chứng nhận session. [UI tests](../../../tests/e2e/profile-ui.spec.ts) và [audit nhóm](../../audits/profile-auth-integration.md).

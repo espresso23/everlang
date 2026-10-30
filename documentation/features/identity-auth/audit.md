@@ -1,3 +1,13 @@
+# Audit cập nhật — 2026-10-30, feature/user-profile
+
+PASS phạm vi sửa: 23 unit, 7 Playwright; lint/typecheck và Docker production build. Profile API/DB/session/header dùng hai fixture email thật; trạng thái session/avatar/error dùng mock có chủ đích. Google login thật được chủ tài khoản xác nhận và SQL kiểm provider/image/session; explicit linking và SMTP production chưa kiểm end-to-end.
+
+Review riêng bắt và sửa mobile selector ẩn avatar. Header không mount trang cá nhân khi pending/error; không phản chiếu raw OAuth query hoặc ghi code/state vào log mới.
+
+[Audit nhóm](../../audits/profile-auth-integration.md) · [Profile UI và ảnh](../user-profile/ui.md).
+
+## Lịch sử audit baseline
+
 # Audit — identity-auth
 
 - Ngày: 2026-10-30; baseline code `1d0fbad`; tài liệu được đối chiếu nguồn trước bắt đầu profile mới.

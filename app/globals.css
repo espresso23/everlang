@@ -1000,7 +1000,7 @@ h3 {
     font-size: 31px;
   }
   .language-pill,
-  .user-link span {
+  .user-link .user-name {
     display: none;
   }
   .header-right {
@@ -1153,3 +1153,10 @@ h3 {
     padding: 29px 25px;
   }
 }
+/* Provider avatars share geometry across the header and profile. */
+.user-avatar { display: inline-flex; flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; align-items: center; justify-content: center; background: #eeeeff; color: #4546c7; font-size: 12px; font-weight: 700; }
+.user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.user-avatar-large { width: 72px; height: 72px; font-size: 24px; }
+.profile-identity { display: flex; gap: 18px; align-items: center; }
+.profile-identity h2 { margin: 0 0 6px; overflow-wrap: anywhere; }
+.profile-identity p { margin: 4px 0; overflow-wrap: anywhere; }

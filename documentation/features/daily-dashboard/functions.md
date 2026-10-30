@@ -14,7 +14,7 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 | [app/api/dashboard/route.ts](../../../app/api/dashboard/route.ts) · `GET` | `export const GET` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
 | [app/api/dashboard/route.ts](../../../app/api/dashboard/route.ts) · `PATCH` | `export const PATCH` | Handler `PATCH`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
 | [lib/learning/schedule.ts](../../../lib/learning/schedule.ts) · `localDay` | `export function localDay(date: Date, timezone: string)` | Chuyển thời điểm sang ngày YYYY-MM-DD theo IANA timezone. |
-| [lib/learning/schedule.ts](../../../lib/learning/schedule.ts) · `makePlan` | `export function makePlan(   budget: number,   due: number,   draftIds: string[],   weak: string  /  undefined,   newId?: string, ): DailyTask[]` | Chọn task theo budget và thứ tự ưu tiên, giảm bài mới khi review đầy. |
+| [lib/learning/schedule.ts](../../../lib/learning/schedule.ts) · `makePlan` | `export function makePlan( budget: number, due: number, draftIds: string[], weak: string / undefined, newId?: string, ): DailyTask[]` | Chọn task theo budget và thứ tự ưu tiên, giảm bài mới khi review đầy. |
 | [lib/learning/schedule.ts](../../../lib/learning/schedule.ts) · `streak` | `export function streak(days: string[], today: string)` | Đếm ngày học duy nhất liên tục tính tới hôm nay/hôm qua. |
 
 ## Input, output và lỗi theo điểm vào

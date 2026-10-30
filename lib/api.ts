@@ -15,6 +15,8 @@ export type Viewer = {
   id: string;
   email: string;
   name: string;
+  image?: string | null;
+  emailVerified: boolean;
   admin: boolean;
 };
 export function api(

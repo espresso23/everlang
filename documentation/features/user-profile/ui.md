@@ -1,21 +1,14 @@
 # UI — user-profile
 
-[Đặc tả](README.md) · [Functions](functions.md)
+Route [/profile](../../../app/profile/page.tsx); shared [Shell](../../../components/shell.tsx), [UserAvatar](../../../components/user-avatar.tsx).
 
-## Màn hình và hành vi đã implement
+- Header: during session loading show status, no login CTA; session error offers retry; authenticated shows avatar/name/profile link and logout; guest shows sign-in.
+- Profile: loading text; API error + retry; identity card with image/initials, name, verified email and Google linkage; learning form with required bounds.
+- Save disables button and shows Đang lưu; success refreshes identity/header and explains settings apply to the next plan; failure keeps entered fields.
+- Security: Google-linked notice instead of duplicate link; credential account has current/new password; Google-only has explanation and email create-password action. Actions disabled while pending, errors shown.
+- Legacy draft confirmation retained; admin sees content administration link.
+- Fixed avatar geometry and wrapping identity text support 390px mobile. Flat cobalt/lemon/white and original e logo unchanged.
 
-/profile: mục tiêu học tập, bảo mật, nhập nháp cũ, admin link. Baseline chưa có avatar, thông tin provider hay trạng thái loading rõ ràng; form mật khẩu vẫn hiện cho Google-only account.
+Screenshots use synthetic QA identity, not the owner's Google account. [Desktop](assets/profile-desktop.png) (1440×1000), [mobile](assets/profile-mobile.png) (390×844), 2026-10-30. These show the deliberate image-error fallback; successful image loading is covered separately by UI test. They prove UI states, not Google OAuth token exchange.
 
-## Luồng UI ↔ dữ liệu
-
-Profile UI → api session/ownership → Better Auth updateUser + SQL profiles → thông báo UI
-
-## Trạng thái và giới hạn
-
-Feature này là baseline trước mở rộng profile. Avatar không được render trong Shell; cập nhật tên chưa chủ động refresh cache session. Các lỗi này chưa được sửa trong commit tài liệu.
-
-Đối chiếu route/component/source và trạng thái trong [screen inventory](../../shared/screens.md). Với API/CLI không có màn hình độc lập, UI tiêu thụ contract nằm ở màn hình nêu trên; không coi N/A là bỏ qua tích hợp.
-
-## Thiết kế dùng chung
-
-[Design system](../design-system/README.md): logo e, cobalt/lemon/trắng, màu phẳng, viền mảnh, không bóng cứng. API errors hiển thị message; auth và ownership cuối cùng vẫn kiểm phía server. Các ảnh được ghi rõ viewport/ngày và dữ liệu QA trong [bằng chứng baseline](../../shared/baseline-evidence.md).
+No custom photo upload or email edit. See [audit](audit.md) for verification/limits.

@@ -10,3 +10,5 @@
 - GET profile chỉ công khai dữ liệu hồ sơ của chính user; tuyệt đối không trả auth_account token/password. Log không lưu code/state/cookie/OAuth secret.
 
 SMTP dùng cho verify/reset của email/password; Google OAuth không gọi Mailpit để đổi code/token. Production cần SMTP thật và HTTPS/cookie/domain đúng. Cấu hình OAuth hợp lệ không chứng minh user đã hoàn tất callback; phải xác nhận session qua luồng thực tế.
+
+Profile GET có explicit user fields và providers:string[]; PUT strict schema, một transaction name/settings, client refetch session không dùng cookie cache. Xem [profile contract](../features/user-profile/README.md).

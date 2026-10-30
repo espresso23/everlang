@@ -1,28 +1,21 @@
 # Hồ sơ và mục tiêu học
 
-- Feature ID: `user-profile`
-- Trạng thái hiện thực: `implemented`; snapshot 2026-10-30, baseline `1d0fbad`.
-- Phân biệt code hiện có với kết quả xác minh trong [audit](audit.md); không phải chứng nhận toàn bộ feature hoàn tất.
+Feature ID: user-profile. Branch: feature/user-profile. Ngày: 2026-10-30.
+Trạng thái triển khai: implemented; xác minh cụ thể trong [audit](audit.md).
 
-## Yêu cầu và traceability
+| Yêu cầu | Hành vi | Source và kiểm tra |
+|---|---|---|
+| REQ-01 | Chỉ chủ session đọc/lưu profile; email/role/user_id không được sửa qua body | [route GET/PUT](../../../app/api/profile/route.ts), [profileInput](../../../lib/profile.ts), [E2E thật](../../../tests/e2e/beta.spec.ts) |
+| REQ-02 | Tên 1–80, mục tiêu 1–300, Trung/Cao cấp, phút nguyên 5–120, múi giờ hợp lệ; lưu nguyên tử | [PUT](../../../app/api/profile/route.ts), [schema tests](../../../tests/unit/profile.test.ts) |
+| REQ-03 | Lịch đã tạo giữ nguyên; cấu hình mới dùng khi tạo lịch mới | [dashboard](../daily-dashboard/README.md), [profile UI](../../../app/profile/page.tsx) |
+| REQ-04 | Google avatar hoặc initials fallback ở header/profile; lỗi ảnh không làm mất định danh | [UserAvatar](../../../components/user-avatar.tsx), [UI tests](../../../tests/e2e/profile-ui.spec.ts) |
+| REQ-05 | Pending/error/guest/signed-in khác nhau; không hiện login khi pending hoặc mount private page sớm | [Shell](../../../components/shell.tsx), [UI tests](../../../tests/e2e/profile-ui.spec.ts) |
+| REQ-06 | Sau lưu refresh profile và session để header hiện tên mới; loading/error/retry/saving rõ ràng | [Profile](../../../app/profile/page.tsx), [E2E thật](../../../tests/e2e/beta.spec.ts) |
+| REQ-07 | Hiện provider; credential đổi password, Google-only yêu cầu email tạo password; explicit Google linking | [Profile](../../../app/profile/page.tsx), [auth](../identity-auth/README.md) |
+| REQ-08 | Nhập nháp local có xác nhận và không ghi đè nháp cloud; admin link theo role | [LegacyDraftImport](../../../app/profile/page.tsx), [records](../learning-records/README.md) |
 
-| ID | Hành vi hiện tại/tiêu chí | Tham chiếu hiện thực | Xác minh |
-|---|---|---|---|
-| user-profile-REQ-01 | GET hồ sơ của chủ session, tạo profiles mặc định nếu chưa có. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
-| user-profile-REQ-02 | Lưu tên, trình độ Trung/Cao cấp, mục tiêu tối đa 300 ký tự, 5–120 phút/ngày và múi giờ IANA hợp lệ. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
-| user-profile-REQ-03 | Đổi mục tiêu không ghi đè lịch đã tạo trong ngày; lịch mới đọc cấu hình mới. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
-| user-profile-REQ-04 | Hỗ trợ đổi mật khẩu, liên kết Google, nhập nháp legacy có xác nhận. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
+GET /api/profile → {user:{id,name,email,image,emailVerified,admin},profile:{level,goal,minutes,timezone},providers:string[],googleEnabled:boolean}. Provider chỉ là tên phương thức, không trả credential/token.
+PUT /api/profile nhận đúng 5 trường REQ-02 và trả {saved:true}; 400 validation, 401 session, 403 verification/Origin, 415 JSON. Không nhận user_id hoặc role.
 
-## Hợp đồng hiện có
-
-- GET /api/profile — {profile,user,googleEnabled}.
-- PUT /api/profile — {name,level,goal,minutes,timezone}; {saved:true}; 400 validation, 401/403 auth.
-
-## Tài liệu chuẩn
-
-- [System design](system-design.md) · [Function description](functions.md) · [UI](ui.md) · [Audit](audit.md).
-- [Kiến trúc toàn hệ thống](../../shared/architecture.md) · [Tech stack](../../shared/tech-stack.md) · [Màn hình](../../shared/screens.md).
-
-## Giới hạn và việc còn lại
-
-Feature này là baseline trước mở rộng profile. Avatar không được render trong Shell; cập nhật tên chưa chủ động refresh cache session. Các lỗi này chưa được sửa trong commit tài liệu.
+[System design](system-design.md) · [Functions](functions.md) · [UI](ui.md) · [Audit](audit.md).
+Không hỗ trợ upload ảnh riêng hoặc đổi email. Dùng ảnh Google/session nếu có. SMTP production là điều kiện để người dùng thật nhận reset/verify; Mailpit chỉ inbox phát triển.

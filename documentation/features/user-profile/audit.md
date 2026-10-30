@@ -1,23 +1,19 @@
 # Audit — user-profile
 
-- Ngày: 2026-10-30; baseline code `1d0fbad`; tài liệu được đối chiếu nguồn trước bắt đầu profile mới.
-- Reviewer: Codex, lượt review tài liệu/contract riêng; không giả định mọi chức năng đã hoàn tất.
-- Kết luận: **NOT VERIFIED toàn bộ feature ở snapshot mới**; các bằng chứng đã có được phân biệt bên dưới.
+2026-10-30, feature/user-profile. Review sau triển khai, nền d151dcb.
 
-| Phạm vi | Kết quả | Bằng chứng/giới hạn |
+| Yêu cầu | Kết quả | Bằng chứng |
 |---|---|---|
-| File/symbol và hợp đồng trong docs | PASS kiểm tra cấu trúc sau `npm run docs:check` | [Code map](../../code-map.json), source links, signatures; kiểm tra hash phát hiện drift |
-| Kiểm thử có liên quan | Theo test runner và [baseline evidence](../../shared/baseline-evidence.md) | [tests/e2e/beta.spec.ts](../../../tests/e2e/beta.spec.ts) |
-| E2E/provider/UI đặc thù | NOT VERIFIED nếu chưa ghi bằng chứng riêng | Feature này là baseline trước mở rộng profile. Avatar không được render trong Shell; cập nhật tên chưa chủ động refresh cache session. Các lỗi này chưa được sửa trong commit tài liệu. |
+| REQ-01 own session, không nhận identity/role | PASS | beta.spec.ts: 401 anonymous, tài khoản B không thấy tên/profile A; unknown keys 400 |
+| REQ-02 validate + lưu nguyên tử | PASS source/integration | unit profile.test.ts; beta PUT → GET → get-session; SQL transaction review |
+| REQ-03 giữ snapshot lịch | PASS review; không diễn tập đổi timezone trên thiết bị thật | PUT chỉ auth_user/profiles; daily_plans không bị mutate; daily dashboard tests giữ idempotence/version |
+| REQ-04 avatar success/fallback | PASS UI test | profile-ui: ảnh tải được, ảnh 404 thành initials; header và profile; ảnh QA desktop/mobile |
+| REQ-05 session pending/error/guest | PASS UI test | Không mount API profile khi pending; error retry; không flash login CTA |
+| REQ-06 save/refresh/reload/name header | PASS E2E thật | UI đổi tên → PUT → GET/refetch → header → reload; profile API 503/retry dùng mock |
+| REQ-07 provider/security | PASS hiển thị; NOT VERIFIED mọi thao tác với Google thật | Google-only ẩn current-password; credential có form; email login/verify/logout/reset thật qua Mailpit. Explicit linking/Google-only reset chưa E2E thật |
+| REQ-08 legacy/admin | PASS source review; NOT VERIFIED import lại trong lượt này | Giữ LegacyDraftImport version0 + confirm; admin link theo server role, API learner 403 trong E2E |
+| Kiểm tra chung | PASS | 23 unit, 7 Playwright, lint, tsc, production Docker build, ảnh 1440/390 |
 
-## Audit kết nối
+[Audit tích hợp và giới hạn](../../audits/profile-auth-integration.md). [Desktop](assets/profile-desktop.png), [mobile](assets/profile-mobile.png) dùng session Google mô phỏng và cố ý lỗi ảnh; [email QA thật](assets/screen-learner-desktop.png) kiểm save/DB/session.
 
-Luồng phải kiểm: **Profile UI → api session/ownership → Better Auth updateUser + SQL profiles → thông báo UI**.
-
-Quyền/validation, contract hai đầu, snapshot/state và lỗi cần đối chiếu [system design](system-design.md). [Audit tích hợp baseline](../../audits/baseline-integration.md) chỉ ra các kết nối đã kiểm và chưa kiểm; không đánh dấu PASS bằng suy đoán từ build.
-
-## Phát hiện và việc còn lại
-
-Feature này là baseline trước mở rộng profile. Avatar không được render trong Shell; cập nhật tên chưa chủ động refresh cache session. Các lỗi này chưa được sửa trong commit tài liệu.
-
-Điều kiện nâng trạng thái verified: yêu cầu bắt buộc trong [README](README.md) có bằng chứng tương ứng, không còn lỗi bắt buộc, docs/symbol/hash đúng và provider đã kiểm trong môi trường mục tiêu. Lịch sử kiểm tra trước đây giữ ở [FEATURE_AUDIT](../../../FEATURE_AUDIT.md); đây không phải khẳng định đã chạy lại mọi ca trong lượt tài liệu này.
+Google login thật được chủ tài khoản xác nhận và DB kiểm provider/image/active session sau sửa cấu hình. Không dùng ảnh cá nhân thật làm evidence. Chưa kiểm SMTP production hoặc thiết bị thật thứ hai; không có upload avatar/đổi email, không migration mới. Dữ liệu QA đã dọn theo đúng hai địa chỉ fixture.

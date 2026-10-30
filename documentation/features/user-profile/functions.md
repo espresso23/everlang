@@ -1,23 +1,16 @@
 # Function description — user-profile
 
-[Đặc tả và contract](README.md) · [System design](system-design.md)
+[Đặc tả](README.md) · [System design](system-design.md).
 
-## File + symbol → trách nhiệm
-
-Các callback vô danh nằm trong component/handler được mô tả cùng component chủ. Schema/constant có thể là binding chứ không phải hàm; không tạo thêm API ngoài code.
-
-| Code/symbol | Chữ ký/binding hiện tại | Hành vi, I/O và side effect |
+| File / symbol | Input → output | Side effect / lỗi |
 |---|---|---|
-| [app/profile/page.tsx](../../../app/profile/page.tsx) · `Profile` | `export default function Profile()` | Component/type `Profile` thuộc luồng hồ sơ và mục tiêu học; hành vi và trạng thái UI ở [ui.md](ui.md). |
-| [app/profile/page.tsx](../../../app/profile/page.tsx) · `LegacyDraftImport` | `function LegacyDraftImport(` | Xác nhận nhập nháp local, dùng version0 để không ghi đè cloud đã tồn tại. |
-| [app/api/profile/route.ts](../../../app/api/profile/route.ts) · `GET` | `export const GET` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/profile/route.ts](../../../app/api/profile/route.ts) · `PUT` | `export const PUT` | Handler `PUT`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
+| [lib/profile.ts](../../../lib/profile.ts) · profileInput | Unknown JSON → five validated fields | trim name/goal, strict keys, IANA timezone; Zod error → 400 |
+| [lib/profile.ts](../../../lib/profile.ts) · ProfileResponse | Compile-time response contract | Không chứa provider token/password/session token |
+| [app/api/profile/route.ts](../../../app/api/profile/route.ts) · GET | Verified session → ProfileResponse | Insert default profile if absent; SELECT own fields/provider names, no-store |
+| [app/api/profile/route.ts](../../../app/api/profile/route.ts) · PUT | Verified session + profileInput → saved:true | One PG transaction updates name/settings; rollback on failure, no role/email edit |
+| [app/profile/page.tsx](../../../app/profile/page.tsx) · Profile | /api/profile response + form → UI | Loading/error retry, saving, GET refresh then useSession.refetch; provider-aware security actions report failures |
+| [app/profile/page.tsx](../../../app/profile/page.tsx) · LegacyDraftImport | Confirm + localStorage → draft PUT version0 | Preserves cloud drafts; reports imported count, catches malformed legacy data |
+| [components/user-avatar.tsx](../../../components/user-avatar.tsx) · UserAvatar | name/image/large → image or initials | HTTPS only, onError fallback, 32/72px geometry, descriptive alt |
+| [components/shell.tsx](../../../components/shell.tsx) · Shell | useSession → protected children or auth state | Shared owner [design system](../design-system/functions.md); pending/error do not mount private pages |
 
-## Input, output và lỗi theo điểm vào
-
-- GET /api/profile — {profile,user,googleEnabled}.
-- PUT /api/profile — {name,level,goal,minutes,timezone}; {saved:true}; 400 validation, 401/403 auth.
-
-Tên/email/image nằm ở auth_user; level/goal/minutes/timezone nằm ở profiles. Hiện PUT gọi updateUser rồi SQL riêng, chưa phải transaction chung.
-
-Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+UI tests with fake provider: [profile-ui.spec.ts](../../../tests/e2e/profile-ui.spec.ts). Actual email session/API/DB/header: [beta.spec.ts](../../../tests/e2e/beta.spec.ts). Pure validation: [profile.test.ts](../../../tests/unit/profile.test.ts).

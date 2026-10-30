@@ -2,6 +2,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { authErrorMessage } from "@/lib/auth-errors";
 function Form() {
   const [mode, setMode] = useState<"login" | "signup" | "forgot" | "reset">(
     "login",
@@ -12,10 +13,13 @@ function Form() {
   const params = useSearchParams();
   const router = useRouter();
   const token = params.get("token");
+  const oauthError = params.get("error");
+  const oauthMessage = authErrorMessage(oauthError);
   useEffect(() => {
     fetch("/api/config")
       .then((r) => r.json())
-      .then((p) => setGoogle(p.google));
+      .then((p) => setGoogle(p.google))
+      .catch(() => setGoogle(false));
   }, []);
   const current = token ? "reset" : mode;
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -112,6 +116,7 @@ function Form() {
                   const result = await authClient.signIn.social({
                     provider: "google",
                     callbackURL: "/",
+                    errorCallbackURL: "/sign-in",
                   });
                   if (result.error)
                     setNotice(
@@ -175,9 +180,9 @@ function Form() {
                     : "Đăng nhập →"}
           </button>
         </form>
-        {notice && (
+        {(notice || oauthMessage) && (
           <p role="status" className="notice">
-            {notice}
+            {notice || oauthMessage}
           </p>
         )}
         {params.get("error") && (

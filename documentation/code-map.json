@@ -41,16 +41,17 @@
             "submit",
             "SignIn"
           ],
-          "sha256": "bec9f1ae2f0e8fd5f7aad95c7640ac93ea746275da6fe6e2d5a3fb9103bbdc2f"
+          "sha256": "92bbaa11608989b062fd75c05bd5235dfbc5333ca95715f08d8a0d28bf9faff5"
         },
         {
           "file": "app/api/auth/[...all]/route.ts",
           "symbols": [
             "runtime",
             "GET",
-            "POST"
+            "POST",
+            "handleAuth"
           ],
-          "sha256": "17d3b7fe39e4fc491678c09c4a6f722d3c5752062ec1bb2883962d729bfbcd86"
+          "sha256": "9bd73f67261c9204c9a0abd980006f2b005fc3998b8cf0d18e5eb997dadd9534"
         },
         {
           "file": "app/api/config/route.ts",
@@ -59,6 +60,13 @@
             "GET"
           ],
           "sha256": "987d874ea4c4e0e248475fcef6349565a4c529d4b90e8613b62324c337898b0a"
+        },
+        {
+          "file": "lib/auth-errors.ts",
+          "symbols": [
+            "authErrorMessage"
+          ],
+          "sha256": "7224e3011e9af7c0e6e35534072750aab55663fde2dc366d3a885cbfd8b58f96"
         }
       ]
     },
@@ -72,7 +80,7 @@
             "Profile",
             "LegacyDraftImport"
           ],
-          "sha256": "95c19d7045cb644adb077847800c034dd548ddf7e72cab85483f6650fd1afca5"
+          "sha256": "d3ab314b8b2a2695079463d92328897fe77a180f9323c4a620911db4463f95f1"
         },
         {
           "file": "app/api/profile/route.ts",
@@ -80,7 +88,32 @@
             "GET",
             "PUT"
           ],
-          "sha256": "fd68f4405e9ef3d300870e41c630b57c29a86a6a2c34a9d83704a274ee968bd7"
+          "sha256": "98fa128710a1284c2262579a18d36a93e8b21ebe720babfcd5ccd3284feab0f7"
+        },
+        {
+          "file": "components/user-avatar.tsx",
+          "symbols": [
+            "UserAvatar"
+          ],
+          "sha256": "bfe957546c1ffa042a68e13e6a54465f9d3e9f480c05484f61e32f32982960fa"
+        },
+        {
+          "file": "lib/profile.ts",
+          "symbols": [
+            "profileInput",
+            "ProfileResponse"
+          ],
+          "sha256": "9c44a5ed77b932195683d7588b741fb6a71e71de18de61945228fe24eb25d9e5"
+        },
+        {
+          "file": "tests/unit/profile.test.ts",
+          "symbols": [],
+          "sha256": "70611686f70bbf4ad4f0de1d578edac3ff1b8131302afcb120518ca7809a0bad"
+        },
+        {
+          "file": "tests/e2e/profile-ui.spec.ts",
+          "symbols": [],
+          "sha256": "0357d2bd387e6739d1ebf1d702badad6051f9c57b80273c74b7d82773dca4059"
         }
       ]
     },
@@ -508,7 +541,7 @@
           "symbols": [
             "Shell"
           ],
-          "sha256": "c862a3a81ce411f6f3fe166724b77facb45ec16629cbdfc95c01e5b5f4a3aeb5"
+          "sha256": "9d0e660bf8d5c84f9f32445506e2f97bf15caa91666cbde9d72350a5811463ac"
         },
         {
           "file": "app/layout.tsx",
@@ -521,7 +554,7 @@
         {
           "file": "app/globals.css",
           "symbols": [],
-          "sha256": "01e8c0695887a3e67f8a971b72e3898e16d737ccaa84eac9172f1172f35eb381"
+          "sha256": "31244332c33665f46b842f603f90c36f28aaa3ad9fcf684787a6ea525e452ca8"
         },
         {
           "file": "app/icon.svg",
@@ -544,7 +577,7 @@
           "symbols": [
             "api"
           ],
-          "sha256": "aa7fbec90ae019527562b24997d27435cd739e3dc3ea6eaa824e33f74d0553f8"
+          "sha256": "2f4623b5eea82db56f1c25f2b190997559145f7b31cdc05ad6cb7a1665c367c2"
         },
         {
           "file": "lib/client.ts",
@@ -635,7 +668,7 @@
           "symbols": [
             "signup"
           ],
-          "sha256": "a00e9b4d3b8a189ca4b82a012b505e1bc74e3e3352cebf50f4aef79332ae6a84"
+          "sha256": "401d7c13bd1284b1ae7d98881530b6d0b37c08e3b48e1de65dea3ce6cb27852d"
         },
         {
           "file": "tests/unit/grading.test.ts",

@@ -8,8 +8,8 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 
 | Code/symbol | Chữ ký/binding hiện tại | Hành vi, I/O và side effect |
 |---|---|---|
-| [lib/api.ts](../../../lib/api.ts) · `api` | `export function api(   path: string,   handler: (r: NextRequest, u: Viewer) => Promise<unknown>,   admin = false, )` | Bọc handler với session, verified email, role, Origin/content-type và chuẩn hóa lỗi. |
-| [lib/client.ts](../../../lib/client.ts) · `request` | `export async function request<T = Record<string, unknown>>(   url: string,   method = "GET",   body?: unknown, ): Promise<T>` | Hàm/binding `request` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
+| [lib/api.ts](../../../lib/api.ts) · `api` | `export function api( path: string, handler: (r: NextRequest, u: Viewer) => Promise<unknown>, admin = false, )` | Bọc handler với session, verified email, role, Origin/content-type và chuẩn hóa lỗi. |
+| [lib/client.ts](../../../lib/client.ts) · `request` | `export async function request<T = Record<string, unknown>>( url: string, method = "GET", body?: unknown, ): Promise<T>` | Hàm/binding `request` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
 | [lib/client.ts](../../../lib/client.ts) · `speak` | `export function speak(text: string)` | Hàm/binding `speak` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
 | [lib/db.ts](../../../lib/db.ts) · `connectDb` | `export async function connectDb()` | Kết nối/cache MongoDB bằng Mongoose. |
 | [lib/logger.ts](../../../lib/logger.ts) · `configuredLevel` | `function configuredLevel(): LogLevel` | Hàm/binding `configuredLevel` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
@@ -24,7 +24,7 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 | [lib/redis.ts](../../../lib/redis.ts) · `rateLimit` | `export async function rateLimit(userId: string, action: string, max = 20)` | Đếm request theo action/user/phút bằng Redis; không phải quota thương mại. |
 | [lib/sql/index.ts](../../../lib/sql/index.ts) · `pool` | `export const pool` | Hàm/binding `pool` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
 | [lib/sql/index.ts](../../../lib/sql/index.ts) · `db` | `export const db` | Hàm/binding `db` phục vụ hạ tầng, hợp đồng dùng chung và vận hành; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [lib/sql/index.ts](../../../lib/sql/index.ts) · `query` | `export async function query<T extends QueryResultRow = QueryResultRow>(   sql: string,   values: unknown[] = [], )` | Thực thi SQL parameterized qua pg Pool và trả rows. |
+| [lib/sql/index.ts](../../../lib/sql/index.ts) · `query` | `export async function query<T extends QueryResultRow = QueryResultRow>( sql: string, values: unknown[] = [], )` | Thực thi SQL parameterized qua pg Pool và trả rows. |
 | [lib/types.ts](../../../lib/types.ts) · `TOPICS` | `export const TOPICS` | Component/type `TOPICS` thuộc luồng hạ tầng, hợp đồng dùng chung và vận hành; hành vi và trạng thái UI ở [ui.md](ui.md). |
 | [lib/types.ts](../../../lib/types.ts) · `LEVELS` | `export const LEVELS` | Component/type `LEVELS` thuộc luồng hạ tầng, hợp đồng dùng chung và vận hành; hành vi và trạng thái UI ở [ui.md](ui.md). |
 | [scripts/backup.ps1](../../../scripts/backup.ps1) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
@@ -47,7 +47,7 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 | [.dockerignore](../../../.dockerignore) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
 | [playwright.config.ts](../../../playwright.config.ts) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
 | [vitest.config.ts](../../../vitest.config.ts) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
-| [scripts/check-documentation.mjs](../../../scripts/check-documentation.mjs) | Cấu hình/schema/asset/script | Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared. |
+| [scripts/check-documentation.mjs](../../../scripts/check-documentation.mjs) · filesIn | CLI docs:check / docs:sync | Đọc code-map, kiểm owner/file/symbol/hash và relative links; --refresh chỉ cập nhật hash sau review, không chứng nhận ngữ nghĩa. |
 
 ## Input, output và lỗi theo điểm vào
 

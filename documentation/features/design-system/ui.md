@@ -4,7 +4,7 @@
 
 ## Màn hình và hành vi đã implement
 
-Áp dụng mọi route; header hiện tên + icon UserRound khi có session, chưa dùng avatar image; pending đang hiển thị nhánh guest tạm thời và có thể mount page trước khi session được xác định.
+Áp dụng mọi route; header hiển thị UserAvatar từ session.image hoặc initials. Pending hiển thị trạng thái tải; lỗi kết nối có retry; private page chỉ mount khi session hợp lệ. Xem [profile UI](../user-profile/ui.md).
 
 ## Luồng UI ↔ dữ liệu
 
@@ -12,7 +12,7 @@ RootLayout → Shell/useSession → navigation + page → shared CSS tokens
 
 ## Trạng thái và giới hạn
 
-Hai thiếu sót session UI/avatar được ghi cho feature user-profile tiếp theo. Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.
+Session pending/avatar đã sửa trong feature/user-profile; xem [audit tích hợp](../../audits/profile-auth-integration.md). Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.
 
 Đối chiếu route/component/source và trạng thái trong [screen inventory](../../shared/screens.md). Với API/CLI không có màn hình độc lập, UI tiêu thụ contract nằm ở màn hình nêu trên; không coi N/A là bỏ qua tích hợp.
 

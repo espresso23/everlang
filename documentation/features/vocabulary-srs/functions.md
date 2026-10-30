@@ -18,7 +18,7 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 | [app/api/reviews/route.ts](../../../app/api/reviews/route.ts) · `POST` | `export const POST` | Handler `POST`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
 | [lib/learning/srs.ts](../../../lib/learning/srs.ts) · `ALGORITHM` | `export const ALGORITHM` | Component/type `ALGORITHM` thuộc luồng kho từ và lặp lại ngắt quãng; hành vi và trạng thái UI ở [ui.md](ui.md). |
 | [lib/learning/srs.ts](../../../lib/learning/srs.ts) · `newCard` | `export async function newCard(id: string, now = new Date())` | Tạo card mới bằng preset FSRS-7, cardId và thời điểm đầu vào. |
-| [lib/learning/srs.ts](../../../lib/learning/srs.ts) · `reviewCard` | `export async function reviewCard(   card: unknown,   rating: number,   now = new Date(), )` | Phục hồi Date từ JSON rồi tính card/revlog mới cho mức nhớ 1–4. |
+| [lib/learning/srs.ts](../../../lib/learning/srs.ts) · `reviewCard` | `export async function reviewCard( card: unknown, rating: number, now = new Date(), )` | Phục hồi Date từ JSON rồi tính card/revlog mới cho mức nhớ 1–4. |
 
 ## Input, output và lỗi theo điểm vào
 
