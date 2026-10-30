@@ -31,6 +31,15 @@ Cập nhật gần nhất: 2026-10-30
 
 ## Lịch sử công việc của phiên
 
+### 2026-10-30 — Làm nhẹ sổ tay và shared surfaces
+
+- Branch bugfix/lighten-editorial-surfaces từ50197f5. Theo ảnh/phản hồi, bỏ nền đen notebook, title labels, ngày/Beta, task hoàn thành và auth art note; dùng white/paper/tint + ink/muted/Cobalt. Làm nhẹ quote/layer chữ, giữ layout và profile passport.
+- app/editorial.css override đủ text kế thừa để không white-on-white: heading/description, empty note, wrong/correction/explanation/link. Thêm khoảng thở18px và underline link ôn; focus Cobalt trên nền sáng.
+- tests/e2e/editorial-design.spec.ts thêm empty/filled notebook regression, kiểm màu chữ/correction và href ôn; ảnh QA desktop/mobile lưu design-system/assets. Các route vẫn qua structural check1440/390/320; baseline JSON gốc không đổi.
+- Sync documentation/design policy, design-system/daily-dashboard contracts/audits, code-map và documentation/audits/light-editorial-surfaces.md. Lint/tsc/production Docker build và6 Playwright UI tests đạt, container đã cập nhật.
+- Không API/schema/auth/data thay đổi, không tạo/xóa tài khoản, không gọi AI. Không chạy lại full backend/provider tests vì chỉ đổi presentation. Full WCAG/native zoom/screen reader chưa chứng nhận; rollback bằng50197f5, giữ volumes.
+
+
 ### 2026-10-30 — Learning Passport: thiết kế lại view và edit profile
 
 - Branch feature/profile-editorial-layout từ f7fa4cf; người dùng cho phép đổi layout /profile. Giữ editorial tokens, logo e và wireframe7 route khác.

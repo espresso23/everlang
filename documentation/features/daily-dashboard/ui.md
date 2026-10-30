@@ -23,3 +23,7 @@ Chưa có AI lập lịch, notification hoặc cron bắt buộc. Rule-based t�
 Ảnh QA 2026-10-30, viewport 1440×1000: [màn hình learner](assets/screen-learner-desktop.png). Đây là bằng chứng render màn hình, không thay audit mọi thao tác/provider.
 
 Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md); [gallery trước/sau](../../design/screens.md) thay appearance của ảnh lịch sử trong tài liệu này. Layout và contract feature giữ nguyên.
+
+Sổ tay hiện dùng nền trắng, empty state paper nhẹ; heading không black label. Khi có lỗi: del negative, strong positive, giải thích ink, link Cobalt; có đường phân cách giữa nhóm. Date và task done dùng tint nhẹ. [Bằng chứng và audit](../../audits/light-editorial-surfaces.md); không thay lịch/ownership/actions.
+
+Sổ tay có khoảng thở18px trước vùng empty và trước CTA; link Lưu để ôn có gạch chân để không dựa vào màu đơn độc. Khung cột và padding panel giữ nguyên.

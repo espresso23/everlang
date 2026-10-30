@@ -75,7 +75,7 @@ test("learning text, keyboard focus and self-hosted fonts survive text spacing o
   await page.goto("/");
   const inverseLink = page.locator(".notebook .soft-button");
   await inverseLink.focus();
-  expect(await inverseLink.evaluate(element => getComputedStyle(element).outlineColor)).toBe("rgb(255, 255, 255)");
+  expect(await inverseLink.evaluate(element => getComputedStyle(element).outlineColor)).toBe("rgb(36, 76, 224)");
   await page.goto("/practice");
   const editor = page.getByPlaceholder("Nhập câu trả lời tiếng Hàn...").first();
   await editor.fill("꾸준히 공부한다 — học mỗi ngày, abc.");
@@ -92,3 +92,40 @@ test("learning text, keyboard focus and self-hosted fonts survive text spacing o
   expect(fontRequests.length).toBeGreaterThan(0);
   expect(fontRequests.every(url => new URL(url).origin === new URL(page.url()).origin)).toBe(true);
 });
+
+for (const populated of [false, true]) {
+  test(`light notebook stays readable when ${populated ? "populated" : "empty"}`, async ({ page }) => {
+    const dashboard = { ...(fixtures["/api/dashboard"] as Record<string, unknown>), errors: populated ? [{
+      id: "qa-correction", snapshot: { viText: "Tôi đang học tiếng Hàn." },
+      report: { grammarErrors: [{ error: "한국어를 공부해요다", correction: "한국어를 공부한다",
+        explanation: "Chọn một đuôi câu phù hợp và dùng nhất quán trong câu." }] },
+    }] : [] };
+    await page.route("**/api/**", route => route.fulfill({
+      json: new URL(route.request().url()).pathname === "/api/dashboard"
+        ? dashboard : fixtures[new URL(route.request().url()).pathname] ?? { items: [] },
+    }));
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto("/");
+    const notebook = page.locator(".notebook");
+    await expect(notebook.getByRole("heading", { name: "Sổ tay của bạn" })).toBeVisible();
+    expect(await notebook.evaluate(element => getComputedStyle(element).backgroundColor)).toBe("rgb(255, 255, 255)");
+    expect(await notebook.locator("h2").evaluate(element => getComputedStyle(element).color)).toBe("rgb(17, 17, 17)");
+    for (const title of await page.locator(".editorial-title").all())
+      expect(await title.evaluate(element => getComputedStyle(element).backgroundColor)).toBe("rgba(0, 0, 0, 0)");
+    if (populated) {
+      await expect(notebook.locator("del")).toHaveText("한국어를 공부해요다");
+      await expect(notebook.locator("strong")).toHaveText("한국어를 공부한다");
+      expect(await notebook.locator(".error-note p").evaluate(element => getComputedStyle(element).color)).toBe("rgb(17, 17, 17)");
+      expect(await notebook.locator("del").evaluate(element => getComputedStyle(element).color)).toBe("rgb(180, 35, 24)");
+      expect(await notebook.locator("strong").evaluate(element => getComputedStyle(element).color)).toBe("rgb(22, 101, 52)");
+      const href = await notebook.getByRole("link", { name: "Lưu để ôn →" }).getAttribute("href");
+      expect(new URL(href!, page.url()).searchParams.get("term")).toBe("한국어를 공부한다");
+    } else await expect(notebook.locator(".empty-note")).toBeVisible();
+    const state = populated ? "filled" : "empty";
+    await page.screenshot({ path: `${dir}/light-notebook-${state}-desktop.png`, fullPage: true });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expect(notebook.getByRole("link", { name: "Mở kho từ & SRS →" })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.screenshot({ path: `${dir}/light-notebook-${state}-mobile.png`, fullPage: true });
+  });
+}

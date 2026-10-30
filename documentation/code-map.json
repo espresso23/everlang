@@ -581,7 +581,7 @@
         {
           "file": "app/editorial.css",
           "symbols": [],
-          "sha256": "eecc93b2b9fdb0af52f7f7a92ecdda3ef71b1e19bfea12848acbcd50795ec6e5"
+          "sha256": "b05c2c426a7edd65e0b6750d652383b300696585cd4af90d5d845f0f511867ea"
         },
         {
           "file": "public/fonts/INTER-LICENSE.txt",
@@ -591,7 +591,7 @@
         {
           "file": "tests/e2e/editorial-design.spec.ts",
           "symbols": [],
-          "sha256": "23695f01340c926653cdbf9df4c91ae180b896db43cdc5e11b392f41b62f1cb3"
+          "sha256": "09dd51fdded0ae79456d6be3eecca86477d0035a93e449f55a051ad5bc8e751a"
         }
       ]
     },

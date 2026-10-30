@@ -13,3 +13,5 @@
 | [tests/e2e/editorial-design.spec.ts](../../../tests/e2e/editorial-design.spec.ts) | Mock identity/content cố định, không viết DB; before capture chỉ khi DESIGN_BASELINE=1, default compare structural snapshots; font/focus/spacing assertions |
 
 Không thêm public function/API ngoài component hiện có. [Guide](../../design/README.md), [audit](audit.md), [UI](ui.md).
+
+Light surface update: editorial.css override đủ .notebook h2/h3/eyebrow/p/error-note del/strong/p/a và empty-note để loại white-on-white khi bỏ inverse. Title, Beta/date, completed task, auth art note, layer artwork dùng sáng/tint. CSS cascade globals→editorial giữ nguyên; không đổi API/component signatures. Test editorial-design.spec.ts thêm empty/filled regression và chuyển focus từ trắng sang Cobalt.

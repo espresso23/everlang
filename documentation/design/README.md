@@ -32,7 +32,7 @@ Không thêm màu thương hiệu mới theo từng feature. Semantic đúng/sai
 - UI Latin/Vietnamese: Inter Variable 400 body, 500 nhãn, 650 menu, 800–850 heading chính; auth panel600 và SRS650 là cấp phụ theo khung hiện có. Font size/line-height của các khối hiện hành giữ để không đổi khung; hero 43px desktop/33px mobile, page title31px, section20px, body học14–16px, class .small và vocab-row small12px; metadata cũ10–11px giữ trong wireframe, artwork8–10px chỉ trang trí aria-hidden. Không dùng chữ metadata nhỏ làm hướng dẫn học chính.
 - H1/H2 và tiêu đề giao diện in hoa bằng CSS; giữ nguyên text node/accessible name. Heading tracking -0.035em; nhãn/menu .06–.12em. Không dùng uppercase cho câu mẫu, đáp án, từ người học, tên người, từ vựng hoặc nội dung tiếng Hàn.
 - Nội dung học dùng sentence case, weight400–500, line-height1.7–1.85, tracking bình thường; Hangul không bị tracking rộng, in nghiêng hay font quá mảnh. Từ ôn SRS là nội dung, không phải headline quảng cáo.
-- Black label là điểm nhấn cho tiêu đề section, không phủ đen toàn bộ trang. Số thống kê cobalt, tabular numerals; chữ Hàn lớn trong artwork có lớp mực/cobalt nằm sau, không sao chép nội dung bài học.
+- Tiêu đề section dùng chữ ink trên nền sáng, không đặt nền đen sau chữ hoặc đảo trắng/đen. Card đọc dài và sổ tay dùng surface/paper; nhãn ngày/Beta/task dùng tint nhẹ. Số thống kê Cobalt/tabular; lớp chữ artwork là tint nhẹ, không mực đen dày.
 - Vertical text và ngoặc kép lớn chỉ mang tính trang trí: aria-hidden, pointer-events:none; không nằm trong tab order. Ẩn chi tiết này trên màn hình nhỏ hoặc vùng đọc. Không xoay menu, CTA hoặc hướng dẫn.
 
 ## Hợp đồng component và UX học ngôn ngữ
@@ -69,3 +69,7 @@ Nguồn chuẩn: [W3C contrast](https://www.w3.org/WAI/WCAG21/Understanding/cont
 2026-10-30: người dùng yêu cầu view/edit profile chuyên nghiệp và khác biệt hơn. [Learning Passport](../features/user-profile/ui.md) được phép thay layout: sidebar Cobalt + mục tiêu/nhịp học, inline editor, security/data disclosures. Dùng dữ liệu thật; Cancel/Save rõ, input giữ khi lỗi và focus có quản lý. Mobile identity compact để nhường chỗ cho mục tiêu.
 
 Không dùng ngoại lệ này đổi7 route khác. Structural JSON baseline giữ làm lịch sử; so sánh7 route còn lại, /profile kiểm view/edit/state/error/responsive riêng.
+
+## Cập nhật độ nhẹ thị giác — 2026-10-30
+
+Theo phản hồi về sổ tay bị fill đen: không dùng nền ink cho panel, title label, date/Beta, task hoàn thành hoặc art note. Ưu tiên surface/paper/tint, phân cấp bằng weight/spacing/đường kẻ nhẹ và Cobalt. Sổ tay rỗng dùng vùng paper nhẹ, khi có lỗi giữ negative/positive/ink và link brand; không để màu trắng từ theme cũ kế thừa. Focus trên nền sáng là Cobalt. Passport Cobalt của profile giữ nguyên; modal scrim phục vụ focus vẫn giữ, không phải nội dung học đảo màu. Layout không đổi.

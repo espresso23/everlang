@@ -17,3 +17,5 @@
 
 
 Profile đã được yêu cầu redesign: [view/edit hiện tại](../features/user-profile/ui.md). Wireframe cũ giữ lịch sử;7 route khác không đổi.
+
+Sổ tay và các shared surfaces đã được làm sáng theo phản hồi mới: [empty desktop](../features/design-system/assets/light-notebook-empty-desktop.png), [filled desktop](../features/design-system/assets/light-notebook-filled-desktop.png), [empty mobile](../features/design-system/assets/light-notebook-empty-mobile.png), [filled mobile](../features/design-system/assets/light-notebook-filled-mobile.png). Các ảnh before giữ làm lịch sử, không phải theme được khuyến nghị.

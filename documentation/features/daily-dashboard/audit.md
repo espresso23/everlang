@@ -1,3 +1,11 @@
+# Audit cập nhật — nền sáng và sổ tay
+
+2026-10-30, bugfix/lighten-editorial-surfaces, baseline50197f5. PASS trong phạm vi presentation: lint/typecheck/production Docker build,6 Playwright UI tests. Rà empty/filled notebook và màu kế thừa, link ôn, typography/focus, desktop/mobile và structural baseline. Không thay API/DB/auth, không chứng nhận lại dịch vụ ngoài hoặc toàn bộ WCAG.
+
+[Audit tích hợp và ảnh](../../audits/light-editorial-surfaces.md). UI regression fixture chỉ chứng minh render/state, không giả làm dữ liệu người dùng.
+
+## Lịch sử audit trước thay đổi nền
+
 # Audit — daily-dashboard
 
 - Ngày: 2026-10-30; baseline code `1d0fbad`; tài liệu được đối chiếu nguồn trước bắt đầu profile mới.

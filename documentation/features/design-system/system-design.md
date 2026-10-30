@@ -22,3 +22,5 @@ editorial.css chỉ đổi presentation. Các span heading nằm trong h2 cũ; d
 Session/auth/API/queue/database untouched. CSS không cấp quyền hay thay rubric. Source owner Dashboard vẫn daily-dashboard; design-system tham chiếu component và docs dashboard trỏ ngược guide.
 
 Regression guard lưu computed display/grid/flex/gap/padding/max-width/width của container trên 8 route tại1440/390/320. Guard không đo equality chiều cao vì font mới có reflow tự nhiên; review ảnh đối chiếu thêm overflow, order và affordances. Không tự cập nhật baseline để làm test xanh.
+
+Light surface update: editorial.css override đủ .notebook h2/h3/eyebrow/p/error-note del/strong/p/a và empty-note để loại white-on-white khi bỏ inverse. Title, Beta/date, completed task, auth art note, layer artwork dùng sáng/tint. CSS cascade globals→editorial giữ nguyên; không đổi API/component signatures. Test editorial-design.spec.ts thêm empty/filled regression và chuyển focus từ trắng sang Cobalt.

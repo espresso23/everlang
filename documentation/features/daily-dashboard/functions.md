@@ -27,3 +27,5 @@ profiles, vocabulary, drafts, submissions, daily_plans, study_days; Mongo cấp 
 Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
 
 Dashboard bổ sung span editorial-title và artwork quote/vertical/data-word tại vị trí hero-art hiện có; tất cả decoration aria-hidden, không sửa data/task contract. [Design source](../design-system/functions.md).
+
+Không đổi Dashboard API/state; màu sổ tay/date/task/title do [editorial.css](../../../app/editorial.css) chịu trách nhiệm theo design-system. Empty/filled data được kiểm bằng UI fixture riêng, không ghi DB.

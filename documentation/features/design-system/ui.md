@@ -4,7 +4,7 @@
 
 Áp dụng đủ 8 route: dashboard, sign-in, practice, vocabulary/SRS, library/Tutor, exams, profile và admin. Thứ tự nội dung, navigation và khung wireframe giữ nguyên; token/corner/typography thay theo style mới.
 
-H1/H2 UI uppercase weight800–850, tracking chặt; nhãn phụ tracking rộng vừa. Tên user/profile, từ SRS, textarea/câu mẫu và Hangul không uppercase/giãn chữ. Hero và sign-in dùng ink/Cobalt trên paper; section label đen/trắng. Số thống kê tabular/Cobalt. Notebook đảo mực. Quote, vertical note và layered Hangul nằm trong hero artwork aria-hidden cũ; không chặn nội dung/click.
+H1/H2 UI uppercase weight800–850, tracking chặt; nhãn phụ tracking rộng vừa. Tên user/profile, từ SRS, textarea/câu mẫu và Hangul không uppercase/giãn chữ. Hero và sign-in dùng ink/Cobalt trên paper; section label ink trên nền sáng. Số thống kê tabular/Cobalt. Notebook surface trắng với empty state paper, nội dung ink/muted và Cobalt. Quote, vertical note và layered Hangul nằm trong hero artwork aria-hidden cũ; không chặn nội dung/click.
 
 Card nền trắng viền mảnh, góc8px; CTA Cobalt, secondary trắng/ink, focus Cobalt rõ. Inputs trắng, biên control đủ tương phản. Search input khôi phục inset pl-10 đã khai báo để tránh icon đè chữ. Lỗi/feedback semantic giữ nhãn và màu phù hợp, không thay logic.
 
@@ -16,3 +16,5 @@ Fixture giả lập chỉ để review UI, không là bằng chứng API/provide
 
 
 Chỉ /profile được yêu cầu đổi layout sang [Learning Passport](../user-profile/ui.md). Bảy route khác giữ wireframe; baseline JSON không bị ghi đè, profile có kiểm thử state/overflow riêng.
+
+Palette nhẹ: bỏ black fill ở title/date/Beta/completed-task/auth art note; lớp chữ và quote artwork nhẹ hơn. [Sổ tay trống desktop](assets/light-notebook-empty-desktop.png), [trống mobile](assets/light-notebook-empty-mobile.png), [có lỗi desktop](assets/light-notebook-filled-desktop.png), [có lỗi mobile](assets/light-notebook-filled-mobile.png). Ảnh synthetic QA, không phải dữ liệu học thật.

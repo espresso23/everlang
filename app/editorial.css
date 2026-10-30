@@ -1,5 +1,5 @@
-/* Visual skin only. Do not add grid, width, padding, margin or breakpoint changes here.
-   The canonical frontend contract is documentation/design/README.md. */
+/* Shared visual skin; container grids, widths and breakpoints stay in globals.css.
+   Notebook-only internal spacing follows documentation/design/README.md. */
 body { font-family: var(--font-ui); color: var(--ink); }
 h1, h2, h3 { color: var(--ink); font-weight: 800; font-synthesis: none; }
 h1, h2 { text-transform: uppercase; letter-spacing: -.035em; }
@@ -9,7 +9,7 @@ h1, h2 { text-transform: uppercase; letter-spacing: -.035em; }
 .hero, .auth-story, .welcome { background: var(--paper); border-radius: 8px; }
 .hero { outline: 1px solid var(--line); outline-offset: -1px; }
 .hero .muted, .hero .eyebrow, .auth-story > p:not(.eyebrow) { color: var(--muted); }
-.editorial-title { background: var(--ink); color: var(--surface); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.editorial-title { background: transparent; color: var(--ink); }
 .eyebrow, .section-label, .study-preview-label, .art-caption { color: var(--muted); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
 .app-nav a { color: var(--ink); font-weight: 650; letter-spacing: .055em; text-transform: uppercase; border-radius: 4px; }
 .app-nav a:hover { background: var(--tint); color: var(--brand); }
@@ -17,7 +17,7 @@ h1, h2 { text-transform: uppercase; letter-spacing: -.035em; }
 .brand { color: var(--ink); font-weight: 800; }
 .brand-icon { background: var(--brand); border-color: var(--brand); }
 .brand-spark { color: var(--ink); }
-.beta-badge { color: var(--surface); background: var(--ink); border-radius: 2px; }
+.beta-badge { color: var(--brand-dark); background: var(--tint); border-radius: 2px; }
 .language-pill { background: var(--surface); color: var(--muted); border-radius: 4px; }
 .user-link { color: var(--ink); }
 .user-avatar { background: var(--tint); color: var(--brand); }
@@ -45,32 +45,39 @@ input, textarea, select { text-transform: none; letter-spacing: normal; }
 .hint-blue, .success-note { background: var(--tint); color: var(--brand-dark); border-color: var(--line); }
 .hint-amber, .notice, .review-answer { background: var(--paper); color: var(--ink); border-color: var(--control-line); }
 .tag { background: var(--tint); color: var(--brand-dark); border-radius: 2px; font-weight: 500; letter-spacing: .06em; }
-.tag.yellow { background: var(--ink); color: var(--surface); }
+.tag.yellow { background: var(--tint); color: var(--brand-dark); }
 .stat-card strong { color: var(--brand); font-weight: 850; font-variant-numeric: tabular-nums; letter-spacing: -.055em; }
 .stat-card svg, .stat-card:first-child svg { color: var(--ink); background: var(--paper); border-radius: 4px; }
 .task-number { color: var(--brand); background: var(--tint); border-radius: 2px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .task-content h3 { color: var(--ink); font-weight: 700; }
 .task, .vocab-row { border-color: var(--line); }
 .task-actions button:not(.primary-button):not(.soft-button) { color: var(--muted); }
-.task-finished .task-number { color: var(--surface); background: var(--ink); }
-.notebook { background: var(--ink); color: var(--surface); border-color: var(--ink); }
-.notebook h2, .notebook h3, .notebook .eyebrow, .empty-note, .empty-note p,
-.notebook > p:not(.eyebrow), .notebook .error-note a { color: var(--surface); }
-.notebook .editorial-title { background: var(--surface); color: var(--ink); }
-.notebook .error-note { border-color: #767676; }
-.notebook .soft-button { color: var(--ink); border-color: var(--surface); }
-.notebook :is(a, button):focus-visible { outline-color: var(--surface); }
+.task-finished .task-number { color: var(--brand-dark); background: var(--tint); }
+.notebook { background: var(--surface); color: var(--ink); border-color: var(--line); }
+.notebook h2, .notebook h3, .notebook .editorial-title { color: var(--ink); background: transparent; }
+.notebook .eyebrow, .notebook > p:not(.eyebrow), .notebook .empty-note p { color: var(--muted); }
+.notebook .empty-note { color: var(--brand); background: var(--paper); border-radius: 6px; margin-top: 18px; }
+.notebook .error-note { border-color: var(--line); }
+.notebook .error-note del { color: var(--negative); }
+.notebook .error-note strong { color: var(--positive); }
+.notebook .error-note p { color: var(--ink); }
+.notebook .error-note a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+.notebook .error-note > div + div { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.notebook .soft-button { color: var(--brand-dark); background: var(--tint); border-color: var(--line); }
+.notebook > .soft-button { margin-top: 18px; }
+.notebook .soft-button:hover { color: var(--brand-dark); border-color: var(--brand); }
+.notebook :is(a, button):focus-visible { outline-color: var(--brand); }
 .error-note del { color: var(--negative); }
 .error-note strong { color: var(--positive); }
 .study-preview { border-color: var(--line); }
 .study-preview-footer { border-color: var(--line); }
 .study-word { font-weight: 850; color: var(--brand); isolation: isolate; position: relative; }
-.study-word::before { content: attr(data-word); position: absolute; inset: 3px auto auto 3px; color: var(--ink); z-index: -1; pointer-events: none; }
+.study-word::before { content: attr(data-word); position: absolute; inset: 3px auto auto 3px; color: var(--tint); z-index: -1; pointer-events: none; }
 .editorial-margin-note { position: absolute; right: -24px; top: 25px; writing-mode: vertical-rl; color: var(--muted); font-size: 10px; letter-spacing: .15em; pointer-events: none; }
-.editorial-quote { position: absolute; right: 8px; top: -19px; color: var(--ink); font-size: 68px; font-weight: 800; line-height: 1; pointer-events: none; }
+.editorial-quote { position: absolute; right: 8px; top: -19px; color: var(--brand); opacity: .2; font-size: 68px; font-weight: 800; line-height: 1; pointer-events: none; }
 .art-circle { color: var(--brand); background: var(--surface); border-color: var(--line); font-weight: 850; border-radius: 4px; }
-.art-note { color: var(--surface); background: var(--ink); border-color: var(--ink); border-radius: 4px; }
-.art-note small { color: var(--surface); }
+.art-note { color: var(--ink); background: var(--surface); border-color: var(--line); border-radius: 4px; }
+.art-note small { color: var(--muted); }
 .practice { color: var(--ink); }
 .practice :is(section, article, .shadow-sm, .shadow-xl) { box-shadow: none; }
 .practice :is(section, article)[class*="rounded-"], .practice button[class*="rounded-2xl"] { border-radius: 8px; border-color: var(--line); }
