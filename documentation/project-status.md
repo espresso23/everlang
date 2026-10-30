@@ -1,5 +1,7 @@
 # EverLang — hiện trạng và hai hướng tiếp theo
 
+Kế hoạch triển khai tiếp theo đã phân rã tại [WBS/backlog/sprints](planning/README.md), snapshot2026-10-31; phần dưới giữ tổng kết baseline2026-10-30.
+
 Ngày tổng kết: 2026-10-30. Tổng hợp từ source và audit đã có; không thay thế đặc tả từng feature. Lượt này chỉ commit/push và đồng bộ tài liệu, không chạy lại toàn bộ kiểm thử hoặc triển khai feature mới.
 
 ## Đã có và đã được kiểm tra trong các lượt trước

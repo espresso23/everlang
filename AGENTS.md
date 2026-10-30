@@ -40,6 +40,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Audit từng feature và nhóm feature
 
+- Tracking product: đọc [WBS/backlog/sprint guide](documentation/planning/README.md) trước khi thực hiện feature có trong kế hoạch. Chỉ cập nhật trạng thái tại `documentation/planning/work-items.json`; giữ ID, cập nhật task liên quan cùng evidence/verification/HANDOFF. Không tự đánh dấu Done chỉ vì có code, không tự chốt ngày/capacity sprint còn Proposed.
+- Sau cập nhật tracking chạy `npm run plan:sync` và `npm run plan:check`; không sửa tay Markdown/CSV được sinh tự động. Feature phát sinh phải đưa vào backlog/refine trước khi tự đưa vào scope sprint. Quy tắc này áp dụng cho product work, không tự khởi động các task còn lại khi người dùng chỉ yêu cầu lập hoặc cập nhật kế hoạch.
+
 - Audit là bước bắt buộc sau triển khai và trước bàn giao/đánh dấu hoàn tất. Thực hiện một lượt review riêng đối chiếu đặc tả → code → kiểm tra thực tế; không chỉ dựa vào build thành công hoặc tự ghi “đạt”.
 - Audit từng feature; nếu thay đổi nhiều feature liên quan, thêm audit tích hợp tại `documentation/audits/<group-id>.md`, tham chiếu audit của từng feature và các hợp đồng kết nối.
 - Kiểm tra luồng liên kết thực tế theo phạm vi: thao tác UI → xác thực/phân quyền → API/service → worker/queue nếu có → database/storage → phản hồi/trạng thái UI. Đối chiếu payload, schema, mã lỗi, quyền sở hữu, cache invalidation, retry/idempotency và cập nhật dữ liệu giữa các thành phần liên quan.

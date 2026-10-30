@@ -1,5 +1,7 @@
 # Tài liệu EverLang
 
+[WBS / product backlog / sprint tracking — 2026-10-31](planning/README.md) · [Dashboard tiến độ](planning/DASHBOARD.md).
+
 [Hiện trạng dự án và hai hướng tiếp theo — 2026-10-30](project-status.md).
 
 Frontend bắt buộc tuân thủ [EverLang Editorial Design](design/README.md); [screen gallery hiện tại](design/screens.md).

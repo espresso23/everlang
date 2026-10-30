@@ -51,6 +51,13 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 
 ## Input, output và lỗi theo điểm vào
 
+| Source/symbol | Hành vi |
+|---|---|
+| [scripts/planning.mjs](../../../scripts/planning.mjs) · validatePlanning(model) | Kiểm unique IDs, WBS/task/dependency/milestone refs, cycles, status/evidence/dependency Done, Core/Stretch, commitment capacity. Throw Error khi sai |
+| [scripts/planning.mjs](../../../scripts/planning.mjs) · buildViews(model) | Tạo7 Markdown/CSV views từ cùng model; không tính lại baseline thành % backlog, không ghi DB |
+| [scripts/planning.mjs](../../../scripts/planning.mjs) · run() | Read JSON, validate, --write sinh view hoặc mặc định check drift; lỗi exit nonzero; npm plan:sync/plan:check |
+| [tests/unit/planning.test.ts](../../../tests/unit/planning.test.ts) | Kiểm không Done giả, prerequisite/cycle, Core phụ thuộc Stretch, overcommit và derived progress |
+
 - api(path,handler,admin) — guard và JSON/error wrapper.
 - query(sql,values), connectDb(), rateLimit(), getGradingQueue(), log/withApiLogging là module shared.
 

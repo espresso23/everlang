@@ -1,5 +1,9 @@
 # Audit — platform-operations
 
+## 2026-10-31 — WBS/backlog/sprint tracking nội bộ
+
+PASS phạm vi công cụ/tài liệu:31 unit tổng (8 planning tests), lint/typecheck/build, plan:check/docs:check, thử drift và CRLF. Model:14 baseline domains +33 PBIs/72 task/6 sprint Proposed, user solo/reviewer, giờ/tuần TBD. Không đổi runtime/provider hoặc đánh dấu product task Done. Xem [audit riêng](../../audits/project-planning.md) và [guide](../../planning/README.md).
+
 - Ngày: 2026-10-30; baseline code `1d0fbad`; tài liệu được đối chiếu nguồn trước bắt đầu profile mới.
 - Reviewer: Codex, lượt review tài liệu/contract riêng; không giả định mọi chức năng đã hoàn tất.
 - Kết luận: **NOT VERIFIED toàn bộ feature ở snapshot mới**; các bằng chứng đã có được phân biệt bên dưới.

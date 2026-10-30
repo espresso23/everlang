@@ -4,6 +4,8 @@
 
 ## Màn hình và hành vi đã implement
 
+Project tracking không có route app: [planning dashboard](../../planning/DASHBOARD.md) và [task board](../../planning/TASK_BOARD.md) đọc dưới Markdown/Git, CSV mở Excel để lọc. Chỉ sửa work-items.json rồi plan:sync; không sửa view xuất ra, không tạo màn hình product hoặc page trong app.
+
 Không có trang quản trị hạ tầng. Mailpit chỉ có giao diện local :8025 khi bật profile local; Caddy profile production; browser screens được liệt kê ở shared/screens.md.
 
 ## Luồng UI ↔ dữ liệu

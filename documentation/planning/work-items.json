@@ -1,0 +1,2155 @@
+{
+  "project": "EverLang - beta tự học tiếng Hàn",
+  "asOf": "2026-10-31",
+  "baselineCommit": "4eb249c",
+  "sourceOfTruth": "work-items.json",
+  "assumptions": [
+    "Mặc định sprint2 tuần/10 ngày làm việc; chưa gán start/end date.",
+    "Solo: chủ dự án xác nhận có thể duyệt tiếng Hàn; giờ/tuần và thời gian review/audio/infra vẫn TBD; sprint Proposed.",
+    "SP chỉ là estimate tương đối của dev, không phải giờ/ngày; content/review tính riêng.",
+    "Dành khoảng25% capacity được xác nhận cho bug, QA, audit và handoff; nếu scope vượt capacity phải tách/cắt story.",
+    "S1-S2 refine trước; S3-S6 là forecast, cần estimate lại sau velocity thực tế.",
+    "PB-* là ID tracking nội bộ, không phải Jira/GitHub ticket.",
+    "Chưa bắt đầu thực hiện các product tasks; baseline code cũ tách khỏi % tiến độ phần bổ sung.",
+    "Mỗi sprint ưu tiên Core; Stretch chỉ kéo khi còn capacity, carry-over phải replan phụ thuộc và gate."
+  ],
+  "states": [
+    "Todo",
+    "In progress",
+    "Review",
+    "Blocked",
+    "Done"
+  ],
+  "verificationStates": [
+    "Not run",
+    "Pass",
+    "Fail",
+    "Not applicable"
+  ],
+  "epics": [
+    {
+      "id": "WBS-1",
+      "name": "Chất lượng và kiến thức ngữ pháp",
+      "outcome": "Nội dung và chữa bài đủ tin cậy để tự học"
+    },
+    {
+      "id": "WBS-2",
+      "name": "Bài tập, SRS và năng lực",
+      "outcome": "Học, dùng lại và ghi nhận mức nắm kiến thức"
+    },
+    {
+      "id": "WBS-3",
+      "name": "Lộ trình và cá nhân hóa",
+      "outcome": "Biết nên học gì tiếp theo"
+    },
+    {
+      "id": "WBS-4",
+      "name": "Nghe đọc và tra cứu trong ngữ cảnh",
+      "outcome": "Mở rộng đầu vào ngôn ngữ"
+    },
+    {
+      "id": "WBS-5",
+      "name": "Phát hành và vận hành beta",
+      "outcome": "Dùng thật ngoài localhost với kiểm chứng đầy đủ"
+    },
+    {
+      "id": "WBS-6",
+      "name": "Mở rộng sau beta",
+      "outcome": "Giữ trong backlog, chưa cam kết sprint"
+    }
+  ],
+  "externalDependencies": [
+    {
+      "id": "EXT-CONTENT",
+      "description": "Người đủ năng lực duyệt nội dung/ground truth tiếng Hàn và thời gian duyệt",
+      "owner": "Chủ dự án",
+      "status": "Available; review time TBD"
+    },
+    {
+      "id": "EXT-AUDIO",
+      "description": "Audio phù hợp và quyền dùng/nguồn thu âm, người kiểm transcript",
+      "owner": "Chủ dự án",
+      "status": "Unconfirmed"
+    },
+    {
+      "id": "EXT-SPEECH",
+      "description": "S3/Google Speech cấu hình và quota, thiết bị/microphone kiểm thật",
+      "owner": "Chủ dự án",
+      "status": "Unconfirmed"
+    },
+    {
+      "id": "EXT-INFRA",
+      "description": "Domain/VPS/SMTP/Google OAuth production và người vận hành",
+      "owner": "Chủ dự án",
+      "status": "Unconfirmed"
+    }
+  ],
+  "baseline": [
+    {
+      "featureId": "identity-auth",
+      "status": "Implemented / verified core; Google linking và SMTP production chưa đóng",
+      "docs": "documentation/features/identity-auth/README.md",
+      "audit": "documentation/features/identity-auth/audit.md"
+    },
+    {
+      "featureId": "user-profile",
+      "status": "Verified scoped view/edit/avatar/save trên local",
+      "docs": "documentation/features/user-profile/README.md",
+      "audit": "documentation/features/user-profile/audit.md"
+    },
+    {
+      "featureId": "translation-practice",
+      "status": "Implemented / verified scoped translation flow; chưa là curriculum",
+      "docs": "documentation/features/translation-practice/README.md",
+      "audit": "documentation/features/translation-practice/audit.md"
+    },
+    {
+      "featureId": "learning-records",
+      "status": "Implemented / verified scoped ownership/drafts/history",
+      "docs": "documentation/features/learning-records/README.md",
+      "audit": "documentation/features/learning-records/audit.md"
+    },
+    {
+      "featureId": "ai-grading",
+      "status": "Provider smoke verified; benchmark sư phạm chưa hoàn tất",
+      "docs": "documentation/features/ai-grading/README.md",
+      "audit": "documentation/features/ai-grading/audit.md"
+    },
+    {
+      "featureId": "vocabulary-srs",
+      "status": "Verified scoped FSRS/concurrency; mastery/context cần mở rộng",
+      "docs": "documentation/features/vocabulary-srs/README.md",
+      "audit": "documentation/features/vocabulary-srs/audit.md"
+    },
+    {
+      "featureId": "daily-dashboard",
+      "status": "Verified scoped rule/timezone/version; chưa có learning path",
+      "docs": "documentation/features/daily-dashboard/README.md",
+      "audit": "documentation/features/daily-dashboard/audit.md"
+    },
+    {
+      "featureId": "dictionary",
+      "status": "Implemented KRdict + particle fallback; morphology còn thiếu",
+      "docs": "documentation/features/dictionary/README.md",
+      "audit": "documentation/features/dictionary/audit.md"
+    },
+    {
+      "featureId": "content-authoring",
+      "status": "Implemented reviewed workflow; quality/rights từng nội dung phải duyệt",
+      "docs": "documentation/features/content-authoring/README.md",
+      "audit": "documentation/features/content-authoring/audit.md"
+    },
+    {
+      "featureId": "immersive-learning",
+      "status": "Partial: 2 bài mẫu, audio/STT/S3/device cần xác minh thật",
+      "docs": "documentation/features/immersive-learning/README.md",
+      "audit": "documentation/features/immersive-learning/audit.md"
+    },
+    {
+      "featureId": "ai-tutor",
+      "status": "Partial: implementation có, grounded benchmark/index cần xác minh",
+      "docs": "documentation/features/ai-tutor/README.md",
+      "audit": "documentation/features/ai-tutor/audit.md"
+    },
+    {
+      "featureId": "exam-practice",
+      "status": "Partial: mini exam, chưa có bộ đề đầy đủ",
+      "docs": "documentation/features/exam-practice/README.md",
+      "audit": "documentation/features/exam-practice/audit.md"
+    },
+    {
+      "featureId": "design-system",
+      "status": "Verified scoped UI; không chứng nhận full WCAG",
+      "docs": "documentation/features/design-system/README.md",
+      "audit": "documentation/features/design-system/audit.md"
+    },
+    {
+      "featureId": "platform-operations",
+      "status": "Local Docker verified scoped; production/restore đích còn đầu vào",
+      "docs": "documentation/features/platform-operations/README.md",
+      "audit": "documentation/features/platform-operations/audit.md"
+    }
+  ],
+  "sprints": [
+    {
+      "id": "S1",
+      "name": "Ngữ pháp pilot + quality baseline",
+      "goal": "Một lát cắt5 grammar đã duyệt, MCQ/cloze và chất lượng chữa AI có baseline; chia nhỏ/carry nếu capacity solo chưa đủ, không giảm QA/review.",
+      "state": "Proposed",
+      "start": null,
+      "end": null,
+      "capacityPoints": null,
+      "owner": "Chủ dự án"
+    },
+    {
+      "id": "S2",
+      "name": "Tra cứu, mở rộng pilot và ôn lại",
+      "goal": "15 bài được duyệt, search/compare, save grammar SRS và mastery có evidence.",
+      "state": "Proposed",
+      "start": null,
+      "end": null,
+      "capacityPoints": null,
+      "owner": "Chủ dự án"
+    },
+    {
+      "id": "S3",
+      "name": "Onboarding và lộ trình tự học",
+      "goal": "Người học có path rõ, next lesson và feedback AI; mốc beta tự học local",
+      "state": "Proposed",
+      "start": null,
+      "end": null,
+      "capacityPoints": null,
+      "owner": "Chủ dự án"
+    },
+    {
+      "id": "S4",
+      "name": "Nghe đọc trong ngữ cảnh",
+      "goal": "Pilot nội dung nghe-đọc và segment player/comprehension; chốt hướng morphology",
+      "state": "Proposed",
+      "start": null,
+      "end": null,
+      "capacityPoints": null,
+      "owner": "Chủ dự án"
+    },
+    {
+      "id": "S5",
+      "name": "Context SRS và đầu vào cá nhân",
+      "goal": "Tra dạng từ/context, học văn bản riêng và kiểm thu âm/STT/S3 thật",
+      "state": "Proposed",
+      "start": null,
+      "end": null,
+      "capacityPoints": null,
+      "owner": "Chủ dự án"
+    },
+    {
+      "id": "S6",
+      "name": "Audit và release gate",
+      "goal": "Kiểm toàn vòng học, auth/infrastructure thật, restore/rollback và PO go/no-go",
+      "state": "Proposed",
+      "start": null,
+      "end": null,
+      "capacityPoints": null,
+      "owner": "Chủ dự án"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "M1",
+      "after": "S2",
+      "name": "Grammar pilot có kiểm chứng",
+      "criteria": "15 bài reviewed + search/compare/exercise + SRS; benchmark được reviewer chấp nhận",
+      "requires": [
+        "PB-001",
+        "PB-002",
+        "PB-003",
+        "PB-004",
+        "PB-005",
+        "PB-006",
+        "PB-007"
+      ],
+      "dependsOn": []
+    },
+    {
+      "id": "M2",
+      "after": "S3",
+      "name": "Beta tự học local",
+      "criteria": "Onboarding/path→practice→feedback→save→SRS→daily plan đủ evidence, không còn lỗi P0",
+      "requires": [
+        "PB-008",
+        "PB-009",
+        "PB-010",
+        "PB-011"
+      ],
+      "dependsOn": [
+        "M1"
+      ]
+    },
+    {
+      "id": "M3",
+      "after": "S5",
+      "name": "Context learning pilot",
+      "criteria": "Pilot5 bài đọc/3 đoạn nghe, reader và morphology/context SRS verified; import riêng/STT là Stretch, chưa kiểm thì không bật release",
+      "requires": [
+        "PB-013",
+        "PB-014",
+        "PB-016",
+        "PB-017",
+        "PB-018"
+      ],
+      "dependsOn": [
+        "M2"
+      ]
+    },
+    {
+      "id": "M4",
+      "after": "S6",
+      "name": "Sẵn sàng phát hành beta",
+      "criteria": "Các story release gate Done, credentials/services thực tế kiểm, PO quyết định phát hành",
+      "requires": [
+        "PB-021",
+        "PB-022",
+        "PB-023",
+        "PB-024"
+      ],
+      "dependsOn": [
+        "M2"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "id": "PB-001",
+      "wbs": "WBS-1.01",
+      "epic": "WBS-1",
+      "title": "Trạm ngữ pháp: lát cắt đầu tiên",
+      "priority": "P0",
+      "sprint": "S1",
+      "points": 5,
+      "featureId": "grammar-library",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "Admin xuất bản được một bài ngữ pháp versioned; learner tìm/mở bài, có ví dụ và điều kiện dùng; API giữ ownership/role.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-001-T01",
+        "PB-001-T02",
+        "PB-001-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-002",
+      "wbs": "WBS-1.02",
+      "epic": "WBS-1",
+      "title": "Bộ5 ngữ pháp mẫu đã duyệt",
+      "priority": "P0",
+      "sprint": "S1",
+      "points": null,
+      "featureId": "grammar-library",
+      "dependsOn": [
+        "PB-001"
+      ],
+      "external": [
+        "EXT-CONTENT"
+      ],
+      "acceptance": "5 bài trung-cao cấp có nghĩa, cách chia, ngữ cảnh, lỗi dễ nhầm, ví dụ Việt-Hàn và nguồn/quyền; người duyệt xác nhận trước publish.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-002-T01",
+        "PB-002-T02",
+        "PB-002-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-003",
+      "wbs": "WBS-2.03",
+      "epic": "WBS-2",
+      "title": "Bài tập nhận biết và điền khuyết",
+      "priority": "P0",
+      "sprint": "S1",
+      "points": 5,
+      "featureId": "interactive-exercises",
+      "dependsOn": [
+        "PB-001",
+        "PB-002"
+      ],
+      "external": [],
+      "acceptance": "Một bài ngữ pháp có MCQ/cloze, giải thích đáp án, lưu attempt; client không nhận đáp án trước thời điểm cho phép.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-003-T01",
+        "PB-003-T02",
+        "PB-003-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-004",
+      "wbs": "WBS-1.04",
+      "epic": "WBS-1",
+      "title": "Benchmark chữa bài AI ban đầu",
+      "priority": "P0",
+      "sprint": "S1",
+      "points": 3,
+      "featureId": "ai-grading",
+      "dependsOn": [],
+      "external": [
+        "EXT-CONTENT"
+      ],
+      "acceptance": "Có20 ca được duyệt: câu đúng đa cách diễn đạt, lỗi thật, gợi ý, dấu câu, văn phong; lưu prompt/model và kết quả tái chạy. PO chốt tiêu chí trước khi chấp nhận.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-004-T01",
+        "PB-004-T02",
+        "PB-004-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-005",
+      "wbs": "WBS-1.05",
+      "epic": "WBS-1",
+      "title": "Tra cứu và so sánh ngữ pháp",
+      "priority": "P0",
+      "sprint": "S2",
+      "points": 5,
+      "featureId": "grammar-library",
+      "dependsOn": [
+        "PB-001",
+        "PB-002"
+      ],
+      "external": [
+        "EXT-CONTENT"
+      ],
+      "acceptance": "Tìm mẫu/nghĩa/nhóm chức năng/trình độ; so sánh ít nhất3 nhóm dễ nhầm có điều kiện dùng và ví dụ đã duyệt.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-005-T01",
+        "PB-005-T02",
+        "PB-005-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-006",
+      "wbs": "WBS-1.06",
+      "epic": "WBS-1",
+      "title": "Mở rộng pilot lên15 bài đã duyệt",
+      "priority": "P0",
+      "sprint": "S2",
+      "points": null,
+      "featureId": "grammar-library",
+      "dependsOn": [
+        "PB-002"
+      ],
+      "external": [
+        "EXT-CONTENT"
+      ],
+      "acceptance": "Tổng15 bài gồm5 bài đầu, có review/source/rights/version và nhóm chức năng;30 bài là expansion sau khi đo capacity.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-006-T01",
+        "PB-006-T02",
+        "PB-006-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-007",
+      "wbs": "WBS-2.07",
+      "epic": "WBS-2",
+      "title": "Nối ngữ pháp và lỗi sai vào SRS",
+      "priority": "P0",
+      "sprint": "S2",
+      "points": 3,
+      "featureId": "vocabulary-srs",
+      "dependsOn": [
+        "PB-003"
+      ],
+      "external": [],
+      "acceptance": "Từ lesson/report lưu được card ngữ pháp có ngữ cảnh và nguồn; chống trùng; ôn dùng FSRS hiện có, không viết lại thuật toán.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-007-T01",
+        "PB-007-T02",
+        "PB-007-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-008",
+      "wbs": "WBS-2.08",
+      "epic": "WBS-2",
+      "title": "Tiến độ theo cấu trúc kiến thức",
+      "priority": "P0",
+      "sprint": "S2",
+      "points": 5,
+      "featureId": "knowledge-mastery",
+      "dependsOn": [
+        "PB-003",
+        "PB-007"
+      ],
+      "external": [],
+      "acceptance": "Phân biệt đã gặp/nhận biết/dùng lại/ôn sau trì hoãn bằng evidence attempt/review; không gọi streak hay một điểm AI là mastery.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-008-T01",
+        "PB-008-T02",
+        "PB-008-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-009",
+      "wbs": "WBS-3.09",
+      "epic": "WBS-3",
+      "title": "Onboarding cho người học trung-cao cấp",
+      "priority": "P0",
+      "sprint": "S3",
+      "points": 3,
+      "featureId": "learning-onboarding",
+      "dependsOn": [
+        "PB-008"
+      ],
+      "external": [],
+      "acceptance": "Nhập mục tiêu, thời gian, level và bài gợi ý; cho bỏ qua/chọn lại; không tự quy đổi thành điểm TOPIK.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-009-T01",
+        "PB-009-T02",
+        "PB-009-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-010",
+      "wbs": "WBS-3.10",
+      "epic": "WBS-3",
+      "title": "Lộ trình học và học phần",
+      "priority": "P0",
+      "sprint": "S3",
+      "points": 5,
+      "featureId": "learning-paths",
+      "dependsOn": [
+        "PB-006",
+        "PB-008"
+      ],
+      "external": [
+        "EXT-CONTENT"
+      ],
+      "acceptance": "Có ít nhất2 học phần trung-cao cấp với mục tiêu, prerequisite, lesson/exercise và continue; learner bỏ qua phần đã biết có giải thích.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-010-T01",
+        "PB-010-T02",
+        "PB-010-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-011",
+      "wbs": "WBS-3.11",
+      "epic": "WBS-3",
+      "title": "Dashboard theo lộ trình và điểm yếu",
+      "priority": "P0",
+      "sprint": "S3",
+      "points": 3,
+      "featureId": "daily-dashboard",
+      "dependsOn": [
+        "PB-008",
+        "PB-009",
+        "PB-010"
+      ],
+      "external": [],
+      "acceptance": "Ưu tiên review→draft→weak knowledge→path lesson, trong ngân sách; giữ idempotence/version/timezone và lý do gợi ý.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-011-T01",
+        "PB-011-T02",
+        "PB-011-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-012",
+      "wbs": "WBS-1.12",
+      "epic": "WBS-1",
+      "title": "Phản hồi chữa AI chưa đúng",
+      "priority": "P0",
+      "sprint": "S3",
+      "points": 3,
+      "featureId": "ai-grading",
+      "dependsOn": [
+        "PB-004"
+      ],
+      "external": [],
+      "acceptance": "Learner báo vấn đề trên report version cụ thể; admin review; không tự sửa điểm/ground truth từ một report của user.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-012-T01",
+        "PB-012-T02",
+        "PB-012-T03"
+      ],
+      "scope": "Stretch"
+    },
+    {
+      "id": "PB-013",
+      "wbs": "WBS-4.13",
+      "epic": "WBS-4",
+      "title": "Pilot5 bài đọc và3 đoạn nghe",
+      "priority": "P1",
+      "sprint": "S4",
+      "points": null,
+      "featureId": "immersive-learning",
+      "dependsOn": [
+        "PB-010"
+      ],
+      "external": [
+        "EXT-CONTENT",
+        "EXT-AUDIO"
+      ],
+      "acceptance": "5 bài đọc/3 đoạn nghe đã duyệt, level/topic/source/rights và audio khớp transcript; không chỉ demo TTS.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-013-T01",
+        "PB-013-T02",
+        "PB-013-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-014",
+      "wbs": "WBS-4.14",
+      "epic": "WBS-4",
+      "title": "Reader và audio theo đoạn",
+      "priority": "P1",
+      "sprint": "S4",
+      "points": 5,
+      "featureId": "immersive-learning",
+      "dependsOn": [
+        "PB-013"
+      ],
+      "external": [],
+      "acceptance": "Nghe lặp đoạn/tốc độ/transcript bật tắt; tra/lưu cụm trong bài; hỗ trợ keyboard/mobile, không tự bật đáp án.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-014-T01",
+        "PB-014-T02",
+        "PB-014-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-015",
+      "wbs": "WBS-4.15",
+      "epic": "WBS-4",
+      "title": "Hiểu bài và chép chính tả theo đoạn",
+      "priority": "P1",
+      "sprint": "S4",
+      "points": 5,
+      "featureId": "interactive-exercises",
+      "dependsOn": [
+        "PB-003",
+        "PB-014"
+      ],
+      "external": [
+        "EXT-CONTENT"
+      ],
+      "acceptance": "Câu hỏi hiểu bài và dictation gắn đoạn, accepted variants/dấu câu phù hợp, giải thích và attempt nối mastery.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-015-T01",
+        "PB-015-T02",
+        "PB-015-T03"
+      ],
+      "scope": "Stretch"
+    },
+    {
+      "id": "PB-016",
+      "wbs": "WBS-4.16",
+      "epic": "WBS-4",
+      "title": "Spike xử lý dạng từ tiếng Hàn",
+      "priority": "P1",
+      "sprint": "S4",
+      "points": 3,
+      "featureId": "dictionary",
+      "dependsOn": [],
+      "external": [
+        "EXT-CONTENT"
+      ],
+      "acceptance": "So sánh tối đa2 hướng xử lý morphology bằng bộ30 ca đã duyệt; ghi accuracy/latency/license/ops và quyết định, không hứa đoán nguyên mẫu luôn đúng.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-016-T01",
+        "PB-016-T02",
+        "PB-016-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-017",
+      "wbs": "WBS-4.17",
+      "epic": "WBS-4",
+      "title": "Tra nguyên mẫu và cụm theo ngữ cảnh",
+      "priority": "P1",
+      "sprint": "S5",
+      "points": 5,
+      "featureId": "dictionary",
+      "dependsOn": [
+        "PB-016"
+      ],
+      "external": [],
+      "acceptance": "Có gợi ý nguyên mẫu và nghĩa theo câu; trường hợp mơ hồ hiện nhiều lựa chọn/fallback, không bịa entry; cache versioned.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-017-T01",
+        "PB-017-T02",
+        "PB-017-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-018",
+      "wbs": "WBS-2.18",
+      "epic": "WBS-2",
+      "title": "Thẻ ôn theo ngữ cảnh đa dạng",
+      "priority": "P1",
+      "sprint": "S5",
+      "points": 3,
+      "featureId": "vocabulary-srs",
+      "dependsOn": [
+        "PB-007",
+        "PB-014"
+      ],
+      "external": [],
+      "acceptance": "Thẻ có context/source, hỗ trợ recall/cloze nghe nếu có audio; giữ state/log/FSRS và chống trùng khi đổi dạng bài.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-018-T01",
+        "PB-018-T02",
+        "PB-018-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-019",
+      "wbs": "WBS-4.19",
+      "epic": "WBS-4",
+      "title": "Nhập văn bản cá nhân để học",
+      "priority": "P1",
+      "sprint": "S5",
+      "points": 5,
+      "featureId": "personal-content",
+      "dependsOn": [
+        "PB-014",
+        "PB-017"
+      ],
+      "external": [],
+      "acceptance": "Paste văn bản riêng tư có giới hạn; tra/lưu từ và tiếp tục; không public nội dung người học tự động, chưa crawl toàn web.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-019-T01",
+        "PB-019-T02",
+        "PB-019-T03"
+      ],
+      "scope": "Stretch"
+    },
+    {
+      "id": "PB-020",
+      "wbs": "WBS-4.20",
+      "epic": "WBS-4",
+      "title": "Hoàn thiện shadowing/thu âm riêng tư",
+      "priority": "P1",
+      "sprint": "S5",
+      "points": 5,
+      "featureId": "immersive-learning",
+      "dependsOn": [
+        "PB-014"
+      ],
+      "external": [
+        "EXT-SPEECH"
+      ],
+      "acceptance": "Record→replay→STT→feedback→private signed playback hoạt động thật; permission/error/consent; không công bố điểm phát âm chưa kiểm chứng.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-020-T01",
+        "PB-020-T02",
+        "PB-020-T03"
+      ],
+      "scope": "Stretch"
+    },
+    {
+      "id": "PB-021",
+      "wbs": "WBS-5.21",
+      "epic": "WBS-5",
+      "title": "Audit vòng tự học và chất lượng cuối",
+      "priority": "P0",
+      "sprint": "S6",
+      "points": 5,
+      "featureId": "platform-operations",
+      "dependsOn": [
+        "PB-004",
+        "PB-007",
+        "PB-008",
+        "PB-011"
+      ],
+      "external": [
+        "EXT-CONTENT"
+      ],
+      "acceptance": "Hoàn tất học→chữa→lưu→SRS→lịch trên2 thiết bị; kiểm midnight/timezone và benchmark do người duyệt chấp nhận; lỗi P0 không còn. Các tính năng Stretch chỉ đưa vào gate khi được bật trong release.",
+      "refinement": "Draft",
+      "contentCapacity": "TBD - reviewer/audio time separate from dev SP",
+      "tasks": [
+        "PB-021-T01",
+        "PB-021-T02",
+        "PB-021-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-022",
+      "wbs": "WBS-5.22",
+      "epic": "WBS-5",
+      "title": "Email/OAuth trên môi trường thật",
+      "priority": "P0",
+      "sprint": "S6",
+      "points": 3,
+      "featureId": "identity-auth",
+      "dependsOn": [],
+      "external": [
+        "EXT-INFRA"
+      ],
+      "acceptance": "Verify/reset qua SMTP thật; Google login/linking từ account cũ, Google-only tạo password, session cookie HTTPS và không invitation gate app.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-022-T01",
+        "PB-022-T02",
+        "PB-022-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-023",
+      "wbs": "WBS-5.23",
+      "epic": "WBS-5",
+      "title": "Triển khai/backup/restore/quan sát lỗi",
+      "priority": "P0",
+      "sprint": "S6",
+      "points": 5,
+      "featureId": "platform-operations",
+      "dependsOn": [
+        "PB-022"
+      ],
+      "external": [
+        "EXT-INFRA"
+      ],
+      "acceptance": "VPS/Caddy/HTTPS, DB nội bộ, restore PG/Mongo được diễn tập, app/worker lỗi quan sát được và có rollback; dữ liệu nhạy cảm không vào Git/log.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-023-T01",
+        "PB-023-T02",
+        "PB-023-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-024",
+      "wbs": "WBS-5.24",
+      "epic": "WBS-5",
+      "title": "Gate phát hành beta và bàn giao",
+      "priority": "P0",
+      "sprint": "S6",
+      "points": 3,
+      "featureId": "platform-operations",
+      "dependsOn": [
+        "PB-021",
+        "PB-022",
+        "PB-023"
+      ],
+      "external": [],
+      "acceptance": "Docs/code/UI/audit khớp; checklist blockers, limitations và restore có evidence; PO quyết định go/no-go, không tự publish khi thiếu đầu vào. Tính năng provider chưa verified phải ẩn/disable có giải thích; không bắt hoàn thành Stretch để phát hành core beta.",
+      "refinement": "Draft",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-024-T01",
+        "PB-024-T02",
+        "PB-024-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-025",
+      "wbs": "WBS-6.25",
+      "epic": "WBS-6",
+      "title": "AI Tutor truy xuất đã đánh giá chất lượng",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "ai-tutor",
+      "dependsOn": [
+        "PB-006",
+        "PB-014"
+      ],
+      "external": [],
+      "acceptance": "RAG hiện có nền; cần corpus approved, citations, hint-first và benchmark grounded answers.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    },
+    {
+      "id": "PB-026",
+      "wbs": "WBS-6.26",
+      "epic": "WBS-6",
+      "title": "Đánh giá phát âm chuyên biệt",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "pronunciation-assessment",
+      "dependsOn": [
+        "PB-020"
+      ],
+      "external": [],
+      "acceptance": "Nghiên cứu bộ chuẩn/metric/provider riêng; STT đúng chữ không tương đương phát âm tốt.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    },
+    {
+      "id": "PB-027",
+      "wbs": "WBS-6.27",
+      "epic": "WBS-6",
+      "title": "TOPIK II PBT đầy đủ",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "exam-practice",
+      "dependsOn": [
+        "PB-024"
+      ],
+      "external": [],
+      "acceptance": "Refine đề có quyền, format/rubric, nghe/đọc/viết/timer và calibration; chưa cam kết khối lượng.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    },
+    {
+      "id": "PB-028",
+      "wbs": "WBS-6.28",
+      "epic": "WBS-6",
+      "title": "Giấy viết TOPIK mô phỏng",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "exam-practice",
+      "dependsOn": [
+        "PB-027"
+      ],
+      "external": [],
+      "acceptance": "Ảnh trong project-idea là ý tưởng; refine cách đếm ký tự/xuống ô và usability trước estimate.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    },
+    {
+      "id": "PB-029",
+      "wbs": "WBS-6.29",
+      "epic": "WBS-6",
+      "title": "TOPIK Speaking và IBT riêng",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "exam-practice",
+      "dependsOn": [
+        "PB-027"
+      ],
+      "external": [],
+      "acceptance": "Tách format/rubric/engine theo từng kỳ thi, không gộp với PBT.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    },
+    {
+      "id": "PB-030",
+      "wbs": "WBS-6.30",
+      "epic": "WBS-6",
+      "title": "IELTS/HSK/JLPT từng ngôn ngữ",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "multilingual-learning",
+      "dependsOn": [
+        "PB-024"
+      ],
+      "external": [],
+      "acceptance": "Chỉ sau audit tiếng Hàn; refine schema/rubric/content riêng, không clone cấu trúc đề.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    },
+    {
+      "id": "PB-031",
+      "wbs": "WBS-6.31",
+      "epic": "WBS-6",
+      "title": "Thanh toán và gói dịch vụ",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "billing",
+      "dependsOn": [
+        "PB-024"
+      ],
+      "external": [],
+      "acceptance": "Chưa trong beta tự học; cần nhu cầu sản phẩm và phạm vi riêng.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    },
+    {
+      "id": "PB-032",
+      "wbs": "WBS-6.32",
+      "epic": "WBS-6",
+      "title": "Gamification/cộng đồng",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "community",
+      "dependsOn": [
+        "PB-024"
+      ],
+      "external": [],
+      "acceptance": "Điểm/leaderboard/minigame chỉ làm khi giúp học và có moderation, không ưu tiên hơn nội dung.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    },
+    {
+      "id": "PB-033",
+      "wbs": "WBS-6.33",
+      "epic": "WBS-6",
+      "title": "Lộ trình nhập môn Hangul/sơ cấp",
+      "priority": "P2",
+      "sprint": null,
+      "points": null,
+      "featureId": "beginner-path",
+      "dependsOn": [
+        "PB-024"
+      ],
+      "external": [],
+      "acceptance": "Chỉ khi mở đối tượng ngoài trung-cao cấp; chưa đưa vào MVP hiện tại.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Deferred"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "PB-001-T01",
+      "parent": "PB-001",
+      "title": "Đặc tả taxonomy, version, API và UI; tạo bộ5 docs feature trước code",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-001-T02",
+      "parent": "PB-001",
+      "title": "Schema/admin/learner search và detail; tận dụng workflow draft-review-published",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-001-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-001-T03",
+      "parent": "PB-001",
+      "title": "Kiểm learner/admin, tìm theo nghĩa/cấu trúc, empty/error; audit và handoff",
+      "role": "QA/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-001-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-002-T01",
+      "parent": "PB-002",
+      "title": "Biên soạn5 cấu trúc và ví dụ tự viết/nguồn được phép dùng",
+      "role": "Content",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-001-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-002-T02",
+      "parent": "PB-002",
+      "title": "Duyệt sắc thái, đáp án chấp nhận và tính nhất quán; lưu nhận xét",
+      "role": "Reviewer",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-002-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-002-T03",
+      "parent": "PB-002",
+      "title": "Xuất bản đúng version và kiểm hiển thị từ tài khoản learner",
+      "role": "Content/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-002-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-003-T01",
+      "parent": "PB-003",
+      "title": "Đặc tả5 docs, schema exercise/attempt/accepted answers và cơ chế reveal",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-001-T03",
+        "PB-002-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-003-T02",
+      "parent": "PB-003",
+      "title": "Dựng exercise renderer, deterministic grading và lưu attempt theo session",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-003-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-003-T03",
+      "parent": "PB-003",
+      "title": "E2E học bài→làm→giải thích; kiểm tamper/ownership/retry và handoff",
+      "role": "QA/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-003-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-004-T01",
+      "parent": "PB-004",
+      "title": "Duyệt20 cặp input/expected và ngưỡng chấp nhận; không lấy output AI làm ground truth",
+      "role": "Reviewer/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-004-T02",
+      "parent": "PB-004",
+      "title": "Runner regression có version, phân loại failure và không lưu điểm giả khi provider lỗi",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-004-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-004-T03",
+      "parent": "PB-004",
+      "title": "Chạy baseline thật, lập report và xử lý lỗi P0; audit/handoff",
+      "role": "QA/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-004-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-005-T01",
+      "parent": "PB-005",
+      "title": "Đặc tả search/filter và3 nhóm so sánh, cập nhật UI/functions",
+      "role": "Dev/Content",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-001-T03",
+        "PB-002-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-005-T02",
+      "parent": "PB-005",
+      "title": "Tìm kiếm và trang đối chiếu có link bài liên quan; loading/error/empty",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-005-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-005-T03",
+      "parent": "PB-005",
+      "title": "Kiểm kết quả tìm và sắc thái; responsive/accessibility, docs/audit",
+      "role": "QA/Reviewer",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-005-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-006-T01",
+      "parent": "PB-006",
+      "title": "Biên soạn10 bài bổ sung theo danh mục đã chốt",
+      "role": "Content",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-002-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-006-T02",
+      "parent": "PB-006",
+      "title": "Duyệt bài/ví dụ/cặp dễ nhầm và từ chối bài chưa đạt",
+      "role": "Reviewer",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-006-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-006-T03",
+      "parent": "PB-006",
+      "title": "Publish kiểm đủ15 bài, search/index đúng và evidence nội dung",
+      "role": "Content/QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-006-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-007-T01",
+      "parent": "PB-007",
+      "title": "Cập nhật spec/context mapping lesson-report-card; giữ card algorithm version",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-003-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-007-T02",
+      "parent": "PB-007",
+      "title": "Nút lưu từ lesson/report, chống trùng và mở đúng bài nguồn",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-007-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-007-T03",
+      "parent": "PB-007",
+      "title": "E2E lesson→card→review→lịch ngày; duplicate/concurrency và handoff",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-007-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-008-T01",
+      "parent": "PB-008",
+      "title": "Chốt mastery rules và5 docs; phép tính phải giải thích được cho learner",
+      "role": "PO/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-003-T03",
+        "PB-007-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-008-T02",
+      "parent": "PB-008",
+      "title": "Aggregate attempt/review theo grammar ID/version, hiển thị knowledge map",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-008-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-008-T03",
+      "parent": "PB-008",
+      "title": "Kiểm retry/multi-device không đếm trùng, recalculation và giải thích kết quả",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-008-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-009-T01",
+      "parent": "PB-009",
+      "title": "Đặc tả onboarding/skip/resume và cách phân biệt self-report với kết quả gợi ý",
+      "role": "PO/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-008-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-009-T02",
+      "parent": "PB-009",
+      "title": "UI/API lưu preferences vào profile hiện có; không thêm invitation gate",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-009-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-009-T03",
+      "parent": "PB-009",
+      "title": "Kiểm tài khoản mới/cũ, skip/resume/reset lựa chọn, focus và handoff",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-009-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-010-T01",
+      "parent": "PB-010",
+      "title": "Chốt2 học phần và quan hệ prerequisite không chu trình;5 docs",
+      "role": "Content/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-006-T03",
+        "PB-008-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-010-T02",
+      "parent": "PB-010",
+      "title": "Map grammar/lesson/exercise thành path, unlock/continue/progress theo account",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-010-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-010-T03",
+      "parent": "PB-010",
+      "title": "Kiểm prerequisite/skip/đổi level, nội dung và progress giữa2 trình duyệt",
+      "role": "QA/Reviewer",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-010-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-011-T01",
+      "parent": "PB-011",
+      "title": "Cập nhật mapping knowledge/path vào planning rule, không phá lịch đã tạo",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-008-T03",
+        "PB-009-T03",
+        "PB-010-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-011-T02",
+      "parent": "PB-011",
+      "title": "Tasks có nguồn/lý do và continue đúng lesson/path",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-011-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-011-T03",
+      "parent": "PB-011",
+      "title": "E2E vòng học, refresh/midnight/timezone/overload và audit liên kết",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-011-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-012-T01",
+      "parent": "PB-012",
+      "title": "Đặc tả trạng thái feedback, quyền và5 docs/cập nhật docs chuẩn",
+      "role": "PO/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-004-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-012-T02",
+      "parent": "PB-012",
+      "title": "Report issue→admin review→resolution lưu version/evidence",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-012-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-012-T03",
+      "parent": "PB-012",
+      "title": "Kiểm ownership, duplicate, privacy và đưa ca đã duyệt vào regression set",
+      "role": "QA/Reviewer",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-012-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-013-T01",
+      "parent": "PB-013",
+      "title": "Biên soạn5 bài đọc/3 đoạn nghe, xác định nguồn và quyền sử dụng",
+      "role": "Content",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-010-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-013-T02",
+      "parent": "PB-013",
+      "title": "Duyệt level, từ/cấu trúc mục tiêu và sự khớp audio-transcript",
+      "role": "Reviewer",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-013-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-013-T03",
+      "parent": "PB-013",
+      "title": "Publish theo version; kiểm media lỗi và fallback learner",
+      "role": "Content/QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-013-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-014-T01",
+      "parent": "PB-014",
+      "title": "Đặc tả segment/time offsets, controls/keyboard và cập nhật5 docs",
+      "role": "PO/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-013-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-014-T02",
+      "parent": "PB-014",
+      "title": "Audio/reader segment controls và contextual vocabulary save",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-014-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-014-T03",
+      "parent": "PB-014",
+      "title": "Kiểm audio lỗi, seek/repeat/speed, transcript/privacy và responsive",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-014-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-015-T01",
+      "parent": "PB-015",
+      "title": "Chốt bộ câu hỏi/đáp án cho pilot, schema reuse exercise engine",
+      "role": "Content/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-003-T03",
+        "PB-014-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-015-T02",
+      "parent": "PB-015",
+      "title": "Comprehension/dictation renderer, attempt và feedback theo ngữ cảnh",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-015-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-015-T03",
+      "parent": "PB-015",
+      "title": "Kiểm đáp án đa dạng, reveal, retries và liên kết lesson/mastery/SRS",
+      "role": "QA/Reviewer",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-015-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-016-T01",
+      "parent": "PB-016",
+      "title": "Tạo30 ca trợ từ/chia động-tính từ/cụm/ambiguity và expected",
+      "role": "Reviewer/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-016-T02",
+      "parent": "PB-016",
+      "title": "Thử2 phương án trong môi trường Docker; đo latency và failure modes",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-016-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-016-T03",
+      "parent": "PB-016",
+      "title": "ADR chọn phương án, giới hạn/fallback và refined backlog implementation",
+      "role": "PO/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-016-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-017-T01",
+      "parent": "PB-017",
+      "title": "Đặc tả contract/context/confidence và migration/cache rollback nếu cần",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-016-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-017-T02",
+      "parent": "PB-017",
+      "title": "Tích hợp phương án từ spike, lookup variants/cụm và source trace",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-017-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-017-T03",
+      "parent": "PB-017",
+      "title": "Chạy bộ morphology, timeout/cache/error và nối save vocabulary",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-017-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-018-T01",
+      "parent": "PB-018",
+      "title": "Chốt card presentation và accepted answers; không reset lịch cũ",
+      "role": "PO/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-007-T03",
+        "PB-014-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-018-T02",
+      "parent": "PB-018",
+      "title": "Context/card variants, source navigation và audio fallback",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-018-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-018-T03",
+      "parent": "PB-018",
+      "title": "Kiểm migration compatible nếu có, review concurrency và dữ liệu cũ",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-018-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-019-T01",
+      "parent": "PB-019",
+      "title": "Đặc tả input limits/privacy/ownership/delete và5 docs",
+      "role": "PO/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-014-T03",
+        "PB-017-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-019-T02",
+      "parent": "PB-019",
+      "title": "Private text ingestion/reader/progress; không đưa vào thư viện chung mặc định",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-019-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-019-T03",
+      "parent": "PB-019",
+      "title": "Kiểm2 account, payload lớn/XSS/content lỗi và xoá dữ liệu cá nhân",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-019-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-020-T01",
+      "parent": "PB-020",
+      "title": "Rà contract/storage/consent/retention và cấu hình bằng env, không lưu secret trong docs",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-014-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-020-T02",
+      "parent": "PB-020",
+      "title": "Hoàn tất recorder/STT/S3/replay và lỗi microphone/provider",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-020-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-020-T03",
+      "parent": "PB-020",
+      "title": "Kiểm thiết bị thật/signed URL/account isolation/delete và audio feedback",
+      "role": "QA/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-020-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-021-T01",
+      "parent": "PB-021",
+      "title": "Chốt bộ acceptance end-to-end và bộ gold có version",
+      "role": "QA/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-004-T03",
+        "PB-007-T03",
+        "PB-008-T03",
+        "PB-011-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-021-T02",
+      "parent": "PB-021",
+      "title": "Chạy integration/Playwright + provider smoke phù hợp; triage lỗi theo mức độ",
+      "role": "QA/Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-021-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-021-T03",
+      "parent": "PB-021",
+      "title": "Duyệt kết quả giáo dục, không dùng build pass thay teacher review",
+      "role": "Reviewer/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-021-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-022-T01",
+      "parent": "PB-022",
+      "title": "Chốt domain/SMTP/Google audience và callback; secrets chỉ trong env",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-022-T02",
+      "parent": "PB-022",
+      "title": "Cấu hình môi trường và kiểm đường dẫn verify/reset/linking",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-022-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-022-T03",
+      "parent": "PB-022",
+      "title": "Kiểm2 account và session/revoke/logout/CSRF trên HTTPS thật",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-022-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-023-T01",
+      "parent": "PB-023",
+      "title": "Runbook deploy/backup/restore/rollback và threat boundaries, không secrets",
+      "role": "Dev/Ops",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-022-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-023-T02",
+      "parent": "PB-023",
+      "title": "Deploy staging, restore vào môi trường riêng, health/error monitoring",
+      "role": "Ops",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-023-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-023-T03",
+      "parent": "PB-023",
+      "title": "Diễn tập rollback/recovery, data count/isolation và lưu evidence đã redacted",
+      "role": "QA/PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-023-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-024-T01",
+      "parent": "PB-024",
+      "title": "Sync5 docs mỗi feature + code-map/HANDOFF, lint/typecheck/build/container",
+      "role": "Dev",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-021-T03",
+        "PB-022-T03",
+        "PB-023-T03"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-024-T02",
+      "parent": "PB-024",
+      "title": "Audit tách lượt spec→code→test→UI, xác nhận không còn release blocker",
+      "role": "QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-024-T01"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-024-T03",
+      "parent": "PB-024",
+      "title": "Go/no-go và release notes; approval phát hành cụ thể ở bước cuối",
+      "role": "PO",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-024-T02"
+      ],
+      "blocker": "",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    }
+  ],
+  "team": {
+    "mode": "Solo",
+    "owner": "Chủ dự án",
+    "roles": [
+      "Dev với trợ giúp Codex",
+      "PO",
+      "Reviewer tiếng Hàn"
+    ],
+    "hoursPerWeek": null,
+    "reviewCapability": "User confirmed 2026-10-31"
+  }
+}

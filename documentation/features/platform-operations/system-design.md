@@ -18,6 +18,8 @@ Sơ đồ khái quát ranh giới; chuỗi phía trên nêu rõ worker/provider/
 
 ## Dữ liệu và ownership
 
+Internal planning data: work-items.json → validatePlanning → buildViews → generated WBS/backlog/sprint/task/dashboard + CSV. Source ở documentation/planning, owner platform-operations; không nằm trong runtime/app DB. Check mode không sửa file, sync mode chỉ sinh7 views cố định. Dependencies và evidence là guard cấu trúc, không thay PO review hoặc quality audit. Solo/reviewer do user xác nhận; hours/capacity/date chưa chốt nên các sprint Proposed.
+
 Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared.
 
 API cá nhân luôn lấy user từ session ở [api](../../../lib/api.ts), không nhận user_id tùy ý từ request. Mutation dùng JSON/Origin; lỗi auth 401/403 không phải dữ liệu trống hợp lệ.

@@ -710,7 +710,7 @@
         {
           "file": "package.json",
           "symbols": [],
-          "sha256": "4fdd406f5f7d93ac94bd537893a403ebdef1bf68575acca2e8fc23a3ca5dd0d3"
+          "sha256": "448ea1e76f5189ae82e603f54b1dbccae9fc8a126cbc326f798276f6525abaae"
         },
         {
           "file": "package-lock.json",
@@ -766,6 +766,20 @@
           "file": "scripts/check-documentation.mjs",
           "symbols": [],
           "sha256": "df8c051f6dedb94446982b70acc1102d7b80f9b878138be786e6e27474023de5"
+        },
+        {
+          "file": "scripts/planning.mjs",
+          "symbols": [
+            "validatePlanning",
+            "buildViews",
+            "run"
+          ],
+          "sha256": "3cdc3f3e061b7de4fe265a21d2922686fe372f1e42f458634552ba9f96703351"
+        },
+        {
+          "file": "tests/unit/planning.test.ts",
+          "symbols": [],
+          "sha256": "50ea523d39c303d95af3b708d6675dbf5d40a295475bbbaf93709fe93c721952"
         }
       ]
     }
