@@ -4,6 +4,12 @@ Cập nhật gần nhất: 2026-10-31
 
 ## Trạng thái hiện tại
 
+### 2026-10-31 — Chốt hướng nghiên cứu ASR cấu hình thấp/Gemma
+
+- Owner ưu tiên cấu hình thấp, có thể dùng Google Gemma audio/ASR. Tạo `documentation/research/low-resource-asr.md`, đăng ký trong index; đối chiếu primary docs Google Gemma3n/Gemma4 và whisper.cpp. Ưu tiên spike whisper.cpp base CPU; Gemma4 E2B audio là ứng viên so sánh, không mặc định suy E2B=2GB hoặc mọi Gemma nhận audio.
+- Ghi cấu hình thử1–2 threads/concurrency1, resource/quality benchmark gate, phương án private local media cần ADR trước code; giữ chấm phát âm là yêu cầu riêng. Không sửa runtime/provider hoặc đánh dấu PB-020/026 Done. Full goal vẫn active, chưa tích hợp ASR local/Gemma.
+- Review source URLs và phân biệt vendor support với runtime/quality evidence. Chưa chạy/download Gemma, chưa đo tiếng Hàn. `npm run docs:check` đạt (15 feature/109 source/1245 link); `npm run plan:check` và `git diff --check` đạt. Chỉ đổi research/docs, không chạy build runtime.
+
 ### 2026-10-31 — Triển khai thư viện kiến thức trong mục tiêu tự học
 
 - Branch `feature/self-study-library`, source primary D:/Project/langz. Tạo đặc tả5 docs trước code tại `documentation/features/knowledge-library/`; triển khai /knowledge và /admin/knowledge, schema/service Mongo versioned, API session/role, PostgreSQL notes/bookmark/section/read và attempts snapshot/idempotent, MCQ/cloze server grading, lưu mẫu vào SRS. Library/admin cũ thêm link, không thay workflow đang có.

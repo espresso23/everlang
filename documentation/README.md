@@ -55,6 +55,8 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 
 ## Product discovery
 
+- [ASR cấu hình thấp và Google Gemma](research/low-resource-asr.md) — ưu tiên CPU/self-host, nguồn chính thức, hai ứng viên và benchmark gate; chưa tích hợp.
+
 - [Mục tiêu và completion matrix tự học](planning/SELF_STUDY_DELIVERY.md) — phạm vi end-state, tracking và bằng chứng nghiệm thu; goal đang active.
 - [Thư viện kiến thức](features/knowledge-library/README.md) — feature mới đang triển khai, content seed chưa được duyệt; [system design](features/knowledge-library/system-design.md), [functions](features/knowledge-library/functions.md), [UI](features/knowledge-library/ui.md), [audit](features/knowledge-library/audit.md).
 
