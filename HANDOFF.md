@@ -4,6 +4,19 @@ Cập nhật gần nhất: 2026-10-31
 
 ## Trạng thái hiện tại
 
+### 2026-10-31 — Bổ sung discovery thư viện kiến thức đọc lại
+
+- Mở rộng `documentation/research/self-study-vocabulary-pronunciation.md` theo yêu cầu: ngữ pháp, idiom/quán dụng ngữ, tục ngữ, thành ngữ Hán-Hàn, collocation, phát âm và bài đọc/tài liệu; thêm tìm kiếm, bookmark, vị trí đọc, ghi chú riêng tư và liên kết SRS.
+- Đối chiếu PB-001/002/005/006/007/013/014 để tránh tạo lại scope ngữ pháp; các phần bổ sung vẫn proposed, không sửa tracking/sprint/code. Nguồn NIKL API được đọc công khai, chưa gọi API hoặc kiểm coverage.
+- Review phân loại/trạng thái và liên kết: tài liệu nghiên cứu không thay canonical feature spec; học liệu/UI/provider vẫn NOT VERIFIED. `npm run docs:check`, `npm run plan:check`, `git diff --check` đạt; chỉ đổi tài liệu, không cần build runtime.
+
+### 2026-10-31 — BA discovery: bộ từ theo chủ đề và phát âm
+
+- Branch `docs/vocabulary-pronunciation-discovery`: thêm `documentation/research/self-study-vocabulary-pronunciation.md`, đăng ký tại `documentation/README.md`. Đối chiếu vocabulary/SRS/recordings source; đề xuất taxonomy, content/audio pilot, vòng học và acceptance, liên kết PB-013/014/018/020/026; không đổi JSON tracking, code, schema hoặc scope sprint.
+- Nguồn công khai: NIKL, LingQ, TEUIDA, Hàn Quốc Lý Thú, tài liệu Azure; bài Tiếng Hàn Thú Vị trả 429, chỉ ghi search signal. Azure có ko-KR assessment nhưng prosody/phoneme naming giới hạn theo locale; chưa gọi provider hoặc đo độ chính xác. Không dùng STT match làm điểm phát âm.
+- Review riêng kiểm phân biệt baseline/proposed, nguồn và traceability; còn NOT VERIFIED với benchmark nhiều người/thiết bị, thử thực tế đối thủ và content/audio. Bước tiếp: chọn content-first hoặc speaking-first, refine pilot và spike trước khi triển khai.
+- Kiểm tra: `npm run docs:check` đạt (14 domain, 94 source/config, 1196 local links); `npm run plan:check` đạt (33 PBI/72 task/6 sprint Proposed); `git diff --check` đạt. Không build app vì chỉ đổi tài liệu nghiên cứu.
+
 ### 2026-10-30 — Commit nền beta và đồng bộ documentation trước profile
 
 - Đã commit nền beta/UI/quy tắc phát triển tại `1d0fbad`; không gom thay đổi riêng thư mục project-idea của người dùng.

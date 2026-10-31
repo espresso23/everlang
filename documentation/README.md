@@ -53,6 +53,10 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 - [Vận hành](shared/operations.md) · [Bằng chứng](shared/baseline-evidence.md) · [Audit tích hợp](audits/baseline-integration.md)
 - [Code map](code-map.json): file/symbol/hash và feature owner duy nhất; `npm run docs:check` phát hiện source drift/link sai. Sau review code + docs, dùng `npm run docs:sync` để cập nhật hash; không thay thế audit ngữ nghĩa.
 
+## Product discovery
+
+- [Từ vựng theo chủ đề và luyện phát âm](research/self-study-vocabulary-pronunciation.md) — nghiên cứu 2026-10-31; đề xuất chưa duyệt scope, chưa triển khai hoặc chuyển sprint.
+
 ## Quy trình
 
 1. Chọn/tái sử dụng branch đúng phạm vi, ví dụ `feature/JIRA-456-add-login-page`.
