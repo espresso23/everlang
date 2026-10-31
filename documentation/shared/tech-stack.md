@@ -21,3 +21,5 @@ Mô hình không tách NestJS/microservice. Chưa có billing/quota kinh doanh. 
 Visual layer: Fontsource Inter Variable **5.3.0** self-host; app/design-tokens.css + app/editorial.css. [Quy chuẩn frontend](../design/README.md).
 
 Audio tự học mới: [self-hosted-speech](../features/self-hosted-speech/README.md) dùng MediaRecorder/import → PostgreSQL + private filesystem volume → BullMQ speech queue riêng. Hai provider explicit: whisper.cpp1.9.5 base multilingual CPU (model SHA pinned), hoặc Gemini3.8Flash generateContent free tier (cần project được cấp Free tier). API worker Node+ffmpeg không cần model local, limit384MB/1CPU là cấu hình chứ chưa là benchmark. Probe API key hiện tại402, cloud inference NOT VERIFIED. Speech SDK/S3 cũ vẫn thuộc recordings legacy; chưa có provider chấm phát âm đã kiểm chứng.
+
+Catalogue không thêm framework/dependency: Mongoose Mongo versioned sense/set, PG identity/FSRS/profile-TZ quota, Zod strict contract; platform SpeechSynthesis TTS có fallback. `seed:vocabulary` CLI idempotent draft-only. [Feature](../features/vocabulary-catalog/README.md).

@@ -33,3 +33,5 @@ API cá nhân luôn lấy user từ session ở [api](../../../lib/api.ts), khô
 Chưa có optimizer cá nhân hóa từ lịch sử dài hạn; dùng preset FSRS-7.
 
 Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [storage/migrations](../../shared/data-model.md), [vận hành](../../shared/operations.md). Chỉ tên biến môi trường được ghi ở docs; không đưa token, cookie hay credential vào ví dụ/log.
+
+Migration007 cần app bridge trước khi áp dụng; giữ nguyên FSRS/card id/log, thay old constraint bằng2 partial indexes manual/catalog. Rollback phải `everlang-vocabulary-bridge:local` hoặc bản mới hơn, không pre-bridge. [ADR/migration](../vocabulary-catalog/system-design.md).

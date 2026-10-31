@@ -33,7 +33,7 @@ export const POST = api("/api/vocabulary", async (r, u) => {
   const id = randomUUID();
   const card = await newCard(id);
   const rows = await query(
-    "INSERT INTO vocabulary(id,user_id,term,meaning,context,note,kind,source_id,card,due,algorithm) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,now(),$10) ON CONFLICT(user_id,term,kind) DO NOTHING RETURNING *",
+    "INSERT INTO vocabulary(id,user_id,term,meaning,context,note,kind,source_id,card,due,algorithm) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,now(),$10) ON CONFLICT DO NOTHING RETURNING *",
     [
       id,
       u.id,
@@ -57,20 +57,30 @@ export const PUT = api("/api/vocabulary", async (r, u) => {
       suspended: z.boolean(),
     })
     .parse(await r.json());
-  const rows = await query(
-    "UPDATE vocabulary SET term=$3,meaning=$4,context=$5,note=$6,kind=$7,suspended=$8,version=version+1 WHERE id=$1 AND user_id=$2 AND version=$9 RETURNING *",
-    [
-      b.id,
-      u.id,
-      b.term,
-      b.meaning,
-      b.context,
-      b.note,
-      b.kind,
-      b.suspended,
-      b.version,
-    ],
-  );
+  let rows;
+  try {
+    rows = await query(
+      "UPDATE vocabulary SET term=$3,meaning=$4,context=$5,note=$6,kind=$7,suspended=$8,version=version+1 WHERE id=$1 AND user_id=$2 AND version=$9 RETURNING *",
+      [
+        b.id,
+        u.id,
+        b.term,
+        b.meaning,
+        b.context,
+        b.note,
+        b.kind,
+        b.suspended,
+        b.version,
+      ],
+    );
+  } catch (e) {
+    if ((e as { code?: string }).code === "23505")
+      throw new HttpError(
+        409,
+        "Đã có thẻ nhập tay với từ và loại này. Hãy giữ riêng nghĩa từ bộ từ.",
+      );
+    throw e;
+  }
   if (!rows.length) throw new HttpError(409, "Thẻ đã thay đổi. Hãy tải lại.");
   return { item: rows[0] };
 });

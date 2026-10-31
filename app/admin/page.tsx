@@ -50,6 +50,7 @@ export default function Admin() {
     <main className="page">
       <p className="eyebrow">QUẢN TRỊ EVERLANG</p>
       <h1 className="page-title">Học liệu có kiểm duyệt</h1>
+      <p><Link href="/admin/word-sets" className="text-button">Biên soạn bộ từ & nghĩa →</Link></p>
       <p><Link className="text-button" href="/admin/knowledge">Biên tập thư viện ngữ pháp, quán dụng ngữ và tài liệu →</Link></p>
       <p className="muted">
         Nháp → Đã duyệt → Xuất bản. Bài đã xuất bản được giữ bất biến để bảo

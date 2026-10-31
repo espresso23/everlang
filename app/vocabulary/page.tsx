@@ -1,12 +1,19 @@
 "use client";
+import Link from "next/link";
 import { Suspense, useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
-import { request, speak } from "@/lib/client";
+import { request } from "@/lib/client";
+import { playKorean, stopKorean } from "@/lib/korean-audio";
+import {
+  catalogRecallContext,
+  type CatalogSnapshot,
+} from "@/lib/vocabulary-catalog-contract";
 type Card = {
   id: string;
   term: string;
   meaning: string;
   context: string;
+  content_snapshot?: CatalogSnapshot | null;
   note: string;
   kind: string;
   version: number;
@@ -22,6 +29,7 @@ function Vocabulary() {
   const [revealed, setRevealed] = useState(false);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const [audioBusy, setAudioBusy] = useState(false);
   const [editing, setEditing] = useState<Card | null>(null);
   const load = useCallback(async () => {
     try {
@@ -37,11 +45,25 @@ function Vocabulary() {
   }, []);
   useEffect(() => {
     const timer = setTimeout(() => void load(), 0);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      stopKorean();
+    };
   }, [load]);
   const active = items.find(
     (c) => !c.suspended && new Date(c.due).getTime() <= now,
   );
+  async function listen(text: string) {
+    setAudioBusy(true);
+    setMessage("");
+    try {
+      await playKorean(text);
+    } catch (e) {
+      setMessage((e as Error).message);
+    } finally {
+      setAudioBusy(false);
+    }
+  }
   async function save(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setBusy(true);
@@ -80,6 +102,7 @@ function Vocabulary() {
   }
   async function rate(rating: number) {
     if (!active) return;
+    stopKorean();
     setBusy(true);
     try {
       await request("/api/reviews", "POST", {
@@ -110,6 +133,7 @@ function Vocabulary() {
         <button
           className="primary-button"
           onClick={() => {
+            stopKorean();
             setReview(!review);
             setRevealed(false);
           }}
@@ -117,6 +141,11 @@ function Vocabulary() {
           {review ? "Xem kho từ" : `Bắt đầu ôn (${due})`}
         </button>
       </div>
+      <p>
+        <Link href="/word-sets" className="text-button">
+          Khám phá bộ từ theo chủ đề →
+        </Link>
+      </p>
       {message && (
         <p role="status" className="notice">
           {message}
@@ -129,14 +158,23 @@ function Vocabulary() {
               <p className="eyebrow">
                 {active.kind === "grammar" ? "NGỮ PHÁP" : "BẠN CÒN NHỚ KHÔNG?"}
               </p>
-              <h2>{active.term}</h2>
+              <h2 lang="ko">{active.term}</h2>
               <button
                 className="soft-button"
-                onClick={() => speak(active.term)}
+                disabled={audioBusy}
+                onClick={() => void listen(active.term)}
               >
                 Nghe phát âm
               </button>
-              {active.context && <p>{active.context}</p>}
+              {active.context && (
+                <p style={{ whiteSpace: "pre-line" }}>
+                  {catalogRecallContext(
+                    active.context,
+                    active.content_snapshot,
+                    revealed,
+                  )}
+                </p>
+              )}
               {revealed ? (
                 <>
                   <div className="review-answer">
@@ -269,7 +307,8 @@ function Vocabulary() {
                 </div>
                 <div className="row-actions">
                   <button
-                    onClick={() => speak(c.term)}
+                    disabled={audioBusy}
+                    onClick={() => void listen(c.term)}
                     aria-label={"Nghe " + c.term}
                   >
                     ♫

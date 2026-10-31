@@ -1,0 +1,21 @@
+# Bằng chứng kiểm chứng — 2026-10-31
+
+Branch feature/topic-vocabulary-catalog. Dữ liệu QA tự tạo, hai account disposable đã verify qua Mailpit thật, không mock auth/Mongo/PG/FSRS. Mật khẩu/cookie/secret/backup chỉ nằm khu vực riêng tư, không đưa vào tài liệu.
+
+- `npm run lint`, `npx tsc --noEmit`, `npm test`: exit0;9 files/59 tests PASS. Audio unit dùng fake platform để kiểm lifecycle, không là quality benchmark.
+- `docker compose build app`: production Next build PASS trước typography correction; rebuild/final UI gate ghi bổ sung bên dưới.
+- `E2E_CATALOG=1 E2E_BASE_URL=http://localhost:3001 E2E_BRIDGE_URL=http://localhost:3000 E2E_CATALOG_FAILURE_URL=http://localhost:3002 npx playwright test tests/e2e/vocabulary-catalog.spec.ts`:1 passed26.3s (test23.6s). Bridge image chạy trên3000 tại thời điểm test; sau test main đã nâng lên catalog.
+- Actual tests: role/ownership/schema/pub/CAS/pins; quota concurrent; two homographs; cross-set duplicate preserves reviewed FSRS card/due/log; explicit manual attach keeps scheduling/notes; revision snapshot; preferences race;31-set pagination; actual Mongo outage500 with no SQL mutation and retained form; SRS reveal does not expose Vietnamese answer early. Browser stale-tab recovery giữ sense/reveal và retry thành công.
+- Backup PG/Mongo trước007, restore vào DB tạm đối chiếu vocabulary row hash/card/due/version và Mongo119 documents/collection counts; DB tạm xóa. Synthetic pre-reviewed card giữ id/card/due/version/algorithm/log qua007, probe cleaned. Bridge image xây/deploy trước007 và actual legacy create/duplicate/list sau007 PASS; retain tag `everlang-vocabulary-bridge:local` cho rollback. Không dùng app trước bridge sau migration007.
+- Seed `npm run seed:vocabulary` trong worker:53 records draft (30 senses,23 sets); chạy lại0 insert, không sửa timestamp/content hoặc auto publish. Toàn bộ yêu cầu owner review còn mở.
+- UI images: [learner desktop](learner-desktop.png), [learner mobile](learner-mobile.png), [admin desktop](admin-desktop.png), [SRS reveal](srs-recall.png), [service failure](service-error.png), [admin mobile](admin-mobile.png), [text spacing](admin-text-spacing.png). QA fixture không đại diện chất lượng nội dung/âm thanh.
+
+Các lần test trước có lỗi selector do Next route announcer và combobox option label; sửa locator scoped/role và giới hạn action timeout. Lần comprehensive cuối PASS. Scoped admin UI pass normal320 nhưng phát hiện text-spacing tràn8px ở header; đã điều chỉnh riêng font wordmark trong breakpoint760px hiện có, kết quả rerun cần bổ sung. Không che overflow hoặc đổi wireframe.
+
+Giới hạn: chưa physical Korean voice/mic, screenreader, semantic audio quality, browser-back SPA guard toàn ứng dụng, long-run2 thiết bị qua nửa đêm; không có Mongo execution-plan benchmark thành công. Search có bounded maxTimeMS5s và equality-key lookup, không tuyên bố benchmark đủ corpus lớn. Không có điểm phát âm/curated audio hoặc corpus toàn ngành hoàn chỉnh từ checkpoint này.
+
+Final scoped UI rerun: `E2E_CATALOG_UI=1 E2E_BASE_URL=http://localhost:3001 npx playwright test tests/e2e/vocabulary-catalog-ui.spec.ts`:1 passed8.8s (test6.5s). Actual admin form create/review/publish, keyboard key→level, mobile320 normal+text-spacing no horizontal document overflow; dirty-link dismiss retains form and accept navigates admin. Updated images visually inspected. Typography change only font20–22px, same760px breakpoint, no layout rewrite/hidden controls. Final app production build exit0/42 routes; local lint/typecheck59 tests also exit0.
+
+Main localhost3000 deployed final image after UI PASS. Anonymous pages /word-sets and /admin/word-sets200 (shell only); all3 catalog APIs401. Final database counts:53drafts/0published,0synthetic QA catalog records/0reserved QA accounts. Candidate container removed. One initial counts probe used query helper as PoolResult and failed read-only; corrected to pool.query, counts above from successful rerun. No synthetic teaching content remains public.
+
+Final handoff checks: docs:check17 features/146 source-config/1359 local links, plan:check38 PBIs/82 tasks/6 proposed sprints, git diff --check PASS. Đây là kiểm tra cấu trúc; review ngữ nghĩa và actual flows ghi riêng ở trên. Full self-study release chưa hoàn tất.

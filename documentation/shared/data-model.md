@@ -27,3 +27,7 @@ MongoDB `knowledge_entries`: key/revision unique, editVersion/status/content/rev
 ## Private speech attempts
 
 Migrations [005](../../migrations/005_local_speech.sql) và [006](../../migrations/006_speech_provider.sql) additive: speech_attempts owner/nonce/hash/status/reference/transcript/model/engine/time + provider/consent version. Audio trong named private volume, không Mongo/public URL. Local DELETE chặn playback và xóa transcript trước unlink, cleanup retry, tombstone7days. Xóa local không hứa xóa dữ liệu đã được cloud xử lý. [Contract](../features/self-hosted-speech/system-design.md).
+
+## Catalog sense identity007
+
+[Migration007](../../migrations/007_vocabulary_catalog.sql) bổ sung vocabulary.sense_key default'' và content_snapshot; manual unique user/term/kind partial, catalog unique user/sense partial; không thay card/review_logs. catalog_progress CAS self-report, catalog_preferences0–30/day, catalog_introductions unique sense lifetime + counted flag. Explicit attach manual giữ lịch/note và không tiêu quota. [Contracts](../features/vocabulary-catalog/functions.md); rollback chỉ bridge/newer (old ON CONFLICT target không tương thích).

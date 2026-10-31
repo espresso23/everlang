@@ -44,3 +44,7 @@ Nguồn đọc ngày2026-10-31: repo/model card/audio guide là primary sources.
 PB-020: thu âm/private playback/ASR; PB-026: pronunciation assessment; PB-036: audio từ/câu. [Completion matrix](../planning/SELF_STUDY_DELIVERY.md) giữ nguyên phạm vi, [research tự học](self-study-vocabulary-pronunciation.md) là đầu vào sản phẩm. Không tự đổi scope sprint, estimate hoặc trạng thái task chỉ từ việc chọn ứng viên.
 
 Bước thực thi kế tiếp: đặc tả5 docs cho runtime audio/local media và refine task trước code; spike whisper.cpp base trên audio tiếng Hàn có nguồn/quyền, sau đó quyết định provider. Không cần owner tạo tài khoản cloud trả phí để bắt đầu các phần này.
+
+## Audio mẫu — lead cho PB-036 (chưa triển khai)
+
+Tra cứu2026-10-31 trong khi build catalogue: [Qwen official model card0.6B](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-Base) có Apache2.0; [official research report](https://arxiv.org/abs/2601.15621) nói multilingual TTS. Chưa benchmark CPU/memory/Korean voices; không suy0.6B là đủ RAM thấp hoặc chất lượng learner đã đạt. [NIKL OpenAPI](https://krdict.korean.go.kr/kor/openApi/openApiInfo) có view endpoint cần kiểm media fields/rights riêng; search API hiện có chưa trả audio. Không lấy chính sách kdict (site khác) để suy quyền KRDICT. Không download/serve voice corpus dựa vào public access. Đây là lead nghiên cứu, không thay implementation scope hoặc đẩy model vào default runtime.

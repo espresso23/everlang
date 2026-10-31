@@ -72,3 +72,5 @@ Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) v�
 ## Thay đổi speech enabler
 
 Dockerfile thêm native portable/AVX2 pinned + target speech-worker và speech-api-worker nhẹ không model; Compose profiles speech/speech-api, volumes speech_media/speech_models; app mount media UID1001, worker limits/grace. package scripts speech:worker/speech:model. .env.example chỉ tên biến, SPEECH_PROVIDER default disabled. next.config outputFileTracingExcludes loại private artifacts, xem [ops](../../shared/operations.md) và [feature](../self-hosted-speech/functions.md).
+
+Shared test helper [verified accounts](../../shared/testing.md) phục vụ E2E catalogue; không là API sản phẩm, không dùng credential thật.

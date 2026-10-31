@@ -27,3 +27,10 @@
 ## Giới hạn và việc còn lại
 
 Chưa có optimizer cá nhân hóa từ lịch sử dài hạn; dùng preset FSRS-7.
+
+## Thay đổi tương thích được đặc tả trước code (PB-035)
+
+Legacy POST dùng targetless ON CONFLICT DO NOTHING trước migration007; app bridge dùng rollback cho cả schema cũ/mới.007 thay uniqueness manual partial + catalog sense stable, giữ card/due/log/id; manual giữ semantics term+kind, catalog cùng chữ khác nghĩa tách thẻ. PUT collision409. Canonical [catalog ADR](../vocabulary-catalog/system-design.md); source snapshots không tự sửa lịch ôn.
+
+- vocabulary-srs-REQ-05: catalogue context translation chỉ sau reveal; thẻ cùng chữ khác sense giữ snapshot/lịch riêng, duplicate và attach không reset. [Integrated audit](../vocabulary-catalog/audit.md).
+- vocabulary-srs-REQ-06: nghe bằng [shared device TTS](../../shared/audio.md), lỗi/không có ko voice có hướng dẫn thay vì im lặng; hardware/curated voice quality chưa tự coi verified.

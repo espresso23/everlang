@@ -87,4 +87,4 @@ input, textarea, select { text-transform: none; letter-spacing: normal; }
 .practice .control-input.pl-10 { padding-left: 40px; }
 ::selection { background: var(--brand); color: var(--surface); }
 /* Existing mobile artwork disappears at 760px. Decoration follows that same breakpoint. */
-@media (max-width: 760px) { .editorial-margin-note, .editorial-quote { display: none; } }
+@media (max-width: 760px) { .brand { font-size: clamp(20px, 6vw, 22px); } .editorial-margin-note, .editorial-quote { display: none; } }

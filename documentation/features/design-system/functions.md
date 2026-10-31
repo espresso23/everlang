@@ -15,3 +15,5 @@
 Không thêm public function/API ngoài component hiện có. [Guide](../../design/README.md), [audit](audit.md), [UI](ui.md).
 
 Light surface update: editorial.css override đủ .notebook h2/h3/eyebrow/p/error-note del/strong/p/a và empty-note để loại white-on-white khi bỏ inverse. Title, Beta/date, completed task, auth art note, layer artwork dùng sáng/tint. CSS cascade globals→editorial giữ nguyên; không đổi API/component signatures. Test editorial-design.spec.ts thêm empty/filled regression và chuyển focus từ trắng sang Cobalt.
+
+Mobile wordmark rule: app/editorial.css .brand font-size clamp20–22px inside existing max-width760px media; typography-only override. Scoped real admin320/text-spacing and keyboard evidence in [catalog UI test](../../../tests/e2e/vocabulary-catalog-ui.spec.ts); no shell function/API change.

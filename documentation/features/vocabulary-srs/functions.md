@@ -29,3 +29,9 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 vocabulary, review_logs; due là timestamp, version tăng khi sửa/ôn. JSON card phục hồi dueAt/lastReviewAt thành Date.
 
 Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+
+## Catalogue extension2026-10-31
+
+/api/vocabulary.POST dùng targetless ON CONFLICT DO NOTHING để chạy trên schema cũ/mới; manual records sense_key='' vẫn unique term/kind, các catalog sense khác nhau cùng chữ có ID và lịch riêng. PUT unique collision409. Catalogue source snapshot là provenance, sửa field cá nhân không sửa canonical content. [Learning/catalog contract](../vocabulary-catalog/functions.md) quản lý import/explicit attach, giữ card/due/log khi duplicate và mapping.
+
+Vocabulary.listen uses [shared playKorean contract](../../shared/audio.md); error appears in message, audioBusy disables repeated listen, unmount cancels. `catalogRecallContext` from [catalog contract](../../../lib/vocabulary-catalog-contract.ts) keeps generated KO-only context before reveal and KO+VI after reveal; personal edited contexts unchanged. `CatalogSnapshot` source metadata comes from server, not client card edits.

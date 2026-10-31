@@ -35,3 +35,5 @@ Theme mới theo [design guide](../design/README.md), [8 màn hình trước/sau
 ## Speech recording (2026-10-31)
 
 [/speech](../../app/speech/page.tsx) từ /library: hai panel thu/import/preview/consent và history riêng, status poll, playback/delete. Không có điểm phát âm. Provider/cảnh báo Google theo capabilities; giữ wireframe các route cũ. Canonical [UI](../features/self-hosted-speech/ui.md), [audit](../features/self-hosted-speech/audit.md).
+
+/word-sets: search/filter/pagination → bộ pin nghĩa → reveal/examples/TTS/record link/save SRS/known/skipped/preferences. /admin/word-sets: sense/set editor/version workflow. /vocabulary và /admin thêm Link giữ wireframe. [Canonical UI](../features/vocabulary-catalog/ui.md); chưa có nội dung thật được xuất bản tới khi owner duyệt.

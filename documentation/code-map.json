@@ -294,9 +294,10 @@
             "Vocabulary",
             "save",
             "rate",
-            "Page"
+            "Page",
+            "listen"
           ],
-          "sha256": "4d97f19a1486561eeaa580c64f747ee47cfa0bc0a63a34089be75d8c6da8ec23"
+          "sha256": "9ae306fd7dd7dc028bb652242c53eab4d019fcb5b193fcad7817be13976af9d1"
         },
         {
           "file": "app/api/vocabulary/route.ts",
@@ -305,7 +306,7 @@
             "POST",
             "PUT"
           ],
-          "sha256": "9623691bb60a878719133beace133581a55830cd8c365e116c8a02a9bd173401"
+          "sha256": "0870a4d295f96ae4f2e542fff6e8ffd6cdc2607e75cd7df41bdfddac199fbaa3"
         },
         {
           "file": "app/api/reviews/route.ts",
@@ -392,7 +393,7 @@
             "transition",
             "AdvancedTools"
           ],
-          "sha256": "dd7fa6cbddd17025df9622d3feea5cb5e1c9705adf7298e3ef326bd8eedbc262"
+          "sha256": "526e3ebc275c5c98658c10449c32fd0348868f3b3a3929b42fe72c0770ba4a35"
         },
         {
           "file": "app/api/admin/content/route.ts",
@@ -581,7 +582,7 @@
         {
           "file": "app/editorial.css",
           "symbols": [],
-          "sha256": "b05c2c426a7edd65e0b6750d652383b300696585cd4af90d5d845f0f511867ea"
+          "sha256": "5af78422de129de22fc9c0681ba1b6aacb3770772edb323e6372161ad2639f57"
         },
         {
           "file": "public/fonts/INTER-LICENSE.txt",
@@ -710,7 +711,7 @@
         {
           "file": "package.json",
           "symbols": [],
-          "sha256": "adcea630e4b11d57f673002a602bc1581758cff989d78fd4329d93b22d9b20fb"
+          "sha256": "d598db68cee9805d460acb54e07c4a5d4c1ec058626305ca2331c9b907a56a8e"
         },
         {
           "file": "package-lock.json",
@@ -780,6 +781,13 @@
           "file": "tests/unit/planning.test.ts",
           "symbols": [],
           "sha256": "b23eb7b45e58e4a3f60fbc362f502783b43376b8fca6b5d987afde18da13d807"
+        },
+        {
+          "file": "tests/e2e/helpers/account.ts",
+          "symbols": [
+            "verifiedAccount"
+          ],
+          "sha256": "9996a86e2013adfbe744c622ee997e10ef48acea9829f8788cffd5e581f3f59d"
         }
       ]
     },
@@ -1038,6 +1046,144 @@
           "file": "tests/unit/speech-gemini.test.ts",
           "symbols": [],
           "sha256": "28e482e7bd6ac90552ea17bd5b641fc6e7934310fbfe94cd58df55e49b7db632"
+        }
+      ]
+    },
+    {
+      "id": "vocabulary-catalog",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "lib/vocabulary-catalog-contract.ts",
+          "symbols": [
+            "catalogTopics",
+            "catalogKey",
+            "senseSchema",
+            "setSchema",
+            "catalogContentSchema",
+            "catalogPublic",
+            "catalogLearningBody",
+            "catalogRecallContext"
+          ],
+          "sha256": "5d59ea95ecb0058119de255e8ea894cabf27f565d99fc1f68d12063cf555d618"
+        },
+        {
+          "file": "lib/vocabulary-catalog.ts",
+          "symbols": [
+            "getCatalog",
+            "catalogSetDetail",
+            "listCatalog",
+            "transitionCatalog"
+          ],
+          "sha256": "a41ca997cc4840bd26682c8f60cce42dd0bbb2081675334f7ed948d3a75c34c3"
+        },
+        {
+          "file": "lib/models/VocabularyCatalog.ts",
+          "symbols": [
+            "VocabularyCatalog"
+          ],
+          "sha256": "87aac0a27e85cd5a04729d1a899cec37419f564aa230b34bbced7a5ac6caca99"
+        },
+        {
+          "file": "lib/catalog-learning.ts",
+          "symbols": [
+            "catalogDay",
+            "catalogLearning",
+            "saveCatalogLearning",
+            "saveCatalogPreferences"
+          ],
+          "sha256": "b24f4268e4d6eb554d3f7e58eae75c496a80aaf29ea0089a54a738d4c4af95c8"
+        },
+        {
+          "file": "lib/korean-audio.ts",
+          "symbols": [
+            "playKorean",
+            "stopKorean"
+          ],
+          "sha256": "cc19da842f81e2262b822283d5828704b5a06483452e022ff16af56e6725e906"
+        },
+        {
+          "file": "data/vocabulary-drafts.ts",
+          "symbols": [
+            "vocabularyDrafts"
+          ],
+          "sha256": "316e64d16dcd83b1979b0d5a0c117d94183494ed5ab1baef2591db5e2a3e18b7"
+        },
+        {
+          "file": "scripts/seed-vocabulary-catalog.ts",
+          "symbols": [],
+          "sha256": "9722ce7aa977b9b3ccd61834255e4da38555bbbfb728dcab4997d30b46ed2aec"
+        },
+        {
+          "file": "app/api/word-sets/route.ts",
+          "symbols": [
+            "GET"
+          ],
+          "sha256": "e6df8376e0411bcd94635dbc87d84129bfb50b644dfe1e10f3f7c01736c2984e"
+        },
+        {
+          "file": "app/api/word-sets/learn/route.ts",
+          "symbols": [
+            "GET",
+            "POST",
+            "PUT"
+          ],
+          "sha256": "89dadf340cdd6f6b141c348afcee9a06358ceabd9915ac4e0bfbc434c353ea79"
+        },
+        {
+          "file": "app/api/admin/word-sets/route.ts",
+          "symbols": [
+            "GET",
+            "POST",
+            "PATCH"
+          ],
+          "sha256": "8859ffc356f2da3d3636a7eb691c225b9cd42d0b58435e2e5063f6258fd8e6f2"
+        },
+        {
+          "file": "app/word-sets/page.tsx",
+          "symbols": [
+            "WordSets",
+            "Page"
+          ],
+          "sha256": "513d4b8eff0f8888db84e211ca5e7036f5f41cabe293708aaa513187545ac49f"
+        },
+        {
+          "file": "app/word-sets/word-sets.css",
+          "symbols": [],
+          "sha256": "c09a0413c4d9ef0be6740f314541f2f97443a71da707ce05085c6c5eac40ba74"
+        },
+        {
+          "file": "app/admin/word-sets/page.tsx",
+          "symbols": [
+            "WordSetsAdmin",
+            "blank"
+          ],
+          "sha256": "c551b5f0ff7facf2781792d57763fb8d3a48541d54b8eb099ff32a10092dd4f7"
+        },
+        {
+          "file": "migrations/007_vocabulary_catalog.sql",
+          "symbols": [],
+          "sha256": "50b2337e856d0e3d058f6d081d60cbe91c48a1bdaf1a395d4fddf9109d1445b6"
+        },
+        {
+          "file": "tests/unit/vocabulary-catalog.test.ts",
+          "symbols": [],
+          "sha256": "a5a645be7318c32375fe433af38ea6f6fef71f8f89150cc3ecc8d59bc8563d39"
+        },
+        {
+          "file": "tests/e2e/vocabulary-catalog.spec.ts",
+          "symbols": [],
+          "sha256": "a9889be3141b33a591675079c0c0be8ba971cb423d9908319b2dbeefcf26b1fa"
+        },
+        {
+          "file": "tests/unit/korean-audio.test.ts",
+          "symbols": [],
+          "sha256": "18ae87e1376c0e30a47ae294f210978575f20b8a279ce9f262f0e0960de5377d"
+        },
+        {
+          "file": "tests/e2e/vocabulary-catalog-ui.spec.ts",
+          "symbols": [],
+          "sha256": "17503826055429f75dc0df6c44493914b929598074595aa0f32f4421e862b72a"
         }
       ]
     }

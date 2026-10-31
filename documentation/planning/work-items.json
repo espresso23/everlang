@@ -1125,9 +1125,14 @@
       "dependsOn": [],
       "external": [],
       "acceptance": "Taxonomy topic/level/domain, entry/sense stable, examples/collocations/reviewer/rights, học và lưu SRS không mất lịch hoặc gộp sai nghĩa.",
-      "refinement": "Needs splitting",
+      "refinement": "Ready",
       "contentCapacity": "TBD",
-      "tasks": [],
+      "tasks": [
+        "PB-035-T01",
+        "PB-035-T02",
+        "PB-035-T03",
+        "PB-035-T04"
+      ],
       "scope": "Core"
     },
     {
@@ -2386,6 +2391,76 @@
       "evidence": [
         "documentation/features/self-hosted-speech/audit.md",
         "documentation/features/self-hosted-speech/assets/verification.md"
+      ],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-035-T01",
+      "parent": "PB-035",
+      "title": "Đặc tả sense/version/taxonomy/UI/migration bridge trước code",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Done",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [
+        "documentation/features/vocabulary-catalog/README.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-035-T02",
+      "parent": "PB-035",
+      "title": "Triển khai catalog/admin/learn và sense-aware FSRS",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Done",
+      "dependsOn": [
+        "PB-035-T01"
+      ],
+      "blocker": "",
+      "evidence": [
+        "documentation/features/vocabulary-catalog/functions.md",
+        "documentation/features/vocabulary-catalog/audit.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-035-T03",
+      "parent": "PB-035",
+      "title": "Audit actual services,rollback,quota,ownership và browser",
+      "role": "QA/Reviewer",
+      "owner": "Chủ dự án",
+      "status": "Review",
+      "dependsOn": [
+        "PB-035-T02"
+      ],
+      "blocker": "Technical service/browser gates passed; release still awaits owner content review, physical voice/accessibility scope stated in audit.",
+      "evidence": [
+        "documentation/features/vocabulary-catalog/audit.md",
+        "documentation/features/vocabulary-catalog/assets/verification.md",
+        "documentation/audits/vocabulary-catalog-integration.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-035-T04",
+      "parent": "PB-035",
+      "title": "Biên soạn coverage và owner duyệt nội dung/audio liên quan",
+      "role": "QA/Reviewer",
+      "owner": "Chủ dự án",
+      "status": "In progress",
+      "dependsOn": [
+        "PB-035-T01"
+      ],
+      "blocker": "30 sense/23 set draft đã seed; owner chưa duyệt, chưa phải full coverage",
+      "evidence": [
+        "data/vocabulary-drafts.ts",
+        "documentation/features/vocabulary-catalog/README.md"
       ],
       "verification": "Not run",
       "updated": "2026-10-31"

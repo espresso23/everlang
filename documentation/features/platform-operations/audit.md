@@ -29,3 +29,6 @@ Local Mailpit không chuyển email tới Gmail. Production cần SMTP/domain/HT
 ### Speech operation extension2026-10-31
 
 App/speech API worker build PASS, source/model native build/checksum PASS; metadata+private volume restore PASS; rollback original tag unavailable so rebuild cc1c776 image and bootstrap3002/sign-in200. Gemini failure pipeline verified; successful inference/Free tier availability NOT VERIFIED. Canonical [speech audit](../self-hosted-speech/audit.md) and [evidence](../self-hosted-speech/assets/verification.md), not a claim of all baseline operations reverified.
+
+### Catalog schema/runtime extension2026-10-31
+007 migration backup/restore + reviewed-card probe + bridge legacy API PASS; main rebuilt/deployed after candidate integration, QA accounts/fixtures/containers removed. Main anonymous catalog APIs401, page shells200; Mongo53drafts/0published/0synthetic QA. [Catalog evidence](../vocabulary-catalog/assets/verification.md), [rollback contract](../../shared/operations.md). No claim production Internet SMTP/Google audio/new physical device validated.

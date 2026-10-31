@@ -31,3 +31,5 @@ S3/STT/Tutor có code tích hợp nhưng còn phụ thuộc cấu hình và xác
 ## Speech worker boundary
 
 [self-hosted-speech](../features/self-hosted-speech/system-design.md) là module cùng monolith và Node worker queue riêng. SQL durable outbox + private volume là nguồn chính; Redis queue/heartbeat không chứa kết quả lâu dài. Gemini API là optional explicit external provider, Whisper CPU local là option khác; không chạy đồng thời hai profile worker cùng queue/heartbeat. Không đưa learner reference vào ASR.
+
+Vocabulary catalog: [canonical design](../features/vocabulary-catalog/system-design.md). Mongo vocabulary_catalog giữ immutable common senses/sets; PostgreSQL vocabulary vẫn là SRS duy nhất, thêm sense identity/snapshot và catalog progress/preferences/introductions riêng user. No AI dependency for browsing/learning, quota new/day không phải quota AI kinh doanh.

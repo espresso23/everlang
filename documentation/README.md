@@ -73,3 +73,5 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 5. Kiểm tra tham chiếu hai chiều, cập nhật mục lục và [HANDOFF.md](../HANDOFF.md). Không ghi credential, token, dữ liệu người dùng thật hoặc URL chứa thông tin xác thực vào bằng chứng.
 
 Bộ tài liệu baseline đã được backfill cho toàn bộ source/màn hình hiện có. Mỗi thay đổi tiếp theo cập nhật đúng feature, code map và audit trong cùng lượt; không tạo bản đặc tả thứ hai cho cùng feature.
+
+- [Bộ từ theo chủ đề](features/vocabulary-catalog/README.md) — implemented PB-035; technical audit đạt phạm vi ghi nhận, content/audio release gates còn mở; sense/version, học và FSRS hiện có.

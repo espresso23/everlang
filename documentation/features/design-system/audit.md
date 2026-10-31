@@ -63,3 +63,6 @@ Quyền/validation, contract hai đầu, snapshot/state và lỗi cần đối c
 Session pending/avatar đã sửa trong feature/user-profile; xem [audit tích hợp](../../audits/profile-auth-integration.md). Một số utility colors trong Practice vẫn có màu trạng thái ngữ nghĩa.
 
 Điều kiện nâng trạng thái verified: yêu cầu bắt buộc trong [README](README.md) có bằng chứng tương ứng, không còn lỗi bắt buộc, docs/symbol/hash đúng và provider đã kiểm trong môi trường mục tiêu. Lịch sử kiểm tra trước đây giữ ở [FEATURE_AUDIT](../../../FEATURE_AUDIT.md); đây không phải khẳng định đã chạy lại mọi ca trong lượt tài liệu này.
+
+## 2026-10-31 — mobile wordmark text spacing
+PASS scoped: existing760px breakpoint, font-size clamp20–22px only; order/columns/gaps/padding/control visibility unchanged. Actual320px viewport with letter-spacing0.12em, word-spacing0.16em, line-height1.5 and paragraph margin2em no horizontal document overflow after fix (previously8px). [Image](../vocabulary-catalog/assets/admin-text-spacing.png), [test](../../../tests/e2e/vocabulary-catalog-ui.spec.ts), [feature evidence](../vocabulary-catalog/assets/verification.md). No claim rerun all historical8-route baselines, screenreader or device voice from this scoped test.

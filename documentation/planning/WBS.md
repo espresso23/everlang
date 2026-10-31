@@ -78,7 +78,10 @@ Học, dùng lại và ghi nhận mức nắm kiến thức
   - PB-018-T02 — Context/card variants, source navigation và audio fallback
   - PB-018-T03 — Kiểm migration compatible nếu có, review concurrency và dữ liệu cũ
 - **WBS-2.35 / PB-035 — Bộ từ vựng đời sống và chuyên ngành có ví dụ** (P0, Core, Unscheduled).
-  - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
+  - PB-035-T01 — Đặc tả sense/version/taxonomy/UI/migration bridge trước code
+  - PB-035-T02 — Triển khai catalog/admin/learn và sense-aware FSRS
+  - PB-035-T03 — Audit actual services,rollback,quota,ownership và browser
+  - PB-035-T04 — Biên soạn coverage và owner duyệt nội dung/audio liên quan
 
 
 ## WBS-3 / Lộ trình và cá nhân hóa

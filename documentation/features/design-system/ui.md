@@ -18,3 +18,6 @@ Fixture giả lập chỉ để review UI, không là bằng chứng API/provide
 Chỉ /profile được yêu cầu đổi layout sang [Learning Passport](../user-profile/ui.md). Bảy route khác giữ wireframe; baseline JSON không bị ghi đè, profile có kiểm thử state/overflow riêng.
 
 Palette nhẹ: bỏ black fill ở title/date/Beta/completed-task/auth art note; lớp chữ và quote artwork nhẹ hơn. [Sổ tay trống desktop](assets/light-notebook-empty-desktop.png), [trống mobile](assets/light-notebook-empty-mobile.png), [có lỗi desktop](assets/light-notebook-filled-desktop.png), [có lỗi mobile](assets/light-notebook-filled-mobile.png). Ảnh synthetic QA, không phải dữ liệu học thật.
+
+## Mobile text spacing — 2026-10-31
+Wordmark dùng cỡ chữ responsive 20–22px trong breakpoint760px hiện có để header không tràn ở320px khi tăng letter/word spacing. Giữ logo e, Beta, nút tài khoản, thứ tự, padding/gap và khung bố cục. Không che overflow để giấu nội dung. Bằng chứng tại audit vocabulary-catalog.

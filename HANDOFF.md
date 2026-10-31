@@ -4,6 +4,14 @@ Cập nhật gần nhất: 2026-10-31
 
 ## Trạng thái hiện tại
 
+### 2026-10-31 — Bộ từ theo chủ đề/sense (technical checkpoint, release gate mở)
+
+- Branch feature/topic-vocabulary-catalog từ6790f1f, primary D:/Project/langz, tree sạch trước khi tạo. Đặc tả5 docs trước code tại documentation/features/vocabulary-catalog; PB-035 refine4 tasks, chưa chốt sprint/capacity. Mongo catalog versioned/pinned sense/set, learner/admin forms, PG sense-aware FSRS/quota/CAS/explicit legacy mapping, TTS hệ thống và /speech link; không thêm SRS thứ hai.
+- Build/tag/deploy everlang-vocabulary-bridge:local từ6790f1f plus targetless legacy POST trước007. Backup PG+Mongo; restore vào DB tạm, PG vocabulary hash/card/due/version và Mongo collection counts khớp, DB tạm đã xóa.007 đổi old full uniqueness sang partial manual/catalog, không reset thẻ. Synthetic reviewed-card probe xác nhận id/card/due/version/algorithm/revlog nguyên vẹn rồi dọn QA. Rollback từ007 bắt buộc bridge/newer, không dùng pre-bridge image.
+- Seed explicit30 nghĩa tự biên soạn AI-assisted/23 bộ đều draft, rerun0insert, không auto-review/pub; bộ khởi đầu không thay full domain corpus. Kiểm Mongo knowledge hiện13draft, chưa evidence owner duyệt.59/59 unit, lint/typecheck và production Docker build42routes đạt. Actual2-account/Mongo/PG/FSRS/quota/CAS/pin/legacy/bridge/outage E2E đạt26.3s; scoped admin UI workflow/keyboard/dirty-link/320+text-spacing đạt8.8s. Sửa recall lộ dịch Việt, TTS timer/cancel và font wordmark header tràn8px; giữ wireframe. Evidence: documentation/features/vocabulary-catalog/assets/verification.md; audit liên kết: documentation/audits/vocabulary-catalog-integration.md. Main3000 đã deploy; QA accounts/content/container dọn sạch, final53draft/0published. Chưa physical Korean voice/screenreader/full corpus/curated audio/điểm phát âm; không tuyên bố Done. PB-035-T03 Review/Pass technical, T04 chờ owner duyệt trên ứng dụng.
+
+- Final docs:check17 features/146 source-config/1359 links, plan:check38PBI/82tasks/6 proposed sprints và git diff --check đạt; source map/hash đồng bộ. Chưa tự chốt ngày/capacity.
+
 ### 2026-10-31 — Speech enabler và API miễn phí (audit còn mở)
 
 - Branch feature/self-hosted-audio, primary D:/Project/langz.5 docs trước code tại documentation/features/self-hosted-speech; thu/import từ/câu20s, preview/consent, private history/play/delete, PG005/006 + SQL outbox/BullMQ worker, provider snapshot. Shared docs/stack/screens/ops và code-map/backlog đồng bộ trong lượt này. Không là chấm phát âm.

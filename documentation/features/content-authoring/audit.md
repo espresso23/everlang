@@ -21,3 +21,6 @@ Quyền/validation, contract hai đầu, snapshot/state và lỗi cần đối c
 Cần audit nguồn/quyền học liệu trước phát hành rộng. Một trang tạo index có thể gọi provider nhiều lần; chưa có batching UI.
 
 Điều kiện nâng trạng thái verified: yêu cầu bắt buộc trong [README](README.md) có bằng chứng tương ứng, không còn lỗi bắt buộc, docs/symbol/hash đúng và provider đã kiểm trong môi trường mục tiêu. Lịch sử kiểm tra trước đây giữ ở [FEATURE_AUDIT](../../../FEATURE_AUDIT.md); đây không phải khẳng định đã chạy lại mọi ca trong lượt tài liệu này.
+
+## 2026-10-31 — word set authoring integration
+New /admin entry links to separately specified vocabulary-catalog editor; existing knowledge authoring contract unchanged. Actual admin-only catalog create → explicit review → publish PASS, mobile/keyboard/dirty-link guard PASS. [Catalog audit](../vocabulary-catalog/audit.md); not a claim all legacy authoring paths rerun.

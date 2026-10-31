@@ -25,3 +25,5 @@ Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md
 ## Tích hợp 2026-10-31
 
 Trang /admin thêm link tới [editor kiến thức](../knowledge-library/ui.md) tại /admin/knowledge. Workflow Sentence cũ giữ nguyên; knowledge dùng model/contract riêng có canonical docs, không tự publish seed.
+
+/admin thêm Link /admin/word-sets cho biên tập sense/set; giữ bảng translation cũ. Quy trình/phân quyền ở [catalog](../vocabulary-catalog/README.md).

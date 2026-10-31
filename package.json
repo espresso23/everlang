@@ -19,7 +19,8 @@
     "plan:sync": "node scripts/planning.mjs --write",
     "seed:knowledge": "tsx scripts/seed-knowledge.ts",
     "speech:worker": "tsx scripts/speech-worker.ts",
-    "speech:model": "node scripts/download-speech-model.mjs"
+    "speech:model": "node scripts/download-speech-model.mjs",
+    "seed:vocabulary": "tsx scripts/seed-vocabulary-catalog.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1159.0",

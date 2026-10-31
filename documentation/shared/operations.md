@@ -20,3 +20,7 @@ Xem [speech ops/system design](../features/self-hosted-speech/system-design.md).
 Không bật hai worker profile cùng queue. Stop worker đang dùng trước đổi provider; pending snapshot khác provider sẽ failed rõ, cần người dùng consent/gửi lại. Default disabled giữ khả năng thu/nghe trên thiết bị.
 
 Backup PostgreSQL **và speech_media** khi không có upload/jobs đang ghi, restore cả hai cùng snapshot. Không dùng chỉ pg_dump để hứa khôi phục audio. Giữ dump/archive ngoài Git; chỉ evidence không chứa bí mật trong documentation. Rollback app cũ giữ bảng/volume, không DROP. Next output tracing loại .local/.env/.git/test artifacts; dynamic private read có turbopackIgnore theo build docs để không trace private filesystem vào standalone.
+
+## Vocabulary schema007 / rollback compatibility
+
+Trước007, deploy bridge targetless /api/vocabulary.POST (`everlang-vocabulary-bridge:local` built from6790f1f plus that handler change). Old full unique constraint is replaced by manual/catalog partial indexes; pre-bridge app POST is **incompatible** afterward. Rollback only bridge/newer, keep DB/volume, no down/drop. Pre007 PG+Mongo dumps private .local/backups; restored test DBs verified/removed. Synthetic pre-reviewed card checked id/card/due/version/algorithm/revlog unchanged across migration. `npm run seed:vocabulary` explicit inserts draft-only, rerun does not overwrite edits/published content.

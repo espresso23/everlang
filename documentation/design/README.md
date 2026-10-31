@@ -73,3 +73,5 @@ Không dùng ngoại lệ này đổi7 route khác. Structural JSON baseline gi�
 ## Cập nhật độ nhẹ thị giác — 2026-10-30
 
 Theo phản hồi về sổ tay bị fill đen: không dùng nền ink cho panel, title label, date/Beta, task hoàn thành hoặc art note. Ưu tiên surface/paper/tint, phân cấp bằng weight/spacing/đường kẻ nhẹ và Cobalt. Sổ tay rỗng dùng vùng paper nhẹ, khi có lỗi giữ negative/positive/ink và link brand; không để màu trắng từ theme cũ kế thừa. Focus trên nền sáng là Cobalt. Passport Cobalt của profile giữ nguyên; modal scrim phục vụ focus vẫn giữ, không phải nội dung học đảo màu. Layout không đổi.
+
+Mobile wordmark được phép scale typography20–22px tại breakpoint760px sẵn có để hỗ trợ text spacing ở320px; giữ nguyên logo e và các tác vụ header, không che nội dung tràn.
