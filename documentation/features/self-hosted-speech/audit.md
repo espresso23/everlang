@@ -23,3 +23,7 @@ Not Done: human content/quality acceptance, cloud working inference, microphone/
 API failure integration1.7min PASS for error pipeline/consent/private browser decoding; Google inference still timed out. [Detailed checkpoint](assets/verification.md). Distinguish tested failure UI from successful API availability.
 
 Final deployed disabled-mode check: main localhost3000 updated, E2E6.6s (suite9.4s) PASS /library→/speech, unauth401, disabled503, local import preview duration>0, consent không bật gửi khi offline; injected pending/denied microphone promise kiểm loading/1 acquisition/re-enable/giữ preview. Đây là UI platform-contract simulation, không physical microphone. Standalone container không chứa .local/.env/.git/test-results; no speech worker running by default.
+
+## 2026-10-31 — Kho hệ thống và xử lý exception worker
+
+Branch `bugfix/sample-audio-player`, HEAD13d432b + working changes. PASS theo phạm vi ghi nhận:70unit, Redis cooldown/PG idle reconnect/fatal child probes,2real library E2E34.4s và UI scoped. Xem [audit tích hợp](../../audits/system-library-worker-errors.md) cho yêu cầu/code/steps/evidence/cleanup và final build/deploy. NOT VERIFIED với live provider recovery, speech hardware, chất lượng nội dung/điểm phát âm và các gate legacy ngoài phạm vi. Không coi toàn feature Done.

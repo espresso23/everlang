@@ -25,3 +25,7 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 submissions SQL là nguồn trạng thái bền vững; Redis giữ queue. Worker còn xử lý exam-writing. AI cùng adapter cũng dùng sinh học liệu/Tutor/transcript feedback.
 
 Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+
+## 2026-10-31 — Worker/exception contract
+
+`ProviderError`, `retryAfterMs`, `generateJson`, `aiErrorResponse` tại lib/ai.ts; `recover`, `reconcileFailure`, worker callbacks tại scripts/worker.ts. `installProcessErrorHandlers` và `guardedTask` tại lib/process-errors.ts; Pool idle-error listener tại lib/sql/index.ts; recursive `safeFields` tại lib/logger.ts. [Chuẩn dùng chung](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).

@@ -22,3 +22,7 @@ SHS-09: cùng giới hạn20s/3MB, normalize/quiet/duration trước external re
 ### Quyết định sau probe API thật
 
 2026-10-31: metadata/list có2.5Flash nhưng generateContent trả404 “no longer available to new users”, đề nghị3.8Flash. Bảng giá hiện hành có Free tier3.8Flash; đổi model explicit sang `gemini-3.8-flash`, không runtime fallback. Probe3.8 trả402 RESOURCE_EXHAUSTED/prepaid credits depleted. Key không chứng minh project Free tier; cloud inference chưa xác minh, không bật billing/nạp tiền. Giữ local làm lựa chọn kiểm thử độc lập.
+
+## 2026-10-31 — Worker boundary dùng chung
+
+`scripts/speech-worker.ts` dùng `installProcessErrorHandlers`, guarded startup/timer recovery, structured worker error và shutdown có catch/deadline15s. Không đổi UI/consent/provider/ASR semantics. [Contract](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).

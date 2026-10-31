@@ -70,6 +70,7 @@ test("real knowledge authoring, learner isolation, concurrency, attempts and rea
   try {
     await signup(admin, "knowledge-admin@example.test");
     await signup(learner, "knowledge-learner@example.test");
+    expect((await learner.get("/api/knowledge?language=en")).status()).toBe(400);
     expect(
       (
         await request.get("/api/knowledge", {
@@ -120,6 +121,8 @@ test("real knowledge authoring, learner isolation, concurrency, attempts and rea
       ).status(),
     ).toBe(400);
     const pub = await (await learner.get(`/api/knowledge?key=${key}`)).json();
+    expect(pub).toMatchObject({ language: "ko", ownership: "system" });
+    expect((await (await admin.get(`/api/knowledge?key=${key}&language=ko`)).json()).item).toEqual(pub.item);
     expect(pub.item.questions[0]).not.toHaveProperty("answers");
     expect(pub.item.questions[0]).not.toHaveProperty("explanation");
     const list = await (

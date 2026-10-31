@@ -21,3 +21,7 @@ Sau normalize, Gemini nhận inline WAV qua HTTPS endpoint cố định generati
 ### Free API probe — giới hạn hiện tại
 
 3.8Flash được chọn explicit sau2.5Flash404 cho new user. Probe với key đầu trả402 prepaid; owner thay key rồi request audio45s và text20s timeout. Đây là evidence availability không thành công, không chứng minh Free tier đã hoạt động hoặc chất lượng tiếng Hàn. Không thêm fallback trả phí. Low thinking theo docs3.8 là candidate điều chỉnh latency, cần đo lại trước áp dụng.
+
+## 2026-10-31 — Worker boundary dùng chung
+
+`scripts/speech-worker.ts` dùng `installProcessErrorHandlers`, guarded startup/timer recovery, structured worker error và shutdown có catch/deadline15s. Không đổi UI/consent/provider/ASR semantics. [Contract](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).

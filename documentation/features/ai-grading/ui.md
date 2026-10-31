@@ -21,3 +21,7 @@ POST grade → SQL queued → BullMQ → worker → OpenRouter → validate JSON
 [Design system](../design-system/README.md): logo e, paper/ink/Cobalt, Inter Variable, viền mảnh, không bóng nổi. API errors hiển thị message; auth và ownership cuối cùng vẫn kiểm phía server. Các ảnh được ghi rõ viewport/ngày và dữ liệu QA trong [bằng chứng baseline](../../shared/baseline-evidence.md).
 
 Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md); [gallery trước/sau](../../design/screens.md) thay appearance của ảnh lịch sử trong tài liệu này. Layout và contract feature giữ nguyên.
+
+## 2026-10-31 — Worker/exception contract
+
+Không thêm màn hình hoặc đổi layout. Trạng thái job queued/active/completed/failed qua API hiện có; lỗi cuối trả thông báo provider-safe và giữ nháp. Fatal process errors là log vận hành, không đưa stack/connection vào UI. [Chuẩn dùng chung](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).

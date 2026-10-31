@@ -26,6 +26,13 @@ import {
   GEMINI_SPEECH_MODEL,
 } from "../lib/speech/provider";
 import { SpeechServiceError } from "../lib/speech/gemini";
+import {
+  installProcessErrorHandlers,
+  guardedTask,
+} from "../lib/process-errors";
+import { logError } from "../lib/logger";
+
+installProcessErrorHandlers("speech-worker");
 
 const provider = selectedSpeechProvider();
 async function verifyRuntime() {
@@ -100,9 +107,7 @@ const worker = new Worker(
   },
   { connection: workerRedis, concurrency: 1, lockDuration: 180000 },
 );
-worker.on("error", () =>
-  console.error("Speech queue unavailable; check database/Redis connectivity."),
-);
+worker.on("error", (error) => logError("speech.worker.error", error));
 worker.on("failed", async (job) => {
   try {
     if (job && job.attemptsMade >= (job.opts.attempts || 1))
@@ -171,19 +176,30 @@ async function recoverSpeech() {
     recovering = false;
   }
 }
-await recoverSpeech();
+await guardedTask("speech.recovery.error", recoverSpeech);
 const timer = setInterval(() => {
-  void recoverSpeech().catch(() => console.error("Speech recovery deferred"));
+  void guardedTask("speech.recovery.error", recoverSpeech);
 }, 10000);
 console.info("EverLang speech worker ready: concurrency1; transcript only.");
+let stopping = false;
 for (const signal of ["SIGINT", "SIGTERM"])
-  process.on(signal, async () => {
+  process.on(signal, () => {
+    if (stopping) return;
+    stopping = true;
     clearInterval(timer);
-    await redis.del(SPEECH_HEARTBEAT).catch(() => {});
-    await worker.close();
-    await getSpeechQueue().close();
-    await workerRedis.quit();
-    await redis.quit();
-    await pool.end();
-    process.exit(0);
+    const deadline = setTimeout(() => process.exit(1), 15000);
+    deadline.unref();
+    void (async () => {
+      await redis.del(SPEECH_HEARTBEAT).catch(() => {});
+      await worker.close();
+      await getSpeechQueue().close();
+      await workerRedis.quit();
+      await redis.quit();
+      await pool.end();
+      clearTimeout(deadline);
+      process.exit(0);
+    })().catch((error) => {
+      logError("speech.shutdown.error", error);
+      process.exit(1);
+    });
   });

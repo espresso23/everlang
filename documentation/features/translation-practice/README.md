@@ -25,3 +25,11 @@
 ## Giới hạn và việc còn lại
 
 Limit hiện tối đa 50, API lịch sử tối đa 200; chưa có server pagination toàn bộ lịch sử. Nút lưu kiến thức mở trang kho từ với dữ liệu điền sẵn, người dùng vẫn phải lưu thẻ.
+
+## Cập nhật 2026-10-31 — audio mẫu
+
+Nút nghe mẫu dùng play/pause icon, thanh tiến trình và thời gian đã phát; `AnswerInput → SampleAudioPlayer`. Hợp đồng tại [sample audio player](../../shared/sample-audio-player.md); bằng chứng/giới hạn tại [audit](audit.md).
+
+## 2026-10-31 — Hoàn thiện Nghe câu
+
+Hoàn thiện icon play/pause+progress tại Library read/listen/speak và Practice AnswerDetails; chỉ1player phát một lúc, đổi câu/bài/tab dừng đúng session. [Player contract](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).

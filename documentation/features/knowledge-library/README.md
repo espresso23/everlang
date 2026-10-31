@@ -12,3 +12,7 @@ Feature ID `knowledge-library`. Trạng thái **implemented, NOT VERIFIED** trư
 - KL-06: admin tạo/sửa draft, review, publish, clone revision; nội dung published bất biến, revision mới không xóa lịch sử. Review do owner thực hiện; seed tự biên soạn **draft**, không tự duyệt ground truth.
 
 Nguồn code sẽ ánh xạ theo [functions](functions.md); [UI](ui.md), [system design](system-design.md), [audit](audit.md). Không đánh dấu Done trước audit runtime và duyệt content.
+
+## 2026-10-31 — Kho hệ thống và lưu cá nhân
+
+Kho từ và tài liệu ngữ pháp thuộc hệ thống, dùng chung theo ngôn ngữ; bản đã published cho mọi tài khoản verified xem/lưu. Beta chỉ có tiếng Hàn (ko); không tự xuất bản draft. [Audit tích hợp](../../audits/system-library-worker-errors.md).

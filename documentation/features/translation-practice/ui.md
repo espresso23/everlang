@@ -23,3 +23,11 @@ Limit hiện tối đa 50, API lịch sử tối đa 200; chưa có server pagin
 Ảnh QA 2026-10-30, viewport 1440×1000: [màn hình learner](assets/screen-learner-desktop.png). Đây là bằng chứng render màn hình, không thay audit mọi thao tác/provider.
 
 Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md); [gallery trước/sau](../../design/screens.md) thay appearance của ảnh lịch sử trong tài liệu này. Layout và contract feature giữ nguyên.
+
+## Audio mẫu — 2026-10-31
+
+Play icon44px có accessible name/tooltip; khi phát chuyển pause, khi tạm dừng có thể tiếp tục. Thanh tiến trình theo vị trí chữ và đồng hồ mm:ss đã phát, không bịa tổng thời lượng. Thanh chỉ hiển thị, không kéo tua. Có loading/error, phát lại reset; đổi câu/unmount dừng audio. Tokens Editorial, wrap ở320px. [Hợp đồng](../../shared/sample-audio-player.md).
+
+## 2026-10-31 — Hoàn thiện Nghe câu
+
+Play/pause icon44px thay text Nghe câu và Nghe câu đầu tiên; player compact210px cho các câu lặp lại. Tên/tooltip riêng từng câu, progress+mm:ss đã phát, loading spinner/aria-busy/live status, lỗi cạnh control. Đổi câu dừng player trước kể cả không nhận canceled event; đổi bài/tab reset audio; tab aria-pressed và lesson aria-current. Giữ lưới/sidebar/nội dung/đường lưu-tra từ. [Player contract](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).

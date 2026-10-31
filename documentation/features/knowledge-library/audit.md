@@ -26,3 +26,7 @@ Phát hiện đã sửa: heading h1 quá nhỏ do reset CSS; bổ sung size riê
 ## Bước tiếp
 
 Hoàn thành UI/accessibility/related-link gate, owner review content, mở rộng corpus/compare grammar; sau đó cập nhật audit. Xem [completion matrix toàn mục tiêu](../../planning/SELF_STUDY_DELIVERY.md); không đóng goal chỉ vì luồng thư viện đã chạy.
+
+## 2026-10-31 — Kho hệ thống và xử lý exception worker
+
+Branch `bugfix/sample-audio-player`, HEAD13d432b + working changes. PASS theo phạm vi ghi nhận:70unit, Redis cooldown/PG idle reconnect/fatal child probes,2real library E2E34.4s và UI scoped. Xem [audit tích hợp](../../audits/system-library-worker-errors.md) cho yêu cầu/code/steps/evidence/cleanup và final build/deploy. NOT VERIFIED với live provider recovery, speech hardware, chất lượng nội dung/điểm phát âm và các gate legacy ngoài phạm vi. Không coi toàn feature Done.

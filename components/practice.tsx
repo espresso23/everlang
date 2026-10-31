@@ -9,7 +9,6 @@ import {
   Clipboard,
   Flame,
   History,
-  Headphones,
   Layers2,
   LoaderCircle,
   Search,
@@ -21,6 +20,7 @@ import {
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { LEVELS, TOPICS, type GradeReport, type Sentence } from "@/lib/types";
 import type { ReactNode } from "react";
+import { SampleAudioPlayer } from "@/components/sample-audio-player";
 
 type Stats = {
   totalCompleted: number;
@@ -356,17 +356,6 @@ export default function Practice({
         `everlang-draft-recovery-${userId}`,
         JSON.stringify(next),
       );
-  }
-  function speak(text: string) {
-    if (!("speechSynthesis" in window)) {
-      setError("Trình duyệt không hỗ trợ phát âm tự động.");
-      return;
-    }
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "ko-KR";
-    utterance.rate = 0.88;
-    window.speechSynthesis.speak(utterance);
   }
   async function submit(item: Sentence, forceRegrade = false) {
     if (gradingRequestRef.current) return;
@@ -784,7 +773,6 @@ export default function Practice({
                 onToggleFavorite={() => void toggleFavorite(item)}
                 onAnswer={(value) => saveDraft(item._id, value)}
                 onReveal={() => toggleAnswer(item._id)}
-                onSpeak={() => speak(item.koSampleAnswer)}
                 onSubmit={() => void submit(item)}
                 onViewSaved={() => void viewSaved(item)}
                 onCopy={() => void copyText(item.viText)}
@@ -817,7 +805,7 @@ export default function Practice({
                 onChange={(value) => saveDraft(current._id, value)}
                 onSubmit={() => void submit(current)}
                 busy={gradingId === current._id}
-                onSpeak={() => speak(current.koSampleAnswer)}
+                sampleText={current.koSampleAnswer}
                 onSaved={() => void viewSaved(current)}
                 savedBusy={loadingSavedId === current._id}
               />
@@ -875,7 +863,6 @@ export default function Practice({
               {revealed.includes(current._id) && (
                 <AnswerDetails
                   item={current}
-                  onSpeak={() => speak(current.koSampleAnswer)}
                 />
               )}
             </div>
@@ -949,7 +936,7 @@ function AnswerInput({
   onChange,
   onSubmit,
   busy,
-  onSpeak,
+  sampleText,
   onSaved,
   savedBusy,
 }: {
@@ -957,7 +944,7 @@ function AnswerInput({
   onChange: (value: string) => void;
   onSubmit: () => void;
   busy: boolean;
-  onSpeak: () => void;
+  sampleText: string;
   onSaved: () => void;
   savedBusy: boolean;
 }) {
@@ -996,35 +983,24 @@ function AnswerInput({
           )}
           Xem đánh giá đã lưu
         </button>
-        <button onClick={onSpeak} className="soft-button">
-          <Volume2 size={16} />
-          Nghe đáp án mẫu
-        </button>
+        <SampleAudioPlayer text={sampleText} label="Nghe đáp án mẫu" />
       </div>
     </div>
   );
 }
 function AnswerDetails({
   item,
-  onSpeak,
 }: {
   item: Sentence;
-  onSpeak: () => void;
 }) {
   return (
     <div className="space-y-3 border-t border-slate-100 pt-4">
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-        <div className="mb-1 flex items-center justify-between">
+        <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
           <span className="section-label text-emerald-800">
             Đáp án tham khảo
           </span>
-          <button
-            onClick={onSpeak}
-            className="inline-flex items-center gap-1 rounded-lg bg-white/70 px-2 py-1 text-xs font-semibold text-emerald-800"
-          >
-            <Headphones size={14} />
-            Nghe
-          </button>
+          <SampleAudioPlayer text={item.koSampleAnswer} label="Nghe đáp án tham khảo" compact />
         </div>
         <KoreanLinkedText
           text={item.koSampleAnswer}
@@ -1090,7 +1066,6 @@ function ExerciseCard({
   onToggleFavorite,
   onAnswer,
   onReveal,
-  onSpeak,
   onSubmit,
   onViewSaved,
   onCopy,
@@ -1104,7 +1079,6 @@ function ExerciseCard({
   onToggleFavorite: () => void;
   onAnswer: (value: string) => void;
   onReveal: () => void;
-  onSpeak: () => void;
   onSubmit: () => void;
   onViewSaved: () => void;
   onCopy: () => void;
@@ -1154,7 +1128,7 @@ function ExerciseCard({
         onChange={onAnswer}
         onSubmit={onSubmit}
         busy={busy}
-        onSpeak={onSpeak}
+        sampleText={item.koSampleAnswer}
         onSaved={onViewSaved}
         savedBusy={savedBusy}
       />
@@ -1168,7 +1142,7 @@ function ExerciseCard({
         </button>
         {revealed && (
           <div className="mt-3">
-            <AnswerDetails item={item} onSpeak={onSpeak} />
+            <AnswerDetails item={item} />
           </div>
         )}
       </div>

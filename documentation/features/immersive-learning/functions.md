@@ -27,3 +27,11 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 readingLessons là nội dung code; recordings SQL lưu transcript/feedback/object key; audio ở S3. API audio tối đa 3MB, base64 tối đa 4.2 triệu ký tự.
 
 Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+
+## Audio mẫu — 2026-10-31
+
+`Library (tab speak) → SampleAudioPlayer` nhận câu tiếng Hàn qua prop `text`, thay nút nghe mẫu dạng text. [Component](../../../components/sample-audio-player.tsx) và [hợp đồng dùng chung](../../shared/sample-audio-player.md) mô tả lifecycle/error/cleanup.
+
+## 2026-10-31 — Hoàn thiện Nghe câu
+
+`Library` render SampleAudioPlayer cho từng segment (Nghe câu1/2/3), listen/speak key theo lesson/tab. `AnswerDetails` dùng sample player compact, bỏ callback onSpeak và hàm speak cũ trong Practice/ExerciseCard. `Playback`/`release` giữ activePlayback owner, detaches callbacks, reset UI player cũ và chỉ hủy utterance do chính component sở hữu. [Player contract](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).

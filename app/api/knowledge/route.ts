@@ -6,6 +6,7 @@ export const GET = api("/api/knowledge", async (r) => {
   const params = Object.fromEntries(r.nextUrl.searchParams);
   const b = z
     .object({
+      language: z.literal("ko").default("ko"),
       key: z.string().optional(),
       q: z.string().max(120).default(""),
       kind: z.string().max(30).default(""),
@@ -13,7 +14,8 @@ export const GET = api("/api/knowledge", async (r) => {
       topic: z.string().max(120).default(""),
     })
     .parse(params);
-  return b.key
+  const result = b.key
     ? { item: await publicKnowledge(b.key) }
     : listKnowledge(b.q.trim(), b.kind, b.level, b.topic);
+  return { ...(await result), language: b.language, ownership: "system" };
 });

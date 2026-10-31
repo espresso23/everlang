@@ -66,3 +66,13 @@ Session pending/avatar đã sửa trong feature/user-profile; xem [audit tích h
 
 ## 2026-10-31 — mobile wordmark text spacing
 PASS scoped: existing760px breakpoint, font-size clamp20–22px only; order/columns/gaps/padding/control visibility unchanged. Actual320px viewport with letter-spacing0.12em, word-spacing0.16em, line-height1.5 and paragraph margin2em no horizontal document overflow after fix (previously8px). [Image](../vocabulary-catalog/assets/admin-text-spacing.png), [test](../../../tests/e2e/vocabulary-catalog-ui.spec.ts), [feature evidence](../vocabulary-catalog/assets/verification.md). No claim rerun all historical8-route baselines, screenreader or device voice from this scoped test.
+
+## 2026-10-31 — Mô tả kho hệ thống
+
+Chỉ thay copy tại knowledge/word-sets, giữ Editorial/layout. Actual library E2E2passed34.4s, catalog320px không tràn và review ảnh đạt; [ảnh/audit](../../audits/system-library-worker-errors.md). Không chứng nhận lại full app WCAG hoặc native zoom/screenreader.
+
+Final deployed3000 UI/empty smoke1440/390/320 PASS với API fixtures; ảnh390 của hai kho và giới hạn trong [audit tích hợp](../../audits/system-library-worker-errors.md).
+
+## 2026-10-31 — Rà soát Nghe câu còn sót
+
+Theo ảnh user: Library read/listen và Practice reference đã thống nhất play/pause player; single active owner, reset/cancel/cleanup và accessibility bổ sung. PASS3Playwright29.1s,70unit, targeted lint, responsive1440/390/320+spacing. [Audit/bằng chứng/giới hạn và final deploy](../../audits/sentence-audio-controls.md). Physical speech/native zoom/screenreader NOT VERIFIED; không đóng provider gates legacy.

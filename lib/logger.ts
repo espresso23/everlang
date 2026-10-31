@@ -26,10 +26,20 @@ function redact(value: string): string {
 }
 
 function safeFields(fields: LogFields): LogFields {
-  return Object.fromEntries(Object.entries(fields).map(([key, value]) => [
-    key,
-    typeof value === "string" ? redact(value).slice(0, 2000) : value,
-  ]));
+  const seen = new WeakSet<object>();
+  function safe(value: unknown, depth: number): unknown {
+    if (typeof value === "string") return redact(value).slice(0, 2000);
+    if (typeof value === "bigint") return String(value);
+    if (!value || typeof value !== "object") return typeof value === "function" ? "[omitted]" : value;
+    if (depth > 5 || seen.has(value)) return "[omitted]";
+    seen.add(value);
+    if (value instanceof Error) return { name: value.name, message: safe(value.message, depth + 1) };
+    if (Array.isArray(value)) return value.slice(0, 30).map(item => safe(item, depth + 1));
+    return Object.fromEntries(Object.entries(value).slice(0, 40).map(([key, item]) => [key,
+      /password|secret|authorization|cookie|api.?key|connectionstring|^client$|^(?:(?:access|refresh|id|session)[_-]?)?token$/i.test(key) ? "[REDACTED]" : safe(item, depth + 1),
+    ]));
+  }
+  return safe(fields, 0) as LogFields;
 }
 
 export function log(level: LogLevel, event: string, fields: LogFields = {}) {

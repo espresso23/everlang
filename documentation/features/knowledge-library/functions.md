@@ -19,3 +19,7 @@
 POST attempts nhận key, revision, answers, requestId; public projection không gửi đáp án hoặc explanation. Canonical comparison chuẩn hóa NFC, trim/whitespace và punctuation cho cloze, không bỏ mọi khoảng trắng tiếng Hàn. MCQ so chỉ số lựa chọn.
 
 GET list chỉ metadata và filter bounded, không tải cả corpus vào browser. Draft/review API admin không dùng chung learner projection; lần fetch lỗi không được biến thành danh sách rỗng thành công. Seed gồm13 draft (5 grammar, 3 idiom, 2 proverb, 1 Hanja, 1 collocation, 1 phonetics), chưa là corpus đã người duyệt chấp nhận.
+
+## 2026-10-31 — Kho hệ thống và lưu cá nhân
+
+GET /api/knowledge và GET /api/word-sets nhận language=ko mặc định, ngôn ngữ khác400; response thêm language=ko, ownership=system cho list/detail. Getters không lọc theo người tạo; saved state/SRS vẫn kiểm user session/ownership. Route: app/api/knowledge/route.ts, app/api/word-sets/route.ts; smoke thật trong tests/e2e/knowledge.spec.ts và tests/e2e/vocabulary-catalog.spec.ts. [Audit tích hợp](../../audits/system-library-worker-errors.md).

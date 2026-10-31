@@ -529,8 +529,8 @@ function KnowledgeBrowser() {
           <p className="eyebrow">ĐỌC ĐỂ HIỂU · DÙNG ĐỂ NHỚ</p>
           <h1 className="page-title">Thư viện kiến thức</h1>
           <p className="muted">
-            Ngữ pháp, quán dụng ngữ và tài liệu đã được duyệt. Đọc lại, ghi chú
-            và nối kiến thức vào luyện tập.
+            Kho học liệu tiếng Hàn của hệ thống: ngữ pháp, quán dụng ngữ và tài liệu
+            đã xuất bản dành cho mọi người học. Lưu tài liệu, ghi chú và tiến độ vào sổ đọc riêng của bạn.
           </p>
           {savedError && (
             <p role="alert">

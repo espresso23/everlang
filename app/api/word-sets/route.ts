@@ -4,14 +4,15 @@ import { catalogKey, catalogTopics } from "@/lib/vocabulary-catalog-contract";
 import { listCatalog, catalogSetDetail } from "@/lib/vocabulary-catalog";
 
 export const GET = api("/api/word-sets", async (r) => {
+  const language = z.literal("ko").parse(r.nextUrl.searchParams.get("language") || "ko");
   const key = r.nextUrl.searchParams.get("key");
   if (key) {
     catalogKey.parse(key);
     const revision = r.nextUrl.searchParams.get("revision");
-    return catalogSetDetail(
+    return { ...(await catalogSetDetail(
       key,
       revision ? z.coerce.number().int().positive().parse(revision) : undefined,
-    );
+    )), language, ownership: "system" };
   }
   const b = z
     .object({
@@ -31,5 +32,7 @@ export const GET = api("/api/word-sets", async (r) => {
   return {
     ...(await listCatalog(b.kind, b.q, b.topic, b.level, b.offset)),
     topics: catalogTopics,
+    language,
+    ownership: "system",
   };
 });

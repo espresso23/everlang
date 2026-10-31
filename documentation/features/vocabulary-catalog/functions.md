@@ -25,3 +25,7 @@ Admin GET có nhánh key/revision trả {item,references} cho label term/meaning
 Recall integration: catalogRecallContext trong contract chỉ che dịch Việt của context khớp đúng ví dụ snapshot cho đến reveal; không đoán/sửa context cá nhân. Save mới ghi contextKO, snapshot đầy đủ. Vocabulary review UI dùng helper và shared playKorean; cancellation không báo lỗi. Đây là sửa lỗi answer leakage trong flow học→SRS trước final gate.
 
 Scoped UI/keyboard/text-spacing/dirty-link workflow: [vocabulary-catalog-ui.spec.ts](../../../tests/e2e/vocabulary-catalog-ui.spec.ts).
+
+## 2026-10-31 — Kho hệ thống và lưu cá nhân
+
+GET /api/knowledge và GET /api/word-sets nhận language=ko mặc định, ngôn ngữ khác400; response thêm language=ko, ownership=system cho list/detail. Getters không lọc theo người tạo; saved state/SRS vẫn kiểm user session/ownership. Route: app/api/knowledge/route.ts, app/api/word-sets/route.ts; smoke thật trong tests/e2e/knowledge.spec.ts và tests/e2e/vocabulary-catalog.spec.ts. [Audit tích hợp](../../audits/system-library-worker-errors.md).

@@ -11,3 +11,7 @@ Migration additive 004, không sửa/xóa legacy. Backup PostgreSQL/Mongo trư�
 GET state không key trả tối đa100 metadata bookmark/đọc tiếp của chính user, không trả note của tài khoản khác. Reviewed chưa published có action revise trả draft và bỏ reviewer; published chỉ fork revision, không edit/revise. Seed chạy explicit npm run seed:knowledge; idempotent chỉ insert draft revision1 khi chưa tồn tại.
 
 Gate related references: publish từ chối self-reference hoặc key không có bản published. Public detail resolve relatedItems thành key/title của bản published mới nhất; UI dùng tiêu đề học liệu, không dùng mã kỹ thuật làm nhãn. Không thay đổi lịch sử của revision cũ.
+
+## Kho hệ thống theo ngôn ngữ — 2026-10-31
+
+Nội dung chuẩn là tài sản hệ thống, dùng chung cho các tài khoản verified, không lọc theo người tạo học liệu. GET nhận `language=ko` (mặc định), từ chối ngôn ngữ chưa hỗ trợ thay vì trả nhầm corpus; response thêm `language` và `ownership=system`. Chưa triển khai corpus đa ngôn ngữ. Chỉ nội dung published được xem/lưu; admin quản lý draft/review/publish. Bookmark/note/read-state/attempt/SRS vẫn theo owner hiện hành; lưu cá nhân không thay bản gốc. Không tự publish các seed đang chờ duyệt.

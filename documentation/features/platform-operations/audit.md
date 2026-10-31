@@ -32,3 +32,7 @@ App/speech API worker build PASS, source/model native build/checksum PASS; metad
 
 ### Catalog schema/runtime extension2026-10-31
 007 migration backup/restore + reviewed-card probe + bridge legacy API PASS; main rebuilt/deployed after candidate integration, QA accounts/fixtures/containers removed. Main anonymous catalog APIs401, page shells200; Mongo53drafts/0published/0synthetic QA. [Catalog evidence](../vocabulary-catalog/assets/verification.md), [rollback contract](../../shared/operations.md). No claim production Internet SMTP/Google audio/new physical device validated.
+
+## 2026-10-31 — Kho hệ thống và xử lý exception worker
+
+Branch `bugfix/sample-audio-player`, HEAD13d432b + working changes. PASS theo phạm vi ghi nhận:70unit, Redis cooldown/PG idle reconnect/fatal child probes,2real library E2E34.4s và UI scoped. Xem [audit tích hợp](../../audits/system-library-worker-errors.md) cho yêu cầu/code/steps/evidence/cleanup và final build/deploy. NOT VERIFIED với live provider recovery, speech hardware, chất lượng nội dung/điểm phát âm và các gate legacy ngoài phạm vi. Không coi toàn feature Done.

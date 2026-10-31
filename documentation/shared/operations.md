@@ -24,3 +24,7 @@ Backup PostgreSQL **và speech_media** khi không có upload/jobs đang ghi, res
 ## Vocabulary schema007 / rollback compatibility
 
 Trước007, deploy bridge targetless /api/vocabulary.POST (`everlang-vocabulary-bridge:local` built from6790f1f plus that handler change). Old full unique constraint is replaced by manual/catalog partial indexes; pre-bridge app POST is **incompatible** afterward. Rollback only bridge/newer, keep DB/volume, no down/drop. Pre007 PG+Mongo dumps private .local/backups; restored test DBs verified/removed. Synthetic pre-reviewed card checked id/card/due/version/algorithm/revlog unchanged across migration. `npm run seed:vocabulary` explicit inserts draft-only, rerun does not overwrite edits/published content.
+
+## Worker errors/cooldown — 2026-10-31
+
+[Error handling chuẩn](error-handling.md): API boundary có sẵn giữ nguyên; standalone worker fatal exit1/restart, PG idle error không dump client, grading429 cooldown queue/retry3. Rebuild/recreate cả app và worker để đồng bộ shared code. Không tắt limiter hoặc đổi model/billing để xử lý429. [Audit](../audits/system-library-worker-errors.md).

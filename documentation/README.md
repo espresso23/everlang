@@ -2,7 +2,7 @@
 
 [WBS / product backlog / sprint tracking — 2026-10-31](planning/README.md) · [Dashboard tiến độ](planning/DASHBOARD.md).
 
-[Hiện trạng dự án và hai hướng tiếp theo — 2026-10-30](project-status.md).
+[Checkpoint dự án và ngữ cảnh sprint tiếp theo — 2026-10-31](project-status.md).
 
 Frontend bắt buộc tuân thủ [EverLang Editorial Design](design/README.md); [screen gallery hiện tại](design/screens.md).
 
@@ -75,3 +75,9 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 Bộ tài liệu baseline đã được backfill cho toàn bộ source/màn hình hiện có. Mỗi thay đổi tiếp theo cập nhật đúng feature, code map và audit trong cùng lượt; không tạo bản đặc tả thứ hai cho cùng feature.
 
 - [Bộ từ theo chủ đề](features/vocabulary-catalog/README.md) — implemented PB-035; technical audit đạt phạm vi ghi nhận, content/audio release gates còn mở; sense/version, học và FSRS hiện có.
+
+- [Audio mẫu play/pause và time bar](shared/sample-audio-player.md) — cập nhật2026-10-31; [audit hai màn hình](audits/sample-audio-player.md).
+
+- [Exception boundaries chuẩn](shared/error-handling.md) và [audit kho hệ thống/worker429](audits/system-library-worker-errors.md) —2026-10-31; nội dung published dùng chung ko, trạng thái học/lưu riêng mỗi tài khoản.
+
+- [Rà soát icon Nghe câu trong read/listen/reference](audits/sentence-audio-controls.md) —2026-10-31; bổ sung phạm vi còn sót sau bản sửa sample player ban đầu.

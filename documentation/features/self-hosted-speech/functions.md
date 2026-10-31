@@ -23,3 +23,7 @@ Nội dung field thực trả camelCase từ speechView: createdAt/elapsedMs/dur
 `lib/speech/provider.ts`: selectedSpeechProvider, speechServiceReady, heartbeatMatches; fixed provider/model/consent version. `lib/speech/gemini.ts`: transcribeGeminiWav, SpeechServiceError; fixed endpoint/model, JSON validation, timeout, atomic budget. `transcribeLocal` giữ tên entrypoint tương thích nhưng dispatch provider optional sau normalize; worker dùng row.provider snapshot. API thêm capabilities.provider/externalProcessing/consentVersion và POST.provider bắt buộc; speechFingerprint nhận provider để chống reuse nonce consent khác. `migrations/006_speech_provider.sql` thêm provider/consent_version. Không thêm embedding score hoặc sửa shape pronunciationAssessment=false.
 
 Transcript schema chỉ yêu cầu text không rỗng/đúng JSON/finishReason STOP, không là language detector. Từ mượn/viết tắt Latin hợp lệ không bị loại chỉ vì không có Hangul; không trả score phát âm. UI khóa acquisition microphone đang chờ, callback sau unmount dừng stream/không set state.
+
+## 2026-10-31 — Worker boundary dùng chung
+
+`scripts/speech-worker.ts` dùng `installProcessErrorHandlers`, guarded startup/timer recovery, structured worker error và shutdown có catch/deadline15s. Không đổi UI/consent/provider/ASR semantics. [Contract](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).

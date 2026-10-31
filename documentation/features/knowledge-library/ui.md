@@ -11,3 +11,7 @@ User profile cá nhân, legacy dashboard/nav còn giữ layout. Admin link có t
 Browse có Sổ đọc của bạn (bookmark/vị trí đã lưu). Audio TTS chỉ chạy khi thiết bị có giọng ko; thiếu giọng hiện hướng dẫn thay vì im lặng. Editor có trả reviewed chưa publish về nháp; dữ liệu lỗi/stale không tự ghi đè.
 
 Related và sổ đọc hiển thị tiêu đề, không slug nội bộ. Editor chọn related từ tài liệu published; API chặn missing/self reference. Dirty guard hiện có ở link về thư viện/related và beforeunload; điều hướng SPA toàn app chưa có guard chung, cần kiểm/cải thiện trước final gate.
+
+## 2026-10-31 — Kho hệ thống và lưu cá nhân
+
+Phần mô tả tại /knowledge và /word-sets ghi rõ học liệu tiếng Hàn hệ thống và sổ đọc/kho ôn tập cá nhân. Giữ bố cục/tokens và các nút xem/lưu hiện có; nội dung chưa published vẫn không xuất hiện ở learner. [Audit tích hợp](../../audits/system-library-worker-errors.md).

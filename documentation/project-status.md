@@ -1,4 +1,58 @@
-# EverLang — hiện trạng và hai hướng tiếp theo
+# EverLang — checkpoint chuẩn bị sprint tiếp theo
+
+Snapshot mới nhất: **2026-10-31**. Bản nén ngữ cảnh bên dưới thay phần baseline lịch sử về trạng thái hiện tại. Chi tiết và lịch sử giữ ở [HANDOFF](../HANDOFF.md); nguồn trạng thái task là [work-items.json](planning/work-items.json). Đây là checkpoint kỹ thuật local, chưa hoàn tất toàn bộ mục tiêu tự học hoặc đủ điều kiện phát hành.
+
+## Đọc khi tiếp tục
+
+Đọc [AGENTS](../AGENTS.md) → tài liệu này → [completion matrix](planning/SELF_STUDY_DELIVERY.md) → [Dashboard](planning/DASHBOARD.md)/[planning guide](planning/README.md) → đủ5docs của feature sắp sửa. Frontend theo [Editorial](design/README.md); trước code Next đọc guide tương ứng trong node_modules/next/dist/docs. Kiểm branch/status và tạo branch đúng scope từ main đã tích hợp.
+
+## Inventory17feature/domain hiện có
+
+| Feature chuẩn | Đã có | Giới hạn chính |
+|---|---|---|
+| [identity-auth](features/identity-auth/README.md) | Email/password, verify/reset, Google login, session/role/ownership | Google owner login/local email đã kiểm; public OAuth/linking/SMTPproduction còn gate. |
+| [user-profile](features/user-profile/README.md) | Learning Passport view/edit, avatar, mục tiêu/trình độ/phút/múi giờ; cancel/error/refetch | Provider security flows/thiết bị thật còn giới hạn trong audit. |
+| [translation-practice](features/translation-practice/README.md) |100bài gốc, list/card, lọc/tìm, input/gợi ý/đáp án, player mẫu/reference | Cần duyệt chất lượng/quyền corpus; TTS không có seek/totalduration thật. |
+| [learning-records](features/learning-records/README.md) | Nháp local/cloud versioned, history/favorites, thống kê/sổ lỗi theo user | Legacy import explicit; không tự gán dữ liệu cũ. |
+| [ai-grading](features/ai-grading/README.md) | SQL→BullMQ→OpenRouter→Zod; dedup/cache/version, bỏ lỗi chỉ dấu câu;429cooldown/retry3/recovery | Chưa xác minh quota upstream hồi phục hoặc benchmark được người chấm duyệt. |
+| [vocabulary-srs](features/vocabulary-srs/README.md) | Kho cá nhân, FSRS-7/due/review log, sense-aware save/cross-set/attach giữ lịch | Không tạo SRS thứ hai hoặc coi pronunciation là lịch ôn. |
+| [daily-dashboard](features/daily-dashboard/README.md) | Ôn→bài dở→điểm yếu→bài mới, minutes/day/timezone/task/version | Diagnostic/lộ trình thích nghi chưa hoàn thiện. |
+| [dictionary](features/dictionary/README.md) | Chọn/nhấp từ, popup KRdict, phát âm/link ngoài | Provider cần KRDICT_API_KEY; full morphology/context learning còn thiếu. |
+| [content-authoring](features/content-authoring/README.md) | Admin draft→reviewed→published, source/rights/revision, AI nháp | Published immutable; AI/seed không tự được duyệt hoặc xuất bản. |
+| [immersive-learning](features/immersive-learning/README.md) |2bài đọc, transcript/dictation/shadowing/local recording; icon player cho read/listen/speak |1player active, reset đúng khi đổi câu/bài/tab; corpus/audio mở rộng và giọng thiết bị thật chưa đủ. |
+| [ai-tutor](features/ai-tutor/README.md) | RAG/pgvector/hints/reveal/sources | Provider/index/quality thật chưa audit đủ; embedding là action admin có chi phí. |
+| [exam-practice](features/exam-practice/README.md) | Mini TOPIKII PBT, timer/autosave/objective grading/AIWriting | Chưa đủ full corpus/rights/PBT; Speaking/IBT chưa hoàn thiện. |
+| [design-system](features/design-system/README.md) | Logoe, Inter tự host, paper/ink/Cobalt, surfaces sáng, responsive/focus | Scoped audit có; chưa chứng nhận fullWCAG/native zoom/screenreader. |
+| [platform-operations](features/platform-operations/README.md) | Node24/Next16.4.3, PG/Mongo/Redis/BullMQ/Docker, migrations001–007, docs/planning checks | API requestId/logging có sẵn; thêm pg idle-error listener, worker fatal/guarded recovery/shutdown. Production/restore môi trường đích còn gate. |
+| [knowledge-library](features/knowledge-library/README.md) | Reader/search grammar/idiom/proverb/hanja/collocation/phonetics/article, bookmark/note/resume/read, MCQ/cloze, SRS, admin revisions | Kho hệ thống languageko, state riêng user, unsupportedlanguage400.13draft theo checkpoint; comparison/mastery và ownerreview chưa xong. |
+| [self-hosted-speech](features/self-hosted-speech/README.md) | Thu/import từ/câu20s, preview/consent/private history/play/delete/outbox; WhisperCPU option/Gemini adapter20calls/day | Runtime disabled: thu/nghe local. Cloud key thử vẫn timeout; chưa scoring pronunciation/physicalquality. STT/embedding không là điểm phát âm. |
+| [vocabulary-catalog](features/vocabulary-catalog/README.md) | Taxonomy/senses/sets pinrevision, ví dụ/TTS, quota/CAS/self-report, save/legacy attach vào FSRS | Kho hệ thống ko; published dùng chung, lưu riêng. Final53draft=30sense+23set/0published; full corpus/audio curated chưa có. |
+
+Routes: `/`, `/sign-in`, `/practice`, `/vocabulary`, `/word-sets`, `/knowledge`, `/library`, `/speech`, `/exams`, `/profile`, `/admin`, `/admin/knowledge`, `/admin/word-sets`. Có route không đồng nghĩa provider/chất lượng đã nghiệm thu.
+
+## Tích hợp và bằng chứng mới nhất
+
+- Knowledge/private speech/catalog cùng migrations004–007 và backup/restore/bridge đã có evidence. Các sửa trong chat bổ sung kho hệ thống ko, worker PG crash/global boundaries/AI429 và player Library/Practice. Không đổi model/key/billing hoặc tự publish seed.
+-70/70unit, lint/typecheck, Docker production42routes đạt. Full lint có1warning sẵn trong .local không tracked; targeted lint sạch.
+- [Audio UX](audits/sentence-audio-controls.md):3Playwright deployed3000/16.7s, lifecycle/read/listen/speak/reference/timeout/unsupported,1440/390/320+spacing. Speech/API fixtures, không là acoustic validation.
+- [Worker/kho hệ thống](audits/system-library-worker-errors.md):2real auth/Mongo/PGE2E34.4s, isolation/CAS/quota/language; Redis cooldown/PG reconnect/fatal child probes,0cloudcalls. QA đã dọn.
+- [Knowledge](audits/self-study-library-integration.md), [speech](audits/self-study-speech-integration.md), [catalog](audits/vocabulary-catalog-integration.md): các gate đã/chưa kiểm theo feature. [Audit checkpoint](audits/sprint-checkpoint-2026-10-31.md) ghi kiểm pre-merge của lượt tổng hợp.
+- Docs17features/152source-config; planning38PBI/82tasks/6Proposed.8/82tasksDone theo tracking không có nghĩa10% hoàn thành toàn dự án.
+
+## Runtime và Git
+
+Source `D:/Project/langz`; tích hợp từ bugfix/sample-audio-player vào main bằng fast-forward, không squash/rewrite lịch sử. Lượt checkpoint chỉ docs/Git/checks, không deploy/call cloud hoặc push remote. App [localhost3000](http://localhost:3000), Mailpit [8025](http://localhost:8025); app/worker running và PG/Mongo/Redis/Mailpit healthy trong lần kiểm gần nhất.
+
+Sau migration007 chỉ rollback bridge/newer, không dùng app trước bridge: xem [operations](shared/operations.md). UI rollback gần nhất everlang-before-sentence-controls:local; giữ volumes/backup. SPEECH_PROVIDER=disabled; không tự bật speech profile, billing, embedding hoặc xuất bản seed.
+
+## Hai ưu tiên tiếp nối
+
+1. **Nội dung và vòng tự học:** ownerreview13knowledge +30sense/23set; corpus/source/rights/audio chuẩn, grammar comparison/mastery và kết nối SRS/đọc–nghe. Refine acceptance/dependencies/capacity trước chọn scope.
+2. **Âm thanh và gate tích hợp:** xác minh ASR cấu hình thấp/miễn phí với audio thật, benchmark pronunciation riêng; diagnostic/path/hội thoại theo completion matrix và audit hai thiết bị. Không dùng STTmatch/embedding chưa kiểm làm điểm phát âm.
+
+Các sprint vẫn **Proposed**, giờ/tuần/capacity/start/endTBD. Merge không tự start sprint hoặc đánh dấu taskDone. Luyện thi đầy đủ, đa ngôn ngữ, billing/public hosting theo backlog đã thống nhất.
+
+## Baseline lịch sử2026-10-30
 
 Kế hoạch triển khai tiếp theo đã phân rã tại [WBS/backlog/sprints](planning/README.md), snapshot2026-10-31; phần dưới giữ tổng kết baseline2026-10-30.
 

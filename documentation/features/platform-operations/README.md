@@ -28,3 +28,7 @@
 ## Giới hạn và việc còn lại
 
 Local Mailpit không chuyển email tới Gmail. Production cần SMTP/domain/HTTPS thật. Tên ảnh worker vẫn chứa dependencies development; chưa tối ưu kích thước image. docs:check chỉ là kiểm tra cấu trúc.
+
+## 2026-10-31 — Worker/exception contract
+
+Dùng exception/logging contract chuẩn và xử lý retry/cooldown/recovery có giới hạn; không giả điểm hoặc bỏ lỗi để tiếp tục process hỏng. [Chuẩn dùng chung](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).

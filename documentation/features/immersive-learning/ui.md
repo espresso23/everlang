@@ -29,3 +29,11 @@ Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md
 `Library` tại /library thêm link tới [thư viện kiến thức](../knowledge-library/ui.md). Các tab/luồng nghe đọc nói giữ nguyên; đây là entry point đọc lại grammar/idiom, không thay bài đọc cũ.
 
 /library giữ các tab cũ, thêm Link /speech ở header cho thu từ/câu. [Speech UI](../self-hosted-speech/ui.md) quản lý trạng thái, consent, audio private và provider; không hứa chấm phát âm từ nút này.
+
+## Audio mẫu — 2026-10-31
+
+Play icon44px có accessible name/tooltip; khi phát chuyển pause, khi tạm dừng có thể tiếp tục. Thanh tiến trình theo vị trí chữ và đồng hồ mm:ss đã phát, không bịa tổng thời lượng. Thanh chỉ hiển thị, không kéo tua. Có loading/error, phát lại reset; đổi câu/unmount dừng audio. Tokens Editorial, wrap ở320px. [Hợp đồng](../../shared/sample-audio-player.md).
+
+## 2026-10-31 — Hoàn thiện Nghe câu
+
+Play/pause icon44px thay text Nghe câu và Nghe câu đầu tiên; player compact210px cho các câu lặp lại. Tên/tooltip riêng từng câu, progress+mm:ss đã phát, loading spinner/aria-busy/live status, lỗi cạnh control. Đổi câu dừng player trước kể cả không nhận canceled event; đổi bài/tab reset audio; tab aria-pressed và lesson aria-current. Giữ lưới/sidebar/nội dung/đường lưu-tra từ. [Player contract](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).

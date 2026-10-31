@@ -9,3 +9,7 @@ Hiển thị transcript với nhãn Nhận dạng lời nói, model/version và 
 Giữ hai panel hiện tại. Nút “Gửi nhận dạng”; capabilities hiển thị nhận dạng bởi Google hoặc máy chủ local. Consent cloud riêng: Google nhận audio; free tier có thể dùng dữ liệu cải thiện sản phẩm. Không hứa dữ liệu chỉ ở server khi dùng cloud. Nếu provider/consentVersion đổi, effective consent false, cần tích lại; gửi snapshot provider. Free tier/quota lỗi giữ audio trên thiết bị, không tự bật paid provider. Không hiện điểm pronunciation.
 
 Audit correction: khi chờ quyền microphone, khóa thao tác mở mic/gửi/import lần nữa và hiện loading; chỉ cho1 acquisition đang chờ. Khi unmount, stream trả về trễ phải dừng, lỗi permission không set state sau unmount. Physical mic permission/hardware vẫn cần người dùng kiểm.
+
+## 2026-10-31 — Worker boundary dùng chung
+
+`scripts/speech-worker.ts` dùng `installProcessErrorHandlers`, guarded startup/timer recovery, structured worker error và shutdown có catch/deadline15s. Không đổi UI/consent/provider/ASR semantics. [Contract](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).

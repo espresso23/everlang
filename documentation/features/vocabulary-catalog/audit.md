@@ -16,3 +16,7 @@
 | Release content/curated audio | NOT VERIFIED |30 senses/23 sets draft,13 knowledge drafts chưa owner review; PB-036 và pronunciation assessment riêng chưa hoàn thành. |
 
 Phát hiện đã sửa: pool GET không giữ thêm client khi đã checkout; admin ref projection thiếu kind; sidebar quá dài; SRS context lộ dịch Việt; lifecycle TTS có thể để timer cũ hủy lần phát mới; text-spacing header tràn8px đã sửa và rerun PASS. Không đổi trạng thái Done chỉ dựa build/synthetic QA. Cần owner duyệt nội dung trong ứng dụng, corpus coverage, kiểm giọng/audio thật và các gate trợ năng còn mở.
+
+## 2026-10-31 — Kho hệ thống và xử lý exception worker
+
+Branch `bugfix/sample-audio-player`, HEAD13d432b + working changes. PASS theo phạm vi ghi nhận:70unit, Redis cooldown/PG idle reconnect/fatal child probes,2real library E2E34.4s và UI scoped. Xem [audit tích hợp](../../audits/system-library-worker-errors.md) cho yêu cầu/code/steps/evidence/cleanup và final build/deploy. NOT VERIFIED với live provider recovery, speech hardware, chất lượng nội dung/điểm phát âm và các gate legacy ngoài phạm vi. Không coi toàn feature Done.

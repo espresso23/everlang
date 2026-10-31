@@ -26,3 +26,11 @@
 ## Giới hạn và việc còn lại
 
 Google STT/S3 và microphone/TTS thiết bị thật chưa kiểm chứng toàn bộ. Không có điểm phát âm; chưa có audio người bản ngữ hoặc bản đồ từ đồng bộ transcript.
+
+## Cập nhật 2026-10-31 — audio mẫu
+
+Nút nghe mẫu dùng play/pause icon, thanh tiến trình và thời gian đã phát; `Library (tab speak) → SampleAudioPlayer`. Hợp đồng tại [sample audio player](../../shared/sample-audio-player.md); bằng chứng/giới hạn tại [audit](audit.md).
+
+## 2026-10-31 — Hoàn thiện Nghe câu
+
+Hoàn thiện icon play/pause+progress tại Library read/listen/speak và Practice AnswerDetails; chỉ1player phát một lúc, đổi câu/bài/tab dừng đúng session. [Player contract](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).

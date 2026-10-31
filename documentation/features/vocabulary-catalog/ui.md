@@ -11,3 +11,7 @@ Admin có tabs senses/sets, form có label cho nội dung, repeated example rows
 Hiện thực thêm ví dụ ngắn trong nút chọn sense để phân biệt các từ đồng tự trước khi mở nghĩa; source/version notice cho thẻ cũ khi bài có revision mới. Self-report known/skipped có nhãn riêng, không là mastery.0 kết quả hiển thị0–0. TTS dùng giọng hệ thống/trình duyệt có thể local hoặc network tùy cấu hình thiết bị; không hứa offline. Admin reviewer identity không được public API trả ra.
 
 Visual audit correction implemented and verified: admin sidebar giới hạn chiều cao/cuộn độc lập; chọn bộ resolve reference labels term/meaning/status từ đúng revision qua admin GET key/revision (bao gồm draft cho người duyệt). Link rời editor hỏi khi dirty, nút tải lại danh sách giữ form. Không tuyên bố browser-back SPA guard toàn app đã hoàn tất.
+
+## 2026-10-31 — Kho hệ thống và lưu cá nhân
+
+Phần mô tả tại /knowledge và /word-sets ghi rõ học liệu tiếng Hàn hệ thống và sổ đọc/kho ôn tập cá nhân. Giữ bố cục/tokens và các nút xem/lưu hiện có; nội dung chưa published vẫn không xuất hiện ở learner. [Audit tích hợp](../../audits/system-library-worker-errors.md).

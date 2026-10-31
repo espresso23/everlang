@@ -136,6 +136,7 @@ test("versioned vocabulary catalog, homograph SRS, quota, legacy mapping and int
       "/word-sets",
     );
     expect((await request.get("/api/word-sets")).status()).toBe(401);
+    expect((await learner.get("/api/word-sets?language=en")).status()).toBe(400);
     expect((await learner.get("/api/admin/word-sets")).status()).toBe(403);
     const pear = await create("qa-catalog-pear", sense("quả lê"));
     const boat = await create("qa-catalog-boat", sense("thuyền"));
@@ -197,6 +198,7 @@ test("versioned vocabulary catalog, homograph SRS, quota, legacy mapping and int
       await admin.get(`/api/word-sets?key=${set.key}`)
     ).json();
     expect(detail.senses).toHaveLength(2);
+    expect(detail).toMatchObject({ language: "ko", ownership: "system" });
     expect(detail.senses[0]).not.toHaveProperty("reviewedBy");
     expect(
       (

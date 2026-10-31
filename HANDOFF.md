@@ -4,6 +4,78 @@ Cập nhật gần nhất: 2026-10-31
 
 ## Trạng thái hiện tại
 
+### 2026-10-31 — Nén ngữ cảnh và tích hợp main trước sprint tiếp theo
+
+- Pre-merge mới:70/70unit, typecheck, lint0errors (1warning .local có sẵn), docs17features/152source/1531links, planning38PBI/82tasks/6Proposed và working/staged diff checks PASS.85file được rà trước commit, không đưa private/generated paths hoặc credential vào Git; source map/hash và các audit khớp code. Kết quả branch/hash sau fast-forward được báo ở lượt bàn giao, dùng git log main để lấy checkpoint chính xác.
+- User yêu cầu tổng hợp mọi công việc/feature và merge hết vào main. [Project status](documentation/project-status.md) nén17feature/domain, route/runtime/data, bằng chứng, giới hạn và2ưu tiên sprint. Lịch sử bên dưới giữ nguyên; [audit checkpoint](documentation/audits/sprint-checkpoint-2026-10-31.md).
+- Gộp source/docs/ảnh/tests audio, kho hệ thống và worker errors trong chat; knowledge/speech/catalog/research đã có commit cùng lịch sử. Mọi local branch là ancestor của currentHEAD; worktree user-profile sạch. Commit bugfix/sample-audio-player rồi fast-forward main, không squash/rewrite/reset/stash hoặc push remote.
+- Baseline70unit,3audioE2E16.7s,2real libraryE2E34.4s,PG/Redis/fatal probes và Docker42routes đã đạt; kiểm pre-merge mới ghi trong audit checkpoint. Lượt này chỉ docs/Git/checks, không rebuild/redeploy/call cloud hoặc sửa dữ liệu.
+- Sprint tiếp: đọc AGENTS→project-status→completion matrix→work-items→docsfeature, tạo branch đúng scope từ main.38PBI/82tasks/6sprint vẫnProposed; giờ/capacity/dateTBD, chưa start sprint/thay taskstatus. Contentreview/audio/pronunciation/provider/path/mastery/comparison/conversation/production gates còn mở; merge không có nghĩa fullselfstudyDone.
+
+### 2026-10-31 — Sửa Nghe câu còn sót và thống nhất trải nghiệm audio
+
+- User gửi ảnh Library/read vẫn text Nghe câu: bản sửa đầu mới cover speak/AnswerInput. Follow-up đổi đủ từng câu read, câu đầu listen và Practice AnswerDetails sang play/pause+progress+elapsed; giữ links lưu/tra từ và wireframe.
+- Player compact210px, button44px, label/tooltip theo từng câu, loading spinner/aria-busy/live status và reduced motion. Quản lý1active utterance, đổi player reset UI cũ ngay cả không có canceled event; detach callbacks trước cancel và cleanup chỉ hủy session của chính component. Đổi bài/tab reset; tab/lesson có aria-pressed/current. Bỏ speak/onSpeak mẫu cũ trong Library/Practice, dictionary workflow giữ nguyên.
+- Code: app/library/page.tsx, components/practice.tsx, components/sample-audio-player.tsx/.css, tests/e2e/sample-audio.spec.ts. Canonical docs immersive/translation/shared/design audit và code-map đồng bộ; [audit](documentation/audits/sentence-audio-controls.md) có ảnh1440/390/320/spacing, reproduction và giới hạn.
+- Kiểm dev3001:3Playwright29.1s và70/70unit đạt; targeted lint và initial typecheck đạt. Tests dùng synth/API fixtures, không gọi provider hoặc ghi dữ liệu; giọng Hàn thật/screenreader/native zoom chưa xác minh, TTS chưa hỗ trợ kéo tua/tổng thời lượng. Final container/deploy theo audit.
+- Tái sử dụng branch bugfix/sample-audio-player; giữ nguyên mọi staged changes có sẵn, không reset/stash/chuyển branch hoặc commit/push. Không sửa worker/model/quota/schema/dữ liệu trong lượt này.
+
+
+- Final: Docker production build42routes/TypeScript và app recreate3000 đạt;3Playwright trên deploy16.7s,70unit, lint và docs17features/152source, planning38PBI/82tasks/6Proposed, diff check đạt. Ảnh read/listen1440/390/320/spacing lấy lại từ bản deploy. Dev3001 đã dừng; rollback `everlang-before-sentence-controls:local`, giữ volumes. Chỉ cập nhật app, worker đang chạy giữ nguyên.
+
+### 2026-10-31 — Kho hệ thống theo ngôn ngữ, worker crash và AI429
+
+- User xác nhận kho từ/tài liệu ngữ pháp thuộc hệ thống, người học xem và lưu riêng. GET knowledge/word-sets thêm metadata language=ko/ownership=system; language khác400. Beta chỉ có tiếng Hàn; nội dung published dùng chung, draft vẫn chờ duyệt, bookmark/note/attempt/SRS giữ ownership. UI mô tả rõ kho hệ thống và sổ đọc/kho ôn cá nhân. Không tự publish các seed thật.
+- Log cũ xác nhận Unhandled error event/Connection terminated unexpectedly. Thêm Pool idle-error listener không dump client; tái sử dụng API boundary/logError có sẵn; logger redact nested/cycle an toàn. Standalone grading/speech worker fatal exception/rejection log rồi exit1; recovery/listener/shutdown có catch và deadline. Grading429 cooldownRedis theo Retry-After/default60s, concurrency1/limiter1s, retry3; config4xx dừng sớm. Failed SQL status write được reconcile từ Redis; không tự gọi AI lại hoặc ghi điểm giả.
+- Giữ branch bugfix/sample-audio-player/HEAD13d432b và thay đổi audio chưa commit; không đổi branch vì tree dirty. Lượt sửa này không commit/push, không đổi model/key/billing/schema/migration. File chính: lib/ai.ts, lib/logger.ts, lib/sql/index.ts, lib/process-errors.ts, scripts/worker.ts, scripts/speech-worker.ts, hai API và hai UI kho hệ thống.
+- Kiểm:70/70unit; real Redis cooldown1222ms/2attempts, idle PG disconnect/reconnect và2fatal child processes đạt;0cloud calls. Actual auth/Mongo/PG library+catalog E2E2passed34.4s, learner isolation/CAS/quota/language checks/UI320 đạt. Dọn37catalog+4knowledge synthetic revisions/4QA accounts/candidate; giữ content thật. Final build/deploy ghi trong [audit tích hợp](documentation/audits/system-library-worker-errors.md).
+- Tài liệu chuẩn [error handling](documentation/shared/error-handling.md); cập nhật5feature docs/audit, design audit và code-map. NOT VERIFIED với upstream quota/429 đã hồi phục thật, speech hardware/provider/điểm phát âm/chất lượng corpus và full WCAG; không đánh dấu toàn feature Done. Hai nhóm tiếp nối trong tổng hợp cuối ngày bên dưới vẫn còn hiệu lực.
+
+
+- Final: lint/typecheck/70unit và Docker build42routes đạt; app+grading worker đã recreate tại localhost3000, worker ready. Probe trên final image đạt2attempts/1212ms cooldown + PG reconnect + fatal children,0cloud calls; final UI smoke1440/390/320 không tràn/pageerror. docs17feature/152source, planning38PBI/82tasks/6Proposed và diff check đạt. Rollback tags `everlang-before-worker-errors:local`, `everlang-worker-before-errors:local`; giữ volumes. Source speech boundary đã cập nhật nhưng không bật/rebuild speech profiles disabled. Final catalog53draft/0published/0QA, không tự duyệt học liệu thật.
+
+### 2026-10-31 — Tổng hợp cuối ngày từ lịch sử chat và bằng chứng dự án
+
+**Phạm vi:** đối chiếu chat hiện tại, các lượt công việc hôm nay trong chat dự án, Git, tài liệu feature/audit và trạng thái Docker. Đây là bản tổng hợp mới nhất; các mục bên dưới giữ làm lịch sử. Không coi triển khai kỹ thuật là hoàn tất toàn bộ sản phẩm tự học.
+
+#### Những việc đã làm hôm nay
+
+| Nhóm công việc | Kết quả và bằng chứng | Trạng thái bàn giao |
+|---|---|---|
+| WBS, backlog, sprint | Đã tạo tracking solo; hiện có **38 PBI, 82 task, 6 sprint Proposed**. Nguồn chuẩn: [work-items.json](documentation/planning/work-items.json), hướng dẫn: [planning](documentation/planning/README.md). Commit khởi tạo `89e53a8`, chuẩn hóa file sinh `c6fd33f`. | Chưa chốt giờ/tuần, capacity hoặc ngày sprint; không tự chuyển trạng thái Done. |
+| BA và discovery | Đã tạo skill cá nhân `everlang-ba` ngoài repo; nghiên cứu pain point, đối thủ, vòng tự học, thư viện grammar/idiom/tài liệu và lựa chọn ASR cấu hình thấp. [Research tự học](documentation/research/self-study-vocabulary-pronunciation.md), [ASR](documentation/research/low-resource-asr.md). Commits `98dd29a`, `28957ad`. | Nghiên cứu là căn cứ yêu cầu; không đồng nghĩa các đề xuất đã có code hoặc được duyệt nội dung. |
+| Thư viện kiến thức | `/knowledge`, `/admin/knowledge`: nội dung versioned, tìm/đọc, bookmark, ghi chú, vị trí đọc, bài tập MCQ/cloze và lưu SRS; migration004, backup/restore, integration hai tài khoản. Commit `cc1c776`; [docs](documentation/features/knowledge-library/README.md), [audit](documentation/audits/self-study-library-integration.md). | Checkpoint kỹ thuật đã kiểm; 13 học liệu nháp theo lần kiểm trước, chờ chủ dự án duyệt trên app. Không kiểm lại số lượng DB trong lượt tổng hợp này. |
+| Thu âm và ASR | `/speech`: thu/import từ/câu tối đa20s, preview/consent, lịch sử riêng tư, phát/xóa, SQL outbox/worker; migration005–006. Có Whisper CPU option và Gemini adapter giới hạn20 lượt/ngày UTC. Commit `6790f1f`; [docs](documentation/features/self-hosted-speech/README.md), [audit](documentation/audits/self-study-speech-integration.md). | Key thay mới vẫn timeout trong lần thử trước; runtime bàn giao dùng `SPEECH_PROVIDER=disabled`, cho thu/nghe local. Chưa xác minh cloud thành công/free tier và chưa có chấm điểm phát âm. |
+| Bộ từ theo chủ đề/nghĩa | `/word-sets`, `/admin/word-sets`: nghĩa/phiên bản/bộ từ, ví dụ, TTS, học và lưu vào FSRS hiện có; quota/CAS, liên kết thẻ nhập tay giữ lịch ôn; migration007. Commit `13d432b`; [docs](documentation/features/vocabulary-catalog/README.md), [bằng chứng](documentation/features/vocabulary-catalog/assets/verification.md), [audit](documentation/audits/vocabulary-catalog-integration.md). | Lần kiểm cuối của feature:30 nghĩa +23 bộ đều draft,0published; QA đã dọn. Chưa là corpus đầy đủ các ngành; nội dung/audio cần duyệt. Không truy vấn lại DB trong lượt này. |
+| Play icon và time bar | Practice và Library/speak dùng `SampleAudioPlayer`: play/pause/resume/replay, thanh tiến trình theo vị trí chữ, đồng hồ thời gian đã phát, loading/timeout/error và cleanup; sửa tràn320px. [Contract](documentation/shared/sample-audio-player.md), [audit](documentation/audits/sample-audio-player.md), [test](tests/e2e/sample-audio.spec.ts). | Đã deploy localhost3000; thay đổi **chưa commit** trên `bugfix/sample-audio-player`. Thanh không kéo tua, không có tổng thời lượng media; thiếu boundary event thì thanh chỉ hoàn tất khi kết thúc. |
+
+#### Snapshot code và vận hành mới nhất
+
+- Checkout: `D:/Project/langz`; branch `bugfix/sample-audio-player`, HEAD `13d432b`. Các sửa đổi audio, docs/audit/code-map và ảnh QA đang uncommitted; giữ nguyên, không reset/stash/chuyển branch hoặc gom commit ngoài yêu cầu. Lượt tổng hợp này chỉ sửa `HANDOFF.md`, không commit/push/deploy thêm.
+- Bản app mới nhất đã triển khai ở [localhost:3000](http://localhost:3000) trong lượt sửa audio. Lượt tổng hợp kiểm lại `docker compose ps`: app/worker running; PostgreSQL, MongoDB, Redis và Mailpit running/healthy. Đây là kiểm trạng thái container, không thay kiểm tra provider hay luồng dữ liệu.
+- Rollback bản audio: image `everlang-before-sample-player:local` đã được giữ ở lượt trước. Với database đã migration007, chỉ dùng image tương thích007/bridge hoặc mới hơn; không quay về app trước bridge. Xem [bằng chứng migration/restore](documentation/features/vocabulary-catalog/assets/verification.md). Không có migration hoặc thay đổi dữ liệu trong lần sửa audio/tổng hợp này.
+
+#### Kiểm tra gần nhất và giới hạn bằng chứng
+
+- Lượt sửa audio đã đạt: **59/59 unit tests**, lint/typecheck, production build/Docker build **42 routes**, Playwright trên bản deploy3000 **1 test /10.7s**. UI kiểm1440/390/320px, keyboard và lifecycle/error; API và sự kiện SpeechSynthesis trong test là fixture, không chứng minh chất lượng giọng thật. [Chi tiết audit](documentation/audits/sample-audio-player.md).
+- Kiểm cấu trúc gần nhất: `docs:check`17 feature/148 source-config/1396 liên kết; `plan:check`38PBI/82task/6Proposed; `git diff --check` đạt. Lượt tổng hợp chỉ chạy lại kiểm tài liệu, tracking, liên kết bàn giao và diff; không chạy lại build, unit, E2E hoặc gọi provider.
+- Chưa xác minh: giọng Hàn/microphone thiết bị thật, screenreader/zoom, chất lượng đánh giá phát âm, audio curated, coverage corpus đầy đủ, benchmark AI được người duyệt chấp nhận và audit cuối toàn mục tiêu. Không đổi các kết quả này thành PASS chỉ vì bản build chạy được.
+
+- Xác minh lượt tổng hợp: `npm run docs:check` và `npm run plan:check` đều PASS; liên kết mới trong bản tổng hợp trỏ tới file tồn tại; lịch sử bàn giao đã commit được giữ nguyên.
+
+#### Hai nhóm việc tiếp nối
+
+1. **Nội dung và vòng học:** chủ dự án duyệt học liệu/bộ từ trên app; tiếp tục corpus có nguồn/quyền dùng, audio chuẩn, grammar comparison, mastery, diagnostic/lộ trình, đọc–nghe và hội thoại theo [completion matrix](documentation/planning/SELF_STUDY_DELIVERY.md). Chỉ cập nhật trạng thái tracking khi có bằng chứng tương ứng; không thu hẹp mục tiêu toàn bộ thành pilot.
+2. **Âm thanh và nghiệm thu:** xác minh phương án miễn phí/cấu hình thấp, chạy audio thật và benchmark trước khi bật provider/chấm phát âm; hoàn thiện các gate tích hợp, accessibility và vận hành còn mở. STT hoặc embedding chưa kiểm chứng không được dùng làm điểm phát âm. Không tự bật billing hoặc fallback trả phí.
+
+
+### 2026-10-31 — Nút phát mẫu và thanh tiến trình
+
+- Branch `bugfix/sample-audio-player` từ branch catalog, tree sạch trước khi tạo. Thay text button nghe mẫu ở Practice/Library bằng play/pause44px, thanh tiến trình theo vị trí chữ và mm:ss đã phát; pause/resume/replay/error/loading10s timeout, cleanup khi đổi câu/rời tab. Không bịa tổng thời lượng; TTS không hỗ trợ kéo tua. Sửa min-width nội dung Library để không tràn320px, giữ wireframe.
+- Code: components/sample-audio-player.tsx/.css, components/practice.tsx, app/library/page.tsx. Docs hai feature/shared/code-map; audit: documentation/audits/sample-audio-player.md. Playwright lifecycle/error/keyboard/320+390+1440 và Practice smoke đạt1test10.3s bằng event TTS mô phỏng. Lint0errors (warning .local có sẵn), typecheck và production42routes đạt. Giọng tiếng Hàn thật/screenreader/zoom chưa xác minh; feature/provider gates cũ giữ nguyên.
+
+- Final: Docker build42routes và cập nhật app3000 đạt; Playwright trên bản deploy1passed10.7s,59/59unit, targeted lint sạch, docs17features/148source/1396links, plan38PBI/82tasks và diff check đạt. Rollback image `everlang-before-sample-player:local`; dev3001 đã dừng.
+
 ### 2026-10-31 — Bộ từ theo chủ đề/sense (technical checkpoint, release gate mở)
 
 - Branch feature/topic-vocabulary-catalog từ6790f1f, primary D:/Project/langz, tree sạch trước khi tạo. Đặc tả5 docs trước code tại documentation/features/vocabulary-catalog; PB-035 refine4 tasks, chưa chốt sprint/capacity. Mongo catalog versioned/pinned sense/set, learner/admin forms, PG sense-aware FSRS/quota/CAS/explicit legacy mapping, TTS hệ thống và /speech link; không thêm SRS thứ hai.

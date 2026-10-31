@@ -14,3 +14,7 @@ Feature ID vocabulary-catalog · implemented, technical audit có bằng chứng
 | VC-08 | Migration giữ card/review logs lịch cũ; bridge rollback POST targetless conflict được build/deploy trước007. Backup+restore metadata/Mongo, regression manual cards/reviews và2-account isolation. |
 
 Spec trước code; canonical [system design](system-design.md), [functions](functions.md), [UI](ui.md), [audit](audit.md). Audio curated/quality và toàn bộ corpus có reviewer là release gates, không coi full feature Done từ technical sample.
+
+## 2026-10-31 — Kho hệ thống và lưu cá nhân
+
+Kho từ và tài liệu ngữ pháp thuộc hệ thống, dùng chung theo ngôn ngữ; bản đã published cho mọi tài khoản verified xem/lưu. Beta chỉ có tiếng Hàn (ko); không tự xuất bản draft. [Audit tích hợp](../../audits/system-library-worker-errors.md).

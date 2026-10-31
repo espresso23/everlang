@@ -1,10 +1,17 @@
 import { z } from "zod";
 import { jsonrepair } from "jsonrepair";
 import { LEVELS, TOPICS } from "@/lib/types";
-import { logError } from "@/lib/logger";
+import { log, logError } from "@/lib/logger";
 
-class ProviderError extends Error {
-  constructor(message: string, readonly status?: number) { super(message); }
+export class ProviderError extends Error {
+  constructor(message: string, readonly status?: number, readonly retryAfterMs?: number) { super(message); }
+}
+
+export function retryAfterMs(value: string | null, now = Date.now()) {
+  if (!value?.trim()) return undefined;
+  const seconds = Number(value);
+  const delay = Number.isFinite(seconds) ? seconds * 1000 : Date.parse(value) - now;
+  return Number.isFinite(delay) && delay >= 0 ? Math.min(86_400_000, Math.max(1000, Math.ceil(delay))) : undefined;
 }
 
 const grammarError = z.object({ error: z.string(), correction: z.string(), explanation: z.string() });
@@ -48,7 +55,8 @@ export async function generateJson<T>(schema: z.ZodType<T>, prompt: string): Pro
       }),
       signal: AbortSignal.timeout(90_000),
   });
-  const payload = await response.json() as {
+  // Preserve the HTTP error even if a proxy/provider returns HTML or an empty body.
+  const payload = (await response.json().catch(() => null) ?? {}) as {
     error?: {
       message?: string;
       code?: number | string;
@@ -59,17 +67,21 @@ export async function generateJson<T>(schema: z.ZodType<T>, prompt: string): Pro
     usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number; completion_tokens_details?: { reasoning_tokens?: number } };
     id?: string;
   };
-  if (!response.ok) {
-    const error = new ProviderError(payload.error?.message || `OpenRouter returned ${response.status}`, response.status);
-    logError("ai.request.failed", error, {
+  if (!response.ok || payload.error) {
+    const status = response.ok ? Number(payload.error?.code) || 502 : response.status;
+    const wait = retryAfterMs(response.headers.get("retry-after"));
+    const error = new ProviderError(`OpenRouter returned ${status}`, status, wait);
+    const fields = {
       provider: "openrouter",
       model,
-      httpStatus: response.status,
+      httpStatus: status,
       providerErrorCode: payload.error?.metadata?.provider_code ?? payload.error?.code,
       providerName: payload.error?.metadata?.provider_name,
       providerErrorType: payload.error?.metadata?.error_type,
-      retryAfter: response.headers.get("retry-after"),
-    });
+      retryAfterMs: wait,
+    };
+    if (status === 429) log("warn", "ai.request.rate_limited", fields);
+    else logError("ai.request.failed", error, fields);
     throw error;
   }
   const choice = payload.choices?.[0];
@@ -145,7 +157,7 @@ export function aiErrorResponse(error: unknown) {
   if (error instanceof z.ZodError || error instanceof SyntaxError) {
     return { status: 502, message: "Model AI trả về dữ liệu không đúng định dạng. Hãy thử lại." };
   }
-  const detail = error as { status?: number; statusCode?: number; message?: string; error?: { message?: string } };
+  const detail = (error ?? {}) as { status?: number; statusCode?: number; message?: string; error?: { message?: string } };
   const providerStatus = detail.statusCode ?? detail.status;
   const message = `${detail.message ?? ""} ${detail.error?.message ?? ""}`;
   if (message.includes("phản hồi rỗng") || message.includes("completion is empty")) return {

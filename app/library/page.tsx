@@ -1,9 +1,10 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { SampleAudioPlayer } from "@/components/sample-audio-player";
 import { DictionarySelectionLookup } from "@/components/practice";
 import { readingLessons } from "@/data/reading-lessons";
-import { request, speak } from "@/lib/client";
+import { request } from "@/lib/client";
 export default function Library() {
   const [index, setIndex] = useState(0);
   const [tab, setTab] = useState<"read" | "listen" | "speak" | "tutor">("read");
@@ -122,6 +123,7 @@ export default function Library() {
           <button
             key={t}
             className={tab === t ? "primary-button" : "soft-button"}
+            aria-pressed={tab === t}
             onClick={() => setTab(t as typeof tab)}
           >
             {label}
@@ -208,6 +210,7 @@ export default function Library() {
               <button
                 className="vocab-row full"
                 key={l.id}
+                aria-current={index === i ? "true" : undefined}
                 onClick={() => {
                   setIndex(i);
                   setChecked(false);
@@ -226,11 +229,11 @@ export default function Library() {
             ))}
             <p className="muted small spaced">{lesson.source}</p>
           </aside>
-          <section className="panel">
+          <section className="panel min-w-0">
             <h2>{lesson.title}</h2>
             {tab === "read" ? (
               lesson.segments.map((s, i) => (
-                <article className="spaced" key={i}>
+                <article className="spaced" key={`${lesson.id}-${i}`}>
                   <p
                     className="kr-font text-lg leading-8"
                     onMouseUp={() => {
@@ -253,7 +256,7 @@ export default function Library() {
                     {s.vi}
                   </details>
                   <div className="task-actions">
-                    <button onClick={() => speak(s.ko)}>Nghe câu</button>
+                    <SampleAudioPlayer text={s.ko} label={`Nghe câu ${i + 1}`} compact />
                     <Link
                       href={
                         "/vocabulary?term=" +
@@ -280,12 +283,7 @@ export default function Library() {
               ))
             ) : tab === "listen" ? (
               <>
-                <button
-                  className="primary-button"
-                  onClick={() => speak(lesson.segments[0].ko)}
-                >
-                  Nghe câu đầu tiên
-                </button>
+                <SampleAudioPlayer key={`listen-${lesson.id}`} text={lesson.segments[0].ko} label="Nghe câu đầu tiên" />
                 <p className="muted spaced">
                   Nghe lại, ghi câu bạn nghe được, rồi so sánh.
                 </p>
@@ -335,12 +333,7 @@ export default function Library() {
                   nghe lại ngay trên thiết bị.
                 </p>
                 <div className="task-actions">
-                  <button
-                    className="soft-button"
-                    onClick={() => speak(lesson.segments[0].ko)}
-                  >
-                    Nghe mẫu
-                  </button>
+                  <SampleAudioPlayer key={`speak-${lesson.id}`} text={lesson.segments[0].ko} />
                   <button
                     className="primary-button"
                     onClick={() => void record()}

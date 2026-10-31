@@ -240,8 +240,9 @@ function WordSets() {
       <p className="eyebrow">TỪ TRONG NGỮ CẢNH · TỪNG NGHĨA CỤ THỂ</p>
       <h1 className="page-title">Bộ từ theo chủ đề</h1>
       <p className="muted">
-        Đời sống, học tập, công việc và chuyên ngành. Số lượng hiển thị là nội
-        dung đã xuất bản; thư viện đang được biên soạn và duyệt.
+        Kho từ tiếng Hàn của hệ thống, dùng chung cho mọi người học: đời sống,
+        học tập, công việc và chuyên ngành. Chọn từ để lưu vào kho ôn tập riêng.
+        Số lượng hiển thị là nội dung đã xuất bản; thư viện đang được biên soạn và duyệt.
       </p>
       {error && (
         <p className="notice" role="alert">

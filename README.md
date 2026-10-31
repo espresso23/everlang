@@ -1,5 +1,7 @@
 # EverLang
 
+[Checkpoint tính năng và bàn giao sprint tiếp theo](documentation/project-status.md) · [Tracking](documentation/planning/DASHBOARD.md).
+
 Quy tắc phát triển: [AGENTS.md](AGENTS.md). Đặc tả, system design, function description, UI và audit từng feature: [documentation/README.md](documentation/README.md).
 
 Beta tự học tiếng Hàn trung–cao cấp: luyện dịch → hiểu lỗi → lưu kiến thức → ôn SRS → lịch học mỗi ngày.

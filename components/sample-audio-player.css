@@ -1,0 +1,14 @@
+.sample-audio { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 10px; width: 260px; max-width: 100%; min-width: 0; vertical-align: middle; }
+.sample-audio .sample-audio-toggle { width: 44px; min-height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 44px; }
+.sample-audio-toggle:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.sample-audio-progress { flex: 1; width: 80px; min-width: 30px; height: 6px; border: 0; border-radius: 3px; overflow: hidden; appearance: none; background: var(--line); accent-color: var(--brand); }
+.sample-audio-progress::-webkit-progress-bar { background: var(--line); }
+.sample-audio-progress::-webkit-progress-value { background: var(--brand); }
+.sample-audio-progress::-moz-progress-bar { background: var(--brand); }
+.sample-audio-time { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.sample-audio-error { flex-basis: 100%; color: var(--negative); }
+
+.sample-audio-compact { width: 210px; }
+.sample-audio-toggle:hover:not(:disabled) { color: var(--brand); border-color: var(--brand); }
+@keyframes sample-audio-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: no-preference) { .sample-audio-spinner { animation: sample-audio-spin 1s linear infinite; } }

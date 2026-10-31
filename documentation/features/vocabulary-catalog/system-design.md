@@ -13,3 +13,7 @@ GET list/detail no-store verified session; /api/admin/word-sets admin only, upda
 Legacy mapping được thêm trước code: không tự đoán sense cho thẻ nhập tay. Detail trả legacy candidates owner-only có cùngterm; user chọn attachCardId/attachVersion explicit. Server kiểm term/kind/owner/version và cập nhật identity/snapshot, giữ id/card/due/log, tăngversion; không tiêu quota từ mới. Introduction counted=false cho attach, không tự merge/xóa manual card. Duplicate catalog save giữ cả progress hiện có, không ghi đè self-report từ tab khác.
 
 Tìm bộ bằng q cũng tra term/meaning của đúng pinned published sense qua Mongo lookup; không lấy bản draft hoặc revision khác để khớp sai. Latest set được group trước filter. TTS platform có thể dùng network theo voice engine; app không thêm cloud TTS API hoặc API key. Admin content chỉ nhận cùng action edit, review/publish kiểm đúng persisted content. Catalogue GET giữ một PG client và dùng chính client đó, tránh tự giữ client rồi chờ pool khi nhiều request.
+
+## Kho hệ thống theo ngôn ngữ — 2026-10-31
+
+Nội dung chuẩn là tài sản hệ thống, dùng chung cho các tài khoản verified, không lọc theo người tạo học liệu. GET nhận `language=ko` (mặc định), từ chối ngôn ngữ chưa hỗ trợ thay vì trả nhầm corpus; response thêm `language` và `ownership=system`. Chưa triển khai corpus đa ngôn ngữ. Chỉ nội dung published được xem/lưu; admin quản lý draft/review/publish. Bookmark/note/read-state/attempt/SRS vẫn theo owner hiện hành; lưu cá nhân không thay bản gốc. Không tự publish các seed đang chờ duyệt.
