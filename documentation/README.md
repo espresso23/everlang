@@ -55,6 +55,9 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 
 ## Product discovery
 
+- [Mục tiêu và completion matrix tự học](planning/SELF_STUDY_DELIVERY.md) — phạm vi end-state, tracking và bằng chứng nghiệm thu; goal đang active.
+- [Thư viện kiến thức](features/knowledge-library/README.md) — feature mới đang triển khai, content seed chưa được duyệt; [system design](features/knowledge-library/system-design.md), [functions](features/knowledge-library/functions.md), [UI](features/knowledge-library/ui.md), [audit](features/knowledge-library/audit.md).
+
 - [Từ vựng theo chủ đề và luyện phát âm](research/self-study-vocabulary-pronunciation.md) — nghiên cứu 2026-10-31; đề xuất chưa duyệt scope, chưa triển khai hoặc chuyển sprint.
 
 ## Quy trình

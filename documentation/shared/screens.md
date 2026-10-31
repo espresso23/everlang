@@ -26,3 +26,8 @@ Theme mới theo [design guide](../design/README.md), [8 màn hình trước/sau
 
 
 /profile hiện có learning passport view, inline editor và disclosure bảo mật/dữ liệu. Xem [UI mới](../features/user-profile/ui.md). Đây là ngoại lệ layout theo yêu cầu sau skin editorial.
+
+## Thêm màn hình tự học 2026-10-31
+
+- [/knowledge](../../app/knowledge/page.tsx): [UI chuẩn](../features/knowledge-library/ui.md), browse/search + reader + notes/resume/exercises/SRS.
+- [/admin/knowledge](../../app/admin/knowledge/page.tsx): editor/duyệt/publish/revision. Trạng thái xác minh ở [audit](../features/knowledge-library/audit.md).

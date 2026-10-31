@@ -392,7 +392,7 @@
             "transition",
             "AdvancedTools"
           ],
-          "sha256": "5b098159f203df8c42fcc4e6e3357a69bd44debf9f39bc34a7d10c6dbdd039e0"
+          "sha256": "dd7fa6cbddd17025df9622d3feea5cb5e1c9705adf7298e3ef326bd8eedbc262"
         },
         {
           "file": "app/api/admin/content/route.ts",
@@ -449,7 +449,7 @@
             "record",
             "send"
           ],
-          "sha256": "540786a8cff37daf7b604f7cde9d59777bf1af198c9429aa72d5d80c4451ddd8"
+          "sha256": "ada4f0af16e59fdd52b1c33e98940d0f9522f76538ddfbebbe5bb13936f12bd6"
         },
         {
           "file": "data/reading-lessons.ts",
@@ -710,7 +710,7 @@
         {
           "file": "package.json",
           "symbols": [],
-          "sha256": "448ea1e76f5189ae82e603f54b1dbccae9fc8a126cbc326f798276f6525abaae"
+          "sha256": "cd51bcfcd1650f43a568e624687f06191bc0ceb9c1f6426a4c5f565d10f0d528"
         },
         {
           "file": "package-lock.json",
@@ -774,12 +774,128 @@
             "buildViews",
             "run"
           ],
-          "sha256": "ec0056cc5301f86e2c5d1d4e529f9f11e68c2e267676d7d7a103d7955ac9a755"
+          "sha256": "c532379995450199f190349b535b475577db5ff8ad5710f1bf8d6298226e1d65"
         },
         {
           "file": "tests/unit/planning.test.ts",
           "symbols": [],
-          "sha256": "50ea523d39c303d95af3b708d6675dbf5d40a295475bbbaf93709fe93c721952"
+          "sha256": "b23eb7b45e58e4a3f60fbc362f502783b43376b8fca6b5d987afde18da13d807"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-library",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "lib/knowledge-contract.ts",
+          "symbols": [
+            "knowledgeSchema",
+            "publicEntry",
+            "gradeKnowledge",
+            "normalizeKnowledgeAnswer",
+            "stateSchema",
+            "knowledgeKey"
+          ],
+          "sha256": "694cb0e499f0d4b64bd2211f11033d32ccc1e86a555f81f5a3a5c27410e82f51"
+        },
+        {
+          "file": "lib/knowledge.ts",
+          "symbols": [
+            "getKnowledge",
+            "listKnowledge",
+            "publicKnowledge",
+            "knowledgeTitles"
+          ],
+          "sha256": "604263f2c04edc3743cb3a462db4abf688bce001d02e759c6d9dce1166b1f782"
+        },
+        {
+          "file": "lib/models/Knowledge.ts",
+          "symbols": [
+            "Knowledge"
+          ],
+          "sha256": "7a107ff1bac86bdaaba677d538859b997a8c011d57ae4520465581c5271eb9b7"
+        },
+        {
+          "file": "app/knowledge/page.tsx",
+          "symbols": [
+            "KnowledgePage",
+            "KnowledgeBrowser",
+            "Reader"
+          ],
+          "sha256": "ea0beae7c9bc1d3f79be2db2941a13a7a45cb2bd67f2cac6720fb9b5e1f5bcff"
+        },
+        {
+          "file": "app/api/knowledge/route.ts",
+          "symbols": [
+            "GET"
+          ],
+          "sha256": "2bffbe629f70a7c94869d210c6acabbecef603e2fee4f071607ba872e6f5c9d0"
+        },
+        {
+          "file": "app/api/knowledge/state/route.ts",
+          "symbols": [
+            "GET",
+            "PUT"
+          ],
+          "sha256": "559dcce5e6b1a24fc4bf3cf214973fd8338641ce75742c7ff21371bdeeb704f5"
+        },
+        {
+          "file": "app/api/knowledge/attempts/route.ts",
+          "symbols": [
+            "POST"
+          ],
+          "sha256": "1febc1a7167a2927108178f980a5ba05a2a73abb937462a7124fc9f149a6aee7"
+        },
+        {
+          "file": "app/api/admin/knowledge/route.ts",
+          "symbols": [
+            "GET",
+            "POST",
+            "PATCH"
+          ],
+          "sha256": "f816cb7d9616258b71b2d3053016a9d3a723be15951cfca15ec4fed9f2173db4"
+        },
+        {
+          "file": "app/admin/knowledge/page.tsx",
+          "symbols": [
+            "KnowledgeAdmin"
+          ],
+          "sha256": "9834f00b46ed41e8eb7b4579ba1f223c825d46b57529edae3c5fdd0edad7df46"
+        },
+        {
+          "file": "migrations/004_knowledge.sql",
+          "symbols": [],
+          "sha256": "b4526874c4ac17f1113bad061254313e1d5b1f625cd28eec5e35768e5e0f3034"
+        },
+        {
+          "file": "data/knowledge-seed.ts",
+          "symbols": [
+            "knowledgeSeed"
+          ],
+          "sha256": "61afd15bcf33a2ffeaf006a709d66612f53edebd7d7f3a451321501f7e5f73e0"
+        },
+        {
+          "file": "scripts/seed-knowledge.ts",
+          "symbols": [
+            "seedKnowledge"
+          ],
+          "sha256": "6cb7c6e2165d0ea88aaf0e5ffe847e2b43f157282d357aa1d81fcc116f634c13"
+        },
+        {
+          "file": "tests/unit/knowledge.test.ts",
+          "symbols": [],
+          "sha256": "32461c8534fd0b5ec9e891f719fe5c36a73f7dfe4ecf125b5bb1645e3fb4ab1e"
+        },
+        {
+          "file": "tests/e2e/knowledge.spec.ts",
+          "symbols": [],
+          "sha256": "33b233d36712a2083b0a363d3bcf08ca1fae9e41282b584199c5df1c83020c1b"
+        },
+        {
+          "file": "app/knowledge/knowledge.css",
+          "symbols": [],
+          "sha256": "6a69eceb4e94fc39692a192b24d3a635962ce54c0fa75253e009df4425789472"
         }
       ]
     }

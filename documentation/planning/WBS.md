@@ -51,6 +51,10 @@ Nội dung và chữa bài đủ tin cậy để tự học
   - PB-012-T01 — Đặc tả trạng thái feedback, quyền và5 docs/cập nhật docs chuẩn
   - PB-012-T02 — Report issue→admin review→resolution lưu version/evidence
   - PB-012-T03 — Kiểm ownership, duplicate, privacy và đưa ca đã duyệt vào regression set
+- **WBS-1.34 / PB-034 — Thư viện tra cứu: idiom, tục ngữ, tài liệu và đọc lại** (P0, Core, Unscheduled).
+  - PB-034-T01 — Đặc tả loại tài liệu và hợp đồng đọc lại/ghi chú/ôn tập
+  - PB-034-T02 — Triển khai idiom/tục ngữ/tài liệu và state đọc theo tài khoản
+  - PB-034-T03 — Audit reader, isolation, concurrency, nội dung và bàn giao
 
 
 ## WBS-2 / Bài tập, SRS và năng lực
@@ -73,6 +77,8 @@ Học, dùng lại và ghi nhận mức nắm kiến thức
   - PB-018-T01 — Chốt card presentation và accepted answers; không reset lịch cũ
   - PB-018-T02 — Context/card variants, source navigation và audio fallback
   - PB-018-T03 — Kiểm migration compatible nếu có, review concurrency và dữ liệu cũ
+- **WBS-2.35 / PB-035 — Bộ từ vựng đời sống và chuyên ngành có ví dụ** (P0, Core, Unscheduled).
+  - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
 
 
 ## WBS-3 / Lộ trình và cá nhân hóa
@@ -125,6 +131,10 @@ Mở rộng đầu vào ngôn ngữ
   - PB-020-T01 — Rà contract/storage/consent/retention và cấu hình bằng env, không lưu secret trong docs
   - PB-020-T02 — Hoàn tất recorder/STT/S3/replay và lỗi microphone/provider
   - PB-020-T03 — Kiểm thiết bị thật/signed URL/account isolation/delete và audio feedback
+- **WBS-4.36 / PB-036 — Audio từ/câu có phiên bản và nguồn** (P1, Core, Unscheduled).
+  - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
+- **WBS-4.37 / PB-037 — Hội thoại theo tình huống và luyện dùng từ** (P1, Core, Unscheduled).
+  - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
 
 
 ## WBS-5 / Phát hành và vận hành beta

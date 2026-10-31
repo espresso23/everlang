@@ -4,11 +4,11 @@
 
 Baseline 4eb249c: 14 feature/domain hiện có, tách khỏi backlog mới. Không tính % hoàn thành toàn bộ dự án.
 
-Phần bổ sung: 33 PBIs; 0/72 tasks (0% count-based). 9 PBIs deferred chưa chia task/estimate. Task count không phải effort/burndown.
+Phần bổ sung: 37 PBIs; 4/75 tasks (5% count-based). 13 PBIs chưa xếp sprint. Task count không phải effort/burndown.
 
 | Sprint | Trạng thái | Start | End | Core dev SP* | Stretch dev SP* | Done dev SP* | Tiến độ |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| S1 / Ngữ pháp pilot + quality baseline | Proposed | TBD | TBD | 13 | 0 | 0 | 0/12 tasks (0% count-based) |
+| S1 / Ngữ pháp pilot + quality baseline | Proposed | TBD | TBD | 13 | 0 | 0 | 2/12 tasks (17% count-based) |
 | S2 / Tra cứu, mở rộng pilot và ôn lại | Proposed | TBD | TBD | 13 | 0 | 0 | 0/12 tasks (0% count-based) |
 | S3 / Onboarding và lộ trình tự học | Proposed | TBD | TBD | 11 | 3 | 0 | 0/12 tasks (0% count-based) |
 | S4 / Nghe đọc trong ngữ cảnh | Proposed | TBD | TBD | 8 | 5 | 0 | 0/12 tasks (0% count-based) |

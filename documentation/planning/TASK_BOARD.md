@@ -4,9 +4,9 @@
 
 | Task | PB / Sprint | Task | Owner / role | Status | Readiness | Depends | Verification / evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| PB-001-T01 | PB-001 / S1 | Đặc tả taxonomy, version, API và UI; tạo bộ5 docs feature trước code | Chủ dự án / Dev/PO | Todo | Needs refinement | — | Not run: chưa có |
-| PB-001-T02 | PB-001 / S1 | Schema/admin/learner search và detail; tận dụng workflow draft-review-published | Chủ dự án / Dev | Todo | Waiting dependencies | PB-001-T01 | Not run: chưa có |
-| PB-001-T03 | PB-001 / S1 | Kiểm learner/admin, tìm theo nghĩa/cấu trúc, empty/error; audit và handoff | Chủ dự án / QA/Dev | Todo | Waiting dependencies | PB-001-T02 | Not run: chưa có |
+| PB-001-T01 | PB-001 / S1 | Đặc tả taxonomy, version, API và UI; tạo bộ5 docs feature trước code | Chủ dự án / Dev/PO | Done | Done | — | Pass: documentation/features/knowledge-library/README.md, documentation/features/knowledge-library/system-design.md, documentation/features/knowledge-library/ui.md |
+| PB-001-T02 | PB-001 / S1 | Schema/admin/learner search và detail; tận dụng workflow draft-review-published | Chủ dự án / Dev | Done | Done | PB-001-T01 | Pass: documentation/features/knowledge-library/functions.md, documentation/features/knowledge-library/assets/verification.md, tests/e2e/knowledge.spec.ts |
+| PB-001-T03 | PB-001 / S1 | Kiểm learner/admin, tìm theo nghĩa/cấu trúc, empty/error; audit và handoff | Chủ dự án / QA/Dev | In progress | Ready | PB-001-T02 | Not run: documentation/features/knowledge-library/audit.md, documentation/audits/self-study-library-integration.md |
 | PB-002-T01 | PB-002 / S1 | Biên soạn5 cấu trúc và ví dụ tự viết/nguồn được phép dùng | Chủ dự án / Content | Todo | Waiting dependencies | PB-001-T03 | Not run: chưa có |
 | PB-002-T02 | PB-002 / S1 | Duyệt sắc thái, đáp án chấp nhận và tính nhất quán; lưu nhận xét | Chủ dự án / Reviewer | Todo | Waiting dependencies | PB-002-T01 | Not run: chưa có |
 | PB-002-T03 | PB-002 / S1 | Xuất bản đúng version và kiểm hiển thị từ tài khoản learner | Chủ dự án / Content/Dev | Todo | Waiting dependencies | PB-002-T02 | Not run: chưa có |
@@ -76,3 +76,6 @@
 | PB-024-T01 | PB-024 / S6 | Sync5 docs mỗi feature + code-map/HANDOFF, lint/typecheck/build/container | Chủ dự án / Dev | Todo | Waiting dependencies | PB-021-T03, PB-022-T03, PB-023-T03 | Not run: chưa có |
 | PB-024-T02 | PB-024 / S6 | Audit tách lượt spec→code→test→UI, xác nhận không còn release blocker | Chủ dự án / QA | Todo | Waiting dependencies | PB-024-T01 | Not run: chưa có |
 | PB-024-T03 | PB-024 / S6 | Go/no-go và release notes; approval phát hành cụ thể ở bước cuối | Chủ dự án / PO | Todo | Waiting dependencies | PB-024-T02 | Not run: chưa có |
+| PB-034-T01 | PB-034 / null | Đặc tả loại tài liệu và hợp đồng đọc lại/ghi chú/ôn tập | Chủ dự án / Dev/PO | Done | Done | — | Pass: documentation/features/knowledge-library/README.md |
+| PB-034-T02 | PB-034 / null | Triển khai idiom/tục ngữ/tài liệu và state đọc theo tài khoản | Chủ dự án / Dev/PO | Done | Done | PB-034-T01 | Pass: documentation/features/knowledge-library/functions.md, documentation/features/knowledge-library/assets/verification.md, tests/e2e/knowledge.spec.ts |
+| PB-034-T03 | PB-034 / null | Audit reader, isolation, concurrency, nội dung và bàn giao | Chủ dự án / QA/Reviewer | In progress | Ready | PB-034-T02 | Not run: documentation/features/knowledge-library/audit.md, documentation/audits/self-study-library-integration.md |

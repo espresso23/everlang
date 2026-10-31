@@ -23,3 +23,7 @@ Google STT/S3 và microphone/TTS thiết bị thật chưa kiểm chứng toàn 
 Ảnh QA 2026-10-30, viewport 1440×1000: [màn hình learner](assets/screen-learner-desktop.png). Đây là bằng chứng render màn hình, không thay audit mọi thao tác/provider.
 
 Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md); [gallery trước/sau](../../design/screens.md) thay appearance của ảnh lịch sử trong tài liệu này. Layout và contract feature giữ nguyên.
+
+## Tích hợp 2026-10-31
+
+`Library` tại /library thêm link tới [thư viện kiến thức](../knowledge-library/ui.md). Các tab/luồng nghe đọc nói giữ nguyên; đây là entry point đọc lại grammar/idiom, không thay bài đọc cũ.

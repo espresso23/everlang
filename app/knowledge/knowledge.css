@@ -1,0 +1,116 @@
+.knowledge-page {
+  color: var(--ink);
+}
+.knowledge-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+  margin: 24px 0;
+}
+.knowledge-filters label {
+  flex: 1 1 160px;
+}
+.knowledge-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 20px;
+}
+.knowledge-title {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  overflow-wrap: anywhere;
+}
+.knowledge-heading {
+  margin: 28px 0;
+  max-width: 75ch;
+}
+.knowledge-heading .knowledge-title {
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.35;
+  font-weight: 800;
+}
+.knowledge-cards .knowledge-title {
+  font-size: 21px;
+  line-height: 1.45;
+}
+.knowledge-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 300px);
+  gap: 24px;
+  align-items: start;
+}
+.knowledge-reading {
+  min-width: 0;
+}
+.knowledge-reading section {
+  margin: 28px 0;
+  scroll-margin-top: 100px;
+}
+.knowledge-reading .learning-text {
+  font-size: 16px;
+  line-height: 1.85;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.knowledge-example {
+  padding: 16px;
+  margin: 16px 0;
+  background: var(--paper);
+  border-left: 2px solid var(--brand);
+  overflow-wrap: anywhere;
+}
+.knowledge-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.knowledge-notes nav a {
+  display: block;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.knowledge-option {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin: 12px 0;
+}
+.knowledge-reading fieldset {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin: 20px 0;
+  padding: 16px;
+  min-width: 0;
+}
+.knowledge-reading legend {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+.knowledge-editor {
+  display: grid;
+  gap: 16px;
+}
+.knowledge-editor fieldset {
+  border: 1px solid var(--line);
+  padding: 16px;
+  min-width: 0;
+}
+.knowledge-editor label {
+  display: block;
+  margin: 10px 0;
+}
+.knowledge-editor .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media (max-width: 760px) {
+  .knowledge-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .knowledge-filters {
+    align-items: stretch;
+  }
+}

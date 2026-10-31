@@ -23,3 +23,7 @@ Browser chỉ gửi cookie session; API lấy danh tính từ Better Auth, khôn
 Luồng chính: luyện dịch → job chấm → báo cáo/lưu từ → SRS → dashboard ngày địa phương. Profile cung cấp phút/ngày và múi giờ cho lần tạo lịch tiếp theo. Lịch có sẵn trong ngày giữ snapshot. Caddy là reverse proxy HTTPS trong cấu hình production; local chỉ bind loopback.
 
 S3/STT/Tutor có code tích hợp nhưng còn phụ thuộc cấu hình và xác minh dịch vụ; không coi sơ đồ này là bằng chứng chạy thành công. Xem [audit tích hợp](../audits/baseline-integration.md).
+
+## Knowledge library — 2026-10-31
+
+[Thư viện kiến thức](../features/knowledge-library/system-design.md) dùng Route Handlers/service trong monolith: học liệu versioned ở MongoDB, notes/progress/attempts ở PostgreSQL; không thêm backend framework hoặc queue riêng. TTS là thiết bị, chưa audio curated/scoring.

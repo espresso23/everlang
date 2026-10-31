@@ -64,3 +64,7 @@ Các callback vô danh nằm trong component/handler được mô tả cùng com
 Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared.
 
 Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+
+## Planning cập nhật 2026-10-31
+
+`buildViews` trong [planning.mjs](../../../scripts/planning.mjs) dùng nhãn PBIs chưa xếp sprint thay deferred: item Core chưa được schedule vẫn có thể nằm ngoài sprint. Unit fixture reset trạng thái để test invariants không phụ thuộc tiến độ thực tế; test riêng validate dữ liệu tracking hiện tại.

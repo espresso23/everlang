@@ -10,8 +10,8 @@
     "Dành khoảng25% capacity được xác nhận cho bug, QA, audit và handoff; nếu scope vượt capacity phải tách/cắt story.",
     "S1-S2 refine trước; S3-S6 là forecast, cần estimate lại sau velocity thực tế.",
     "PB-* là ID tracking nội bộ, không phải Jira/GitHub ticket.",
-    "Chưa bắt đầu thực hiện các product tasks; baseline code cũ tách khỏi % tiến độ phần bổ sung.",
-    "Mỗi sprint ưu tiên Core; Stretch chỉ kéo khi còn capacity, carry-over phải replan phụ thuộc và gate."
+    "Mỗi sprint ưu tiên Core; Stretch chỉ kéo khi còn capacity, carry-over phải replan phụ thuộc và gate.",
+    "2026-10-31: owner yêu cầu triển khai toàn bộ tự học; công việc bắt đầu, sprint vẫn Proposed chưa cam kết ngày/capacity; scope mở rộng theo research."
   ],
   "states": [
     "Todo",
@@ -305,11 +305,11 @@
       "priority": "P0",
       "sprint": "S1",
       "points": 5,
-      "featureId": "grammar-library",
+      "featureId": "knowledge-library",
       "dependsOn": [],
       "external": [],
       "acceptance": "Admin xuất bản được một bài ngữ pháp versioned; learner tìm/mở bài, có ví dụ và điều kiện dùng; API giữ ownership/role.",
-      "refinement": "Draft",
+      "refinement": "Ready",
       "contentCapacity": "N/A",
       "tasks": [
         "PB-001-T01",
@@ -326,7 +326,7 @@
       "priority": "P0",
       "sprint": "S1",
       "points": null,
-      "featureId": "grammar-library",
+      "featureId": "knowledge-library",
       "dependsOn": [
         "PB-001"
       ],
@@ -398,7 +398,7 @@
       "priority": "P0",
       "sprint": "S2",
       "points": 5,
-      "featureId": "grammar-library",
+      "featureId": "knowledge-library",
       "dependsOn": [
         "PB-001",
         "PB-002"
@@ -424,7 +424,7 @@
       "priority": "P0",
       "sprint": "S2",
       "points": null,
-      "featureId": "grammar-library",
+      "featureId": "knowledge-library",
       "dependsOn": [
         "PB-002"
       ],
@@ -1051,6 +1051,80 @@
       "contentCapacity": "TBD",
       "tasks": [],
       "scope": "Deferred"
+    },
+    {
+      "id": "PB-034",
+      "wbs": "WBS-1.34",
+      "epic": "WBS-1",
+      "title": "Thư viện tra cứu: idiom, tục ngữ, tài liệu và đọc lại",
+      "priority": "P0",
+      "sprint": null,
+      "points": null,
+      "featureId": "knowledge-library",
+      "dependsOn": [
+        "PB-001"
+      ],
+      "external": [],
+      "acceptance": "Tìm Hàn–Việt, taxonomy, source/version, note/bookmark/reading-position riêng theo user, liên kết bài tập/SRS; idiom không tạo kho trùng quán dụng ngữ.",
+      "refinement": "Ready",
+      "contentCapacity": "TBD",
+      "tasks": [
+        "PB-034-T01",
+        "PB-034-T02",
+        "PB-034-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-035",
+      "wbs": "WBS-2.35",
+      "epic": "WBS-2",
+      "title": "Bộ từ vựng đời sống và chuyên ngành có ví dụ",
+      "priority": "P0",
+      "sprint": null,
+      "points": null,
+      "featureId": "vocabulary-catalog",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "Taxonomy topic/level/domain, entry/sense stable, examples/collocations/reviewer/rights, học và lưu SRS không mất lịch hoặc gộp sai nghĩa.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-036",
+      "wbs": "WBS-4.36",
+      "epic": "WBS-4",
+      "title": "Audio từ/câu có phiên bản và nguồn",
+      "priority": "P1",
+      "sprint": null,
+      "points": null,
+      "featureId": "learning-audio",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "Audio từ/câu khớp text version, nhãn TTS/native, playback/tốc độ/repeat/fallback, cache, quyền dùng, người duyệt và lỗi provider.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-037",
+      "wbs": "WBS-4.37",
+      "epic": "WBS-4",
+      "title": "Hội thoại theo tình huống và luyện dùng từ",
+      "priority": "P1",
+      "sprint": null,
+      "points": null,
+      "featureId": "situational-practice",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "Nhiệm vụ theo topic có vai, từ mục tiêu, feedback nội dung tách phát âm, lưu attempt và lỗi, ví dụ do reviewer duyệt.",
+      "refinement": "Needs splitting",
+      "contentCapacity": "TBD",
+      "tasks": [],
+      "scope": "Core"
     }
   ],
   "tasks": [
@@ -1060,11 +1134,15 @@
       "title": "Đặc tả taxonomy, version, API và UI; tạo bộ5 docs feature trước code",
       "role": "Dev/PO",
       "owner": "Chủ dự án",
-      "status": "Todo",
+      "status": "Done",
       "dependsOn": [],
       "blocker": "",
-      "evidence": [],
-      "verification": "Not run",
+      "evidence": [
+        "documentation/features/knowledge-library/README.md",
+        "documentation/features/knowledge-library/system-design.md",
+        "documentation/features/knowledge-library/ui.md"
+      ],
+      "verification": "Pass",
       "updated": "2026-10-31"
     },
     {
@@ -1073,13 +1151,17 @@
       "title": "Schema/admin/learner search và detail; tận dụng workflow draft-review-published",
       "role": "Dev",
       "owner": "Chủ dự án",
-      "status": "Todo",
+      "status": "Done",
       "dependsOn": [
         "PB-001-T01"
       ],
       "blocker": "",
-      "evidence": [],
-      "verification": "Not run",
+      "evidence": [
+        "documentation/features/knowledge-library/functions.md",
+        "documentation/features/knowledge-library/assets/verification.md",
+        "tests/e2e/knowledge.spec.ts"
+      ],
+      "verification": "Pass",
       "updated": "2026-10-31"
     },
     {
@@ -1088,12 +1170,15 @@
       "title": "Kiểm learner/admin, tìm theo nghĩa/cấu trúc, empty/error; audit và handoff",
       "role": "QA/Dev",
       "owner": "Chủ dự án",
-      "status": "Todo",
+      "status": "In progress",
       "dependsOn": [
         "PB-001-T02"
       ],
       "blocker": "",
-      "evidence": [],
+      "evidence": [
+        "documentation/features/knowledge-library/audit.md",
+        "documentation/audits/self-study-library-integration.md"
+      ],
       "verification": "Not run",
       "updated": "2026-10-31"
     },
@@ -2137,6 +2222,58 @@
       ],
       "blocker": "",
       "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-034-T01",
+      "parent": "PB-034",
+      "title": "Đặc tả loại tài liệu và hợp đồng đọc lại/ghi chú/ôn tập",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Done",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [
+        "documentation/features/knowledge-library/README.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-034-T02",
+      "parent": "PB-034",
+      "title": "Triển khai idiom/tục ngữ/tài liệu và state đọc theo tài khoản",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Done",
+      "dependsOn": [
+        "PB-034-T01"
+      ],
+      "blocker": "",
+      "evidence": [
+        "documentation/features/knowledge-library/functions.md",
+        "documentation/features/knowledge-library/assets/verification.md",
+        "tests/e2e/knowledge.spec.ts"
+      ],
+      "verification": "Pass",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-034-T03",
+      "parent": "PB-034",
+      "title": "Audit reader, isolation, concurrency, nội dung và bàn giao",
+      "role": "QA/Reviewer",
+      "owner": "Chủ dự án",
+      "status": "In progress",
+      "dependsOn": [
+        "PB-034-T02"
+      ],
+      "blocker": "",
+      "evidence": [
+        "documentation/features/knowledge-library/audit.md",
+        "documentation/audits/self-study-library-integration.md"
+      ],
       "verification": "Not run",
       "updated": "2026-10-31"
     }

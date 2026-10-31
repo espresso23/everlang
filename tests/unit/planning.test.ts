@@ -2,12 +2,21 @@ import { describe, expect, it } from "vitest";
 import fs from "node:fs";
 import { buildViews, validatePlanning } from "../../scripts/planning.mjs";
 
-const model = () => JSON.parse(fs.readFileSync("documentation/planning/work-items.json", "utf8"));
+const current = () => JSON.parse(fs.readFileSync("documentation/planning/work-items.json", "utf8"));
+const model = () => {
+  const data = current();
+  // A stable all-Todo fixture; production progress must not invalidate integrity cases.
+  for (const task of data.tasks) Object.assign(task, { status: "Todo", verification: "Not run", evidence: [], blocker: "" });
+  return data;
+};
 describe("planning integrity and evidence gates", () => {
+  it("validates authoritative progress independently of the fixture", () => {
+    expect(() => validatePlanning(current())).not.toThrow();
+  });
   it("validates the proposed solo plan without asserting work is complete", () => {
     const data = model();
     expect(() => validatePlanning(data)).not.toThrow();
-    expect(buildViews(data)["DASHBOARD.md"]).toContain("0/72 tasks");
+    expect(buildViews(data)["DASHBOARD.md"]).toContain(`0/${data.tasks.length} tasks`);
   });
   it("refuses Done without a verification result and evidence", () => {
     const data = model(); data.tasks[0].status = "Done";
@@ -38,7 +47,7 @@ describe("planning integrity and evidence gates", () => {
       task.status = "Done"; task.verification = "Pass"; task.evidence = ["README.md"];
     }
     validatePlanning(data);
-    expect(buildViews(data)["DASHBOARD.md"]).toContain("3/72 tasks");
+    expect(buildViews(data)["DASHBOARD.md"]).toContain(`3/${data.tasks.length} tasks`);
     expect(buildViews(data)["product-backlog.csv"]).toContain('"Done"');
   });
   it("reports partial feature delivery as in progress rather than still planned", () => {

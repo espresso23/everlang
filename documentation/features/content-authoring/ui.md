@@ -21,3 +21,7 @@ Cần audit nguồn/quyền học liệu trước phát hành rộng. Một tran
 [Design system](../design-system/README.md): logo e, paper/ink/Cobalt, Inter Variable, viền mảnh, không bóng nổi. API errors hiển thị message; auth và ownership cuối cùng vẫn kiểm phía server. Các ảnh được ghi rõ viewport/ngày và dữ liệu QA trong [bằng chứng baseline](../../shared/baseline-evidence.md).
 
 Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md); [gallery trước/sau](../../design/screens.md) thay appearance của ảnh lịch sử trong tài liệu này. Layout và contract feature giữ nguyên.
+
+## Tích hợp 2026-10-31
+
+Trang /admin thêm link tới [editor kiến thức](../knowledge-library/ui.md) tại /admin/knowledge. Workflow Sentence cũ giữ nguyên; knowledge dùng model/contract riêng có canonical docs, không tự publish seed.

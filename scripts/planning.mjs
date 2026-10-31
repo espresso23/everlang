@@ -119,7 +119,7 @@ export function buildViews(model) {
   outputs["DASHBOARD.md"] = generated + "# Tracking EverLang — " + model.asOf + "\n\n"
     + "Baseline " + model.baselineCommit + ": " + model.baseline.length + " feature/domain hiện có, tách khỏi backlog mới. Không tính % hoàn thành toàn bộ dự án.\n\n"
     + "Phần bổ sung: " + model.features.length + " PBIs; " + totals(model.tasks) + ". "
-    + model.features.filter(item => !item.sprint).length + " PBIs deferred chưa chia task/estimate. Task count không phải effort/burndown.\n\n"
+    + model.features.filter(item => !item.sprint).length + " PBIs chưa xếp sprint. Task count không phải effort/burndown.\n\n"
     + table(["Sprint", "Trạng thái", "Start", "End", "Core dev SP*", "Stretch dev SP*", "Done dev SP*", "Tiến độ"], sprintRows)
     + "\n\n*SP sơ bộ, không phải giờ/ngày. Content/review capacity tính riêng; tất cả sprint còn Proposed, cần chốt giờ/tuần và refinement.\n\n"
     + "## Release gates\n\n" + table(["Mốc", "Forecast", "Kết quả", "Gate"], model.milestones.map(item => [item.id + ": " + item.name, item.after, milestoneReady(item) ? "Ready for PO review" : "Not reached", item.criteria]))

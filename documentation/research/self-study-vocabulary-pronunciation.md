@@ -115,4 +115,10 @@ Pilot đề xuất: 3 chủ đề × 30 entry/sense = 90 mục, mỗi mục 2 c�
 
 ## Review discovery
 
+### Bổ sung lựa chọn self-host theo yêu cầu owner
+
+2026-10-31: owner hỏi phương án free/self-host cấu hình thấp, ví dụ Whisper. Chưa yêu cầu mua dịch vụ cloud. Hai ứng viên: [whisper.cpp](https://github.com/ggml-org/whisper.cpp) (CPU, tài liệu base khoảng388MB model RAM, chưa tính app/DB/runtime) và [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (CPU INT8, tích hợp Python). Đây là số liệu nhà phát triển, chưa benchmark tiếng Hàn/máy triển khai. Chọn model multilingual, không dùng `.en`.
+
+Hướng nghiên cứu ưu tiên whisper.cpp base → thử small nếu chất lượng/latency cho phép; một request tại một thời điểm trên máy nhỏ, không suy cấu hình VPS từ RAM máy dev. Self-host tránh phí API theo lần nhưng còn chi phí máy và vận hành. [Whisper](https://github.com/openai/whisper) là ASR: transcript, độ khớp chữ hoặc confidence không phải pronunciation score. Yêu cầu chấm âm thanh chuyên biệt giữ nguyên và chưa đạt; không đóng PB-026 chỉ vì STT local hoạt động. Có thể nghiên cứu storage local private volume cho beta single-node thay yêu cầu S3 ngoài; cần ADR/auth/backup/migration rõ trước thay đổi code.
+
 PASS: tham chiếu source hiện có, phân biệt baseline/proposed, nguồn chính và giới hạn 429, đề xuất nối PBI hiện có. NOT VERIFIED: thực hành đối thủ, chất lượng provider/score, nội dung/audio pilot và nghiên cứu người học. Revisit khi có kết quả spike, phản hồi người học hoặc quyết định phạm vi; không tạo automation.

@@ -6,12 +6,12 @@ P0: core self-study/release gates. P1: context expansion. P2: sau beta. Core/Str
 
 | PB / WBS | Feature đề xuất/owner | Tên | Priority | Scope | Sprint | Dev SP* | State derived | Depends | Acceptance |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| PB-001 / WBS-1.01 | grammar-library | Trạm ngữ pháp: lát cắt đầu tiên | P0 | Core | S1 | 5 | Planned | — | Admin xuất bản được một bài ngữ pháp versioned; learner tìm/mở bài, có ví dụ và điều kiện dùng; API giữ ownership/role. |
-| PB-002 / WBS-1.02 | grammar-library | Bộ5 ngữ pháp mẫu đã duyệt | P0 | Core | S1 | TBD/content | Planned | PB-001 | 5 bài trung-cao cấp có nghĩa, cách chia, ngữ cảnh, lỗi dễ nhầm, ví dụ Việt-Hàn và nguồn/quyền; người duyệt xác nhận trước publish. |
+| PB-001 / WBS-1.01 | knowledge-library | Trạm ngữ pháp: lát cắt đầu tiên | P0 | Core | S1 | 5 | In progress | — | Admin xuất bản được một bài ngữ pháp versioned; learner tìm/mở bài, có ví dụ và điều kiện dùng; API giữ ownership/role. |
+| PB-002 / WBS-1.02 | knowledge-library | Bộ5 ngữ pháp mẫu đã duyệt | P0 | Core | S1 | TBD/content | Planned | PB-001 | 5 bài trung-cao cấp có nghĩa, cách chia, ngữ cảnh, lỗi dễ nhầm, ví dụ Việt-Hàn và nguồn/quyền; người duyệt xác nhận trước publish. |
 | PB-003 / WBS-2.03 | interactive-exercises | Bài tập nhận biết và điền khuyết | P0 | Core | S1 | 5 | Planned | PB-001, PB-002 | Một bài ngữ pháp có MCQ/cloze, giải thích đáp án, lưu attempt; client không nhận đáp án trước thời điểm cho phép. |
 | PB-004 / WBS-1.04 | ai-grading | Benchmark chữa bài AI ban đầu | P0 | Core | S1 | 3 | Planned | — | Có20 ca được duyệt: câu đúng đa cách diễn đạt, lỗi thật, gợi ý, dấu câu, văn phong; lưu prompt/model và kết quả tái chạy. PO chốt tiêu chí trước khi chấp nhận. |
-| PB-005 / WBS-1.05 | grammar-library | Tra cứu và so sánh ngữ pháp | P0 | Core | S2 | 5 | Planned | PB-001, PB-002 | Tìm mẫu/nghĩa/nhóm chức năng/trình độ; so sánh ít nhất3 nhóm dễ nhầm có điều kiện dùng và ví dụ đã duyệt. |
-| PB-006 / WBS-1.06 | grammar-library | Mở rộng pilot lên15 bài đã duyệt | P0 | Core | S2 | TBD/content | Planned | PB-002 | Tổng15 bài gồm5 bài đầu, có review/source/rights/version và nhóm chức năng;30 bài là expansion sau khi đo capacity. |
+| PB-005 / WBS-1.05 | knowledge-library | Tra cứu và so sánh ngữ pháp | P0 | Core | S2 | 5 | Planned | PB-001, PB-002 | Tìm mẫu/nghĩa/nhóm chức năng/trình độ; so sánh ít nhất3 nhóm dễ nhầm có điều kiện dùng và ví dụ đã duyệt. |
+| PB-006 / WBS-1.06 | knowledge-library | Mở rộng pilot lên15 bài đã duyệt | P0 | Core | S2 | TBD/content | Planned | PB-002 | Tổng15 bài gồm5 bài đầu, có review/source/rights/version và nhóm chức năng;30 bài là expansion sau khi đo capacity. |
 | PB-007 / WBS-2.07 | vocabulary-srs | Nối ngữ pháp và lỗi sai vào SRS | P0 | Core | S2 | 3 | Planned | PB-003 | Từ lesson/report lưu được card ngữ pháp có ngữ cảnh và nguồn; chống trùng; ôn dùng FSRS hiện có, không viết lại thuật toán. |
 | PB-008 / WBS-2.08 | knowledge-mastery | Tiến độ theo cấu trúc kiến thức | P0 | Core | S2 | 5 | Planned | PB-003, PB-007 | Phân biệt đã gặp/nhận biết/dùng lại/ôn sau trì hoãn bằng evidence attempt/review; không gọi streak hay một điểm AI là mastery. |
 | PB-009 / WBS-3.09 | learning-onboarding | Onboarding cho người học trung-cao cấp | P0 | Core | S3 | 3 | Planned | PB-008 | Nhập mục tiêu, thời gian, level và bài gợi ý; cho bỏ qua/chọn lại; không tự quy đổi thành điểm TOPIK. |
@@ -39,6 +39,10 @@ P0: core self-study/release gates. P1: context expansion. P2: sau beta. Core/Str
 | PB-031 / WBS-6.31 | billing | Thanh toán và gói dịch vụ | P2 | Deferred | Unscheduled | TBD/content | Backlog | PB-024 | Chưa trong beta tự học; cần nhu cầu sản phẩm và phạm vi riêng. |
 | PB-032 / WBS-6.32 | community | Gamification/cộng đồng | P2 | Deferred | Unscheduled | TBD/content | Backlog | PB-024 | Điểm/leaderboard/minigame chỉ làm khi giúp học và có moderation, không ưu tiên hơn nội dung. |
 | PB-033 / WBS-6.33 | beginner-path | Lộ trình nhập môn Hangul/sơ cấp | P2 | Deferred | Unscheduled | TBD/content | Backlog | PB-024 | Chỉ khi mở đối tượng ngoài trung-cao cấp; chưa đưa vào MVP hiện tại. |
+| PB-034 / WBS-1.34 | knowledge-library | Thư viện tra cứu: idiom, tục ngữ, tài liệu và đọc lại | P0 | Core | Unscheduled | TBD/content | In progress | PB-001 | Tìm Hàn–Việt, taxonomy, source/version, note/bookmark/reading-position riêng theo user, liên kết bài tập/SRS; idiom không tạo kho trùng quán dụng ngữ. |
+| PB-035 / WBS-2.35 | vocabulary-catalog | Bộ từ vựng đời sống và chuyên ngành có ví dụ | P0 | Core | Unscheduled | TBD/content | Backlog | — | Taxonomy topic/level/domain, entry/sense stable, examples/collocations/reviewer/rights, học và lưu SRS không mất lịch hoặc gộp sai nghĩa. |
+| PB-036 / WBS-4.36 | learning-audio | Audio từ/câu có phiên bản và nguồn | P1 | Core | Unscheduled | TBD/content | Backlog | — | Audio từ/câu khớp text version, nhãn TTS/native, playback/tốc độ/repeat/fallback, cache, quyền dùng, người duyệt và lỗi provider. |
+| PB-037 / WBS-4.37 | situational-practice | Hội thoại theo tình huống và luyện dùng từ | P1 | Core | Unscheduled | TBD/content | Backlog | — | Nhiệm vụ theo topic có vai, từ mục tiêu, feedback nội dung tách phát âm, lưu attempt và lỗi, ví dụ do reviewer duyệt. |
 
 *Estimate dev sơ bộ; content/review không được coi là0 effort. Các feature ID mới chưa có source/docs phải tạo5 docs chuẩn trước code. Existing feature dùng đúng canonical docs, không tạo bản spec trùng.
 

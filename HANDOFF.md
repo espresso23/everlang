@@ -4,6 +4,15 @@ Cập nhật gần nhất: 2026-10-31
 
 ## Trạng thái hiện tại
 
+### 2026-10-31 — Triển khai thư viện kiến thức trong mục tiêu tự học
+
+- Branch `feature/self-study-library`, source primary D:/Project/langz. Tạo đặc tả5 docs trước code tại `documentation/features/knowledge-library/`; triển khai /knowledge và /admin/knowledge, schema/service Mongo versioned, API session/role, PostgreSQL notes/bookmark/section/read và attempts snapshot/idempotent, MCQ/cloze server grading, lưu mẫu vào SRS. Library/admin cũ thêm link, không thay workflow đang có.
+- Migration004 additive; backup PostgreSQL/Mongo và restore vào database tạm thành công trước migration. Seed explicit13 draft tự biên soạn có hỗ trợ AI; chạy lại0 insert, không tự review/publish. Owner xác nhận sẽ duyệt trên app, chưa xác nhận nội dung đã đạt.
+- Đã đưa app mới lên localhost3000 sau candidate test3001.37 unit, lint/typecheck/production build/Docker build đạt; Playwright knowledge integration với2 account thật và smoke sign-in/anonymous isolation đạt. Đã dọn candidate/account/content QA; còn13 draft thực. Evidence trong `documentation/features/knowledge-library/assets/verification.md`; audit tại `documentation/audits/self-study-library-integration.md`.
+- Review riêng phát hiện heading quá nhỏ và đã sửa/retest; CAS note lỗi giữ local, duplicate attempt và SRS không reset; related-reference validation và keyboard/text-spacing/mobile đã kiểm thêm; render720CSSpx/DPR2 không tràn. Zoom/assistive tech thật, TTS thiết bị và SPA unsaved guard toàn app còn NOT VERIFIED. Không coi feature hoặc mục tiêu toàn bộ hoàn tất.
+- Đồng bộ backlog37 PBI/75 task, giữ sprint Proposed; PB-001/PB-034 implementation có evidence, audit gate còn mở. Toàn phạm vi tại `documentation/planning/SELF_STUDY_DELIVERY.md`: curated vocabulary/sense/audio, grammar compare/mastery/path, contextual learning, conversation và pronunciation còn tiếp tục.
+- Owner hỏi free/self-host/Whisper: nghiên cứu whisper.cpp base và faster-whisper INT8; không biến STT match thành điểm phát âm. Chưa tích hợp speech scoring hoặc mua cloud. Retag rollback image cũ không được do image không còn; đã rebuild từ commit98dd29a thành everlang-before-knowledge:local và bootstrap smoke trên candidate3002 đạt; image giữ để rollback. Không tuyên bố đã thử mọi luồng auth trên rollback.
+
 ### 2026-10-31 — Bổ sung discovery thư viện kiến thức đọc lại
 
 - Mở rộng `documentation/research/self-study-vocabulary-pronunciation.md` theo yêu cầu: ngữ pháp, idiom/quán dụng ngữ, tục ngữ, thành ngữ Hán-Hàn, collocation, phát âm và bài đọc/tài liệu; thêm tìm kiếm, bookmark, vị trí đọc, ghi chú riêng tư và liên kết SRS.

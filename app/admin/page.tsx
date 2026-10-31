@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { request } from "@/lib/client";
 import { TOPICS, LEVELS } from "@/lib/types";
@@ -49,6 +50,7 @@ export default function Admin() {
     <main className="page">
       <p className="eyebrow">QUẢN TRỊ EVERLANG</p>
       <h1 className="page-title">Học liệu có kiểm duyệt</h1>
+      <p><Link className="text-button" href="/admin/knowledge">Biên tập thư viện ngữ pháp, quán dụng ngữ và tài liệu →</Link></p>
       <p className="muted">
         Nháp → Đã duyệt → Xuất bản. Bài đã xuất bản được giữ bất biến để bảo
         toàn lịch sử.

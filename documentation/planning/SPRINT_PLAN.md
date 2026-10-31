@@ -8,12 +8,12 @@
 - Dành khoảng25% capacity được xác nhận cho bug, QA, audit và handoff; nếu scope vượt capacity phải tách/cắt story.
 - S1-S2 refine trước; S3-S6 là forecast, cần estimate lại sau velocity thực tế.
 - PB-* là ID tracking nội bộ, không phải Jira/GitHub ticket.
-- Chưa bắt đầu thực hiện các product tasks; baseline code cũ tách khỏi % tiến độ phần bổ sung.
 - Mỗi sprint ưu tiên Core; Stretch chỉ kéo khi còn capacity, carry-over phải replan phụ thuộc và gate.
+- 2026-10-31: owner yêu cầu triển khai toàn bộ tự học; công việc bắt đầu, sprint vẫn Proposed chưa cam kết ngày/capacity; scope mở rộng theo research.
 
 | Sprint | State | Start | End | Core dev SP* | Stretch dev SP* | Done dev SP* | Task progress |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| S1 / Ngữ pháp pilot + quality baseline | Proposed | TBD | TBD | 13 | 0 | 0 | 0/12 tasks (0% count-based) |
+| S1 / Ngữ pháp pilot + quality baseline | Proposed | TBD | TBD | 13 | 0 | 0 | 2/12 tasks (17% count-based) |
 | S2 / Tra cứu, mở rộng pilot và ôn lại | Proposed | TBD | TBD | 13 | 0 | 0 | 0/12 tasks (0% count-based) |
 | S3 / Onboarding và lộ trình tự học | Proposed | TBD | TBD | 11 | 3 | 0 | 0/12 tasks (0% count-based) |
 | S4 / Nghe đọc trong ngữ cảnh | Proposed | TBD | TBD | 8 | 5 | 0 | 0/12 tasks (0% count-based) |

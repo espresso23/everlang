@@ -19,3 +19,7 @@ Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 00
 | S3 | Audio riêng tư | Signed URL có hạn, không public bucket |
 
 Sao lưu trước migration/import; PostgreSQL và MongoDB là hai nguồn khác trách nhiệm, không giả định transaction xuyên database. Không chuyển mật khẩu/session/provider token vào response profile hay tài liệu. Các câu SQL dữ liệu cá nhân luôn ràng buộc user lấy từ session.
+
+## Knowledge library — migration004
+
+MongoDB `knowledge_entries`: key/revision unique, editVersion/status/content/reviewedBy. PostgreSQL `knowledge_state`: user/key unique, note/bookmark/section/read/revision/version; `knowledge_attempts`: user/requestId unique, snapshot/answers/result. Xem [contract](../features/knowledge-library/system-design.md). Không có transaction xuyên hai database; published revision bất biến để snapshot attempt ổn định.
