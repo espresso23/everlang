@@ -12,3 +12,7 @@
 SMTP dùng cho verify/reset của email/password; Google OAuth không gọi Mailpit để đổi code/token. Production cần SMTP thật và HTTPS/cookie/domain đúng. Cấu hình OAuth hợp lệ không chứng minh user đã hoàn tất callback; phải xác nhận session qua luồng thực tế.
 
 Profile GET có explicit user fields và providers:string[]; PUT strict schema, một transaction name/settings, client refetch session không dùng cookie cache. Xem [profile contract](../features/user-profile/README.md).
+
+## Speech API
+
+/api/speech GET own history/status; POST strict provider/consentVersion/consent/audio/mime/reference/requestId trả202; DELETE own UUID. /api/speech/audio?id=uuid owner-only cookie-auth no-store. Không tin x-user-id, không nhận file path. Provider snapshot mismatch409; worker/config mismatch503; deleted nonce410; concurrency/rate429; không score. [Canonical contracts](../features/self-hosted-speech/functions.md).

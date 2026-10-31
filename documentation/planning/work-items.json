@@ -11,7 +11,8 @@
     "S1-S2 refine trước; S3-S6 là forecast, cần estimate lại sau velocity thực tế.",
     "PB-* là ID tracking nội bộ, không phải Jira/GitHub ticket.",
     "Mỗi sprint ưu tiên Core; Stretch chỉ kéo khi còn capacity, carry-over phải replan phụ thuộc và gate.",
-    "2026-10-31: owner yêu cầu triển khai toàn bộ tự học; công việc bắt đầu, sprint vẫn Proposed chưa cam kết ngày/capacity; scope mở rộng theo research."
+    "2026-10-31: owner yêu cầu triển khai toàn bộ tự học; công việc bắt đầu, sprint vẫn Proposed chưa cam kết ngày/capacity; scope mở rộng theo research.",
+    "Owner ưu tiên cấu hình thấp: ASR local CPU, Gemma audio là candidate; PB-020/026 là Core trong full self-study, sprint vẫn Proposed, không tự chốt capacity."
   ],
   "states": [
     "Todo",
@@ -294,6 +295,43 @@
       "dependsOn": [
         "M2"
       ]
+    },
+    {
+      "id": "M5",
+      "name": "Full self-study theo discovery",
+      "requires": [
+        "PB-001",
+        "PB-002",
+        "PB-003",
+        "PB-004",
+        "PB-005",
+        "PB-006",
+        "PB-007",
+        "PB-008",
+        "PB-009",
+        "PB-010",
+        "PB-011",
+        "PB-012",
+        "PB-013",
+        "PB-014",
+        "PB-015",
+        "PB-016",
+        "PB-017",
+        "PB-018",
+        "PB-019",
+        "PB-020",
+        "PB-026",
+        "PB-034",
+        "PB-035",
+        "PB-036",
+        "PB-037",
+        "PB-038"
+      ],
+      "dependsOn": [
+        "M2"
+      ],
+      "after": "Unscheduled",
+      "criteria": "Từ vựng/chủ đề/audio, knowledge, practice/SRS/path và speaking có kiểm chứng; không thay pronunciation bằng STT"
     }
   ],
   "features": [
@@ -769,7 +807,7 @@
       "external": [
         "EXT-SPEECH"
       ],
-      "acceptance": "Record→replay→STT→feedback→private signed playback hoạt động thật; permission/error/consent; không công bố điểm phát âm chưa kiểm chứng.",
+      "acceptance": "Record→replay→STT→feedback→private signed playback hoạt động thật; permission/error/consent; không công bố điểm phát âm chưa kiểm chứng. Local CPU enabler PB-038 thay bắt buộc dùng Google/S3 mới; legacy giữ nguyên.",
       "refinement": "Draft",
       "contentCapacity": "N/A",
       "tasks": [
@@ -777,7 +815,7 @@
         "PB-020-T02",
         "PB-020-T03"
       ],
-      "scope": "Stretch"
+      "scope": "Core"
     },
     {
       "id": "PB-021",
@@ -905,7 +943,7 @@
       "wbs": "WBS-6.26",
       "epic": "WBS-6",
       "title": "Đánh giá phát âm chuyên biệt",
-      "priority": "P2",
+      "priority": "P1",
       "sprint": null,
       "points": null,
       "featureId": "pronunciation-assessment",
@@ -913,11 +951,11 @@
         "PB-020"
       ],
       "external": [],
-      "acceptance": "Nghiên cứu bộ chuẩn/metric/provider riêng; STT đúng chữ không tương đương phát âm tốt.",
+      "acceptance": "Nghiên cứu bộ chuẩn/metric/provider riêng; STT đúng chữ không tương đương phát âm tốt. Must-have của mục tiêu tự học mới; chưa Done chỉ vì ASR chạy.",
       "refinement": "Needs splitting",
       "contentCapacity": "TBD",
       "tasks": [],
-      "scope": "Deferred"
+      "scope": "Core"
     },
     {
       "id": "PB-027",
@@ -1124,6 +1162,29 @@
       "refinement": "Needs splitting",
       "contentCapacity": "TBD",
       "tasks": [],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-038",
+      "wbs": "WBS-4.38",
+      "epic": "WBS-4",
+      "title": "Thu âm riêng tư, ASR API free tier và lựa chọn local CPU",
+      "priority": "P0",
+      "sprint": null,
+      "points": null,
+      "featureId": "self-hosted-speech",
+      "dependsOn": [],
+      "external": [
+        "EXT-SPEECH"
+      ],
+      "acceptance": "Thu/nghe/consent snapshot provider, private volume,202/jobId, idempotency/ownership/delete/recovery. Gemini API Free tier explicit,20/day UTC failclosed/no paid fallback; actual Korean API success cần verified. Whisper option CPU1–2threads/concurrency1/modelSHA.20s/3MB; human quality/resource/recovery gates; không transcript/embedding score phát âm giả.",
+      "refinement": "Ready",
+      "contentCapacity": "Benchmark tiếng Hàn cần review",
+      "tasks": [
+        "PB-038-T01",
+        "PB-038-T02",
+        "PB-038-T03"
+      ],
       "scope": "Core"
     }
   ],
@@ -2273,6 +2334,58 @@
       "evidence": [
         "documentation/features/knowledge-library/audit.md",
         "documentation/audits/self-study-library-integration.md"
+      ],
+      "verification": "Not run",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-038-T01",
+      "parent": "PB-038",
+      "title": "Đặc tả ADR local storage, queue, runtime/model và UI trước code",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Done",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [
+        "documentation/features/self-hosted-speech/README.md",
+        "documentation/features/self-hosted-speech/system-design.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-038-T02",
+      "parent": "PB-038",
+      "title": "Triển khai private audio/API/worker/UI, Gemini free-tier adapter và local fallback",
+      "role": "Dev/PO",
+      "owner": "Chủ dự án",
+      "status": "Done",
+      "dependsOn": [
+        "PB-038-T01"
+      ],
+      "blocker": "",
+      "evidence": [
+        "documentation/features/self-hosted-speech/functions.md",
+        "documentation/features/self-hosted-speech/assets/verification.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-038-T03",
+      "parent": "PB-038",
+      "title": "Audit real engine/resource,ownership,UI,backup/restore và handoff",
+      "role": "QA/Reviewer",
+      "owner": "Chủ dự án",
+      "status": "In progress",
+      "dependsOn": [
+        "PB-038-T02"
+      ],
+      "blocker": "Google key mới timeout; chưa có human benchmark/physical mic/recovery fault injection",
+      "evidence": [
+        "documentation/features/self-hosted-speech/audit.md",
+        "documentation/features/self-hosted-speech/assets/verification.md"
       ],
       "verification": "Not run",
       "updated": "2026-10-31"

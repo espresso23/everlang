@@ -10,6 +10,7 @@
 - PB-* là ID tracking nội bộ, không phải Jira/GitHub ticket.
 - Mỗi sprint ưu tiên Core; Stretch chỉ kéo khi còn capacity, carry-over phải replan phụ thuộc và gate.
 - 2026-10-31: owner yêu cầu triển khai toàn bộ tự học; công việc bắt đầu, sprint vẫn Proposed chưa cam kết ngày/capacity; scope mở rộng theo research.
+- Owner ưu tiên cấu hình thấp: ASR local CPU, Gemma audio là candidate; PB-020/026 là Core trong full self-study, sprint vẫn Proposed, không tự chốt capacity.
 
 | Sprint | State | Start | End | Core dev SP* | Stretch dev SP* | Done dev SP* | Task progress |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -17,7 +18,7 @@
 | S2 / Tra cứu, mở rộng pilot và ôn lại | Proposed | TBD | TBD | 13 | 0 | 0 | 0/12 tasks (0% count-based) |
 | S3 / Onboarding và lộ trình tự học | Proposed | TBD | TBD | 11 | 3 | 0 | 0/12 tasks (0% count-based) |
 | S4 / Nghe đọc trong ngữ cảnh | Proposed | TBD | TBD | 8 | 5 | 0 | 0/12 tasks (0% count-based) |
-| S5 / Context SRS và đầu vào cá nhân | Proposed | TBD | TBD | 8 | 10 | 0 | 0/12 tasks (0% count-based) |
+| S5 / Context SRS và đầu vào cá nhân | Proposed | TBD | TBD | 13 | 5 | 0 | 0/12 tasks (0% count-based) |
 | S6 / Audit và release gate | Proposed | TBD | TBD | 16 | 0 | 0 | 0/12 tasks (0% count-based) |
 
 ## S1 / Ngữ pháp pilot + quality baseline
@@ -68,8 +69,8 @@
 
 **Sprint goal:** Tra dạng từ/context, học văn bản riêng và kiểm thu âm/STT/S3 thật
 
-- Core: PB-017 Tra nguyên mẫu và cụm theo ngữ cảnh; PB-018 Thẻ ôn theo ngữ cảnh đa dạng.
-- Stretch: PB-019 Nhập văn bản cá nhân để học; PB-020 Hoàn thiện shadowing/thu âm riêng tư.
+- Core: PB-017 Tra nguyên mẫu và cụm theo ngữ cảnh; PB-018 Thẻ ôn theo ngữ cảnh đa dạng; PB-020 Hoàn thiện shadowing/thu âm riêng tư.
+- Stretch: PB-019 Nhập văn bản cá nhân để học.
 - Carry-in: chỉ kéo khi dependencies Done; nếu chưa, ưu tiên hoàn tất upstream và replan, không làm bypass gate.
 - Capacity: giờ/tuần TBD; 25% dự phòng bugs/QA/handoff. Content review và code do cùng một người, không được tính như hai nguồn lực song song.
 - Exit: Core acceptance đạt, tests/audit/docs/HANDOFF có evidence; Stretch chưa xong trả backlog và ghi rõ feature nào chưa bật.

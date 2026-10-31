@@ -25,3 +25,7 @@ Quyền/validation, contract hai đầu, snapshot/state và lỗi cần đối c
 Local Mailpit không chuyển email tới Gmail. Production cần SMTP/domain/HTTPS thật. Tên ảnh worker vẫn chứa dependencies development; chưa tối ưu kích thước image. docs:check chỉ là kiểm tra cấu trúc.
 
 Điều kiện nâng trạng thái verified: yêu cầu bắt buộc trong [README](README.md) có bằng chứng tương ứng, không còn lỗi bắt buộc, docs/symbol/hash đúng và provider đã kiểm trong môi trường mục tiêu. Lịch sử kiểm tra trước đây giữ ở [FEATURE_AUDIT](../../../FEATURE_AUDIT.md); đây không phải khẳng định đã chạy lại mọi ca trong lượt tài liệu này.
+
+### Speech operation extension2026-10-31
+
+App/speech API worker build PASS, source/model native build/checksum PASS; metadata+private volume restore PASS; rollback original tag unavailable so rebuild cc1c776 image and bootstrap3002/sign-in200. Gemini failure pipeline verified; successful inference/Free tier availability NOT VERIFIED. Canonical [speech audit](../self-hosted-speech/audit.md) and [evidence](../self-hosted-speech/assets/verification.md), not a claim of all baseline operations reverified.

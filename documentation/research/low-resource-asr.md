@@ -1,5 +1,14 @@
 # ASR cấu hình thấp — quyết định nghiên cứu
 
+## Quyết định mới: API miễn phí ưu tiên (2026-10-31)
+
+Owner chuyển ưu tiên sang API/audio embedding miễn phí. Code thêm Gemini3.8Flash API explicit với private recording/consent, quota20/day UTC, không fallback có phí; Whisper CPU là lựa chọn khác. [Spec và trạng thái thực](../features/self-hosted-speech/README.md), [evidence](../features/self-hosted-speech/assets/verification.md). Quyết định này cập nhật ưu tiên spike CPU ở nội dung lịch sử dưới đây.
+
+Nguồn chính kiểm ngày2026-10-31: [Google pricing](https://ai.google.dev/gemini-api/docs/pricing) có Free tier3.8Flash và audio Embedding2; [audio guide](https://ai.google.dev/gemini-api/docs/audio); [REST](https://ai.google.dev/api/generate-content); [embeddings](https://ai.google.dev/gemini-api/docs/embeddings) nêu mục tiêu semantic search/classification/clustering. Vendor claim free tier không là bằng chứng key cụ thể được cấp quota. Actual2.5 metadata200 nhưng generate404 cho new user;3.8 key đầu402 prepaid depleted; key thay thế timeout. API Korean inference và pronunciation quality chưa đạt gate.
+
+Embedding semantic similarity chưa chứng minh đo đúng batchim/âm tiết/nhịp điệu/ngữ điệu. Không biến cosine thành0–100 pronunciation; muốn triển khai cần corpus native/learner có chấm bởi người, negative pairs khác âm gần nghĩa/cùng âm khác người và so sánh agreement. Không hứa một bộ embedding đa phương thức tự giải quyết pronunciation scoring. Ưu tiên ASR + nghe lại trước, giữ PB-026 Must nhưng chưa triển khai.
+
+
 Ngày 2026-10-31; cập nhật theo yêu cầu owner ưu tiên cấu hình thấp, có thể dùng model ASR/audio của Google Gemma. Trạng thái: **hướng kỹ thuật đã chọn để thử nghiệm, chưa tích hợp/benchmark**. Không thay yêu cầu chấm phát âm bằng nhận dạng transcript; goal tự học còn active.
 
 ## Hai phương án

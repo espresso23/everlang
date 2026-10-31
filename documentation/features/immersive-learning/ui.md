@@ -27,3 +27,5 @@ Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md
 ## Tích hợp 2026-10-31
 
 `Library` tại /library thêm link tới [thư viện kiến thức](../knowledge-library/ui.md). Các tab/luồng nghe đọc nói giữ nguyên; đây là entry point đọc lại grammar/idiom, không thay bài đọc cũ.
+
+/library giữ các tab cũ, thêm Link /speech ở header cho thu từ/câu. [Speech UI](../self-hosted-speech/ui.md) quản lý trạng thái, consent, audio private và provider; không hứa chấm phát âm từ nút này.

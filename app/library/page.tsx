@@ -106,6 +106,7 @@ export default function Library() {
       <DictionarySelectionLookup />
       <p className="eyebrow">ĐƯA TIẾNG HÀN VÀO NGỮ CẢNH</p>
       <h1 className="page-title">Nghe, đọc và diễn đạt</h1>
+      <p><Link href="/speech" className="text-button">Thu âm, nghe lại và nhận dạng lời nói →</Link></p>
       <p><Link href="/knowledge" className="text-button">Thư viện ngữ pháp, quán dụng ngữ và tài liệu đọc lại →</Link></p>
       <p className="muted">
         Học liệu tự biên soạn dành cho beta. Audio mẫu dùng giọng đọc của trình

@@ -23,3 +23,7 @@ Sao lưu trước migration/import; PostgreSQL và MongoDB là hai nguồn khác
 ## Knowledge library — migration004
 
 MongoDB `knowledge_entries`: key/revision unique, editVersion/status/content/reviewedBy. PostgreSQL `knowledge_state`: user/key unique, note/bookmark/section/read/revision/version; `knowledge_attempts`: user/requestId unique, snapshot/answers/result. Xem [contract](../features/knowledge-library/system-design.md). Không có transaction xuyên hai database; published revision bất biến để snapshot attempt ổn định.
+
+## Private speech attempts
+
+Migrations [005](../../migrations/005_local_speech.sql) và [006](../../migrations/006_speech_provider.sql) additive: speech_attempts owner/nonce/hash/status/reference/transcript/model/engine/time + provider/consent version. Audio trong named private volume, không Mongo/public URL. Local DELETE chặn playback và xóa transcript trước unlink, cleanup retry, tombstone7days. Xóa local không hứa xóa dữ liệu đã được cloud xử lý. [Contract](../features/self-hosted-speech/system-design.md).

@@ -27,3 +27,7 @@ S3/STT/Tutor có code tích hợp nhưng còn phụ thuộc cấu hình và xác
 ## Knowledge library — 2026-10-31
 
 [Thư viện kiến thức](../features/knowledge-library/system-design.md) dùng Route Handlers/service trong monolith: học liệu versioned ở MongoDB, notes/progress/attempts ở PostgreSQL; không thêm backend framework hoặc queue riêng. TTS là thiết bị, chưa audio curated/scoring.
+
+## Speech worker boundary
+
+[self-hosted-speech](../features/self-hosted-speech/system-design.md) là module cùng monolith và Node worker queue riêng. SQL durable outbox + private volume là nguồn chính; Redis queue/heartbeat không chứa kết quả lâu dài. Gemini API là optional explicit external provider, Whisper CPU local là option khác; không chạy đồng thời hai profile worker cùng queue/heartbeat. Không đưa learner reference vào ASR.

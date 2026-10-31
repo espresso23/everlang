@@ -55,6 +55,8 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 
 ## Product discovery
 
+- [ASR local CPU và bản ghi riêng tư](features/self-hosted-speech/README.md) — runtime đang kiểm chứng; [design](features/self-hosted-speech/system-design.md), [functions](features/self-hosted-speech/functions.md), [UI](features/self-hosted-speech/ui.md), [audit](features/self-hosted-speech/audit.md).
+
 - [ASR cấu hình thấp và Google Gemma](research/low-resource-asr.md) — ưu tiên CPU/self-host, nguồn chính thức, hai ứng viên và benchmark gate; chưa tích hợp.
 
 - [Mục tiêu và completion matrix tự học](planning/SELF_STUDY_DELIVERY.md) — phạm vi end-state, tracking và bằng chứng nghiệm thu; goal đang active.

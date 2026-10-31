@@ -127,7 +127,7 @@ Mở rộng đầu vào ngôn ngữ
   - PB-019-T01 — Đặc tả input limits/privacy/ownership/delete và5 docs
   - PB-019-T02 — Private text ingestion/reader/progress; không đưa vào thư viện chung mặc định
   - PB-019-T03 — Kiểm2 account, payload lớn/XSS/content lỗi và xoá dữ liệu cá nhân
-- **WBS-4.20 / PB-020 — Hoàn thiện shadowing/thu âm riêng tư** (P1, Stretch, S5).
+- **WBS-4.20 / PB-020 — Hoàn thiện shadowing/thu âm riêng tư** (P1, Core, S5).
   - PB-020-T01 — Rà contract/storage/consent/retention và cấu hình bằng env, không lưu secret trong docs
   - PB-020-T02 — Hoàn tất recorder/STT/S3/replay và lỗi microphone/provider
   - PB-020-T03 — Kiểm thiết bị thật/signed URL/account isolation/delete và audio feedback
@@ -135,6 +135,10 @@ Mở rộng đầu vào ngôn ngữ
   - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
 - **WBS-4.37 / PB-037 — Hội thoại theo tình huống và luyện dùng từ** (P1, Core, Unscheduled).
   - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
+- **WBS-4.38 / PB-038 — Thu âm riêng tư, ASR API free tier và lựa chọn local CPU** (P0, Core, Unscheduled).
+  - PB-038-T01 — Đặc tả ADR local storage, queue, runtime/model và UI trước code
+  - PB-038-T02 — Triển khai private audio/API/worker/UI, Gemini free-tier adapter và local fallback
+  - PB-038-T03 — Audit real engine/resource,ownership,UI,backup/restore và handoff
 
 
 ## WBS-5 / Phát hành và vận hành beta
@@ -165,7 +169,7 @@ Giữ trong backlog, chưa cam kết sprint
 
 - **WBS-6.25 / PB-025 — AI Tutor truy xuất đã đánh giá chất lượng** (P2, Deferred, Unscheduled).
   - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
-- **WBS-6.26 / PB-026 — Đánh giá phát âm chuyên biệt** (P2, Deferred, Unscheduled).
+- **WBS-6.26 / PB-026 — Đánh giá phát âm chuyên biệt** (P1, Core, Unscheduled).
   - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.
 - **WBS-6.27 / PB-027 — TOPIK II PBT đầy đủ** (P2, Deferred, Unscheduled).
   - Cần refine/split/estimate trước khi lên sprint; không giả task đã có.

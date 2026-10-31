@@ -31,3 +31,7 @@ Theme mới theo [design guide](../design/README.md), [8 màn hình trước/sau
 
 - [/knowledge](../../app/knowledge/page.tsx): [UI chuẩn](../features/knowledge-library/ui.md), browse/search + reader + notes/resume/exercises/SRS.
 - [/admin/knowledge](../../app/admin/knowledge/page.tsx): editor/duyệt/publish/revision. Trạng thái xác minh ở [audit](../features/knowledge-library/audit.md).
+
+## Speech recording (2026-10-31)
+
+[/speech](../../app/speech/page.tsx) từ /library: hai panel thu/import/preview/consent và history riêng, status poll, playback/delete. Không có điểm phát âm. Provider/cảnh báo Google theo capabilities; giữ wireframe các route cũ. Canonical [UI](../features/self-hosted-speech/ui.md), [audit](../features/self-hosted-speech/audit.md).

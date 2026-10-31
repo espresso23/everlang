@@ -449,7 +449,7 @@
             "record",
             "send"
           ],
-          "sha256": "ada4f0af16e59fdd52b1c33e98940d0f9522f76538ddfbebbe5bb13936f12bd6"
+          "sha256": "4a7ef1fc49a8d4f1763b8aafd5ed7726128bdf0103406f2bcb172cc4a25a3774"
         },
         {
           "file": "data/reading-lessons.ts",
@@ -710,7 +710,7 @@
         {
           "file": "package.json",
           "symbols": [],
-          "sha256": "cd51bcfcd1650f43a568e624687f06191bc0ceb9c1f6426a4c5f565d10f0d528"
+          "sha256": "adcea630e4b11d57f673002a602bc1581758cff989d78fd4329d93b22d9b20fb"
         },
         {
           "file": "package-lock.json",
@@ -720,7 +720,7 @@
         {
           "file": "next.config.ts",
           "symbols": [],
-          "sha256": "cbc3210d038b1b658ce2d2911b52adaf4afb60d772d242c6a05762144166010a"
+          "sha256": "72cc33b9a195a1b39f2fdfcf001fe8b18c86b4d7522d9be586dc84d7e680e3ff"
         },
         {
           "file": "tsconfig.json",
@@ -735,12 +735,12 @@
         {
           "file": "Dockerfile",
           "symbols": [],
-          "sha256": "0ad4cf7d4c9f5b7453e6682f448081b314d3245d9417ad96edfcc78644c4b660"
+          "sha256": "845d4db3933b7b2cdf936edeeae94100e47e244a7f8bbb916bd333c134c1d0e3"
         },
         {
           "file": "docker-compose.yml",
           "symbols": [],
-          "sha256": "6f6b60bdd022e3fc86eb8a37d1ce14e2641e76aedf3e351fe8a063de26de0ea6"
+          "sha256": "f6ddf3bf6db6596fc83d0a6c352247f5ea3b6115a2b7ed3397baa99a7098c1da"
         },
         {
           "file": "Caddyfile",
@@ -896,6 +896,148 @@
           "file": "app/knowledge/knowledge.css",
           "symbols": [],
           "sha256": "6a69eceb4e94fc39692a192b24d3a635962ce54c0fa75253e009df4425789472"
+        }
+      ]
+    },
+    {
+      "id": "self-hosted-speech",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "lib/speech/contract.ts",
+          "symbols": [
+            "speechBody",
+            "decodeSpeech",
+            "speechFingerprint",
+            "speechFileKey",
+            "validSpeechFileKey",
+            "speechView"
+          ],
+          "sha256": "e6ddfe7d6ef9138ca46486f40c91d2616a188dfc32ea0c0c3aa660adcc371865"
+        },
+        {
+          "file": "lib/speech/storage.ts",
+          "symbols": [
+            "speechMediaPath",
+            "writeSpeechAudio",
+            "readSpeechAudio",
+            "hasSpeechAudio",
+            "removeSpeechAudio"
+          ],
+          "sha256": "f9edcc2aa95b0b0949f631016a759380a68ad030b729145689954382e5cc62a4"
+        },
+        {
+          "file": "lib/speech/queue.ts",
+          "symbols": [
+            "getSpeechQueue",
+            "enqueueSpeech"
+          ],
+          "sha256": "c969c74aab5130edb6f311c19c88b1de6da3df395d1de9d0aa0ec2148ebe4661"
+        },
+        {
+          "file": "lib/speech/runtime.ts",
+          "symbols": [
+            "chooseSpeechBackend",
+            "speechRuntime"
+          ],
+          "sha256": "fa9915cf7a354cd3422f0bdf30fee67d1cfd52d2a82f3f48933e3873325840f5"
+        },
+        {
+          "file": "lib/speech/transcribe.ts",
+          "symbols": [
+            "SpeechInputError",
+            "inspectSpeechPcm",
+            "pcmIsQuiet",
+            "transcribeLocal"
+          ],
+          "sha256": "f58105992d20f85d9a92856f0b027423103fa73fa5001e5236fb2baed239c8dd"
+        },
+        {
+          "file": "scripts/speech-worker.ts",
+          "symbols": [
+            "verifyRuntime",
+            "recoverSpeech"
+          ],
+          "sha256": "ba984d2ef3660e3447a7acfd5d7b6d2525ac9a04f23941d02b7135ec0b0c6136"
+        },
+        {
+          "file": "scripts/download-speech-model.mjs",
+          "symbols": [
+            "checksum"
+          ],
+          "sha256": "6663aadb6262ee2240ecb3147e551b48fc371bdac7be225d7c6ebd1b5f7dcea5"
+        },
+        {
+          "file": "app/api/speech/route.ts",
+          "symbols": [
+            "GET",
+            "POST",
+            "DELETE"
+          ],
+          "sha256": "3882798f14cbf76537b0e518b37e8836cbce5ed202fef4a5ea6c6e6149fc6617"
+        },
+        {
+          "file": "app/api/speech/audio/route.ts",
+          "symbols": [
+            "GET"
+          ],
+          "sha256": "97e744fee6b629032ad25d7e7719cd8d9fe81a823756f7b3d345b1792191805a"
+        },
+        {
+          "file": "app/speech/page.tsx",
+          "symbols": [
+            "SpeechSession",
+            "SpeechPage"
+          ],
+          "sha256": "fd970fdfe0fe8e96cc498f9aec89864c05deb4b5b77ace40b35db027f048906f"
+        },
+        {
+          "file": "app/speech/speech.css",
+          "symbols": [],
+          "sha256": "a31a654afb0745f63cfe5e35e5dd1f4badca2f69e80705c3bbe6f80278215f7d"
+        },
+        {
+          "file": "migrations/005_local_speech.sql",
+          "symbols": [],
+          "sha256": "902159c00ffa77023d62162d9bf5c37c400655ef75ac3d037d3478ce6c4b3bd2"
+        },
+        {
+          "file": "tests/unit/speech.test.ts",
+          "symbols": [],
+          "sha256": "3321b91196eb196576ca08e863aac1b89d551165ea8a357350e6116769dbed2e"
+        },
+        {
+          "file": "tests/e2e/speech.spec.ts",
+          "symbols": [],
+          "sha256": "f7d3f1e68bb80b7d6b84703550e8e34124c390ad14e4a5d274167b5a328accd2"
+        },
+        {
+          "file": "lib/speech/provider.ts",
+          "symbols": [
+            "selectedSpeechProvider",
+            "speechServiceReady",
+            "heartbeatMatches"
+          ],
+          "sha256": "65fcd6282f71419988229535337247821ea4121f0f192c89eb0593bf88cfb3ce"
+        },
+        {
+          "file": "lib/speech/gemini.ts",
+          "symbols": [
+            "transcribeGeminiWav",
+            "SpeechServiceError",
+            "geminiTranscript"
+          ],
+          "sha256": "39824c16cfb4fcc1300b3faac3af612d177cc7d7dac1e616feac194047df6a17"
+        },
+        {
+          "file": "migrations/006_speech_provider.sql",
+          "symbols": [],
+          "sha256": "c82cd575f82ff03dade553e4f1db16c698cdb3bccfd4723e81920765485bc2b7"
+        },
+        {
+          "file": "tests/unit/speech-gemini.test.ts",
+          "symbols": [],
+          "sha256": "28e482e7bd6ac90552ea17bd5b641fc6e7934310fbfe94cd58df55e49b7db632"
         }
       ]
     }

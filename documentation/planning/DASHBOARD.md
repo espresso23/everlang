@@ -4,7 +4,7 @@
 
 Baseline 4eb249c: 14 feature/domain hiện có, tách khỏi backlog mới. Không tính % hoàn thành toàn bộ dự án.
 
-Phần bổ sung: 37 PBIs; 4/75 tasks (5% count-based). 13 PBIs chưa xếp sprint. Task count không phải effort/burndown.
+Phần bổ sung: 38 PBIs; 6/78 tasks (8% count-based). 14 PBIs chưa xếp sprint. Task count không phải effort/burndown.
 
 | Sprint | Trạng thái | Start | End | Core dev SP* | Stretch dev SP* | Done dev SP* | Tiến độ |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -12,7 +12,7 @@ Phần bổ sung: 37 PBIs; 4/75 tasks (5% count-based). 13 PBIs chưa xếp spri
 | S2 / Tra cứu, mở rộng pilot và ôn lại | Proposed | TBD | TBD | 13 | 0 | 0 | 0/12 tasks (0% count-based) |
 | S3 / Onboarding và lộ trình tự học | Proposed | TBD | TBD | 11 | 3 | 0 | 0/12 tasks (0% count-based) |
 | S4 / Nghe đọc trong ngữ cảnh | Proposed | TBD | TBD | 8 | 5 | 0 | 0/12 tasks (0% count-based) |
-| S5 / Context SRS và đầu vào cá nhân | Proposed | TBD | TBD | 8 | 10 | 0 | 0/12 tasks (0% count-based) |
+| S5 / Context SRS và đầu vào cá nhân | Proposed | TBD | TBD | 13 | 5 | 0 | 0/12 tasks (0% count-based) |
 | S6 / Audit và release gate | Proposed | TBD | TBD | 16 | 0 | 0 | 0/12 tasks (0% count-based) |
 
 *SP sơ bộ, không phải giờ/ngày. Content/review capacity tính riêng; tất cả sprint còn Proposed, cần chốt giờ/tuần và refinement.
@@ -25,6 +25,7 @@ Phần bổ sung: 37 PBIs; 4/75 tasks (5% count-based). 13 PBIs chưa xếp spri
 | M2: Beta tự học local | S3 | Not reached | Onboarding/path→practice→feedback→save→SRS→daily plan đủ evidence, không còn lỗi P0 |
 | M3: Context learning pilot | S5 | Not reached | Pilot5 bài đọc/3 đoạn nghe, reader và morphology/context SRS verified; import riêng/STT là Stretch, chưa kiểm thì không bật release |
 | M4: Sẵn sàng phát hành beta | S6 | Not reached | Các story release gate Done, credentials/services thực tế kiểm, PO quyết định phát hành |
+| M5: Full self-study theo discovery | Unscheduled | Not reached | Từ vựng/chủ đề/audio, knowledge, practice/SRS/path và speaking có kiểm chứng; không thay pronunciation bằng STT |
 
 ## Đầu vào còn cần chốt
 

@@ -14,7 +14,7 @@ Ngày lập: **2026-10-31**. Phạm vi: beta tự học tiếng Hàn trung–cao
 | Mở/lọc bằng Excel | [Tasks CSV](tasks.csv), [Backlog CSV](product-backlog.csv) — bản sinh tự động, UTF-8 |
 | Dữ liệu tracking chuẩn để sửa | [work-items.json](work-items.json) |
 
-**14 nhóm baseline đã có được tách khỏi backlog bổ sung.** Ngày2026-10-31 owner yêu cầu triển khai toàn bộ tự học: hiện37 PBI,75 leaf task;4 PBI mới về thư viện/bộ từ/audio/hội thoại chưa xếp sprint, không coi là deferred chỉ vì chưa schedule. Task đặc tả/implementation PB-001 và PB-034 đã Done có evidence; audit cuối còn In progress; xem dashboard sinh từ JSON cho trạng thái mới nhất. Không dùng0% backlog mới để nói dự án hiện tại chưa làm gì, và không dùng số màn hình/code sẵn để coi toàn bộ roadmap đã hoàn tất.
+**14 nhóm baseline đã có được tách khỏi backlog bổ sung.** Ngày2026-10-31 owner yêu cầu triển khai toàn bộ tự học: hiện38 PBI,78 leaf task;5 PBI mới về thư viện/bộ từ/audio/hội thoại và speech enabler chưa xếp sprint, không coi là deferred chỉ vì chưa schedule. Task đặc tả/implementation PB-001 và PB-034 đã Done có evidence; audit cuối còn In progress; xem dashboard sinh từ JSON cho trạng thái mới nhất. Không dùng0% backlog mới để nói dự án hiện tại chưa làm gì, và không dùng số màn hình/code sẵn để coi toàn bộ roadmap đã hoàn tất.
 
 ## Cách cập nhật tiến độ
 

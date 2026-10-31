@@ -1,0 +1,37 @@
+.speech-recorder {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.speech-recorder textarea,
+.speech-transcript {
+  text-transform: none;
+  line-height: 1.8;
+  letter-spacing: normal;
+}
+.speech-player {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 16px 0;
+}
+.speech-consent {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 16px 0;
+}
+.speech-item {
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.speech-recorder input[type="file"] {
+  display: block;
+  max-width: 100%;
+  margin: 12px 0;
+}
+.speech-recorder .soft-button {
+  margin: 8px 0;
+}

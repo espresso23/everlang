@@ -10,7 +10,7 @@
 | Bộ từ đời sống → học tập/công việc → ngành nghề | PB-035 | Taxonomy/coverage đã chốt, entry/sense/examples/source/reviewer, học và ôn | Chưa triển khai; pilot không thay thế coverage cuối |
 | Audio từng từ/câu đúng phiên bản | PB-036 | Playback thật, text/audio phù hợp, quyền dùng và fallback | TTS thiết bị baseline; pipeline audio curated chưa có |
 | Luyện nhớ/hiểu và dùng được | PB-003/007/008/018 | Server grading, attempts/snapshot, SRS context/sense và evidence mastery | Bài tập thư viện đang triển khai; mastery và sense chưa có |
-| Ngữ âm, thu từ/câu và chấm phát âm | PB-020/026 | Audio thật + provider ko-KR + benchmark được người duyệt chấp nhận | Provider scoring chưa tích hợp/verified; STT không là điểm |
+| Ngữ âm, thu từ/câu và chấm phát âm | PB-020/026 | Audio thật + provider ko-KR + benchmark được người duyệt chấp nhận | Thu/import/private ASR enabler PB-038 có local E2E/restore; Gemini adapter có, key đổi vẫn timeout. Provider scoring chưa tích hợp/verified; STT không là điểm |
 | Đọc/nghe theo đoạn, transcript và chép chính tả | PB-013/014/015/017 | Reviewed corpus/audio, reader/audio sync, lookup và bài tập | Baseline nhỏ; mở rộng chưa thực hiện |
 | Hội thoại tình huống và luyện dùng từ | PB-037 | Content có mục tiêu, role/scoring riêng, history/private recordings | Chưa triển khai |
 | Lộ trình, diagnostic và lịch học theo mục tiêu | PB-009/010/011 | Onboarding→path→daily plan→practice→review qua hai thiết bị | Dashboard baseline; path/diagnostic chưa thực hiện |

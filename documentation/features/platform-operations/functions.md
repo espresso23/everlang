@@ -68,3 +68,7 @@ Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) v�
 ## Planning cập nhật 2026-10-31
 
 `buildViews` trong [planning.mjs](../../../scripts/planning.mjs) dùng nhãn PBIs chưa xếp sprint thay deferred: item Core chưa được schedule vẫn có thể nằm ngoài sprint. Unit fixture reset trạng thái để test invariants không phụ thuộc tiến độ thực tế; test riêng validate dữ liệu tracking hiện tại.
+
+## Thay đổi speech enabler
+
+Dockerfile thêm native portable/AVX2 pinned + target speech-worker và speech-api-worker nhẹ không model; Compose profiles speech/speech-api, volumes speech_media/speech_models; app mount media UID1001, worker limits/grace. package scripts speech:worker/speech:model. .env.example chỉ tên biến, SPEECH_PROVIDER default disabled. next.config outputFileTracingExcludes loại private artifacts, xem [ops](../../shared/operations.md) và [feature](../self-hosted-speech/functions.md).
