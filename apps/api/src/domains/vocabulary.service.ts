@@ -19,19 +19,18 @@ import type { Viewer } from '@everlang/backend/http';
 export class VocabularyService {
 async get(r: Request, u: Viewer) {
   const dueOnly = queryParams(r).get("due") === "true";
+  const items = await query(
+    `SELECT * FROM vocabulary WHERE user_id=$1 ${dueOnly ? "AND NOT suspended AND due<=now()" : ""} ORDER BY due,id LIMIT 500`,
+    [u.id],
+  );
+  const totals = (await query<{count: string; server_now: Date}>(
+    "SELECT count(*) AS count, now() AS server_now FROM vocabulary WHERE user_id=$1 AND NOT suspended AND due<=now()",
+    [u.id],
+  ))[0];
   return {
-    items: await query(
-      `SELECT * FROM vocabulary WHERE user_id=$1 ${dueOnly ? "AND NOT suspended AND due<=now()" : ""} ORDER BY due,id LIMIT 500`,
-      [u.id],
-    ),
-    dueCount: Number(
-      (
-        await query(
-          "SELECT count(*) FROM vocabulary WHERE user_id=$1 AND NOT suspended AND due<=now()",
-          [u.id],
-        )
-      )[0].count,
-    ),
+    items,
+    dueCount: Number(totals.count),
+    serverNow: totals.server_now.toISOString(),
   };
 
 }

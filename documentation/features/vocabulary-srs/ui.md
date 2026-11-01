@@ -27,3 +27,5 @@ Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md
 /vocabulary thêm Link /word-sets, giữ lưới/kho từ/ôn cũ. Từ nhiều nghĩa hiển thị thành thẻ riêng, cùng term nhưng meaning/context khác và id riêng. Không tự merge manual card; người học chọn link trong catalogue. [UI mới](../vocabulary-catalog/ui.md).
 
 Recall gate trước code: catalogue snapshot có ví dụ Hàn–Việt; trước “Hiện nghĩa” chỉ hiện phần Hàn của context do catalogue tạo, dịch Việt xuất hiện sau reveal. Context cá nhân tùy chỉnh giữ nguyên, không tự phân loại ngôn ngữ. Lưu mới contextKO; snapshot giữ cả KO/VI và helper hỗ trợ thẻ tạo bằng formatKO+VI cũ. Audio SRS dùng chung playKorean có error/cancel feedback thay vì silent fallback; cancel là hành vi dừng, không lỗi. Không thay layout/rating/FSRS.
+
+2026-11-01: active card so due với serverNow của GET /api/vocabulary, không Date.now trên thiết bị. Giữ nguyên layout/reveal/rating; reload sau review lấy snapshot thời gian mới.

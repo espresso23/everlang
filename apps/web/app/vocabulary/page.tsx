@@ -33,12 +33,12 @@ function Vocabulary() {
   const [editing, setEditing] = useState<Card | null>(null);
   const load = useCallback(async () => {
     try {
-      const p = await request<{ items: Card[]; dueCount: number }>(
+      const p = await request<{ items: Card[]; dueCount: number; serverNow: string }>(
         "/api/vocabulary",
       );
       setItems(p.items);
       setDue(p.dueCount);
-      setNow(Date.now());
+      setNow(Date.parse(p.serverNow));
     } catch (e) {
       setMessage((e as Error).message);
     }

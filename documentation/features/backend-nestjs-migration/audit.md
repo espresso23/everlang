@@ -1,5 +1,13 @@
 # Audit — backend-nestjs-migration
 
+## 2026-11-01 — Pre-merge verification after6435d04
+
+Owner authorized merge/push after recheck. First full run26PASS/1FAIL exposed a real device/server clock mismatch: newly saved due card hidden by client Date.now (PG/Docker ~1.7s ahead). VocabularyService.get now returns PostgreSQL serverNow ISO, Vocabulary.load uses that timestamp. No schema/card/due/FSRS/layout change. Regression clocks -5minutes/+365days: due card visible, future card stays closed.
+
+Rerun: **27/27 Playwright PASS (2.1m)** on fresh isolated QA PG/Mongo/Redis15/media; **77/77 unit PASS**, lint0errors/warnings, workspace+tools typecheck, host and Docker builds, docs/plan/backend gates PASS. Native runtime fault probe: PG reconnect, cooldown1257ms, fatal exit1, providerCalls0. Tests include extended beta exam/admin, knowledge, catalogue, JWT/replay/two tabs, queue failure/retry, private audio and fixture UX.
+
+Google live/provider production gates remain NOT VERIFIED; integration into main is not feature/release Done. [Clock contract](../vocabulary-srs/README.md), [regression test](../../../tests/e2e/vocabulary-catalog.spec.ts). QA data is isolated; generated screenshot overwrites restored rather than replacing historical evidence. Merge/push only reported successful after verifying remote main SHA.
+
 2026-11-01; branch `feature/nestjs-jwt-migration`, baseline `0b34a97`. Review riêng sau implementation: spec→code→native HTTP/browser→DB/queue→worker→UI. Implementation và local cutover verified; feature Review, external/owner gates còn mở.
 
 | Requirement | Result | Evidence |

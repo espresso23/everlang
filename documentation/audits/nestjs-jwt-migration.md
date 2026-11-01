@@ -16,3 +16,7 @@
 | KRdict/Tutor/cloud grading/Whisper/Gemini/SMTPproduction | NOT VERIFIED | source contracts ported/build/guards; no fresh cloud/inference evidence |
 
 Run command groups and exact flags in [verification evidence](../features/backend-nestjs-migration/assets/verification.md). Per-feature audits describe their own scope, including unchecked paths. Cutover/Redis/media restore status is recorded only after actual execution in canonical migration audit. No blanket feature-complete claim.
+
+## Pre-merge recheck2026-11-01
+
+Full27E2E first found clock skew bug; serverNow contract/client snapshot fixes SRS recall without changing FSRS. All27 rerunPASS2.1m including native catalogue browser -5min/+365days;77unit/lint/typechecks/builds and runtime fault probe PASS. See canonical migration and vocabulary-srs audits. Owner authorizes integration/push; external/provider verification remains open, PB-039 Review.

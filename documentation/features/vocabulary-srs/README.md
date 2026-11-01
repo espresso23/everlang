@@ -15,7 +15,7 @@
 
 ## Hợp đồng hiện có
 
-- GET /api/vocabulary?due=true — {items,dueCount}, tối đa 500.
+- GET /api/vocabulary?due=true — {items,dueCount,serverNow}, tối đa 500.
 - POST/PUT /api/vocabulary — term,meaning,context,note,kind,sourceId; PUT thêm id/version/suspended.
 - POST /api/reviews — {id,rating:1..4,version,requestId}; 404 ownership, 409 stale/due.
 
@@ -34,3 +34,7 @@ Legacy POST dùng targetless ON CONFLICT DO NOTHING trước migration007; app b
 
 - vocabulary-srs-REQ-05: catalogue context translation chỉ sau reveal; thẻ cùng chữ khác sense giữ snapshot/lịch riêng, duplicate và attach không reset. [Integrated audit](../vocabulary-catalog/audit.md).
 - vocabulary-srs-REQ-06: nghe bằng [shared device TTS](../../shared/audio.md), lỗi/không có ko voice có hướng dẫn thay vì im lặng; hardware/curated voice quality chưa tự coi verified.
+
+## 2026-11-01 — Due-card clock authority
+
+VocabularyService.get trả serverNow ISO từ PostgreSQL cùng dueCount; Vocabulary.load dùng timestamp này để chọn thẻ due, không dùng đồng hồ thiết bị. Không sửa card/due/rating/FSRS; browser lệch sau không ẩn thẻ đã đến hạn, lệch trước không mở thẻ tương lai. Regression trong tests/e2e/vocabulary-catalog.spec.ts mô phỏng -5phút và +365ngày.

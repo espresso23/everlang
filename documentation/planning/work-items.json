@@ -2493,7 +2493,7 @@
       "owner": "Chủ dự án",
       "status": "Review",
       "dependsOn": [],
-      "blocker": "Native implementation/local gates and cutover passed; owner live Google login/link and external provider smoke remain NOT VERIFIED; no blanket feature Done.",
+      "blocker": "Implementation/local cutover/pre-merge gates passed:77unit,27E2E including device clock regression. Owner Google login/link and external provider confirmation still NOT VERIFIED; remain Review.",
       "evidence": [
         "documentation/features/backend-nestjs-migration/audit.md",
         "documentation/features/backend-nestjs-migration/assets/verification.md",

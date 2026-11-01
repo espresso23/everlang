@@ -534,7 +534,7 @@
             "Vocabulary",
             "Page"
           ],
-          "sha256": "28d4f44fb8ddf38636249e3d9fee3d67441449c19bf7f3e547caacb50939a70a"
+          "sha256": "fee11b21fcb9aaa41a60befbdf8a330cfd40c9255c21439565c43062d6059edc"
         },
         {
           "file": "apps/api/src/domains/vocabulary.service.ts",
@@ -545,7 +545,7 @@
             "VocabularyService.post",
             "VocabularyService.put"
           ],
-          "sha256": "777eecc702b324570ca8f3c73138b4e8667fe63f7cf4e40aae909cbc582d52f1"
+          "sha256": "435cbc98bd4c2327f6cd7a459ef6c5e193f7ee6b9cd56d8c31e9bce3c1e1cc30"
         },
         {
           "file": "apps/api/src/domains/reviews.service.ts",
@@ -940,7 +940,7 @@
             "properties",
             "dir"
           ],
-          "sha256": "cd4fc430cc6fc98a84b7395ce8f59523f9e4dd49a3c0735e546ca630e5d3208a"
+          "sha256": "c8ded905dfdf7d0f8422b43f3f3905ee3a67fdf9c3fcf4dd2283c53ed365cf6d"
         }
       ]
     },
@@ -1728,7 +1728,7 @@
         {
           "file": "tests/e2e/vocabulary-catalog.spec.ts",
           "symbols": [],
-          "sha256": "2728036aade47c7f84c35bfef20b6f7c0df9ae0c91bb394af4d04dd57bfe7a7a"
+          "sha256": "3fbdfcc93d8fc0d9395ad627885f75dc7b113bd9ea6d06df196b2d633804ff10"
         },
         {
           "file": "tests/unit/korean-audio.test.ts",

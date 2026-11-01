@@ -1,3 +1,7 @@
+## 2026-11-01 — Pre-merge due-clock regression
+
+FAIL before: first full27E2E run hid a freshly saved card when browser clock lagged PostgreSQL. PASS after: native GET /api/vocabulary includes serverNow; UI uses server timestamp. Catalogue integration intentionally runs browser -5minutes then +365days; due recall/reveal passes, future reviewed card stays unavailable. Full27E2E rerun PASS2.1m, unit77PASS/lint/typecheck/build. No persisted card/due/rating/FSRS/layout change. [Shared SRS contract](../vocabulary-srs/system-design.md), [test](../../../tests/e2e/vocabulary-catalog.spec.ts), [migration audit](../backend-nestjs-migration/audit.md). External/content gates below remain unchanged.
+
 ## 2026-11-01 — Native Nest migration regression audit
 
 Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.

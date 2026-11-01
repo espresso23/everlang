@@ -24,7 +24,7 @@ API cá nhân luôn lấy user từ session ở [api](../../../apps/api/src/auth
 
 ## Hợp đồng tích hợp
 
-- GET /api/vocabulary?due=true — {items,dueCount}, tối đa 500.
+- GET /api/vocabulary?due=true — {items,dueCount,serverNow}, tối đa 500.
 - POST/PUT /api/vocabulary — term,meaning,context,note,kind,sourceId; PUT thêm id/version/suspended.
 - POST /api/reviews — {id,rating:1..4,version,requestId}; 404 ownership, 409 stale/due.
 
@@ -35,3 +35,7 @@ Chưa có optimizer cá nhân hóa từ lịch sử dài hạn; dùng preset FSR
 Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [storage/migrations](../../shared/data-model.md), [vận hành](../../shared/operations.md). Chỉ tên biến môi trường được ghi ở docs; không đưa token, cookie hay credential vào ví dụ/log.
 
 Migration007 cần app bridge trước khi áp dụng; giữ nguyên FSRS/card id/log, thay old constraint bằng2 partial indexes manual/catalog. Rollback phải `everlang-vocabulary-bridge:local` hoặc bản mới hơn, không pre-bridge. [ADR/migration](../vocabulary-catalog/system-design.md).
+
+## 2026-11-01 — Due-card clock authority
+
+VocabularyService.get trả serverNow ISO từ PostgreSQL cùng dueCount; Vocabulary.load dùng timestamp này để chọn thẻ due, không dùng đồng hồ thiết bị. Không sửa card/due/rating/FSRS; browser lệch sau không ẩn thẻ đã đến hạn, lệch trước không mở thẻ tương lai. Regression trong tests/e2e/vocabulary-catalog.spec.ts mô phỏng -5phút và +365ngày.

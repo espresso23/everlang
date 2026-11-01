@@ -12,3 +12,5 @@
 | [apps/api/src/domains/vocabulary.controller.ts](../../../apps/api/src/domains/vocabulary.controller.ts) | `VocabularyController`, `VocabularyController.get`, `VocabularyController.post`, `VocabularyController.put` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
 
 Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.
+
+VocabularyService.get(Request,Viewer) → {items,dueCount,serverNow}; timestamp ISO từ PostgreSQL. Vocabulary.load tại apps/web/app/vocabulary/page.tsx chọn active bằng serverNow, refresh sau save/review. Ownership/suspended/CAS/FSRS không đổi.

@@ -17,7 +17,7 @@ const fixtures: Record<string, unknown> = {
   "/api/drafts": { drafts: [] },
   "/api/user/stats": { totalCompleted: 24, averageScore: 85, weakTopics: [] },
   "/api/user/favorites": { items: [] },
-  "/api/vocabulary": { items: [], dueCount: 0 },
+  "/api/vocabulary": { items: [], dueCount: 0, serverNow: "2026-10-30T00:00:00Z" },
   "/api/exams": { items: [{ id: "mini", title: "Bài luyện TOPIK ngắn", kind: "mini", minutes: 10 }], attempts: [] },
   "/api/admin/content": { items: [] },
 };

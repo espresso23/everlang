@@ -229,11 +229,15 @@ test("versioned vocabulary catalog, homograph SRS, quota, legacy mapping and int
     const after = await cards();
     expect(after).toHaveLength(1);
     const first = after[0];
+    const schedule = await (await admin.get("/api/vocabulary")).json();
+    expect(Date.parse(schedule.serverNow)).toBeGreaterThanOrEqual(Date.parse(first.due));
     const recallContext = await browser.newContext({
       baseURL,
       storageState: await admin.storageState(),
     });
     const recallPage = await recallContext.newPage();
+    // Device time can differ from PostgreSQL; it must not hide a due card.
+    await recallPage.clock.setFixedTime(Date.now() - 5 * 60_000);
     await recallPage.goto("/vocabulary?review=true");
     const recallPanel = recallPage.locator(".review-card");
     await expect(recallPanel).toContainText(first.term);
@@ -266,6 +270,17 @@ test("versioned vocabulary catalog, homograph SRS, quota, legacy mapping and int
       ).status(),
     ).toBe(200);
     const reviewed = (await cards())[0];
+    const futureContext = await browser.newContext({baseURL, storageState: await admin.storageState()});
+    const futurePage = await futureContext.newPage();
+    await futurePage.clock.setFixedTime(Date.now() + 365 * 24 * 60 * 60_000);
+    const [futureSchedule] = await Promise.all([
+      futurePage.waitForResponse(r => new URL(r.url()).pathname === '/api/vocabulary'),
+      futurePage.goto("/vocabulary?review=true"),
+    ]);
+    expect((await futureSchedule.json()).dueCount).toBe(0);
+    await futurePage.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    await expect(futurePage.locator(".review-card")).toContainText("Đã ôn hết thẻ đến hạn");
+    await futureContext.close();
     expect(
       (
         await admin.post("/api/word-sets/learn", {

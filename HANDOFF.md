@@ -4,6 +4,12 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — Pre-merge recheck theo yêu cầu owner
+
+- Owner cho phép tự kiểm tra, nếu đạt thì merge main và push origin. Baseline6435d04/tree sạch, fetch origin/main4eb249c không có commit phân kỳ; main local đã có8commit chưa push từ các lượt trước.
+- Recheck77unit/lint/typecheck/tools/build/docs/plan/backend gates PASS. Full27E2E lần đầu26PASS/1FAIL: clock Docker/PG đi trước browser khoảng1.7s khiến Vocabulary Date.now ẩn thẻ mới dù server dueCount=1. Sửa GET /api/vocabulary trả serverNow ISO từ PG, UI dùng snapshot đó; thêm regression browser -5phút/+365ngày. Không thay card/due/FSRS/schema/layout.
+- Kiểm thực tế trên QA database/Mongo/Redis15/media riêng, không sửa dữ liệu người dùng. Rerun27/27E2E PASS2.1m (gồm clock -5phút/+365ngày),77unit PASS, lint0/typecheck/tools/host+Dockerbuild PASS; native fault probe PG reconnect/cooldown1257ms/fatalexit đạt. Push dry-run và pending-history credential-pattern check PASS. External Google/provider gates giữ NOT VERIFIED, PB-039 Review. Lưu checkpoint sửa lỗi rồi fast-forward main/push theo quyền owner; kết quả chỉ xác nhận khi SHA remote khớp. API/web local đã recreate bản sửa, ready200 và2postdeploy smoke PASS4.3s; không migration/data writes. QA clone/Mongo namespace/Redis15/media/container do lượt này tạo đã dọn.
+
 ### 2026-11-01 — NestJS/JWT migration và cutover local
 
 - Branch feature/nestjs-jwt-migration, base retry4090b34a97. Tách apps/web NextUI, apps/api Nest native, apps/worker Nest WorkerHost, packages/contracts/backend. Giữ49domain methods/27pairs; xóa Next API/BetterAuth/Drizzle/old worker entrypoints và dependencies. Gateway3000→web3001/API4000; old auth paths404, không active backend fallback.
