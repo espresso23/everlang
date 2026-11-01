@@ -93,3 +93,7 @@ Branch bugfix/retry-failed-grading.74unitPASS; failed duplicate đổi502→409/
 ## 2026-11-01 — Admin workspace scoped review
 
 Owner yêu cầu layout quản trị riêng. Giữ paper/ink/Cobalt/Inter và editor hiện hành; thêm overview/navigation/mode switch. Visual review phát hiện header320px wrap nhưng fixed height gây chồng menu; sửa scoped admin-header auto height, bổ sung bounding-box regression. Ảnh desktop/mobile nằm ở content-authoring/assets/admin-workspace-*.png. Không chứng nhận WCAG/hardware toàn app.
+
+## 2026-11-01 — Editorial workbench
+
+Scope3admin tables/preview. Owner authorized layout improvement. Internal table scroll, bounded controls at320/390/1440, native dialog focus/escape, answer reveal text, semantic table/labels; actual native catalog keyboard/text-spacing and learner regression passed. Evidence at content-authoring/assets/editorial-*.png and vocabulary-catalog/assets/admin-*.png. Full screenreader/physicaldevices NOT VERIFIED; no blanket WCAG claim.

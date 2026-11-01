@@ -520,9 +520,9 @@ test("versioned vocabulary catalog, homograph SRS, quota, legacy mapping and int
       page.getByRole("heading", { name: "Bộ từ & nghĩa" }),
     ).toBeVisible();
     await page.getByRole("button", { name: "Bộ từ", exact: true }).click();
-    await page
-      .getByRole("button", { name: /qa-catalog-title-new.*qa-catalog-set.*v2/ })
-      .click();
+    await page.getByRole("region", { name: "Kho học liệu biên tập" })
+      .getByRole("row").filter({ hasText: "qa-catalog-title-new" }).filter({ hasText: "v2" })
+      .getByRole("button", { name: "Mở biên tập", exact: true }).click();
     await expect(
       page.getByRole("button", { name: "Tạo phiên bản mới" }),
     ).toBeVisible();

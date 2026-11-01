@@ -52,3 +52,7 @@ Branch feature/admin-workspace, base5d84445; owner chọn mặc định Quản t
 - Evidence: tests/e2e/admin-workspace.spec.ts; assets/admin-workspace-{1440,390,320}.png. Final commands/results được ghi tiếp sau kiểm tra final image.
 
 Final image: full Docker build PASS; deployed web only localhost3000. Final role-browser5/5 PASS11.7s, sign-in deployed smoke1/1 PASS3.7s. Header/menu containment and no horizontal overflow verified1440/390/320; inspected final320 screenshot. Self-review complete; task Review/Pass, issue open for owner Google smoke.
+
+## 2026-11-01 — Editorial workbench EW-01–05
+
+Branch feature/editorial-content-workbench, GitHub #11/PB-043-T01. Separate review against current PRD; [integration audit](../../audits/editorial-workbench-2026-11-01.md) records nativePG/API and browser scopes, PASS/NOT VERIFIED and evidence. Draft/private state/learner answer secrecy/CAS remain; no language quality approval or production go-no-go implied.

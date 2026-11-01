@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-01",
+  "scope": "PB-043-T01 / GitHub #11",
+  "unit": {
+    "tests": 88,
+    "files": 19,
+    "result": "PASS"
+  },
+  "nativePG": {
+    "result": "PASS",
+    "knowledge": 210,
+    "catalogue": 60,
+    "sentences": 60,
+    "checks": [
+      "whole-dataset filter/count/page",
+      "literal search",
+      "invalid page400",
+      "learner admin403",
+      "draft404",
+      "CAS409",
+      "import duplicate/conflict",
+      "reviewed edit resets draft",
+      "student answers hidden"
+    ],
+    "providerCalls": 0
+  },
+  "browser": {
+    "uniqueTargetedScenarios": 11,
+    "result": "PASS after test-fixture isolation and locator update",
+    "roleAndWorkbenchFinal": "8/8 PASS19.5s",
+    "nativeCatalogue": "PASS15.1s final combined run",
+    "nativeCatalogueEditor": "PASS5.6s final combined run",
+    "nativeKnowledgeRerun": "PASS9.7s / total11.4s after duplicate old QA idiom cleanup",
+    "combinedRun": "10pass,1fixture duplicate-title failure; only failed knowledge rerun after QA reset",
+    "mainSmoke": "1/1 PASS3.3s"
+  },
+  "gates": [
+    "lint",
+    "typecheck",
+    "full Docker builds",
+    "backend:check",
+    "docs:check",
+    "plan:check",
+    "git diff --check"
+  ],
+  "mainReadiness": {
+    "status": "ready",
+    "queueAvailable": true
+  },
+  "mainContentObserved": {
+    "sentencesPublished": 100,
+    "knowledgePublished": 1,
+    "knowledgeDraft": 12,
+    "catalogueDraft": 53,
+    "publishedKnowledgeKey": "grammar-baram",
+    "publishedRevision": 1,
+    "hasReviewer": true
+  },
+  "limitations": [
+    "No paid provider calls",
+    "No live Google/browser or language-quality approval inferred",
+    "No production data used as fixtures",
+    "No schema migration",
+    "JSON imports only, no CSV mapping",
+    "cross-row operations report partial outcomes"
+  ],
+  "cleanup": "Owned candidate API/web/gateway/PG+anonymous QA volume/SMTP container and Mailpit image removed; main named volumes retained"
+}

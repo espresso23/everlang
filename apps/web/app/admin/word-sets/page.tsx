@@ -1,4 +1,6 @@
 "use client";
+import { EditorialDesk } from "@/components/editorial-desk";
+import { StudentPreview, type EditorialItem } from "@/components/editorial-preview";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { request } from "@/lib/client";
@@ -45,10 +47,10 @@ const statusLabels = {
 };
 type Choice = { key: string; revision: number; title: string; meaning: string };
 export default function WordSetsAdmin() {
+  const [preview, setPreview] = useState<EditorialItem | null>(null);
   const [kind, setKind] = useState<"sense" | "set">("sense");
   const [offset, setOffset] = useState(0);
   const [items, setItems] = useState<CatalogRecord[]>([]);
-  const [total, setTotal] = useState(0);
   const [selected, setSelected] = useState<CatalogRecord | null>(null);
   const [content, setContent] = useState<CatalogContent>(blank("sense"));
   const [key, setKey] = useState("");
@@ -70,7 +72,6 @@ export default function WordSetsAdmin() {
       .then((p) => {
         if (live) {
           setItems(p.items);
-          setTotal(p.total);
         }
       })
       .catch((e) => {
@@ -126,6 +127,7 @@ export default function WordSetsAdmin() {
   async function transition(
     action: "edit" | "review" | "publish" | "fork" | "revise",
   ) {
+    if (action === "publish" && selected) { setPreview(structuredClone(selected)); return; }
     if (action === "edit") {
       const parsed = catalogContentSchema.safeParse(content);
       if (!parsed.success) {
@@ -261,49 +263,9 @@ export default function WordSetsAdmin() {
       >
         Tải lại danh sách (giữ form)
       </button>
-      <div className="catalog-layout spaced">
-        <section className="panel catalog-index catalog-admin-index">
-          <h2>{kind === "sense" ? "Các nghĩa" : "Các bộ"}</h2>
-          {!items.length && <p>Chưa có mục trong trang này.</p>}
-          {items.map((item) => (
-            <button
-              className="catalog-word"
-              key={`${item.key}:${item.revision}`}
-              disabled={busy}
-              aria-pressed={
-                selected?.key === item.key &&
-                selected.revision === item.revision
-              }
-              onClick={() => choose(item)}
-            >
-              <strong>
-                {item.content.kind === "sense"
-                  ? item.content.term
-                  : item.content.title}
-              </strong>
-              <small>
-                {item.key} · v{item.revision} · {statusLabels[item.status]}
-              </small>
-            </button>
-          ))}
-          <div className="task-actions">
-            <button
-              className="soft-button"
-              disabled={busy || !offset}
-              onClick={() => setOffset((n) => Math.max(0, n - 50))}
-            >
-              Trước
-            </button>
-            <span>{total} phiên bản</span>
-            <button
-              className="soft-button"
-              disabled={busy || offset + 50 >= total}
-              onClick={() => setOffset((n) => n + 50)}
-            >
-              Sau
-            </button>
-          </div>
-        </section>
+      <EditorialDesk key={kind} endpoint="/api/admin/word-sets" kind={kind} refreshToken={items} onSelect={row => choose(row as CatalogRecord)} />
+      {preview && <StudentPreview item={preview} endpoint="/api/admin/word-sets" onClose={() => setPreview(null)} onPublished={row => { setRefresh(n => n + 1); choose(row as CatalogRecord); setMessage("Đã xuất bản revision này."); }} />}
+      <div className="spaced">
         <section className="panel catalog-editor">
           <h2>
             {selected

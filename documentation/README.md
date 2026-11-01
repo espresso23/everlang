@@ -94,3 +94,5 @@ Bộ tài liệu baseline đã được backfill cho toàn bộ source/màn hìn
 - [PostgreSQL-only primary database](features/postgresql-only/README.md) — migration in progress.
 
 - [Admin learning CMS benchmark (2026-11-01)](research/admin-learning-cms-benchmark.md) — public-source comparison and proposed editorial workspace, not implemented.
+
+- [Editorial workbench audit](audits/editorial-workbench-2026-11-01.md) — pagination, batch drafts, student preview and native regression.

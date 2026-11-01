@@ -27,3 +27,17 @@ Current persistence: [content store](../../../packages/backend/src/content-store
 - apps/web/app/admin/overview/page.tsx — AdminOverview: entry points to existing editors.
 - apps/web/app/sign-in/page.tsx — Form: authenticated landing by role; social callback /sign-in.
 - tests/e2e/admin-workspace.spec.ts — browser acceptance fixtures; upstream OAuth not certified.
+
+
+## Editorial workbench — planned2026-11-01
+
+Canonical requirements EW-01–05: documentation/features/content-authoring/README.md. Admin GET query params validated, TypeORM list filters/count/order; shared EditorialDesk calls existing mutations with explicit saved version. StudentPreview read-only saved snapshot and exact references; confirm calls current publish transition, no preview writes. Shared UI: table/filter/pager, batch source/rights, JSON dryrun/import, focused existing editor. No schema migration; retain permission/CAS/published-only learner rules.
+
+## EW-01–05 implementation — 2026-11-01
+
+- [EditorialDesk](../../../apps/web/components/editorial-desk.tsx): shared filtered table/server pager, URL query state, explicit draft selection, source/rights per-item CAS, JSON dry-run/import(max50/1MB), editor previous/next within page. No automatic content review or bulk publish. Conflict rows remain selected for reconciliation; successful rows not retried.
+- [StudentPreview](../../../apps/web/components/editorial-preview.tsx): immutable saved snapshot, exact key/revision/editVersion or id/contentVersion; publicEntry answer projection; local grade/reveal without learner API mutations. Set references fetched by exact saved set revision. Native dialog Escape/focus return and explicit publish confirmation; server CAS still authoritative.
+- [KnowledgeSections](../../../apps/web/components/knowledge-sections.tsx) shared with learner Reader; learner bookmark/TTS callbacks remain only in actual reader. Preview does not pretend to exercise media/ASR or learner persistence.
+- [editorial contracts](../../../packages/contracts/src/editorial.ts): bounded25/50/100 pages, offset0..1M, literal search, status/sort whitelist and sentence import schema. Three admin services map queryParams into content-store filters/count before page; sort ties key/revision orid.
+- Sentence importKey SHA256 -> user-scoped deterministic24hexID; same payload returns duplicate without overwrite, changed payload409; races reconcile unique conflict. Knowledge/catalog repeated keys409, never overwrite. No schema migration. Reviewed sentence edit resets draft and requires review again.
+- Metadata export/CSV mapping/whole-dataset select-all and automatic review are outside this increment. Existing list shows explicit versions, not fabricated grouped logical totals. New modules retain existing topic/level taxonomies.

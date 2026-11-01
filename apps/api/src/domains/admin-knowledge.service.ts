@@ -1,3 +1,5 @@
+import { editorialQuerySchema } from "@everlang/contracts/editorial";
+import { queryParams } from "@everlang/backend/http";
 import { z } from "zod";
 import { HttpError } from '@everlang/backend/http';
 import { knowledgeStore } from "@everlang/backend/content-store";
@@ -7,10 +9,11 @@ import type { Request } from 'express';
 import type { Viewer } from '@everlang/backend/http';
 @Injectable()
 export class AdminKnowledgeService {
-    async get(_r: Request, _u: Viewer) {
-        return {
-            items: (await knowledgeStore.list({ limit: 200 })).items,
-        };
+    async get(r: Request, _u: Viewer) {
+
+        const query = editorialQuerySchema.parse(Object.fromEntries(queryParams(r)));
+        const result = await knowledgeStore.list({ ...query, search: query.q });
+        return { ...result, limit: query.limit, offset: query.offset };
     }
     async post(r: Request, _u: Viewer) {
         const b = z

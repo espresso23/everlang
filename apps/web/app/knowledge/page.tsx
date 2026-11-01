@@ -1,4 +1,5 @@
 "use client";
+import { KnowledgeSections } from "@/components/knowledge-sections";
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -245,39 +246,7 @@ function Reader({ entryKey, back }: { entryKey: string; back: string }) {
               ))}
             </ul>
           </nav>
-          {content.sections.map((s) => (
-            <section id={s.id} key={s.id} tabIndex={-1}>
-              <h2>{s.heading}</h2>
-              <p className="learning-text">{s.text}</p>
-              <button
-                className="text-button"
-                disabled={busy}
-                onClick={() => {
-                  edit({ section: s.id });
-                  setNotice("Đã chọn vị trí này; bấm Lưu ghi chú để đồng bộ.");
-                }}
-              >
-                Ghi nhớ vị trí này
-              </button>
-            </section>
-          ))}
-          <section>
-            <h2>Ví dụ trong ngữ cảnh</h2>
-            {content.examples.map((example, i) => (
-              <div className="knowledge-example" key={i}>
-                <p className="learning-text" lang="ko">
-                  {example.ko}
-                </p>
-                <p>{example.vi}</p>
-                <button
-                  className="soft-button"
-                  onClick={() => play(example.ko)}
-                >
-                  Nghe câu · TTS
-                </button>
-              </div>
-            ))}
-          </section>
+          <KnowledgeSections content={content} onRemember={id => { if (!busy) { edit({ section: id }); setNotice("Đã chọn vị trí này; bấm Lưu ghi chú để đồng bộ."); } }} onSpeak={play} />
           {content.questions.length > 0 && (
             <section>
               <h2>Thử dùng kiến thức</h2>

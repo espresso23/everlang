@@ -1,5 +1,8 @@
 # EverLang — trạng thái hiện tại2026-11-01
 
+Latest: custom Editorial workbench EW-01–05 implemented/tested, GitHub #11/PB-043-T01 Done/Pass; owner authorized merge/push all delivered changes and new-session continuation. Admin paged/filterable tables, draft metadata/import dry-run, saved-version student preview before publication.88unit +nativePG210/60/60 +11targeted browser scenarios verified; [audit](audits/editorial-workbench-2026-11-01.md). Main ready; observed100published sentences,1published knowledge(grammar-baram/v1 with reviewer marker),12knowledge drafts,53catalogue drafts. Observation does not certify language quality. [Next-session checkpoint](features/content-authoring/context-next-session.md). Older paragraphs below are historical checkpoints when branch/stack/count statements conflict.
+
+
 Cập nhật runtime mới nhất: dictionary relative URL500 đã sửa; bấm chấm AI mới vượt base-failed cache trong PG, giữ requestId idempotency/lịch sử; bỏ Mailpit runtime.86unit/29E2E + final native idempotency probe/2deployed smoke PASS, [audit](audits/runtime-grading-compose-fix.md). SMTP ngoài chưa cấu hình; provider/content quality vẫn cần nghiệm thu. Owner chỉ định merge/push main, không tự suy human QA/production Done.
 
 PostgreSQL-only increment đã triển khai và local cutover18:40–18:42: TypeORM cho dữ liệu người học và4kho học liệu JSONB, legacy archive172documents; không Mongo/Mongoose runtime, Mongo container cũ đã dừng và giữ backup. App localhost3000 ready. TypeORM e0ad32f đã merge local main theo chỉ định owner; PostgreSQL-only ở refactor/postgresql-only, chờ owner QA/merge.

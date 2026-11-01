@@ -4,6 +4,17 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — Editorial workbench/preview completed; owner authorized merge-all and new session
+
+- DONE PB-043-T01/#11: custom EverLang, noexternalCMS; server25/50/100pagination/search/status/level/topic/sort+total for3admin modules; compact table, existing editors/previous-next, bounded draftsource-rights metadata with explicitversion+peritem outcomes; JSON50/1MB dry-run→servervalidatedimport, repeatedsentence import idempotent/conflictingchanges409, knowledge/catalogduplicate409. Noauto-review/publish.
+- Saved-version StudentPreview before publish; knowledge reading body shared with learner, hiddenanswers/reveal/localcheck, pinnedsetrefs exactrevision, nolearnerwrites. Cancel unchanged, publish exactCAS, errors retained; reviewed sentence edit resetsdraft. Source review restored defaultlearner sentence created-order, only explicitadmin updatedsort. Native dialog Escape/focus restored after red test.
+- PASS88unit/19files,lint/workspacetypecheck/fullDockerAPIworkerweb/backend/docs/plan/diff; real isolatedPG210knowledge/60catalogue/60sentences/APIauth403/CAS409/import/published-only;11unique targetedbrowser scenarios after fixture/locator corrections. Lastcombined10pass+1fixture duplicate QAidiom; knowledgeonly rerun cleanQA PASS9.7s. Role/workbench8/8 PASS19.5s; main smoketest1/1 PASS3.3s. [Audit](documentation/audits/editorial-workbench-2026-11-01.md), [results](documentation/features/content-authoring/assets/editorial-verification.json).
+- Local app/API/worker updated, ready/queueAvailable true. Main metadata observation:100sentencespublished, grammar-baram/v1 published withreviewer,12knowledgedrafts/53cataloguedrafts. Agent did notpublishmaincontent or usemainlearners asfixtures; do not infer humanlanguageacceptance from DBmarker alone.
+- OwnedQAAPI/web/gateway/PG+anonymousvolume/testSMTP removed, temporaryMailpitimage deleted; mainnamedvolumes/backups retained. No paidprovider/cloudcalls,DDL or production deploy. InitialDockerDNS failure resolved on retry, no toolsecrets saved.
+- Owner explicitly requests verify→merge all delivered changes into main→push under existing authorization→new session. Includes GitHubtracking5cc02ee, adminworkspace142a3e9 and UXskill/researchf59cdc2. #9 remains Review pending liveGoogleowneracceptance; #10 toolingalreadyclosed. Noautomaticcontent/sprint/productionDone.
+- [Next-session packet](documentation/features/content-authoring/context-next-session.md): resume #1 learning tracer using current publishedgrammar-baram; verify ownerapproval and gaps, then refine5approvedlessons/#2. Do not redo migration/preview or auto-publish remainingdrafts. Newthread starts only after cleanmainmerge/push and gets thispacket.
+
+
 ### 2026-11-01 — Research CMS/LMS và quản lý học liệu tiếng Hàn
 
 - Owner yêu cầu research vì admin thiếu phân trang và thao tác thủ công khó. Dùng everlang-ux-ui/everlang-ba, đọc primary docs Moodle/Open edX/Strapi/Directus và public NIKL/Sejong. Không tuyên bố khảo sát hết thị trường hoặc truy cập CMS nội bộ tiếng Hàn.

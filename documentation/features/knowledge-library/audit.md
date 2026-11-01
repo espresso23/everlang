@@ -47,3 +47,7 @@ Branch `bugfix/sample-audio-player`, HEAD13d432b + working changes. PASS theo ph
 ## PostgreSQL-only re-audit — 2026-11-01
 
 PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.
+
+## 2026-11-01 — Editorial workbench EW-01–05
+
+Branch feature/editorial-content-workbench, GitHub #11/PB-043-T01. Separate review against current PRD; [integration audit](../../audits/editorial-workbench-2026-11-01.md) records nativePG/API and browser scopes, PASS/NOT VERIFIED and evidence. Draft/private state/learner answer secrecy/CAS remain; no language quality approval or production go-no-go implied.

@@ -40,3 +40,10 @@ Current persistence: [content store](../../../packages/backend/src/content-store
 ## Admin workspace AW-01–04 — implemented local 2026-11-01
 
 AuthProvider/useAuth.user.admin từ server là nguồn role. Sign-in sau authenticated (email hoặc Google callback /sign-in) replace theo role; không auto redirect admin đang học tại /. Linking không đổi. Shell chọn navigation theo route, chỉ hiện switch khi user.admin. /admin/layout.tsx là UI gate: pending/error/nonadmin không mount editor children; API JwtGuard là ranh giới bảo mật. /admin/overview dùng các link thật, không thêm API/query/count. Không migration; rollback source UI không đổi dữ liệu.
+
+
+## Editorial workbench — implemented2026-11-01
+
+Canonical requirements EW-01–05: documentation/features/content-authoring/README.md. Admin GET query params validated, TypeORM list filters/count/order; shared EditorialDesk calls existing mutations with explicit saved version. StudentPreview read-only saved snapshot and exact references; confirm calls current publish transition, no preview writes. Shared UI: table/filter/pager, batch source/rights, JSON dryrun/import, focused existing editor. No schema migration; retain permission/CAS/published-only learner rules.
+
+EW architecture: admin table→existing admin JwtGuard/controller→validated query→TypeORM content-store (filter/count/page); mutations remain single-domain version transitions. Browser orchestrates bounded per-row metadata/import requests so partial failures are explicit; no cross-row atomicity claim. Import dry-run is client validation, commit revalidates server; other-admin races return409. No newqueue/provider/wrapper/DDL. Preview does not grant public read to drafts and is not a substitute for server ownership/status checks.

@@ -18,3 +18,8 @@ Spec trước code; canonical [system design](system-design.md), [functions](fun
 ## 2026-10-31 — Kho hệ thống và lưu cá nhân
 
 Kho từ và tài liệu ngữ pháp thuộc hệ thống, dùng chung theo ngôn ngữ; bản đã published cho mọi tài khoản verified xem/lưu. Beta chỉ có tiếng Hàn (ko); không tự xuất bản draft. [Audit tích hợp](../../audits/system-library-worker-errors.md).
+
+
+## Editorial workbench — implemented2026-11-01
+
+Canonical requirements EW-01–05: documentation/features/content-authoring/README.md. Admin GET query params validated, TypeORM list filters/count/order; shared EditorialDesk calls existing mutations with explicit saved version. StudentPreview read-only saved snapshot and exact references; confirm calls current publish transition, no preview writes. Shared UI: table/filter/pager, batch source/rights, JSON dryrun/import, focused existing editor. No schema migration; retain permission/CAS/published-only learner rules.

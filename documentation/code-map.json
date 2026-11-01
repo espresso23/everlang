@@ -675,7 +675,7 @@
             "Admin",
             "AdvancedTools"
           ],
-          "sha256": "1b40f94d7a7e4338e86ff65ce9d31d97a42ee0874d0c606abe723a093fd72573"
+          "sha256": "979f2c364fc65c1d283f5a7db637e1657afe62a22d321b7a0e03ebb6cfbf5546"
         },
         {
           "file": "apps/api/src/domains/admin-content.service.ts",
@@ -686,7 +686,7 @@
             "AdminContentService.post",
             "AdminContentService.patch"
           ],
-          "sha256": "7e3637940b8da999c30a9692663acba43c008a84591bf25c4c4d03e77bfd2d6b"
+          "sha256": "2fee977cda1b35adeb9c17355e88954a0d53d57d25aa7acfb66b8b97488a53ac"
         },
         {
           "file": "apps/api/src/domains/sentences-generate.service.ts",
@@ -755,6 +755,52 @@
             "fixture"
           ],
           "sha256": "95542e72287a77850beed2d46afe0300de1cafaf2110f2c5e6b541e477323d61"
+        },
+        {
+          "file": "packages/contracts/src/editorial.ts",
+          "symbols": [
+            "editorialQuerySchema",
+            "sentenceEditorialSchema"
+          ],
+          "sha256": "71429642f9e2a36e8962df39d30152a4f6e158bca1c2088c5cfb0c4c026c6b4d"
+        },
+        {
+          "file": "apps/web/components/editorial-desk.tsx",
+          "symbols": [
+            "EditorialDesk"
+          ],
+          "sha256": "8341f346b30f3ff82e5a6262d35208437eb39be1f8fe8d34eb1fd2c24bd40a3b"
+        },
+        {
+          "file": "apps/web/components/editorial-preview.tsx",
+          "symbols": [
+            "StudentPreview",
+            "itemIdentity",
+            "itemTitle"
+          ],
+          "sha256": "efefdade3da6b535eb6a282d0f698c7678c3257dca6f37f845c466b8c46d3085"
+        },
+        {
+          "file": "apps/web/components/knowledge-sections.tsx",
+          "symbols": [
+            "KnowledgeSections"
+          ],
+          "sha256": "1f547a93cf01b55177a90ffe1899890d720edd2c9e053834e037b1dd06d2d750"
+        },
+        {
+          "file": "tests/unit/editorial-query.test.ts",
+          "symbols": [],
+          "sha256": "49cb329981e26c3d48f476d467d6757520fd23b522c8a955d2fed53db620fe2a"
+        },
+        {
+          "file": "tests/e2e/editorial-desk.spec.ts",
+          "symbols": [],
+          "sha256": "83ca5382bfd37403a55a030b8142bdf5d618551427eba80d7ac976103d85c404"
+        },
+        {
+          "file": "tests/integration/editorial-workbench.ts",
+          "symbols": [],
+          "sha256": "6b9ef010caaaad77614d85777d11b0348de172fb55abe2a2a8ceb1aacdfc24f1"
         }
       ]
     },
@@ -1222,7 +1268,7 @@
             "KnowledgeBrowser",
             "KnowledgePage"
           ],
-          "sha256": "fc37d73e911a27ec0c50ea1a699689ee1ad120bc370dfed3e9feb98f55b1ed58"
+          "sha256": "49e21d3ab6ca18ed0c3d58ccc38f4190d95e970fe5de02279b1baa2d60d88201"
         },
         {
           "file": "apps/api/src/domains/knowledge.service.ts",
@@ -1258,7 +1304,7 @@
             "AdminKnowledgeService.post",
             "AdminKnowledgeService.patch"
           ],
-          "sha256": "21f34d9ffd06e03d5cf5f5b97fe07abc48d30566e2113cd7455bb7a310a0d23e"
+          "sha256": "558f7d1659fc977ed2baa896d7fbbdf096f2297d97204ed94a23dd5339485aca"
         },
         {
           "file": "apps/web/app/admin/knowledge/page.tsx",
@@ -1267,7 +1313,7 @@
             "blank",
             "KnowledgeAdmin"
           ],
-          "sha256": "0780fcdf6c6d9124becc22abba526d5c3b8da77aed447a02bc6644ec65837dff"
+          "sha256": "4c6a20b34fa6bbf4de373fd0f5078015df2b0755078b5d582cd49e1f1fce0c63"
         },
         {
           "file": "migrations/004_knowledge.sql",
@@ -1652,7 +1698,7 @@
             "AdminWordSetsService.post",
             "AdminWordSetsService.patch"
           ],
-          "sha256": "d132bc4703060c43a3359d08cb208a230dd31bf69e5bf5967515bf3d3afb0980"
+          "sha256": "5e6d71eccc405464151be323258dea9b2a961d325d763d867e1982d8c12841ec"
         },
         {
           "file": "apps/web/app/word-sets/page.tsx",
@@ -1678,7 +1724,7 @@
             "Choice",
             "WordSetsAdmin"
           ],
-          "sha256": "4b279fd1a04a7b4e39b1e82d27e8fe911a6abe0ec82824643b8ce53fe037436b"
+          "sha256": "bf17dec1e5a3fc26613a6d74eaece7b2be92aa13a7d11f1ed5c51690822920ea"
         },
         {
           "file": "migrations/007_vocabulary_catalog.sql",
@@ -1695,7 +1741,7 @@
         {
           "file": "tests/e2e/vocabulary-catalog.spec.ts",
           "symbols": [],
-          "sha256": "3fbdfcc93d8fc0d9395ad627885f75dc7b113bd9ea6d06df196b2d633804ff10"
+          "sha256": "933282d4f86085f75520adee05105a990b6e7188e25800722912697f1db55d03"
         },
         {
           "file": "tests/unit/korean-audio.test.ts",
@@ -1708,7 +1754,7 @@
         {
           "file": "tests/e2e/vocabulary-catalog-ui.spec.ts",
           "symbols": [],
-          "sha256": "49351d39c9cc90473450dc7813749dfbaa75e73d75730edf76b1931ca105c09a"
+          "sha256": "e53c9328293b5f44d173d89b1aee6054bdfe72086060ef0347f4dd547f9bf4da"
         },
         {
           "file": "apps/api/src/domains/admin-word-sets.controller.ts",
@@ -2065,7 +2111,7 @@
         {
           "file": "packages/backend/src/content-store.ts",
           "symbols": [],
-          "sha256": "2999e387be3f336889e188fe6fb73bb8773a0ff8eb61e854ac4d56f96939b5cc"
+          "sha256": "e2d0546044aa6bfd2abe382a0207164889fd72c19e5afe2826f6b19b55d532cb"
         },
         {
           "file": "packages/backend/src/content-import.ts",

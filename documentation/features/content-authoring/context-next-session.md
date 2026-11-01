@@ -1,0 +1,15 @@
+# Next-session context — 2026-11-01
+
+Owner asked custom EverLang editorial improvements/student preview, verify and merge all into main, then continue in a fresh session. Read AGENTS/session skill, current gitstatus and newest HANDOFF first. This packet is a checkpoint, not evidence of current Git head; check main/origin.
+
+Completed: #11/PB-043-T01 EW-01–05, adminworkspace#9 code, GitHub issue mapping and UXskill#10/research. Audit: documentation/audits/editorial-workbench-2026-11-01.md; structured results: assets/editorial-verification.json. Keep existing published revision/ownership/CAS/FSRS; PostgreSQLprimary only, Redisqueue/cache, no runtimeMongo/Mailpit. Main localhost3000 ready with new API/web/worker. No local QA containers remain. No secrets in packet; env/backup private outsideGit.
+
+Tests actually run:88unit,lint,typecheck,fullDockerbuild/backend/docs/plan/diff; nativeisolatedPG210/60/60 checks;11targetedbrowser scenarios all achievedPASS after fixture isolation/locator corrections, not blanket fullold29E2Ererun. Final8role/workbench19.5s +realcatalogue15.1s/catalogueeditor5.6s +knowledge9.7s;deployedmain1smoke3.3s. No externalinference/realSMTP/Googleupstream/hardwarequality certification.
+
+Current observed main corpus:100publishedsentences; grammar-baram revision1(title -는 바람에)published withreviewermarker;12knowledgedrafts;53cataloguedrafts. Agent has not approved/published this main lesson; marker is observable workflow state, not linguistic correctness certification. ExistingGoogleadmin login configured previously inprivateenv, not a newcredential; don't resetpasswords or ask user to reconstructidentity.
+
+Next assigned priority remains reviewedcontent→practice→SRS→progress. Continue GitHub #1/PB-001-T03: reconcile actual publishedlesson and review evidence, complete independent technical QA / owner acceptance. Use implemented adminpreview to prepare reviewable content; no auto-publishing. #2 maps5lesson contentreview; #3exercise→#4SRS→#5knowledgeprogress depend explicitly on prioracceptance. #6cataloguecontent and#7SMTP/OAuth requireowner/externalinputs, #8productiondecision pending. #9code merged byownerrequest, liveGoogleacceptance remainsReview; don't close from fixtures. #10toolingDone; #11technicalworkDone.
+
+Autonomy: user authorized GitHubissues before implementation, selfreview+evidence then Done/closecompleted whenACmet, merge/push changes requested in previoussession; not blanketapproval todeployproduction or publishcontent. SprintProposed/capacityTBD unchanged (43PBI/91tasks/6Proposed atcheckpoint). Don't pull unrelated backlog. If a next feature isn't Ready, refine only materialopenproductdecisions, atmost2options/onequestion each.
+
+No outstanding source edits at intendedhandoff; previouspreexistingUXskill/researchdocs were preserved andcommitted in f59cdc2 beforefeaturebranch. Don't recreate them or reset/stash userchanges that appear afterhandoff. All requested code is in main after final Gitverification; inspect actualSHA.

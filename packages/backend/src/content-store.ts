@@ -66,6 +66,7 @@ export const sentences = {
         search?: string;
         limit?: number;
         offset?: number;
+        sort?: string;
     } = {}) {
         const q = repository("content_sentences").createQueryBuilder("c");
         if (input.status)
@@ -80,7 +81,7 @@ export const sentences = {
         if (input.search)
             q.andWhere("strpos(lower(concat_ws(' ',c.document->>'viText',c.document->>'koSampleAnswer',c.document->>'keyGrammar',c.document->>'keyVocab')),lower(:search))>0", { search: input.search });
         const total = await q.getCount();
-        const rows = await q.orderBy("c.created_at", "DESC").addOrderBy("c.id", "DESC").take(input.limit ?? 300).skip(input.offset ?? 0).getMany();
+        const rows = await q.orderBy(input.sort === "title" ? "c.document->>'viText'" : input.sort === "updated" ? "c.updated_at" : "c.created_at", input.sort === "title" ? "ASC" : "DESC").addOrderBy("c.id", "DESC").take(input.limit ?? 300).skip(input.offset ?? 0).getMany();
         return { items: rows.map(r => r.document as SentenceDocument), total };
     },
     async get(id: string) { return (await repository("content_sentences").findOneBy({ id }))?.document as SentenceDocument | undefined; },
@@ -121,14 +122,23 @@ export class RevisionStore<T extends KnowledgeDocument | CatalogRecord> {
     }
     async list(input: {
         kind?: string;
+        search?: string;
+        status?: string;
+        level?: string;
+        topic?: string;
+        sort?: string;
         limit: number;
         offset?: number;
     }) {
         const q = this.builder();
         if (input.kind)
             q.andWhere("c.document->'content'->>'kind'=:kind", { kind: input.kind });
+        if (input.status) q.andWhere("c.status=:status", { status: input.status });
+        if (input.level) q.andWhere("c.document->'content'->>'level'=:level", { level: input.level });
+        if (input.topic) q.andWhere("(c.document->'content'->>'topic'=:topic OR (c.document->'content'->'topics') ? :topic)", { topic: input.topic });
+        if (input.search) q.andWhere("strpos(lower(concat_ws(' ',c.key,c.document->'content'->>'title',c.document->'content'->>'term',c.document->'content'->>'meaning',c.document->'content'->>'summary')),lower(:search))>0", { search: input.search });
         const total = await q.getCount();
-        const rows = await q.orderBy("c.updated_at", "DESC").addOrderBy("c.key").skip(input.offset || 0).take(input.limit).getMany();
+        const rows = await q.orderBy(input.sort === "title" ? "coalesce(c.document->'content'->>'title',c.document->'content'->>'term')" : "c.updated_at", input.sort === "title" ? "ASC" : "DESC").addOrderBy("c.key").addOrderBy("c.revision", "DESC").skip(input.offset || 0).take(input.limit).getMany();
         return { items: rows.map(r => r.document as T), total };
     }
     async references(refs: {

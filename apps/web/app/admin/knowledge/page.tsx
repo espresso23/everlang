@@ -1,4 +1,6 @@
 "use client";
+import { EditorialDesk } from "@/components/editorial-desk";
+import { StudentPreview, type EditorialItem } from "@/components/editorial-preview";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { request } from "@/lib/client";
@@ -31,6 +33,7 @@ const blank: KnowledgeContent = {
 };
 
 export default function KnowledgeAdmin() {
+  const [preview, setPreview] = useState<EditorialItem | null>(null);
   const [items, setItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState<Item | null>(null);
   const [content, setContent] = useState<KnowledgeContent>(blank);
@@ -68,16 +71,18 @@ export default function KnowledgeAdmin() {
     setDirty(true);
   }
   function choose(item: Item | null) {
-    if (dirty && !window.confirm("Bỏ thay đổi chưa lưu trong editor?")) return;
+    if (dirty && !window.confirm("Bỏ thay đổi chưa lưu trong editor?")) return false;
     setSelected(item);
     setContent(item ? structuredClone(item.content) : structuredClone(blank));
     setKey(item?.key || "");
     setDirty(false);
     setMessage("");
+    return true;
   }
   async function action(
     action: "edit" | "review" | "publish" | "fork" | "revise",
   ) {
+    if (action === "publish" && selected) { setPreview(structuredClone(selected)); return; }
     setBusy(true);
     setMessage("");
     try {
@@ -121,6 +126,8 @@ export default function KnowledgeAdmin() {
       <p className="notice" role="status">
         {message}
       </p>
+      <EditorialDesk endpoint="/api/admin/knowledge" refreshToken={items} onSelect={row => choose(row as Item)} />
+      {preview && <StudentPreview item={preview} endpoint="/api/admin/knowledge" onClose={() => setPreview(null)} onPublished={row => { void load(); choose(row as Item); setMessage("Đã xuất bản. Người học có thể đọc tài liệu."); }} />}
       <div className="dashboard-grid">
         <section className="panel">
           <h2>Phiên bản học liệu</h2>
@@ -138,28 +145,7 @@ export default function KnowledgeAdmin() {
           >
             Tải danh sách mới
           </button>
-          {items.map((item) => (
-            <article
-              className="knowledge-example"
-              key={`${item.key}-${item.revision}`}
-            >
-              <h3>{item.content.title}</h3>
-              <p>
-                {item.status} · v{item.revision} ·{" "}
-                {knowledgeLabels[item.content.kind]}
-              </p>
-              <button
-                className="text-button"
-                disabled={busy}
-                onClick={() => choose(item)}
-              >
-                Mở bản này
-              </button>
-            </article>
-          ))}
-          {!items.length && (
-            <p>Chưa tải được học liệu hoặc chưa có bản nháp.</p>
-          )}
+          <p>Mở một bản ở bảng phía trên để biên tập; bản nháp chưa hiển thị với học viên.</p>
         </section>
         <section className="panel">
           <h2>

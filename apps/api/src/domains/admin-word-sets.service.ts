@@ -1,3 +1,4 @@
+import { editorialQuerySchema } from "@everlang/contracts/editorial";
 import { z } from "zod";
 import { HttpError } from '@everlang/backend/http';
 import { catalogStore } from "@everlang/backend/content-store";
@@ -37,17 +38,10 @@ export class AdminWordSetsService {
                 })),
             };
         }
-        const offset = z.coerce
-            .number()
-            .int()
-            .min(0)
-            .max(20000)
-            .parse(queryParams(r).get("offset") || 0);
-        const kind = z
-            .enum(["set", "sense"])
-            .parse(queryParams(r).get("kind") || "sense");
-        const result = await catalogStore.list({ kind, offset, limit: 50 });
-        return { ...result, limit: 50, offset };
+        const query = editorialQuerySchema.parse({ ...Object.fromEntries(queryParams(r)), kind: queryParams(r).get("kind") || "sense" });
+        z.enum(["sense", "set"]).parse(query.kind);
+        const result = await catalogStore.list({ ...query, search: query.q });
+        return { ...result, limit: query.limit, offset: query.offset };
     }
     async post(r: Request, _u: Viewer) {
         const b = z

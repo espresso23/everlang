@@ -60,6 +60,8 @@ test("catalogue editor keyboard/mobile, successful human workflow and dirty navi
     await page.getByRole("checkbox", { name: /Tôi đã kiểm nghĩa/ }).check();
     await page.getByRole("button", { name: "Xác nhận đã duyệt" }).click();
     await page.getByRole("button", { name: "Xuất bản", exact: true }).click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await page.getByRole("dialog").getByRole("button", { name: "Xác nhận xuất bản bản này" }).click();
     await expect(
       page.getByRole("heading", { name: /Phiên bản 1 · Đã xuất bản/ }),
     ).toBeVisible();

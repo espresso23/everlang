@@ -37,3 +37,15 @@ Owner chọn admin đăng nhập mặc định vào Quản trị, có chuyển H
 - AW-04: tổng quan chỉ dẫn tới các module có thật, không hiển thị thống kê giả; refresh/deep link/back và chuyển chế độ không lặp redirect.
 
 Non-goals: user management, analytics, thay workflow review/publish, schema/DB/provider. AC: E2E admin login→overview→3editor→study→admin, learner denial, loading/error, Google callback landing contract, desktop1440/mobile390/320; ảnh và audit. Live Google cần owner test, không dùng mock để chứng nhận OAuth upstream.
+
+## Editorial workbench EW-01–05 — agreed2026-11-01, specified before code; now implemented
+
+Owner chọn tự build EverLang từ research, thêm preview student trước publish; kiểm tra rồi merge main và chuyển phiên. Không tích hợp CMS ngoài. Increment PB-043-T01 kết nối API/PG/UI cùng các editors có sẵn.
+
+- EW-01: cả3admin có server pagination25/50/100, total, query/status/level/topic/sort; lọc cả kho trước phân trang, thứ tự ổn định. Giữ query trong URL, revision hiển thị rõ, không giả nhóm revisions.
+- EW-02: bảng compact → mở editor hiện hành, previous/next trong trang lọc; guard unsaved. Batch metadata source/rights cho draft với explicitID+version, CAS, kết quả từng mục và retryfailed. Không auto-review/publish bulk.
+- EW-03: JSON import tối đa50draft/lần, dry-run schema từng dòng trước confirm, không import khi lỗi; server vẫn validate, duplicate/conflict báo từng dòng, không ghi đè. Không gọi AI; CSV nested content không thuộc slice vì không có agreed mapping.
+- EW-04: preview student trước publish trên saved exactversion: nội dung/sections/examples, câu hỏi ẩn đáp án trước thao tác, sentence mẫu reveal, set resolve pinned sense đúng revision. Không ghi progress/attempt/SRS; preview không xuất bản. Cancel không mutate. Publish qua service hiện hành vẫn check quyền/CAS/status; nội dung đổi phải preview lại.
+- EW-05: realPG >200fixtures/filter/page boundary/ownership/CAS, browser preview/cancel/publish/filter/bulk partial errors/mobile/keyboard. Review riêng rồi merge/push theo owner; không chứng nhận language quality/Google live chỉ từ fixtures.
+
+Non-goals: taxonomy/schema mới, CMSintegration, users/analytics, đổiFSRS/media/provider. Publication source/history invariant giữ nguyên. Database migration N/A.

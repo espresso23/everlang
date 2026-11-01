@@ -33,3 +33,10 @@ Trang /admin thêm link tới [editor kiến thức](../knowledge-library/ui.md)
 Thay đổi layout được owner yêu cầu rõ. Header có nhãn Quản trị, nút Học tập trong admin / nút Quản trị khi admin học. Menu admin ngang wrap trên mobile: Tổng quan (/admin/overview), Bài luyện (/admin), Kiến thức (/admin/knowledge), Bộ từ (/admin/word-sets). Tổng quan có heading và 3 module link thật. Learner direct link thấy Không có quyền quản trị và về học tập; không lóe form. Pending/error giữ thông báo + retry trước quyền. Không sidebar mới/theme song song. Existing editors giữ layout.
 
 Header admin cho phép wrap khi không đủ chỗ (320px), giữ nút chuyển chế độ và không tràn ngang; header learner giữ bố cục hiện hành.
+
+
+## Editorial workbench — implemented2026-11-01
+
+Canonical requirements EW-01–05: documentation/features/content-authoring/README.md. Admin GET query params validated, TypeORM list filters/count/order; shared EditorialDesk calls existing mutations with explicit saved version. StudentPreview read-only saved snapshot and exact references; confirm calls current publish transition, no preview writes. Shared UI: table/filter/pager, batch source/rights, JSON dryrun/import, focused existing editor. No schema migration; retain permission/CAS/published-only learner rules.
+
+EW UI: library table before existing editor, compact rows with title/status/version, 25/50/100 page size, literal search/status/level/topic/sort, previous/next editor within filtered page. Empty/loading/error retry, local filters preserved in URL. Table scrolls internally on320/390; page has no horizontal overflow. Source/rights batch and JSON import collapsed in details to avoid clutter. Preview native dialog labels saved version, hides answers until explicit reveal/check, clearly does not save practice state; keyboard Escape returns focus to invoker. Publish disabled unless reviewed, version conflicts remain visible in dialog; cancel unchanged. Preview only saved content; unsaved editor must be saved before it is represented.

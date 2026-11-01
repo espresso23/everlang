@@ -176,6 +176,8 @@ Dùng thật ngoài localhost với kiểm chứng đầy đủ
   - PB-041-T03 — Owner post-merge production release decision after QA
 - **WBS-5.42 / PB-042 — Không gian quản trị và role-aware login** (P0, Core, Unscheduled).
   - PB-042-T01 — Admin login → workspace → editor → học tập; role gates và browser audit
+- **WBS-5.43 / PB-043 — Editorial workbench và student publication preview** (P0, Core, Unscheduled).
+  - PB-043-T01 — Editorial list → edit/batch/import → student preview → publish with CAS
 
 
 ## WBS-6 / Mở rộng sau beta

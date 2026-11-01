@@ -1,4 +1,5 @@
 "use client";
+import { EditorialDesk } from "@/components/editorial-desk";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { request } from "@/lib/client";
@@ -31,21 +32,6 @@ export default function Admin() {
   useEffect(() => {
     void load();
   }, [load]);
-  async function transition(c: Content, action: string) {
-    setBusy(true);
-    try {
-      await request("/api/admin/content", "PATCH", {
-        id: c._id,
-        version: c.contentVersion,
-        action,
-      });
-      await load();
-    } catch (e) {
-      setMessage((e as Error).message);
-    } finally {
-      setBusy(false);
-    }
-  }
   return (
     <main className="page">
       <p className="eyebrow">QUẢN TRỊ EVERLANG</p>
@@ -57,6 +43,7 @@ export default function Admin() {
         toàn lịch sử.
       </p>
       {message && <p className="notice">{message}</p>}
+      <EditorialDesk endpoint="/api/admin/content" refreshToken={items} onSelect={row => { if (edit && !window.confirm("Mở bài khác? Hãy lưu thay đổi hiện tại trước.")) return false; setEdit(row as Content); return true; }} />
       <div className="dashboard-grid">
         <section className="panel">
           <h2>{edit ? "Sửa bản nháp" : "Biên soạn bài mới"}</h2>
@@ -178,41 +165,7 @@ export default function Admin() {
             AI hỗ trợ tạo 5 bản nháp
           </button>
         </section>
-        <section className="panel">
-          <h2>Kho bài học ({items.length})</h2>
-          {items.map((c) => (
-            <article className="vocab-row" key={c._id}>
-              <div>
-                <span className="tag">
-                  {c.status} · v{c.contentVersion}
-                </span>
-                <h3>{c.viText}</h3>
-                <p>{c.koSampleAnswer}</p>
-              </div>
-              <div className="row-actions">
-                {c.status !== "published" && (
-                  <button onClick={() => setEdit(c)}>Sửa</button>
-                )}
-                {c.status === "draft" && (
-                  <button
-                    disabled={busy}
-                    onClick={() => void transition(c, "review")}
-                  >
-                    Duyệt
-                  </button>
-                )}
-                {c.status === "reviewed" && (
-                  <button
-                    disabled={busy}
-                    onClick={() => void transition(c, "publish")}
-                  >
-                    Xuất bản
-                  </button>
-                )}
-              </div>
-            </article>
-          ))}
-        </section>
+        <aside className="panel"><h2>Biên tập và xuất bản</h2><p>Chọn học liệu ở bảng phía trên để sửa. Sau khi lưu, mở Preview student để kiểm tra nội dung và xuất bản đúng phiên bản đã duyệt.</p>{edit && <button className="soft-button" onClick={() => setEdit(null)}>Đóng biên tập</button>}</aside>
       </div>
       <AdvancedTools onMessage={setMessage} />
     </main>

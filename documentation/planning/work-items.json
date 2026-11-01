@@ -1271,6 +1271,25 @@
         "PB-042-T01"
       ],
       "scope": "Core"
+    },
+    {
+      "id": "PB-043",
+      "wbs": "WBS-5.43",
+      "epic": "WBS-5",
+      "title": "Editorial workbench và student publication preview",
+      "priority": "P0",
+      "sprint": null,
+      "points": 5,
+      "featureId": "content-authoring",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "EW-01–05 server page/filter/total, bulk draft metadata/import dry-run and exact saved-version student preview across3admin modules; no learner writes.",
+      "refinement": "Ready",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-043-T01"
+      ],
+      "scope": "Core"
     }
   ],
   "tasks": [
@@ -2697,6 +2716,25 @@
       "verification": "Pass",
       "updated": "2026-11-01",
       "githubIssue": "https://github.com/espresso23/everlang/issues/9"
+    },
+    {
+      "id": "PB-043-T01",
+      "parent": "PB-043",
+      "title": "Editorial list → edit/batch/import → student preview → publish with CAS",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Done",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [
+        "documentation/audits/editorial-workbench-2026-11-01.md",
+        "documentation/features/content-authoring/assets/editorial-verification.json",
+        "tests/integration/editorial-workbench.ts",
+        "tests/e2e/editorial-desk.spec.ts"
+      ],
+      "verification": "Pass",
+      "updated": "2026-11-01",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/11"
     }
   ],
   "team": {
