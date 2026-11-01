@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from "vitest";
-import { gradeTranslation } from "../../lib/ai";
+import { gradeTranslation } from "@everlang/backend/ai";
 afterEach(()=>{vi.unstubAllGlobals();vi.unstubAllEnvs();});
 it('rejects punctuation-only corrections while retaining actual Korean errors',async()=>{
  vi.stubEnv('OPENROUTER_API_KEY','local-test-key');

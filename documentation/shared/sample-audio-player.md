@@ -2,9 +2,9 @@
 
 Owner: translation-practice; consumer: immersive-learning.
 
-- [SampleAudioPlayer / Playback](../../components/sample-audio-player.tsx): props `text`, optional `label`, `compact`; keyed Playback resets on changed text, unmount cancels its active utterance and interval.
-- [Styles](../../components/sample-audio-player.css): Editorial tokens, 44px button, compact210px variant for repeated sentences/reference answer, progress and tabular elapsed clock, wrapping error, loading spinner respects reduced motion.
-- Callers: [AnswerInput / AnswerDetails](../../components/practice.tsx) and [Library](../../app/library/page.tsx): every read sentence, first dictation sentence and speak sample. Dictionary/knowledge/catalog-specific pronunciation actions are outside this player scope.
+- [SampleAudioPlayer / Playback](../../apps/web/components/sample-audio-player.tsx): props `text`, optional `label`, `compact`; keyed Playback resets on changed text, unmount cancels its active utterance and interval.
+- [Styles](../../apps/web/components/sample-audio-player.css): Editorial tokens, 44px button, compact210px variant for repeated sentences/reference answer, progress and tabular elapsed clock, wrapping error, loading spinner respects reduced motion.
+- Callers: [AnswerInput / AnswerDetails](../../apps/web/components/practice.tsx) and [Library](../../apps/web/app/library/page.tsx): every read sentence, first dictation sentence and speak sample. Dictionary/knowledge/catalog-specific pronunciation actions are outside this player scope.
 - Browser SpeechSynthesis ko-KR, rate0.88. Start/loading (10s timeout), play/pause/resume, boundary position / text length, end100%, replay0%, canceled/interrupted resets state, actual failure alert. Empty text disabled, unsupported browser alert. No backend or data changes.
 - Elapsed clock measures active playback excluding pauses. Browser TTS has no media duration or seek contract: progress is text position, not a seek control; browsers without boundary events keep progress0 until end. No fabricated total duration. Korean voice and physical audio quality remain device-dependent.
 - [Lifecycle/browser smoke](../../tests/e2e/sample-audio.spec.ts) simulates speech events; it does not validate acoustic output. [Audit integration](../audits/sample-audio-player.md).

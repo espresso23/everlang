@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { localDay, makePlan, streak } from "../../lib/learning/schedule";
-import { newCard, reviewCard, ALGORITHM } from "../../lib/learning/srs";
-import { examSchema, publicExam, scoreExam } from "../../lib/exams";
+import { localDay, makePlan, streak } from "@everlang/contracts/learning/schedule";
+import { newCard, reviewCard, ALGORITHM } from "@everlang/backend/learning/srs";
+import { examSchema, publicExam, scoreExam } from "@everlang/contracts/exams";
 describe("daily study plan", () => {
   it("uses the learner timezone across midnight", () => {
     expect(localDay(new Date("2026-10-29T17:01:00Z"), "Asia/Ho_Chi_Minh")).toBe(

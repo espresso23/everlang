@@ -1,25 +1,27 @@
-# Function description — implemented, audit pending
+# Function map — knowledge-library
 
-| File / symbol | Contract / hành vi |
-|---|---|
-| [knowledge-contract.ts](../../../lib/knowledge-contract.ts): `knowledgeSchema`, `knowledgeKey`, `stateSchema` | Strict Zod, giới hạn text/array, ID duy nhất, đáp án choice hợp lệ, từ chối identity phía client. |
-| [knowledge-contract.ts](../../../lib/knowledge-contract.ts): `publicEntry` | Loại answers/explanation và reviewer khỏi learner detail trước submit. |
-| [knowledge-contract.ts](../../../lib/knowledge-contract.ts): `normalizeKnowledgeAnswer`, `gradeKnowledge` | Grade choice exact; cloze NFC/whitespace/punctuation, giữ ranh giới từ; feedback answer/explanation chỉ sau submit. |
-| [knowledge.ts](../../../lib/knowledge.ts): `getKnowledge`, `publicKnowledge`, `listKnowledge`, `knowledgeTitles` | Mongo published-only; latest mỗi key trước filter; escape regex, alias idiom/quán dụng ngữ; limit100 metadata. Revision cụ thể chỉ service attempts dùng; titles resolve published metadata cho relatedItems/sổ đọc. |
-| [Knowledge.ts](../../../lib/models/Knowledge.ts): `Knowledge` | Mongo unique key/revision, content đã Zod validate, status/editVersion/reviewer. |
-| [learner route](../../../app/api/knowledge/route.ts): `GET` | key detail hoặc q/kind/level/topic list; api guard session và verified email. |
-| [state route](../../../app/api/knowledge/state/route.ts): `GET/PUT` | GET key: chỉ state của user; GET không key: tối đa100 bookmark/đọc tiếp metadata có title; PUT revision hiện hành/section hợp lệ/CAS version, 409 giữ dữ liệu client. |
-| [attempt route](../../../app/api/knowledge/attempts/route.ts): `POST` | Validate đủ câu, lấy published revision, lưu snapshot/result SQL; user/requestId unique; replay giống payload trả kết quả cũ, khác payload409. |
-| [admin route](../../../app/api/admin/knowledge/route.ts): `GET/POST/PATCH` | Admin-only; create/edit/review/publish/fork/revise; reviewed chưa publish có thể trả draft để sửa, xóa reviewer; CAS, immutable published; publish chặn related missing/self, editor chọn các bản published. |
-| [reader](../../../app/knowledge/page.tsx): `KnowledgePage`, `KnowledgeBrowser`, `Reader` | Suspense/searchParams, filters và sổ đọc, notes explicit save, exercises, TTS kiểm giọng ko, SRS existing API; không dùng HTML thô. |
-| [editor](../../../app/admin/knowledge/page.tsx): `KnowledgeAdmin` | Field editor các phần/ví dụ/câu hỏi; xác nhận người duyệt, tạo revision; dirty warning; API kiểm quyền cuối cùng. |
-| [seed](../../../scripts/seed-knowledge.ts): `seedKnowledge`; [data](../../../data/knowledge-seed.ts): `knowledgeSeed` | Validate toàn bộ corpus trước ghi; upsert revision1 draft, không sửa nội dung cũ hoặc tự publish. |
-| [migration004](../../../migrations/004_knowledge.sql) | knowledge_state và knowledge_attempts, FK user cascade, uniqueness CAS/requests. |
+2026-11-01, branch `feature/nestjs-jwt-migration`. Bản đồ hiện tại sau chuyển monorepo. [Đặc tả](README.md) · [Thiết kế](system-design.md) · [UI](ui.md) · [Audit](audit.md).
 
-POST attempts nhận key, revision, answers, requestId; public projection không gửi đáp án hoặc explanation. Canonical comparison chuẩn hóa NFC, trim/whitespace và punctuation cho cloze, không bỏ mọi khoảng trắng tiếng Hàn. MCQ so chỉ số lựa chọn.
+| File/điểm vào | Symbol hiện có | Trách nhiệm/hợp đồng |
+|---|---|---|
+| [packages/contracts/src/knowledge-contract.ts](../../../packages/contracts/src/knowledge-contract.ts) | `knowledgeKinds`, `knowledgeLabels`, `short`, `knowledgeSchema`, `KnowledgeContent`, `KnowledgeEntry`, `publicEntry`, `PublicKnowledge`, `normalizeKnowledgeAnswer`, `gradeKnowledge`, `knowledgeKey`, `stateSchema` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/knowledge.ts](../../../packages/backend/src/knowledge.ts) | `getKnowledge`, `listKnowledge`, `publicKnowledge`, `knowledgeTitles` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/models/Knowledge.ts](../../../packages/backend/src/models/Knowledge.ts) | `KnowledgeDocument`, `schema`, `Knowledge` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/web/app/knowledge/page.tsx](../../../apps/web/app/knowledge/page.tsx) | `Summary`, `State`, `Feedback`, `emptyState`, `Reader`, `KnowledgeBrowser`, `KnowledgePage` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/domains/knowledge.service.ts](../../../apps/api/src/domains/knowledge.service.ts) | `KnowledgeService`, `KnowledgeService.get` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/api/src/domains/knowledge-state.service.ts](../../../apps/api/src/domains/knowledge-state.service.ts) | `KnowledgeStateService`, `KnowledgeStateService.get`, `KnowledgeStateService.put` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/api/src/domains/knowledge-attempts.service.ts](../../../apps/api/src/domains/knowledge-attempts.service.ts) | `body`, `KnowledgeAttemptsService`, `KnowledgeAttemptsService.post` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/api/src/domains/admin-knowledge.service.ts](../../../apps/api/src/domains/admin-knowledge.service.ts) | `AdminKnowledgeService`, `AdminKnowledgeService.get`, `AdminKnowledgeService.post`, `AdminKnowledgeService.patch` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/web/app/admin/knowledge/page.tsx](../../../apps/web/app/admin/knowledge/page.tsx) | `Item`, `blank`, `KnowledgeAdmin` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [migrations/004_knowledge.sql](../../../migrations/004_knowledge.sql) | Cấu hình / dữ liệu / schema | Schema/version migration; chạy bằng scripts/migrate.ts trong thứ tự số. |
+| [data/knowledge-seed.ts](../../../data/knowledge-seed.ts) | `SeedRow`, `rows`, `knowledgeSeed` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [scripts/seed-knowledge.ts](../../../scripts/seed-knowledge.ts) | `seedKnowledge` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [tests/unit/knowledge.test.ts](../../../tests/unit/knowledge.test.ts) | Cấu hình / dữ liệu / schema | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
+| [tests/e2e/knowledge.spec.ts](../../../tests/e2e/knowledge.spec.ts) | Cấu hình / dữ liệu / schema | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
+| [apps/web/app/knowledge/knowledge.css](../../../apps/web/app/knowledge/knowledge.css) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/domains/admin-knowledge.controller.ts](../../../apps/api/src/domains/admin-knowledge.controller.ts) | `AdminKnowledgeController`, `AdminKnowledgeController.get`, `AdminKnowledgeController.post`, `AdminKnowledgeController.patch` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
+| [apps/api/src/domains/knowledge-attempts.controller.ts](../../../apps/api/src/domains/knowledge-attempts.controller.ts) | `KnowledgeAttemptsController`, `KnowledgeAttemptsController.post` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
+| [apps/api/src/domains/knowledge-state.controller.ts](../../../apps/api/src/domains/knowledge-state.controller.ts) | `KnowledgeStateController`, `KnowledgeStateController.get`, `KnowledgeStateController.put` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
+| [apps/api/src/domains/knowledge.controller.ts](../../../apps/api/src/domains/knowledge.controller.ts) | `KnowledgeController`, `KnowledgeController.get` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
 
-GET list chỉ metadata và filter bounded, không tải cả corpus vào browser. Draft/review API admin không dùng chung learner projection; lần fetch lỗi không được biến thành danh sách rỗng thành công. Seed gồm13 draft (5 grammar, 3 idiom, 2 proverb, 1 Hanja, 1 collocation, 1 phonetics), chưa là corpus đã người duyệt chấp nhận.
-
-## 2026-10-31 — Kho hệ thống và lưu cá nhân
-
-GET /api/knowledge và GET /api/word-sets nhận language=ko mặc định, ngôn ngữ khác400; response thêm language=ko, ownership=system cho list/detail. Getters không lọc theo người tạo; saved state/SRS vẫn kiểm user session/ownership. Route: app/api/knowledge/route.ts, app/api/word-sets/route.ts; smoke thật trong tests/e2e/knowledge.spec.ts và tests/e2e/vocabulary-catalog.spec.ts. [Audit tích hợp](../../audits/system-library-worker-errors.md).
+Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.

@@ -10,7 +10,7 @@ Font thay đổi có thể gây reflow nội dung tự nhiên; không cố đị
 
 ## Token chuẩn
 
-Nguồn thực thi: [design-tokens.css](../../app/design-tokens.css), [editorial.css](../../app/editorial.css), [layout](../../app/layout.tsx). Font Inter Variable self-host qua package Fontsource, có Vietnamese; Hangul fallback Malgun Gothic/Noto Sans KR/system sans. Không gọi Google Fonts khi mở trang.
+Nguồn thực thi: [design-tokens.css](../../apps/web/app/design-tokens.css), [editorial.css](../../apps/web/app/editorial.css), [layout](../../apps/web/app/layout.tsx). Font Inter Variable self-host qua package Fontsource, có Vietnamese; Hangul fallback Malgun Gothic/Noto Sans KR/system sans. Không gọi Google Fonts khi mở trang.
 
 | Token / vai trò | Giá trị |
 |---|---|

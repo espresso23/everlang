@@ -1,3 +1,12 @@
+## 2026-11-01 — Native Nest migration regression audit
+
+Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
+
+- PASS: build/typecheck/lint/native startup, global filter, safe logs/trace, PG/Mongo restore/fresh008; cutover evidence xem migration audit.
+- External production infrastructure/SMTP/HTTPS certificate chưa verified.
+- Evidence/checks: nest-boundary/runtime-errors unit; native HTTP; restore scripts; [bảng tích hợp và lệnh tái hiện](../../audits/nestjs-jwt-migration.md), [kết quả migration](../backend-nestjs-migration/audit.md).
+- Functions/routes hiện tại: [function map](functions.md); auth/error chuẩn trong shared docs. Audit phía dưới trước ngày này là provenance của backend cũ, không chứng nhận runtime Nest. Không đánh dấu toàn feature Done chỉ vì migration build được.
+
 # Audit — platform-operations
 
 ## 2026-10-31 — WBS/backlog/sprint tracking nội bộ

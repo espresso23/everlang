@@ -1,9 +1,9 @@
 import { afterEach, expect, it, vi } from "vitest";
 import { z } from "zod";
-import { aiErrorResponse, generateJson, ProviderError, retryAfterMs } from "../../lib/ai";
-import { log, withApiLogging } from "../../lib/logger";
-import { NextRequest } from "next/server";
-import { guardedTask, installProcessErrorHandlers } from "../../lib/process-errors";
+import { aiErrorResponse, generateJson, ProviderError, retryAfterMs } from "@everlang/backend/ai";
+import { log } from "@everlang/backend/logger";
+
+import { guardedTask, installProcessErrorHandlers } from "@everlang/backend/process-errors";
 
 afterEach(() => { vi.restoreAllMocks(); vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 
@@ -60,20 +60,10 @@ it("fatal boundary logs normalized errors and exits rather than swallowing fault
 });
 
 it("pool idle error is handled without serializing its attached client", async () => {
-  const { pool } = await import("../../lib/sql");
+  const { pool } = await import("@everlang/backend/sql");
   const out = vi.spyOn(console, "error").mockImplementation(() => {});
   expect(pool.listenerCount("error")).toBeGreaterThan(0);
   expect(() => pool.emit("error", new Error("Connection terminated unexpectedly"), { secretKey: "private" })).not.toThrow();
   expect(String(out.mock.calls[0][0])).not.toContain("private");
   expect(JSON.parse(out.mock.calls[0][0]).event).toBe("database.pool.error");
-});
-
-it("API exception boundary retains request correlation and hides internal errors", async () => {
-  vi.spyOn(console, "error").mockImplementation(() => {});
-  const response = await withApiLogging("/test", async () => { throw new Error("private implementation detail"); })(
-    new NextRequest("http://localhost/test", { headers: { "x-request-id": "worker-qa-123" } }),
-  );
-  expect(response.status).toBe(500);
-  expect(response.headers.get("x-request-id")).toBe("worker-qa-123");
-  expect(await response.json()).toEqual({ error: "Lỗi nội bộ máy chủ.", requestId: "worker-qa-123" });
 });

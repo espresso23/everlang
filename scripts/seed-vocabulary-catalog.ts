@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import { connectDb } from "../lib/db";
-import { VocabularyCatalog } from "../lib/models/VocabularyCatalog";
+import { connectDb } from "@everlang/backend/db";
+import { VocabularyCatalog } from "@everlang/backend/models/VocabularyCatalog";
 import {
   catalogContentSchema,
   catalogTopics,
   CATALOG_TAXONOMY_VERSION,
   type CatalogContent,
-} from "../lib/vocabulary-catalog-contract";
+} from "@everlang/contracts/vocabulary-catalog-contract";
 import { vocabularyDrafts } from "../data/vocabulary-drafts";
 await connectDb();
 await VocabularyCatalog.init();

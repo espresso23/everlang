@@ -1,6 +1,6 @@
 {
   "project": "EverLang - beta tự học tiếng Hàn",
-  "asOf": "2026-10-31",
+  "asOf": "2026-11-01",
   "baselineCommit": "4eb249c",
   "sourceOfTruth": "work-items.json",
   "assumptions": [
@@ -1189,6 +1189,26 @@
         "PB-038-T01",
         "PB-038-T02",
         "PB-038-T03"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-039",
+      "wbs": "WBS-4.39",
+      "epic": "WBS-4",
+      "title": "Migrate backend NestJS/JWT va structured tracing",
+      "priority": "P0",
+      "sprint": null,
+      "points": null,
+      "featureId": "backend-nestjs-migration",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "Native Nest API/workers, JWT RAM + HttpOnly rotating refresh, preserve IDs/password/data, global exceptions and correlated redacted logs, no active legacy backend, parity/backup/restore/cutover verified.",
+      "refinement": "Ready",
+      "contentCapacity": "N/A technical migration",
+      "tasks": [
+        "PB-039-T01",
+        "PB-039-T02"
       ],
       "scope": "Core"
     }
@@ -2464,6 +2484,40 @@
       ],
       "verification": "Not run",
       "updated": "2026-10-31"
+    },
+    {
+      "id": "PB-039-T01",
+      "parent": "PB-039",
+      "title": "Migration implementation and auth/logging parity",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Review",
+      "dependsOn": [],
+      "blocker": "Native implementation/local gates and cutover passed; owner live Google login/link and external provider smoke remain NOT VERIFIED; no blanket feature Done.",
+      "evidence": [
+        "documentation/features/backend-nestjs-migration/audit.md",
+        "documentation/features/backend-nestjs-migration/assets/verification.md",
+        "documentation/audits/nestjs-jwt-migration.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-11-01"
+    },
+    {
+      "id": "PB-039-T02",
+      "parent": "PB-039",
+      "title": "Independent audit, restore and cutover",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Review",
+      "dependsOn": [],
+      "blocker": "Native implementation/local gates and cutover passed; owner live Google login/link and external provider smoke remain NOT VERIFIED; no blanket feature Done.",
+      "evidence": [
+        "documentation/features/backend-nestjs-migration/audit.md",
+        "documentation/features/backend-nestjs-migration/assets/verification.md",
+        "documentation/audits/nestjs-jwt-migration.md"
+      ],
+      "verification": "Not run",
+      "updated": "2026-11-01"
     }
   ],
   "team": {

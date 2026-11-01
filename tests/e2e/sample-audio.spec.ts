@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   const user = { id: "audio-qa", name: "Audio QA", email: "audio@example.test", emailVerified: true, image: null };
   await page.route("**/api/**", route => {
     const path = new URL(route.request().url()).pathname;
-    return route.fulfill({ json: path === "/api/auth/get-session" ? { user, session: { id: "qa", userId: user.id, expiresAt: "2099-01-01T00:00:00Z" } }
+    return route.fulfill({ json: path === "/api/auth/refresh" ? { accessToken: "fixture-access", user, session: { id: "qa", userId: user.id, expiresAt: "2099-01-01T00:00:00Z" } }
       : path === "/api/sentences" ? { items: [{ ...seed[0], _id: "111111111111111111111111" }], total: 1, pages: 1, page: 1, limit: 50 }
       : path === "/api/drafts" ? { drafts: [] } : { items: [] } });
   });

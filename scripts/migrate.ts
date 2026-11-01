@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync } from "node:fs";
-import { pool } from "../lib/sql";
+import { pool } from "@everlang/backend/sql";
 const client = await pool.connect();
 try {
   await client.query("SELECT pg_advisory_lock(814921)");

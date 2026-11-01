@@ -7,9 +7,10 @@ const manifestPath = "documentation/code-map.json";
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 const refresh = process.argv.includes("--refresh");
 const failures = [];
-const sourceRoots = ["app", "components", "lib", "scripts", "migrations", "data", "tests"];
+const sourceRoots = ["apps", "packages", "scripts", "migrations", "data", "tests"];
 function filesIn(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+    if (["node_modules", "dist", ".next", "coverage"].includes(entry.name)) return [];
     const file = path.posix.join(dir, entry.name);
     return entry.isDirectory() ? filesIn(file) : [file];
   });
@@ -33,6 +34,7 @@ for (const feature of manifest.features) {
       const names = new Set();
       function visit(node) {
         if ((ts.isFunctionDeclaration(node) || ts.isVariableDeclaration(node) || ts.isClassDeclaration(node) || ts.isInterfaceDeclaration(node) || ts.isTypeAliasDeclaration(node)) && node.name && ts.isIdentifier(node.name)) names.add(node.name.text);
+        if (ts.isClassDeclaration(node) && node.name) for (const member of node.members) if (ts.isMethodDeclaration(member) && member.name && ts.isIdentifier(member.name)) names.add(`${node.name.text}.${member.name.text}`);
         ts.forEachChild(node, visit);
       }
       visit(ast);

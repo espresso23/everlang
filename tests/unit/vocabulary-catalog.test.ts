@@ -8,8 +8,8 @@ import {
   catalogTopics,
   CATALOG_TAXONOMY_VERSION,
   type CatalogRecord,
-} from "../../lib/vocabulary-catalog-contract";
-import { catalogDay } from "../../lib/catalog-learning";
+} from "@everlang/contracts/vocabulary-catalog-contract";
+import { catalogDay } from "@everlang/backend/catalog-learning";
 import { vocabularyDrafts } from "../../data/vocabulary-drafts";
 const base = {
   language: "ko",

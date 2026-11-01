@@ -1,3 +1,12 @@
+## 2026-11-01 — Native Nest migration regression audit
+
+Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
+
+- PASS: native CRUD/workflow/ownership/state/attempts/concurrency/reader và system language ownership.
+- Owner content/audio review còn giữ backlog.
+- Evidence/checks: knowledge.spec.ts; [bảng tích hợp và lệnh tái hiện](../../audits/nestjs-jwt-migration.md), [kết quả migration](../backend-nestjs-migration/audit.md).
+- Functions/routes hiện tại: [function map](functions.md); auth/error chuẩn trong shared docs. Audit phía dưới trước ngày này là provenance của backend cũ, không chứng nhận runtime Nest. Không đánh dấu toàn feature Done chỉ vì migration build được.
+
 # Audit — knowledge-library
 
 2026-10-31, `feature/self-study-library`. Review riêng sau triển khai: đối chiếu KL-01–06 → source/contract → unit → container/API/browser. **Technical integration PASS trong phạm vi dưới; chưa hoàn tất feature toàn bộ** vì seed chưa được owner duyệt, audio thiết bị thật và một số UI gates còn NOT VERIFIED.

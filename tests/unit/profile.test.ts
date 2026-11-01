@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { profileInput } from "@/lib/profile";
+import { profileInput } from "@everlang/contracts/profile";
 import { authErrorMessage } from "@/lib/auth-errors";
 
 const valid = { name: "  Người học  ", level: "Trung cấp", goal: "Học mỗi ngày", minutes: 25, timezone: "Asia/Ho_Chi_Minh" };

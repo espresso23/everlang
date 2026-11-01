@@ -5,14 +5,15 @@ const user = { id: "qa-profile", name: "EverLang QA", email: "profile@example.te
   emailVerified: true, image: "https://avatar.example.test/profile.png", admin: false };
 const profile = { user, profile: { level: "Trung cấp", goal: "Đọc tiếng Hàn", minutes: 20, timezone: "Asia/Ho_Chi_Minh" },
   providers: ["google"], googleEnabled: true };
-const session = { user, session: { id: "mock", token: "mock", userId: user.id, expiresAt: "2099-01-01T00:00:00Z",
+const session = {accessToken: "fixture-access", user, session: { id: "mock", token: "mock", userId: user.id, expiresAt: "2099-01-01T00:00:00Z",
   createdAt: "2026-10-30T00:00:00Z", updatedAt: "2026-10-30T00:00:00Z" } };
 
+test.beforeEach(async({page})=>{await page.route("**/api/auth/csrf",route=>route.fulfill({json:{csrfToken:"fixture"}}));});
 test("pending session never shows guest login or requests private page data", async ({ page }) => {
   let release!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });
   let profileRequests = 0;
-  await page.route("**/api/auth/get-session**", async route => { await gate; await route.fulfill({ json: null }); });
+  await page.route("**/api/auth/{refresh,me}**", async route => { await gate; await route.fulfill({ status:401,json:{error:"Hãy đăng nhập",code:"REFRESH_INVALID"} }); });
   await page.route("**/api/profile", async route => { profileRequests++; await route.fulfill({ json: profile }); });
   await page.goto("/profile");
   await expect(page.getByText("Đang kiểm tra đăng nhập…").first()).toBeVisible();
@@ -23,7 +24,7 @@ test("pending session never shows guest login or requests private page data", as
 });
 
 test("Google profile renders avatar, falls back on image failure, and hides credential form", async ({ page }) => {
-  await page.route("**/api/auth/get-session**", route => route.fulfill({ json: session }));
+  await page.route("**/api/auth/{refresh,me}**", route => route.fulfill({ json: session }));
   await page.route("**/api/profile", route => route.fulfill({ json: profile }));
   await page.route(user.image, route => route.fulfill({ status: 404 }));
   await page.goto("/profile");
@@ -54,7 +55,7 @@ test("profile edit cancels without writes and preserves input on failure before 
   let attempts = 0;
   let release!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });
-  await page.route("**/api/auth/get-session**", route => route.fulfill({ json: { ...session, user: current.user } }));
+  await page.route("**/api/auth/{refresh,me}**", route => route.fulfill({ json: { ...session, user: current.user } }));
   await page.route(user.image, route => route.fulfill({ status: 404 }));
   await page.route("**/api/profile", async route => {
     if (route.request().method() !== "PUT") return route.fulfill({ json: current });
@@ -92,7 +93,7 @@ test("profile edit cancels without writes and preserves input on failure before 
 test("profile view and editor handle long identity and goals on 320px", async ({ page }) => {
   const long = { ...profile, user: { ...user, name: "Người học ".repeat(8).trim(), email: "long-address-" + "a".repeat(70) + "@example.test" },
     profile: { ...profile.profile, goal: "목표".repeat(150) } };
-  await page.route("**/api/auth/get-session**", route => route.fulfill({ json: { ...session, user: long.user } }));
+  await page.route("**/api/auth/{refresh,me}**", route => route.fulfill({ json: { ...session, user: long.user } }));
   await page.route("**/api/profile", route => route.fulfill({ json: long }));
   await page.route(user.image, route => route.fulfill({ status: 404 }));
   await page.setViewportSize({ width: 320, height: 900 });
@@ -104,7 +105,7 @@ test("profile view and editor handle long identity and goals on 320px", async ({
 });
 
 test("OAuth callback error is explained without reflecting arbitrary query text", async ({ page }) => {
-  await page.route("**/api/auth/get-session**", route => route.fulfill({ json: null }));
+  await page.route("**/api/auth/{refresh,me}**", route => route.fulfill({ status:401,json:{error:"Hãy đăng nhập",code:"REFRESH_INVALID"} }));
   await page.goto("/sign-in?error=account_not_linked");
   await expect(page.getByRole("status").filter({ hasText: "Email này đã có tài khoản" })).toBeVisible();
   await page.goto("/sign-in?error=untrusted-query-string");
@@ -113,7 +114,7 @@ test("OAuth callback error is explained without reflecting arbitrary query text"
 });
 
 test("successful provider image loads and profile failures can be retried", async ({ page }) => {
-  await page.route("**/api/auth/get-session**", route => route.fulfill({ json: session }));
+  await page.route("**/api/auth/{refresh,me}**", route => route.fulfill({ json: session }));
   let failed = true;
   await page.route("**/api/profile", route => route.fulfill(failed
     ? { status: 503, json: { error: "Hồ sơ tạm thời không khả dụng" } } : { json: profile }));
@@ -129,7 +130,7 @@ test("successful provider image loads and profile failures can be retried", asyn
 
 test("session service failure offers retry without pretending the user is signed out", async ({ page }) => {
   let failed = true;
-  await page.route("**/api/auth/get-session**", route => route.fulfill(failed
+  await page.route("**/api/auth/{refresh,me}**", route => route.fulfill(failed
     ? { status: 503, json: { message: "Unavailable" } } : { json: session }));
   await page.route("**/api/profile", route => route.fulfill({ json: profile }));
   await page.route(user.image, route => route.fulfill({ status: 404 }));

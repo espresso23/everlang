@@ -6,16 +6,16 @@ Local: `docker compose --profile local up -d --build`. App ở localhost:3000, M
 
 Các biến bắt buộc/tuỳ chọn được liệt kê trong file cấu hình mẫu của dự án; chỉ điền giá trị thật trong `.env` bị gitignore. Khi thay biến môi trường cần recreate container; chỉ restart không đọc lại `.env`. Không in `docker compose config` đầy đủ vì có thể lộ secret.
 
-Kiểm tra: `npm run lint`, `npx tsc --noEmit`, `npm test`, `npm run build`, `npm run docs:check`. E2E `E2E_AUTH_TESTS=1` cần local SMTP/Mailpit và account dùng một lần; test OAuth thật cần thao tác người sở hữu Google. Giữ kết quả thực tế ở audit, không đổi skipped thành passed.
+Kiểm tra: `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`, `npm run docs:check`. E2E `E2E_AUTH_TESTS=1` cần local SMTP/Mailpit và account dùng một lần; test OAuth thật cần thao tác người sở hữu Google. Giữ kết quả thực tế ở audit, không đổi skipped thành passed.
 
-Trước thay schema/import: backup MongoDB/PostgreSQL, kiểm tra đọc được bản backup, giữ volume cũ. Migration là additive 001–003; rollback ứng dụng phải đánh giá tương thích schema, không tự drop bảng/volume. CLI nhập legacy chỉ chạy sau xác nhận ánh xạ tài khoản. Không có cam kết restore thành công nếu chưa diễn tập tại môi trường đích.
+Trước thay schema/import: backup MongoDB/PostgreSQL, kiểm tra đọc được bản backup, giữ volume cũ. Migration001–007 giữ lịch sử;008 rename auth tables và xóa sessions/provider tokens cũ (không additive); rollback ứng dụng phải đánh giá tương thích schema, không tự drop bảng/volume. CLI records:import chỉ chạy sau xác nhận ánh xạ tài khoản. Không có cam kết restore thành công nếu chưa diễn tập tại môi trường đích.
 
 ## Speech providers
 
 Xem [speech ops/system design](../features/self-hosted-speech/system-design.md). Chạy migration005/006 trước app mới. Chọn đúng **một** provider/profile:
 
-- Gemini: GEMINI_API_KEY server-only từ project Free tier chưa bật billing, SPEECH_PROVIDER=gemini; build app + speech-api-worker, `docker compose --profile speech-api up -d --build speech-api-worker app`. Không cần model volume/native build. Limit384MB/1CPU, quota nội bộ20 calls/day UTC; Redis outage failclosed. Không tự xác minh billing bằng key. Hiện key trả402 prepaid depleted; không bật billing/nạp tiền trong task.
-- Whisper: SPEECH_PROVIDER=whispercpp; `docker compose --profile speech up -d --build speech-worker app` chạy model init explicit, SHA verified, model mounted readonly;2CPU/1200MB/concurrency1, AVX2+FMA+F16C hoặc portable. Hosting/RAM không miễn phí dù model không có API fee.
+- Gemini: GEMINI_API_KEY server-only từ project Free tier chưa bật billing, SPEECH_PROVIDER=gemini; build app + speech-api-worker, `docker compose --profile speech-api up -d --build speech-api-worker api app gateway`. Không cần model volume/native build. Limit384MB/1CPU, quota nội bộ20 calls/day UTC; Redis outage failclosed. Không tự xác minh billing bằng key. Hiện key trả402 prepaid depleted; không bật billing/nạp tiền trong task.
+- Whisper: SPEECH_PROVIDER=whispercpp; `docker compose --profile speech up -d --build speech-worker api app gateway` chạy model init explicit, SHA verified, model mounted readonly;2CPU/1200MB/concurrency1, AVX2+FMA+F16C hoặc portable. Hosting/RAM không miễn phí dù model không có API fee.
 
 Không bật hai worker profile cùng queue. Stop worker đang dùng trước đổi provider; pending snapshot khác provider sẽ failed rõ, cần người dùng consent/gửi lại. Default disabled giữ khả năng thu/nghe trên thiết bị.
 
@@ -27,4 +27,15 @@ Trước007, deploy bridge targetless /api/vocabulary.POST (`everlang-vocabulary
 
 ## Worker errors/cooldown — 2026-10-31
 
-[Error handling chuẩn](error-handling.md): API boundary có sẵn giữ nguyên; standalone worker fatal exit1/restart, PG idle error không dump client, grading429 cooldown queue/retry3. Rebuild/recreate cả app và worker để đồng bộ shared code. Không tắt limiter hoặc đổi model/billing để xử lý429. [Audit](../audits/system-library-worker-errors.md).
+[Error handling chuẩn](error-handling.md): API boundary có sẵn giữ nguyên; standalone worker fatal exit1/restart, PG idle error không dump client, grading429 cooldown queue/retry3. Rebuild/recreate api, app và worker để đồng bộ shared code. Không tắt limiter hoặc đổi model/billing để xử lý429. [Audit](../audits/system-library-worker-errors.md).
+
+## Nest cutover008 — 2026-11-01
+
+1. Chuẩn bị JWT_PRIVATE_KEY_B64/JWT_PUBLIC_KEY_B64/CSRF_SECRET (`npm run auth:keys` không overwrite); PUBLIC_ORIGIN canonical. Public production HTTPS bắt buộc. Không in compose config/env.
+2. Candidate dùng DB/Mongo/Redis/media riêng; chạy auth/route/parity/security/error/tracing, fresh migrations và restore rehearsal. Không chạy provider/billing ngoài để tạo kết quả giả.
+3. Maintenance: dừng nhận ghi và drain workers, kiểm queued/active jobs; backup PostgreSQL, Mongo, Redis RDB và private speech_media cùng snapshot. `scripts/backup.ps1` lưu ngoài Git; trước migration backend cũ dùng `-MediaService app`. Docker cp đọc cả container đã stop. Backup không tự dừng ghi; người vận hành chịu trách nhiệm maintenance/drain trước chạy.
+4. `docker compose run --rm --no-deps migrate` áp dụng008 trong transaction/advisory lock; chỉ chạy sau backup. `docker compose --profile local up -d api app gateway worker` recreate native runtimes. Chọn đúng một speech profile khi bật; không chạy hai provider workers cùng queue.
+5. Kiểm ready,401/403, JWT/email flow, native worker logs và các dữ liệu bảo toàn. User đăng nhập lại. Google live cần thao tác chủ tài khoản, không giả verified.
+6. Rollback offline: stop runtimes mới, restore PG/Mongo/Redis/media vào databases/volumes mới, gắn image checkpoint cũ và env snapshot riêng tư. Không chạy image Better Auth trên schema008, không chỉ đổi image rồi bỏ qua schema. Không down/drop live tables/volumes.
+
+Web image chỉ standalone assets, không server secrets; api/worker có env server, chưa public port. Structured JSON log rotation max10MB/5files trên API/web và worker. API SIGTERM15s, workers150s. `/api/health/ready` kiểm PG/Mongo/Redis. Không xem `/api/docs` có schema đầy đủ cho mọi body: native services dùng Zod, route inventory và canonical feature docs là payload contracts hiện tại.

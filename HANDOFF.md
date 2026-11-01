@@ -1,8 +1,23 @@
 # HANDOFF — EverLang
 
-Cập nhật gần nhất: 2026-10-31
+Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
+
+### 2026-11-01 — NestJS/JWT migration và cutover local
+
+- Branch feature/nestjs-jwt-migration, base retry4090b34a97. Tách apps/web NextUI, apps/api Nest native, apps/worker Nest WorkerHost, packages/contracts/backend. Giữ49domain methods/27pairs; xóa Next API/BetterAuth/Drizzle/old worker entrypoints và dependencies. Gateway3000→web3001/API4000; old auth paths404, không active backend fallback.
+- Access RS256900s RAM/Bearer; refresh opaque32bytes/DB SHA256/HttpOnly/SameSiteLax/pathauth/SecureHTTPS/30d absolute, transactional rotate/replay revoke. CSRF/Origin, email verify/reset/change/logout/all, Google PKCE/state/nonce/browser binding/explicit link. Giữ userID/passwordhash/Google subject/businessFK; old sessions/verify/reset links invalid, user đăng nhập lại.
+- Global filter/parser boundary/interceptor, JSON requestId/method/route/status/duration+redaction, queue/worker requestId/jobId/attempt. HTTP→worker3attempts→failed→409 explicit retry đạt không AI calls. PG reconnect/Redis cooldown1208ms/fatal exit1 và owner Bearer audio/blob/logout cleanup đạt.
+- Gates:77unit/15files, lint0errors0warnings, workspace+tools/tests typecheck, full build17web routes/noAPI, backend boundary gate; native auth/2tabs, beta+extended exams/admin, knowledge/catalog, disabledspeech/privateaudio, profile/audio/retry/Editorial PASS scoped. [Verification](documentation/features/backend-nestjs-migration/assets/verification.md).
+- Restore:20PGtable digests giữ IDs/hashes/FSRS/due/version/revlogs; fresh001–008; Mongo6collections172docs checksum; RedisRDB19keys; synthetic private media bytes (source audio0files). Backup PG/Mongo/Redis/media20261101-104559 và env snapshot riêng ngoài Git. Cutover00803:46–03:47UTC: sửa stale migration image sang shared explicit worker image,apply008/rerun idempotent; ready200/postcutover2smoke/20digests/8migrations/old auth tables absent. QA resources lượt này tạo đã dọn; dữ liệu có sẵn giữ nguyên.
+- Docs18features/source map/audits cập nhật: [migration audit](documentation/features/backend-nestjs-migration/audit.md), [integration audit](documentation/audits/nestjs-jwt-migration.md), [JWT](documentation/shared/auth-and-api.md), [logging](documentation/shared/error-handling.md), [operations/rollback](documentation/shared/operations.md). Giữ provenance audit cũ, không coi là Nest verified. Tracking39PBI84tasks6Proposed; PB-039 Review, không tự start sprint/Done toàn feature.
+- Còn lại: owner live Google login/link trên Nest; cloud AI/ASR/KRdict/Tutor/SMTPproduction/HTTPS external NOT VERIFIED theo audit. Chưa public deploy/push/merge migration main. Old images/env backup offline chỉ full restore rollback, không old backend trên schema008. Không ghi bí mật vào repo/docs/log.
+
+### 2026-11-01 — Bắt đầu NestJS/JWT migration
+
+- Checkpoint retry grading0b34a97; branch feature/nestjs-jwt-migration. Đặc tả5docs trước code tại documentation/features/backend-nestjs-migration, giữ data/IDs/passwords/Google, JWT RAM+opaque refreshHttpOnly, một lần cutover và global structured logging/exception filter. Chưa claim verified/cutover; theo audit feature.
+
 
 ### 2026-10-31 — Khắc phục502 khi nộp lại lượt chấm đãfailed
 

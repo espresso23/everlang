@@ -10,7 +10,7 @@ Không có trang quản trị hạ tầng. Mailpit chỉ có giao diện local :
 
 ## Luồng UI ↔ dữ liệu
 
-Browser → Next → API guard/services → SQL/Mongo/Redis/providers; Docker migrations → app/worker; Caddy → app
+Browser → Caddy gateway → Next web hoặc Nest API → JWT guard/services → SQL/Mongo/Redis/providers; native Nest workers qua BullMQ.
 
 ## Trạng thái và giới hạn
 

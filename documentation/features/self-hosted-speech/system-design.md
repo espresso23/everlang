@@ -1,12 +1,12 @@
 # System design — implemented, audit pending
 
-Next.js /speech → session API /api/speech → PostgreSQL speech_attempts + private volume → Redis/BullMQ everlang-speech → Node speech-worker → ffprobe/ffmpeg → whisper.cpp CPU → SQL → poll UI. Worker là runtime xử lý âm thanh của cùng monolith, không tách domain backend/microservice/framework mới. Grading worker/queue cũ giữ nguyên.
+Next.js /speech → Bearer JWT Nest API /api/speech → PostgreSQL speech_attempts + private volume → Redis/BullMQ everlang-speech → Nest SpeechProcessor WorkerHost → ffprobe/ffmpeg → whisper.cpp CPU → SQL → poll UI. Worker là Nest ApplicationContext tách khỏi web và API; BullMQ speech queue giữ tên/payload/recovery. Grading là Nest GradingProcessor riêng.
 
 ADR: beta single-node dùng private filesystem volume thay yêu cầu S3 ngoài cho bản ghi local; chỉ speech_attempts dùng backend này, recording legacy vẫn có nguồn S3 riêng. Volume được mount app và speech worker, owner1001, app không chạy root. Mongo vẫn giữ học liệu; PostgreSQL giữ private attempts/progress; Redis không là nguồn kết quả lâu dài. Backup metadata+volume nhất quán và restore trước final gate. Migration005 additive, app cũ bỏ qua bảng; không DROP file/table khi rollback.
 
 HTTP planned: GET /api/speech (capabilities/history hoặc id status), POST {audio,mime,reference,requestId,consent:true}, DELETE {id}; GET /api/speech/audio?id=uuid stream audio của chủ tài khoản. API guard verified session, origin/content-type JSON với mutations. Reference ≤300 chars là câu người học chọn, không feed model. Request hash bao gồm audio/mime/reference để idempotency khác payload trả409. One unfinished job/user để tránh backlog CPU;202 trả sau durable insert. Redis enqueue lỗi để row queued, recovery worker chạy lại; không mất file do lỗi queue.
 
-File key do server tạo từ SHA256(userId)+UUID, root cố định env; không nhận path client. MIME signature + size trước ghi, ffprobe xác minh duration thực ≤20s trước inference; ffmpeg chuẩn hóa16kHz/mono PCM. Tất cả child_process dùng execFile/args, không shell; timeout/output bound và cleanup temp. Private playback cookie-auth/no-store/nosniff, chỉ file nhỏ tối đa3MB; stream200 toàn file, không hứa Range206. Delete đánh dấu SQL deleted trước, worker update có deleted_at IS NULL; unlink failed thì trả lỗi và retry cleanup sau, không tuyên bố file đã biến mất.
+File key do server tạo từ SHA256(userId)+UUID, root cố định env; không nhận path client. MIME signature + size trước ghi, ffprobe xác minh duration thực ≤20s trước inference; ffmpeg chuẩn hóa16kHz/mono PCM. Tất cả child_process dùng execFile/args, không shell; timeout/output bound và cleanup temp. Private playback Bearer JWT/no-store/nosniff, chỉ file nhỏ tối đa3MB; stream200 toàn file, không hứa Range206. Delete đánh dấu SQL deleted trước, worker update có deleted_at IS NULL; unlink failed thì trả lỗi và retry cleanup sau, không tuyên bố file đã biến mất.
 
 Runtime profile speech: model download explicit có SHA256/nguồn/version, readonly model volume; không download model theo request. Native source pinned commit, CPU2 threads/concurrency1, container CPU/RAM limits. Heartbeat Redis chỉ xác nhận worker/config hiện diện, không chứng minh quality/model inference. Timeout và model lỗi là failed, không score0; caller có thể nghe lại private recording. Queue retry tối đa2, stale active recovery sau restart; SQL idempotency ngăn duplicate rows/results.
 
@@ -24,4 +24,4 @@ Sau normalize, Gemini nhận inline WAV qua HTTPS endpoint cố định generati
 
 ## 2026-10-31 — Worker boundary dùng chung
 
-`scripts/speech-worker.ts` dùng `installProcessErrorHandlers`, guarded startup/timer recovery, structured worker error và shutdown có catch/deadline15s. Không đổi UI/consent/provider/ASR semantics. [Contract](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).
+`apps/worker/src/speech.processor.ts` dùng `installProcessErrorHandlers`, guarded startup/timer recovery, structured worker error và shutdown có catch/deadline15s. Không đổi UI/consent/provider/ASR semantics. [Contract](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).

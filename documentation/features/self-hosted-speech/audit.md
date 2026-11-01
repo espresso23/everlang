@@ -1,3 +1,12 @@
+## 2026-11-01 — Native Nest migration regression audit
+
+Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
+
+- PASS: native disabled provider flow, Bearer owner audio200/other404/anonymous401, blob playback cleanup logout; provider/runtime unit.
+- NOT VERIFIED: Whisper/Gemini inference thật qua Nest worker, cloud consent/data lifecycle ngoài hệ thống.
+- Evidence/checks: speech.spec.ts disabled; private-audio.spec.ts; speech unit; [bảng tích hợp và lệnh tái hiện](../../audits/nestjs-jwt-migration.md), [kết quả migration](../backend-nestjs-migration/audit.md).
+- Functions/routes hiện tại: [function map](functions.md); auth/error chuẩn trong shared docs. Audit phía dưới trước ngày này là provenance của backend cũ, không chứng nhận runtime Nest. Không đánh dấu toàn feature Done chỉ vì migration build được.
+
 # Audit — partial verification, gates open
 
 2026-10-31 · feature/self-hosted-audio · baseline28957ad + working changes. Separate review: spec → API/worker/SQL/volume → actual native integration → screenshot inspection. [Evidence](assets/verification.md).

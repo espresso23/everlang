@@ -1,7 +1,7 @@
-import { connectDb } from "../lib/db";
-import { Knowledge } from "../lib/models/Knowledge";
+import { connectDb } from "@everlang/backend/db";
+import { Knowledge } from "@everlang/backend/models/Knowledge";
 import { knowledgeSeed } from "../data/knowledge-seed";
-import { knowledgeKey, knowledgeSchema } from "../lib/knowledge-contract";
+import { knowledgeKey, knowledgeSchema } from "@everlang/contracts/knowledge-contract";
 
 async function seedKnowledge() {
   const entries = knowledgeSeed.map((entry) => ({

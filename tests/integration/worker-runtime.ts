@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import { Queue, QueueEvents, Worker } from "bullmq";
 import Redis from "ioredis";
 import { Pool } from "pg";
-import { pool, query } from "../../lib/sql";
+import { pool, query } from "@everlang/backend/sql";
 
 const connection = new Redis(process.env.REDIS_URL!, { maxRetriesPerRequest: null });
 const name = `worker-runtime-qa-${randomUUID()}`;
@@ -38,7 +38,7 @@ try {
   assert.equal((await query("SELECT 1 AS alive"))[0].alive, 1);
   for (const failure of ["throw new Error('synthetic fatal')", "Promise.reject(new Error('synthetic rejection'))"]) {
     const child = spawnSync(process.execPath, ["--import", "tsx", "--input-type=module", "-e",
-      `import {installProcessErrorHandlers} from './lib/process-errors.ts'; installProcessErrorHandlers('probe'); ${failure}`], { encoding: "utf8", timeout: 10000 });
+      `import {installProcessErrorHandlers} from '@everlang/backend/process-errors'; installProcessErrorHandlers('probe'); ${failure}`], { encoding: "utf8", timeout: 10000 });
     assert.equal(child.status, 1);
     assert.match(child.stderr, /process\.(?:uncaught_exception|unhandled_rejection)/);
     assert.ok(!child.stderr.includes("Emitted 'error' event"));

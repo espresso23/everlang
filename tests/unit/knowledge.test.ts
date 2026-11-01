@@ -5,7 +5,7 @@ import {
   gradeKnowledge,
   stateSchema,
   type KnowledgeEntry,
-} from "../../lib/knowledge-contract";
+} from "@everlang/contracts/knowledge-contract";
 import { knowledgeSeed } from "../../data/knowledge-seed";
 
 describe("knowledge contracts and learner answer secrecy", () => {

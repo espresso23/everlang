@@ -1,3 +1,4 @@
+param([string]$MediaService = 'api')
 $ErrorActionPreference = 'Stop'
 $backupDirectory = Join-Path $PSScriptRoot '../.local/backups'
 New-Item -ItemType Directory -Force -Path $backupDirectory | Out-Null
@@ -10,4 +11,10 @@ docker compose exec -T postgres pg_dump -U everlang -d everlang -Fc -f /tmp/ever
 if ($LASTEXITCODE -ne 0) { throw 'PostgreSQL backup failed' }
 docker compose cp postgres:/tmp/everlang-postgres.dump (Join-Path $backupDirectory "$backupStamp-postgres.dump")
 if ($LASTEXITCODE -ne 0) { throw 'PostgreSQL copy failed' }
+docker compose exec -T redis redis-cli SAVE
+if ($LASTEXITCODE -ne 0) { throw 'Redis snapshot failed' }
+docker compose cp redis:/data/dump.rdb (Join-Path $backupDirectory "$backupStamp-redis.rdb")
+if ($LASTEXITCODE -ne 0) { throw 'Redis copy failed' }
+docker compose cp "${MediaService}:/data/speech-media" (Join-Path $backupDirectory "$backupStamp-speech-media")
+if ($LASTEXITCODE -ne 0) { throw 'Private media copy failed' }
 Write-Output "Backups saved under .local/backups ($backupStamp). Keep these private."

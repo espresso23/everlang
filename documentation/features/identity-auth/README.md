@@ -1,32 +1,14 @@
-# Tài khoản và xác thực
+# Tài khoản và JWT — identity-auth
 
-- Feature ID: `identity-auth`
-- Trạng thái hiện thực: `implemented`; snapshot 2026-10-30, baseline `1d0fbad`.
-- Phân biệt code hiện có với kết quả xác minh trong [audit](audit.md); không phải chứng nhận toàn bộ feature hoàn tất.
+2026-11-01; implemented, verification xem [audit](audit.md). [Hợp đồng chuẩn](../../shared/auth-and-api.md) · [Function map](functions.md) · [Thiết kế](system-design.md) · [UI](ui.md).
 
-## Yêu cầu và traceability
+| Yêu cầu | Code | Evidence |
+|---|---|---|
+| Đăng ký mở, mật khẩu10–128, email verify trước cấp phiên | AuthController.signup/AuthService.signup,verifyEmail | tests/e2e/beta.spec.ts,nest-auth.spec.ts |
+| Login scrypt giữ hash/ID cũ; RS256900s RAM/Bearer | AuthService.login,access,authenticate; web auth store | auth-crypto.test.ts,nest-jwt.test.ts |
+| Refresh hash/rotate/replay/30d absolute/HttpOnly | AuthService.startSession,refresh,cookie | nest-auth.spec.ts |
+| CSRF/Origin/rate/admin/ownership | AuthService.protect/JwtGuard và domain services | nest-auth.spec.ts,knowledge.spec.ts |
+| Logout/reset/change password thu hồi phiên | AuthService.logout,resetPassword,changePassword | beta.spec.ts,nest-auth.spec.ts |
+| Google PKCE/state/nonce/browser binding, explicit link, giữ identity | AuthService.googleStart,googleCallback | callback rejection verified; Google live NOT VERIFIED sau migration |
 
-| ID | Hành vi hiện tại/tiêu chí | Tham chiếu hiện thực | Xác minh |
-|---|---|---|---|
-| identity-auth-REQ-01 | Mọi email có thể đăng ký; mật khẩu tối thiểu 10 ký tự, email phải xác minh trước khi dùng API cá nhân. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
-| identity-auth-REQ-02 | Google dùng authorization-code flow; callback khớp, token exchange thành công mới tạo được account/session. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
-| identity-auth-REQ-03 | Liên kết Google chỉ khi người dùng chủ động đăng nhập tài khoản hiện có; không tự gộp cùng email. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
-| identity-auth-REQ-04 | Reset mật khẩu qua email; đổi mật khẩu có thể thu hồi các phiên khác. | [Code/functions](functions.md), [UI](ui.md) | [Audit](audit.md) |
-
-## Hợp đồng hiện có
-
-- GET/POST /api/auth/* — handler Better Auth cho sign-up/email, sign-in/email, sign-in/social, callback/google, get-session, verify-email, reset/change password, sign-out.
-- GET /api/config — {google:boolean}, no-store; không trả credential.
-
-## Tài liệu chuẩn
-
-- [System design](system-design.md) · [Function description](functions.md) · [UI](ui.md) · [Audit](audit.md).
-- [Kiến trúc toàn hệ thống](../../shared/architecture.md) · [Tech stack](../../shared/tech-stack.md) · [Màn hình](../../shared/screens.md).
-
-## Giới hạn và việc còn lại
-
-OAuth từng lỗi redirect_uri_mismatch đã khắc phục; log 2026-10-30 ghi invalid_client vì secret không hợp lệ. Probe sau khi người dùng cập nhật trả invalid_grant với refresh token giả; sau đó chủ tài khoản đã đăng nhập thật, DB xác nhận một Google account có image và session hoạt động. Email đã có tài khoản phải dùng explicit linking. SMTP production chưa được cấu hình.
-
-## Cập nhật profile/auth 2026-10-30
-
-Google login thực tế đã được chủ tài khoản xác nhận sau cập nhật secret; DB xác nhận provider/image/session (không ghi danh tính/token). Sign-in social và linkSocial dùng errorCallbackURL=/sign-in; lỗi account_not_linked hướng dẫn explicit linking, lỗi khác hiển thị thông báo chung, không phản chiếu raw query. [Auth route](../../../app/api/auth/[...all]/route.ts) handleAuth bọc withApiLogging và log callback outcome/mã whitelist, không query/Location/code/state. Redirected chỉ có nghĩa HTTP redirect, không tự chứng nhận session. [UI tests](../../../tests/e2e/profile-ui.spec.ts) và [audit nhóm](../../audits/profile-auth-integration.md).
+Old sessions và verify/reset links vô hiệu sau008. User ID, Google provider subject, credential password hash và business FK giữ nguyên. SMTP local verified qua Mailpit; SMTP production cần cấu hình thật. Không xem Google đã verified trên backend cũ là bằng chứng cho Nest mới.

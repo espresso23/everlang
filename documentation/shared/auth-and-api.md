@@ -1,24 +1,13 @@
-# Hợp đồng auth và API
+# Hợp đồng JWT và API — 2026-11-01
 
-Điểm chuẩn: [auth](../../lib/auth.ts), [API guard](../../lib/api.ts), [client request](../../lib/client.ts). Canonical feature: [identity-auth](../features/identity-auth/README.md).
+Điểm thực thi: [AuthService](../../apps/api/src/auth/auth.service.ts), [AuthController](../../apps/api/src/auth/auth.controller.ts), [JwtGuard](../../apps/api/src/auth/jwt.guard.ts), [client RAM store](../../apps/web/lib/auth.tsx). [49 phương thức nghiệp vụ](../features/backend-nestjs-migration/routes.json) giữ payload/ownership/version của từng feature.
 
-- Đăng ký email mở bình thường; xác minh email trước truy cập dữ liệu cá nhân. Google bật khi có hai biến OAuth. Không có danh sách email mời.
-- Cookie server session; `x-user-id` không cấp quyền. Mutation yêu cầu Origin phù hợp và JSON. Admin được xác định server từ `ADMIN_EMAILS`, không từ body.
-- Liên kết Google từ phiên đã đăng nhập, không tự gộp tài khoản trùng email. Callback `/api/auth/callback/google` phải khớp Google Cloud.
-- `401`: không có session. `403`: chưa verify hoặc thiếu admin. `404`: không tìm thấy tài nguyên thuộc user. `409`: version/trùng tác vụ hoặc xung đột. `415`: mutation sai content type. Lỗi cấu hình provider có thể trả `503`; lỗi dữ liệu `400`.
-- Chấm bài: `202 + jobId` khi queued; đọc trạng thái theo session. Kết quả cache có thể trả `200`; failure không sinh điểm giả. Nháp/SRS/dashboard có hợp đồng version riêng ở từng feature.
-- GET profile chỉ công khai dữ liệu hồ sơ của chính user; tuyệt đối không trả auth_account token/password. Log không lưu code/state/cookie/OAuth secret.
+- Access JWT: RS256, issuer/audience bắt buộc, TTL900s, sub/sid/jti/roles; API vẫn lấy quyền admin hiện tại từ ADMIN_EMAILS và kiểm session chưa thu hồi trong PG. Browser chỉ giữ token trong RAM, không localStorage/sessionStorage/cookie.
+- Refresh: random32bytes, DB chỉ SHA256; cookie HttpOnly, SameSite=Lax, path=/api/auth, Secure trên HTTPS, TTL tuyệt đối30ngày. Local loopback HTTP được phép cookie không Secure; production public phải HTTPS. Transaction khóa token/session, rotate mỗi lần; replay thu hồi cả family. Logout/reset/change password thu hồi session.
+- Auth POST yêu cầu đúng Origin và signed double-submit CSRF: GET /api/auth/csrf cấp token JSON, nonce HttpOnly; gửi x-csrf-token. Rate limit Redis theo IP/action. API nghiệp vụ dùng Bearer, mutation JSON và chặn Origin khác nếu có. Không tin x-user-id/body role.
+- API auth native: POST sign-up/email, sign-in/email, refresh, logout, logout-all, request-password-reset, reset-password, change-password, google/start; GET csrf, me, verify-email, callback/google. Prefix /api/auth. Đăng ký không tự cấp phiên trước verify; link verify/reset dùng một lần. Google code+PKCE+state+nonce và cookie ràng buộc browser; explicit link cần active session, không tự gộp email.
+- Client bootstrap refresh, singleflight trong tab, navigator.locks giữa các tab, retry một lần khi ACCESS_TOKEN_EXPIRED; logout BroadcastChannel xóa RAM. Lỗi mạng không giả trạng thái guest. API riêng tư audio fetch Bearer rồi blob URL; revoke/abort khi unmount/logout.
+- 400 validation;401 thiếu/sai/hết token hoặc session revoked;403 verify/admin/CSRF/origin;404 owner resource không tồn tại;409 version/dedup;415 content type;429 rate;503 provider cấu hình/không sẵn sàng theo feature. Global error {statusCode,code,error,requestId}, stack chỉ server.
+- Chấm:202/jobId khi queued,200 cached completed; cached failed409 GRADING_PREVIOUS_FAILED/submissionId/retryable. Retry explicit với requestId mới; không tự retry submit đã có side effect.
 
-SMTP dùng cho verify/reset của email/password; Google OAuth không gọi Mailpit để đổi code/token. Production cần SMTP thật và HTTPS/cookie/domain đúng. Cấu hình OAuth hợp lệ không chứng minh user đã hoàn tất callback; phải xác nhận session qua luồng thực tế.
-
-Profile GET có explicit user fields và providers:string[]; PUT strict schema, một transaction name/settings, client refetch session không dùng cookie cache. Xem [profile contract](../features/user-profile/README.md).
-
-## Speech API
-
-/api/speech GET own history/status; POST strict provider/consentVersion/consent/audio/mime/reference/requestId trả202; DELETE own UUID. /api/speech/audio?id=uuid owner-only cookie-auth no-store. Không tin x-user-id, không nhận file path. Provider snapshot mismatch409; worker/config mismatch503; deleted nonce410; concurrency/rate429; không score. [Canonical contracts](../features/self-hosted-speech/functions.md).
-
-/api/word-sets GET verified published catalogue, /api/word-sets/learn GET/POST/PUT owner state/server snapshots/preferences, /api/admin/word-sets admin-only CRUD workflow. Không nhận userId/meaning/card/score client khi save; server validates published set membership/revision. New/day quota per-user advisory transaction; self-report không sửa lịch/card. [Detailed contracts](../features/vocabulary-catalog/functions.md).
-
-Kho hệ thống: GET /api/knowledge và /api/word-sets trả metadata language=ko, ownership=system; unsupported language400, session verified vẫn bắt buộc. Học liệu published dùng chung, lưu/bookmark/note/SRS theo session riêng; không tự publish seed. [Error boundaries](error-handling.md).
-
-POST /api/submissions/grade: own cached failed attempt trả409/code GRADING_PREVIOUS_FAILED/retryable:true/submissionId, không502. Force retry là action explicit và requestId mới; completed cache/dedup/ownership giữ nguyên. [Audit](../audits/grading-retry.md).
+GET profile chỉ explicit user fields và providers; không password/provider tokens. Không lưu Google access/refresh/id token. [Identity](../features/identity-auth/README.md) · [Logging](error-handling.md).

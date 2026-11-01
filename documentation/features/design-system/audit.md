@@ -1,3 +1,12 @@
+## 2026-11-01 — Native Nest migration regression audit
+
+Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
+
+- PASS: preserved Editorial wireframe1440/390/320, keyboard/text-spacing/fonts/empty/populated.
+- Không chứng nhận full WCAG/physical screen reader.
+- Evidence/checks: editorial-design.spec.ts, profile-ui.spec.ts, sample-audio.spec.ts; [bảng tích hợp và lệnh tái hiện](../../audits/nestjs-jwt-migration.md), [kết quả migration](../backend-nestjs-migration/audit.md).
+- Functions/routes hiện tại: [function map](functions.md); auth/error chuẩn trong shared docs. Audit phía dưới trước ngày này là provenance của backend cũ, không chứng nhận runtime Nest. Không đánh dấu toàn feature Done chỉ vì migration build được.
+
 # Audit cập nhật — nền sáng và sổ tay
 
 2026-10-30, bugfix/lighten-editorial-surfaces, baseline50197f5. PASS trong phạm vi presentation: lint/typecheck/production Docker build,6 Playwright UI tests. Rà empty/filled notebook và màu kế thừa, link ôn, typography/focus, desktop/mobile và structural baseline. Không thay API/DB/auth, không chứng nhận lại dịch vụ ngoài hoặc toàn bộ WCAG.

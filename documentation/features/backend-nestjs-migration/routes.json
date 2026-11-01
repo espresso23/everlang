@@ -1,0 +1,345 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/admin/content",
+    "admin": true,
+    "public": false,
+    "service": "AdminContentService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/admin/content",
+    "admin": true,
+    "public": false,
+    "service": "AdminContentService.post"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/admin/content",
+    "admin": true,
+    "public": false,
+    "service": "AdminContentService.patch"
+  },
+  {
+    "method": "GET",
+    "path": "/api/admin/knowledge",
+    "admin": true,
+    "public": false,
+    "service": "AdminKnowledgeService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/admin/knowledge",
+    "admin": true,
+    "public": false,
+    "service": "AdminKnowledgeService.post"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/admin/knowledge",
+    "admin": true,
+    "public": false,
+    "service": "AdminKnowledgeService.patch"
+  },
+  {
+    "method": "GET",
+    "path": "/api/admin/word-sets",
+    "admin": true,
+    "public": false,
+    "service": "AdminWordSetsService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/admin/word-sets",
+    "admin": true,
+    "public": false,
+    "service": "AdminWordSetsService.post"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/admin/word-sets",
+    "admin": true,
+    "public": false,
+    "service": "AdminWordSetsService.patch"
+  },
+  {
+    "method": "GET",
+    "path": "/api/config",
+    "admin": false,
+    "public": true,
+    "service": "ConfigService.get"
+  },
+  {
+    "method": "GET",
+    "path": "/api/dashboard",
+    "admin": false,
+    "public": false,
+    "service": "DashboardService.get"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/dashboard",
+    "admin": false,
+    "public": false,
+    "service": "DashboardService.patch"
+  },
+  {
+    "method": "GET",
+    "path": "/api/dictionary",
+    "admin": false,
+    "public": false,
+    "service": "DictionaryService.get"
+  },
+  {
+    "method": "GET",
+    "path": "/api/drafts",
+    "admin": false,
+    "public": false,
+    "service": "DraftsService.get"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/drafts",
+    "admin": false,
+    "public": false,
+    "service": "DraftsService.put"
+  },
+  {
+    "method": "GET",
+    "path": "/api/exams",
+    "admin": false,
+    "public": false,
+    "service": "ExamsService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/exams",
+    "admin": false,
+    "public": false,
+    "service": "ExamsService.post"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/exams",
+    "admin": false,
+    "public": false,
+    "service": "ExamsService.patch"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/exams",
+    "admin": true,
+    "public": false,
+    "service": "ExamsService.put"
+  },
+  {
+    "method": "GET",
+    "path": "/api/jobs",
+    "admin": false,
+    "public": false,
+    "service": "JobsService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/knowledge/attempts",
+    "admin": false,
+    "public": false,
+    "service": "KnowledgeAttemptsService.post"
+  },
+  {
+    "method": "GET",
+    "path": "/api/knowledge",
+    "admin": false,
+    "public": false,
+    "service": "KnowledgeService.get"
+  },
+  {
+    "method": "GET",
+    "path": "/api/knowledge/state",
+    "admin": false,
+    "public": false,
+    "service": "KnowledgeStateService.get"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/knowledge/state",
+    "admin": false,
+    "public": false,
+    "service": "KnowledgeStateService.put"
+  },
+  {
+    "method": "GET",
+    "path": "/api/profile",
+    "admin": false,
+    "public": false,
+    "service": "ProfileService.get"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/profile",
+    "admin": false,
+    "public": false,
+    "service": "ProfileService.put"
+  },
+  {
+    "method": "GET",
+    "path": "/api/recordings",
+    "admin": false,
+    "public": false,
+    "service": "RecordingsService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/recordings",
+    "admin": false,
+    "public": false,
+    "service": "RecordingsService.post"
+  },
+  {
+    "method": "POST",
+    "path": "/api/reviews",
+    "admin": false,
+    "public": false,
+    "service": "ReviewsService.post"
+  },
+  {
+    "method": "POST",
+    "path": "/api/sentences/generate",
+    "admin": true,
+    "public": false,
+    "service": "SentencesGenerateService.post"
+  },
+  {
+    "method": "GET",
+    "path": "/api/sentences",
+    "admin": false,
+    "public": false,
+    "service": "SentencesService.get"
+  },
+  {
+    "method": "GET",
+    "path": "/api/speech/audio",
+    "admin": false,
+    "public": false,
+    "service": "SpeechAudioService.get"
+  },
+  {
+    "method": "GET",
+    "path": "/api/speech",
+    "admin": false,
+    "public": false,
+    "service": "SpeechService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/speech",
+    "admin": false,
+    "public": false,
+    "service": "SpeechService.post"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/speech",
+    "admin": false,
+    "public": false,
+    "service": "SpeechService.delete"
+  },
+  {
+    "method": "POST",
+    "path": "/api/submissions/grade",
+    "admin": false,
+    "public": false,
+    "service": "SubmissionsGradeService.post"
+  },
+  {
+    "method": "GET",
+    "path": "/api/submissions",
+    "admin": false,
+    "public": false,
+    "service": "SubmissionsService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/tutor",
+    "admin": false,
+    "public": false,
+    "service": "TutorService.post"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/tutor",
+    "admin": true,
+    "public": false,
+    "service": "TutorService.put"
+  },
+  {
+    "method": "GET",
+    "path": "/api/user/favorites",
+    "admin": false,
+    "public": false,
+    "service": "UserFavoritesService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/user/favorites",
+    "admin": false,
+    "public": false,
+    "service": "UserFavoritesService.post"
+  },
+  {
+    "method": "GET",
+    "path": "/api/user/stats",
+    "admin": false,
+    "public": false,
+    "service": "UserStatsService.get"
+  },
+  {
+    "method": "GET",
+    "path": "/api/vocabulary",
+    "admin": false,
+    "public": false,
+    "service": "VocabularyService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/vocabulary",
+    "admin": false,
+    "public": false,
+    "service": "VocabularyService.post"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/vocabulary",
+    "admin": false,
+    "public": false,
+    "service": "VocabularyService.put"
+  },
+  {
+    "method": "GET",
+    "path": "/api/word-sets/learn",
+    "admin": false,
+    "public": false,
+    "service": "WordSetsLearnService.get"
+  },
+  {
+    "method": "POST",
+    "path": "/api/word-sets/learn",
+    "admin": false,
+    "public": false,
+    "service": "WordSetsLearnService.post"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/word-sets/learn",
+    "admin": false,
+    "public": false,
+    "service": "WordSetsLearnService.put"
+  },
+  {
+    "method": "GET",
+    "path": "/api/word-sets",
+    "admin": false,
+    "public": false,
+    "service": "WordSetsService.get"
+  }
+]

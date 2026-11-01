@@ -1,30 +1,13 @@
-# Function description — exam-practice
+# Function map — exam-practice
 
-[Đặc tả và contract](README.md) · [System design](system-design.md)
+2026-11-01, branch `feature/nestjs-jwt-migration`. Bản đồ hiện tại sau chuyển monorepo. [Đặc tả](README.md) · [Thiết kế](system-design.md) · [UI](ui.md) · [Audit](audit.md).
 
-## File + symbol → trách nhiệm
-
-Các callback vô danh nằm trong component/handler được mô tả cùng component chủ. Schema/constant có thể là binding chứ không phải hàm; không tạo thêm API ngoài code.
-
-| Code/symbol | Chữ ký/binding hiện tại | Hành vi, I/O và side effect |
+| File/điểm vào | Symbol hiện có | Trách nhiệm/hợp đồng |
 |---|---|---|
-| [app/exams/page.tsx](../../../app/exams/page.tsx) · `Exams` | `export default function Exams()` | Component/type `Exams` thuộc luồng bài luyện topik ii pbt; hành vi và trạng thái UI ở [ui.md](ui.md). |
-| [app/api/exams/route.ts](../../../app/api/exams/route.ts) · `GET` | `export const GET` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/exams/route.ts](../../../app/api/exams/route.ts) · `POST` | `export const POST` | Handler `POST`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/exams/route.ts](../../../app/api/exams/route.ts) · `PATCH` | `export const PATCH` | Handler `PATCH`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/exams/route.ts](../../../app/api/exams/route.ts) · `PUT` | `export const PUT` | Handler `PUT`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [lib/exams.ts](../../../lib/exams.ts) · `questionSchema` | `export const questionSchema` | Hàm/binding `questionSchema` phục vụ bài luyện topik ii pbt; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [lib/exams.ts](../../../lib/exams.ts) · `examSchema` | `export const examSchema` | Hàm/binding `examSchema` phục vụ bài luyện topik ii pbt; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [lib/exams.ts](../../../lib/exams.ts) · `publicExam` | `export function publicExam(e: Exam)` | Loại answer/explanation khỏi snapshot gửi client trước nộp. |
-| [lib/exams.ts](../../../lib/exams.ts) · `scoreExam` | `export function scoreExam(e: Exam, answers: Record<string, string>)` | Chấm objective bằng đáp án; tạo trạng thái Writing queued/none, không chấm thay AI. |
-| [lib/models/Exam.ts](../../../lib/models/Exam.ts) · `ExamModel` | `export const ExamModel` | Component/type `ExamModel` thuộc luồng bài luyện topik ii pbt; hành vi và trạng thái UI ở [ui.md](ui.md). |
+| [apps/web/app/exams/page.tsx](../../../apps/web/app/exams/page.tsx) | `Q`, `Attempt`, `Exams` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/domains/exams.service.ts](../../../apps/api/src/domains/exams.service.ts) | `mini`, `ExamsService`, `ExamsService.get`, `ExamsService.post`, `ExamsService.patch`, `ExamsService.put` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [packages/contracts/src/exams.ts](../../../packages/contracts/src/exams.ts) | `questionSchema`, `examSchema`, `Exam`, `publicExam`, `scoreExam` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/models/Exam.ts](../../../packages/backend/src/models/Exam.ts) | `ExamSchema`, `ExamModel` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/domains/exams.controller.ts](../../../apps/api/src/domains/exams.controller.ts) | `ExamsController`, `ExamsController.get`, `ExamsController.post`, `ExamsController.patch`, `ExamsController.put` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
 
-## Input, output và lỗi theo điểm vào
-
-- GET /api/exams[?attempt=...] — list/history hoặc owned attempt.
-- POST /api/exams — {examId}; {id}; PATCH — {id,version,answers,submit}.
-- PUT /api/exams — admin nhập examSchema có source/rights.
-
-Đề trong Mongo ExamModel; exam_attempts SQL; index unique partial ở migration003. Khi hết deadline, server giữ câu trả lời đã lưu thay vì nhận chỉnh sửa muộn.
-
-Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.

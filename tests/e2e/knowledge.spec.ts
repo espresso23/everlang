@@ -1,3 +1,4 @@
+import { installJwtContext } from "./helpers/jwt-context";
 import { test, expect, type APIRequestContext } from "@playwright/test";
 import { randomUUID } from "node:crypto";
 import { knowledgeSeed } from "../../data/knowledge-seed";
@@ -23,6 +24,7 @@ test("real knowledge authoring, learner isolation, concurrency, attempts and rea
   });
   const password = randomUUID() + "Aa1!";
   async function signup(client: APIRequestContext, email: string) {
+    installJwtContext(client,baseURL!);
     const res = await client.post("/api/auth/sign-up/email", {
       data: {
         name: "Knowledge QA",

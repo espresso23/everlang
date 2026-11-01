@@ -142,6 +142,9 @@ Mở rộng đầu vào ngôn ngữ
   - PB-038-T01 — Đặc tả ADR local storage, queue, runtime/model và UI trước code
   - PB-038-T02 — Triển khai private audio/API/worker/UI, Gemini free-tier adapter và local fallback
   - PB-038-T03 — Audit real engine/resource,ownership,UI,backup/restore và handoff
+- **WBS-4.39 / PB-039 — Migrate backend NestJS/JWT va structured tracing** (P0, Core, Unscheduled).
+  - PB-039-T01 — Migration implementation and auth/logging parity
+  - PB-039-T02 — Independent audit, restore and cutover
 
 
 ## WBS-5 / Phát hành và vận hành beta

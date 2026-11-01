@@ -8,11 +8,11 @@ Cập nhật theo phản hồi người dùng: bugfix/lighten-editorial-surfaces
 
 | ID | Yêu cầu | Source / xác minh |
 |---|---|---|
-| DS-01 | Inter Variable self-host, có tiếng Việt; Hangul fallback; không tải font Google runtime | [layout](../../../app/layout.tsx), [package](../../../package.json), [font license](../../../public/fonts/INTER-LICENSE.txt), [UI tests](../../../tests/e2e/editorial-design.spec.ts) |
-| DS-02 | Paper/white/ink/Cobalt, tokens chuẩn, góc mảnh, không gradient/bóng nổi | [tokens](../../../app/design-tokens.css), [editorial](../../../app/editorial.css), [globals](../../../app/globals.css) |
-| DS-03 | Uppercase headline trên nền sáng, số Cobalt, quote/vertical/layer nhẹ trong artwork cũ; không black-filled title/card | [Dashboard](../../../components/dashboard.tsx), editorial.css; không đổi text node câu học |
+| DS-01 | Inter Variable self-host, có tiếng Việt; Hangul fallback; không tải font Google runtime | [layout](../../../apps/web/app/layout.tsx), [package](../../../package.json), [font license](../../../apps/web/public/fonts/INTER-LICENSE.txt), [UI tests](../../../tests/e2e/editorial-design.spec.ts) |
+| DS-02 | Paper/white/ink/Cobalt, tokens chuẩn, góc mảnh, không gradient/bóng nổi | [tokens](../../../apps/web/app/design-tokens.css), [editorial](../../../apps/web/app/editorial.css), [globals](../../../apps/web/app/globals.css) |
+| DS-03 | Uppercase headline trên nền sáng, số Cobalt, quote/vertical/layer nhẹ trong artwork cũ; không black-filled title/card | [Dashboard](../../../apps/web/components/dashboard.tsx), editorial.css; không đổi text node câu học |
 | DS-04 | Giữ DOM order, cột, width, padding, gap, breakpoint hiện hành | Wireframe snapshots trước/sau 8 route × 3 viewport, [test](../../../tests/e2e/editorial-design.spec.ts); reflow do typography được phép |
-| DS-05 | Không uppercase/giãn chữ tên người, Hangul/SRS/editor; loading/error/session giữ nguyên | [Shell](../../../components/shell.tsx), [avatar/profile](../user-profile/README.md), UI/functional E2E |
+| DS-05 | Không uppercase/giãn chữ tên người, Hangul/SRS/editor; loading/error/session giữ nguyên | [Shell](../../../apps/web/components/shell.tsx), [avatar/profile](../user-profile/README.md), UI/functional E2E |
 | DS-06 | Focus rõ, token contrast đạt mục tiêu, không tràn ở mobile/text spacing | [audit](audit.md); không tuyên bố full WCAG certification |
 | DS-07 | Frontend tương lai tuân thủ design guide và traceability | [AGENTS](../../../AGENTS.md), [guide](../../design/README.md), [code-map](../../code-map.json) |
 

@@ -83,3 +83,5 @@ Bộ tài liệu baseline đã được backfill cho toàn bộ source/màn hìn
 - [Rà soát icon Nghe câu trong read/listen/reference](audits/sentence-audio-controls.md) —2026-10-31; bổ sung phạm vi còn sót sau bản sửa sample player ban đầu.
 
 - [Cached grading failure409 và nút chấm lại tại lỗi](audits/grading-retry.md) —2026-10-31; giữ draft và retry explicit.
+
+- [Backend NestJS/JWT migration](features/backend-nestjs-migration/README.md) —2026-11-01, implemented/cutover local đã kiểm; owner Google và provider gates còn NOT VERIFIED, PB-039 Review.

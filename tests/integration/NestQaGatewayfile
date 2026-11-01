@@ -1,0 +1,8 @@
+:8080 {
+ handle /api/* {
+  reverse_proxy nest-qa-api:4000
+ }
+ handle {
+  reverse_proxy nest-qa-web:3001
+ }
+}

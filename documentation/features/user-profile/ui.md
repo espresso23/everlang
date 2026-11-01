@@ -10,7 +10,7 @@ Bảo mật & đăng nhập và Dữ liệu trên thiết bị dùng native deta
 
 Mobile<760: một cột, avatar nằm cạnh identity trong passport compact; prose sidebar ẩn. <360: metric/facts một cột. Tên80 ký tự, goal300 ký tự và email dài không gây overflow. CSS chỉ prefix profile-, không đổi route khác.
 
-Source: [Profile/saveProfile/AccountSecurity/LegacyDraftImport](../../../app/profile/page.tsx), [profile.css](../../../app/profile/profile.css). Loading/error/retry và session/avatar fallback giữ nguyên. Không upload ảnh/đổi email hay schema.
+Source: [Profile/saveProfile/AccountSecurity/LegacyDraftImport](../../../apps/web/app/profile/page.tsx), [profile.css](../../../apps/web/app/profile/profile.css). Loading/error/retry và session/avatar fallback giữ nguyên. Không upload ảnh/đổi email hay schema.
 
 Ảnh QA: [view desktop](assets/profile-desktop.png), [view mobile](assets/profile-mobile.png), [edit desktop](assets/profile-edit-desktop.png), [edit mobile](assets/profile-edit-mobile.png). Fixture synthetic Google/session chỉ chứng minh UI; [beta E2E](../../../tests/e2e/beta.spec.ts) kiểm API/DB/session thật. [UI tests](../../../tests/e2e/profile-ui.spec.ts) kiểm cancel/failure/lock/success/focus/320px.
 

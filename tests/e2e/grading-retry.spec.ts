@@ -15,7 +15,7 @@ for (const initial of ["cached-failed", "worker-failed"]) {
         return route.fulfill({ status: 202, json: { jobId: calls.length === 1 ? "old-job" : "retry-job", status: "queued" } });
       }
       if (path === "/api/jobs") return route.fulfill({ json: { status: "failed", error: "Dịch vụ AI đang giới hạn lượt gọi. Nháp được giữ nguyên." } });
-      return route.fulfill({ json: path === "/api/auth/get-session" ? { user, session: { id: "qa", userId: user.id, expiresAt: "2099-01-01T00:00:00Z" } }
+      return route.fulfill({ json: path === "/api/auth/refresh" ? { accessToken: "fixture-access", user, session: { id: "qa", userId: user.id, expiresAt: "2099-01-01T00:00:00Z" } }
         : path === "/api/profile" ? { user } : path === "/api/sentences" ? { items: [lesson], page: 1, pages: 1, total: 1, limit: 50 }
         : path === "/api/user/stats" ? { totalCompleted: 0, averageScore: 0, weakTopics: [] }
         : path === "/api/user/favorites" ? { favorites: [] }

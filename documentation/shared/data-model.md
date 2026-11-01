@@ -1,10 +1,10 @@
 # Nguồn dữ liệu và schema
 
-Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 002](../../migrations/002_vectors.sql), [migration 003](../../migrations/003_exam_concurrency.sql). [Auth Drizzle schema](../../lib/sql/schema.ts) và [SQL pool](../../lib/sql/index.ts).
+Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 002](../../migrations/002_vectors.sql), [migration 003](../../migrations/003_exam_concurrency.sql). [Auth migration008](../../migrations/008_nest_auth.sql) và [SQL pool](../../packages/backend/src/sql/index.ts).
 
 | Nơi lưu | Nhóm dữ liệu | Ràng buộc / sử dụng |
 |---|---|---|
-| PostgreSQL | auth_user/session/account/verification | Better Auth; tài khoản, cookie session, credential/provider |
+| PostgreSQL | users, auth_identities, auth_refresh_sessions/tokens, auth_one_time_tokens | Native JWT, credential/provider identity; hash refresh/one-time tokens |
 | PostgreSQL | profiles | Một row/user; level/goal/minutes/timezone |
 | PostgreSQL | drafts, favorites, submissions | Theo user; nháp optimistic version; snapshot đề và báo cáo JSONB |
 | PostgreSQL | vocabulary, review_logs | Card FSRS JSON, due/version/algorithm; review transaction và request ID |
@@ -18,7 +18,7 @@ Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 00
 | Redis | Queue/cache/rate limit | Dữ liệu tạm; không thay thế PostgreSQL tiến độ |
 | S3 | Audio riêng tư | Signed URL có hạn, không public bucket |
 
-Sao lưu trước migration/import; PostgreSQL và MongoDB là hai nguồn khác trách nhiệm, không giả định transaction xuyên database. Không chuyển mật khẩu/session/provider token vào response profile hay tài liệu. Các câu SQL dữ liệu cá nhân luôn ràng buộc user lấy từ session.
+Sao lưu trước migration/import; PostgreSQL và MongoDB là hai nguồn khác trách nhiệm, không giả định transaction xuyên database. Không chuyển mật khẩu/session/provider token vào response profile hay tài liệu. Các câu SQL dữ liệu cá nhân luôn ràng buộc user lấy từ JWT đã kiểm active session.
 
 ## Knowledge library — migration004
 
@@ -31,3 +31,5 @@ Migrations [005](../../migrations/005_local_speech.sql) và [006](../../migratio
 ## Catalog sense identity007
 
 [Migration007](../../migrations/007_vocabulary_catalog.sql) bổ sung vocabulary.sense_key default'' và content_snapshot; manual unique user/term/kind partial, catalog unique user/sense partial; không thay card/review_logs. catalog_progress CAS self-report, catalog_preferences0–30/day, catalog_introductions unique sense lifetime + counted flag. Explicit attach manual giữ lịch/note và không tiêu quota. [Contracts](../features/vocabulary-catalog/functions.md); rollback chỉ bridge/newer (old ON CONFLICT target không tương thích).
+
+008 rename giữ tất cả business FK/ID/hash, xóa session/verification/provider tokens cũ có chủ đích. Replay dùng used_at giữ tới session hết hạn, refresh30d absolute; revocation DB có hiệu lực ngay dù access JWT còn hạn. [Schema008](../../migrations/008_nest_auth.sql).

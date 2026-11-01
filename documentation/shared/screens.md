@@ -4,16 +4,16 @@ Inventory theo tất cả `app/**/page.tsx` tại baseline. Mỗi hàng trỏ t�
 
 | Route / source | UI chuẩn | Thành phần / trạng thái hiện có |
 |---|---|---|
-| [/](../../app/page.tsx) | [Dashboard](../features/daily-dashboard/ui.md) | Lịch hôm nay, ưu tiên, hoàn thành/bỏ nhiệm vụ, streak |
-| [/sign-in](../../app/sign-in/page.tsx) | [Auth](../features/identity-auth/ui.md) | Đăng nhập, đăng ký, quên/reset mật khẩu, nút Google, thông báo |
-| [/practice](../../app/practice/page.tsx) | [Luyện dịch](../features/translation-practice/ui.md) | Danh sách/thẻ, lọc, editor nháp, chấm/job, báo cáo, từ điển, lịch sử/yêu thích |
-| [/vocabulary](../../app/vocabulary/page.tsx) | [SRS](../features/vocabulary-srs/ui.md) | Kho từ, thêm/sửa/tạm dừng, thẻ ôn Again/Hard/Good/Easy |
-| [/library](../../app/library/page.tsx) | [Nghe đọc nói](../features/immersive-learning/ui.md), [Tutor](../features/ai-tutor/ui.md) | Đọc/tra từ, transcript/chép chính tả, thu âm/STT, hỏi Tutor |
-| [/exams](../../app/exams/page.tsx) | [Luyện thi](../features/exam-practice/ui.md) | Chọn đề, mini exam, timer, autosave, kết quả; chưa có kho đề đầy đủ |
-| [/profile](../../app/profile/page.tsx) | [Profile](../features/user-profile/ui.md) | Tên, mục tiêu, phút, trình độ, múi giờ; bảo mật/nhập nháp; avatar/provider, loading/error/retry |
-| [/admin](../../app/admin/page.tsx) | [Học liệu](../features/content-authoring/ui.md) | Tạo/duyệt/xuất bản, AI nháp, index Tutor; API chặn learner 403 |
+| [/](../../apps/web/app/page.tsx) | [Dashboard](../features/daily-dashboard/ui.md) | Lịch hôm nay, ưu tiên, hoàn thành/bỏ nhiệm vụ, streak |
+| [/sign-in](../../apps/web/app/sign-in/page.tsx) | [Auth](../features/identity-auth/ui.md) | Đăng nhập, đăng ký, quên/reset mật khẩu, nút Google, thông báo |
+| [/practice](../../apps/web/app/practice/page.tsx) | [Luyện dịch](../features/translation-practice/ui.md) | Danh sách/thẻ, lọc, editor nháp, chấm/job, báo cáo, từ điển, lịch sử/yêu thích |
+| [/vocabulary](../../apps/web/app/vocabulary/page.tsx) | [SRS](../features/vocabulary-srs/ui.md) | Kho từ, thêm/sửa/tạm dừng, thẻ ôn Again/Hard/Good/Easy |
+| [/library](../../apps/web/app/library/page.tsx) | [Nghe đọc nói](../features/immersive-learning/ui.md), [Tutor](../features/ai-tutor/ui.md) | Đọc/tra từ, transcript/chép chính tả, thu âm/STT, hỏi Tutor |
+| [/exams](../../apps/web/app/exams/page.tsx) | [Luyện thi](../features/exam-practice/ui.md) | Chọn đề, mini exam, timer, autosave, kết quả; chưa có kho đề đầy đủ |
+| [/profile](../../apps/web/app/profile/page.tsx) | [Profile](../features/user-profile/ui.md) | Tên, mục tiêu, phút, trình độ, múi giờ; bảo mật/nhập nháp; avatar/provider, loading/error/retry |
+| [/admin](../../apps/web/app/admin/page.tsx) | [Học liệu](../features/content-authoring/ui.md) | Tạo/duyệt/xuất bản, AI nháp, index Tutor; API chặn learner 403 |
 
-[Shell](../../components/shell.tsx) chung: logo e/ngôi sao, header, navigation, footer, guest welcome. Palette hiện hành: paper/white/ink/Cobalt, Inter Variable và editorial typography; không neo brutalism/gradient/glow. Xem [design system](../features/design-system/ui.md).
+[Shell](../../apps/web/components/shell.tsx) chung: logo e/ngôi sao, header, navigation, footer, guest welcome. Palette hiện hành: paper/white/ink/Cobalt, Inter Variable và editorial typography; không neo brutalism/gradient/glow. Xem [design system](../features/design-system/ui.md).
 
 Các trạng thái tải/lỗi/rỗng và giới hạn từng route được ghi tại UI feature. Shell phân biệt pending/error/guest/signed-in; avatar/profile được bổ sung trên feature/user-profile. Chưa coi toàn bộ route đã audit trực quan đầy đủ chỉ từ inventory này.
 
@@ -29,11 +29,11 @@ Theme mới theo [design guide](../design/README.md), [8 màn hình trước/sau
 
 ## Thêm màn hình tự học 2026-10-31
 
-- [/knowledge](../../app/knowledge/page.tsx): [UI chuẩn](../features/knowledge-library/ui.md), browse/search + reader + notes/resume/exercises/SRS.
-- [/admin/knowledge](../../app/admin/knowledge/page.tsx): editor/duyệt/publish/revision. Trạng thái xác minh ở [audit](../features/knowledge-library/audit.md).
+- [/knowledge](../../apps/web/app/knowledge/page.tsx): [UI chuẩn](../features/knowledge-library/ui.md), browse/search + reader + notes/resume/exercises/SRS.
+- [/admin/knowledge](../../apps/web/app/admin/knowledge/page.tsx): editor/duyệt/publish/revision. Trạng thái xác minh ở [audit](../features/knowledge-library/audit.md).
 
 ## Speech recording (2026-10-31)
 
-[/speech](../../app/speech/page.tsx) từ /library: hai panel thu/import/preview/consent và history riêng, status poll, playback/delete. Không có điểm phát âm. Provider/cảnh báo Google theo capabilities; giữ wireframe các route cũ. Canonical [UI](../features/self-hosted-speech/ui.md), [audit](../features/self-hosted-speech/audit.md).
+[/speech](../../apps/web/app/speech/page.tsx) từ /library: hai panel thu/import/preview/consent và history riêng, status poll, playback/delete. Không có điểm phát âm. Provider/cảnh báo Google theo capabilities; giữ wireframe các route cũ. Canonical [UI](../features/self-hosted-speech/ui.md), [audit](../features/self-hosted-speech/audit.md).
 
 /word-sets: search/filter/pagination → bộ pin nghĩa → reveal/examples/TTS/record link/save SRS/known/skipped/preferences. /admin/word-sets: sense/set editor/version workflow. /vocabulary và /admin thêm Link giữ wireframe. [Canonical UI](../features/vocabulary-catalog/ui.md); chưa có nội dung thật được xuất bản tới khi owner duyệt.

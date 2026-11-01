@@ -1,72 +1,173 @@
 {
   "version": 1,
-  "snapshotDate": "2026-10-30",
-  "baselineCommit": "1d0fbad",
+  "snapshotDate": "2026-11-01",
+  "baselineCommit": "0b34a97",
   "features": [
     {
       "id": "identity-auth",
       "status": "implemented",
       "code": [
         {
-          "file": "lib/auth.ts",
+          "file": "apps/api/src/auth/auth.service.ts",
           "symbols": [
             "isAdmin",
-            "sendMail",
-            "createAuth",
-            "getAuth"
+            "origin",
+            "secure",
+            "refreshName",
+            "issuer",
+            "audience",
+            "UserRow",
+            "publicUser",
+            "AuthService",
+            "AuthService.csrf",
+            "AuthService.protect",
+            "AuthService.cookie",
+            "AuthService.access",
+            "AuthService.startSession",
+            "AuthService.login",
+            "AuthService.refresh",
+            "AuthService.authenticate",
+            "AuthService.logout",
+            "AuthService.mail",
+            "AuthService.oneTime",
+            "AuthService.signup",
+            "AuthService.verifyEmail",
+            "AuthService.requestReset",
+            "AuthService.resetPassword",
+            "AuthService.changePassword",
+            "AuthService.googleStart",
+            "AuthService.googleCallback"
           ],
-          "sha256": "50ec3c57b617776bed68a86be3ff42b524df37b67d5fe5ffc0ae74f9d5c644dc"
+          "sha256": "e15303a90104f8ac343ea6640cea2bb52cd65e5054dc4dc2e4b7f6c784ed7614"
         },
         {
-          "file": "lib/auth-client.ts",
+          "file": "apps/web/lib/auth.tsx",
           "symbols": [
-            "authClient"
+            "User",
+            "Snapshot",
+            "snapshot",
+            "serverSnapshot",
+            "accessToken",
+            "initialized",
+            "refreshing",
+            "listeners",
+            "channel",
+            "update",
+            "signedOut",
+            "csrf",
+            "authRequest",
+            "refresh",
+            "bootstrap",
+            "AuthProvider",
+            "useAuth",
+            "apiFetch",
+            "execute",
+            "auth"
           ],
-          "sha256": "0e16bb7453403546d91492f9ff458786ad085b7e739a213d148d71fd0065b079"
+          "sha256": "ace735cd2819cfb551e97414151e93b32720aa51911b28a9b1cc2ca2627f73f3"
         },
         {
-          "file": "lib/sql/schema.ts",
-          "symbols": [
-            "user",
-            "session",
-            "account",
-            "verification"
-          ],
-          "sha256": "0c50cd0bd4dcfb06b8eb880b17056e3f4d3b3a337dcb94b365710cd63932c3d0"
+          "file": "migrations/008_nest_auth.sql",
+          "symbols": [],
+          "sha256": "295769b218c3e2962441bef6ba0f604581fafa3b482db3794b7d45c69b0dc9c6"
         },
         {
-          "file": "app/sign-in/page.tsx",
+          "file": "apps/web/app/sign-in/page.tsx",
           "symbols": [
             "Form",
-            "submit",
             "SignIn"
           ],
-          "sha256": "92bbaa11608989b062fd75c05bd5235dfbc5333ca95715f08d8a0d28bf9faff5"
+          "sha256": "df2e8ca9c8fc1f6a32a104d44cec914c7d3617682dd52496e2cda16c9aa0e5b7"
         },
         {
-          "file": "app/api/auth/[...all]/route.ts",
+          "file": "apps/api/src/auth/auth.controller.ts",
           "symbols": [
-            "runtime",
-            "GET",
-            "POST",
-            "handleAuth"
+            "password",
+            "email",
+            "AuthController",
+            "AuthController.csrf",
+            "AuthController.login",
+            "AuthController.signup",
+            "AuthController.refresh",
+            "AuthController.me",
+            "AuthController.logout",
+            "AuthController.logoutAll",
+            "AuthController.verify",
+            "AuthController.forgot",
+            "AuthController.reset",
+            "AuthController.change",
+            "AuthController.google",
+            "AuthController.callback"
           ],
-          "sha256": "9bd73f67261c9204c9a0abd980006f2b005fc3998b8cf0d18e5eb997dadd9534"
+          "sha256": "e9db1ca86894c7e50dea0a45ab0c891e51685e69afff4ae3f20eff2eb90d4f6b"
         },
         {
-          "file": "app/api/config/route.ts",
+          "file": "apps/api/src/domains/config.service.ts",
           "symbols": [
-            "dynamic",
-            "GET"
+            "ConfigService",
+            "ConfigService.get"
           ],
-          "sha256": "987d874ea4c4e0e248475fcef6349565a4c529d4b90e8613b62324c337898b0a"
+          "sha256": "7f6dc81127e67c51e239c1e9a18d53f593d204b8545bda9e0064c316681f5141"
         },
         {
-          "file": "lib/auth-errors.ts",
+          "file": "apps/web/lib/auth-errors.ts",
           "symbols": [
             "authErrorMessage"
           ],
           "sha256": "7224e3011e9af7c0e6e35534072750aab55663fde2dc366d3a885cbfd8b58f96"
+        },
+        {
+          "file": "apps/api/src/auth/jwt.guard.ts",
+          "symbols": [
+            "AuthenticatedRequest",
+            "JwtGuard",
+            "JwtGuard.canActivate"
+          ],
+          "sha256": "3a74918b2c2c61ea816c225f9bde3d040cc1937c78fb4a4ed0e033c98b702934"
+        },
+        {
+          "file": "apps/api/src/domains/config.controller.ts",
+          "symbols": [
+            "ConfigController",
+            "ConfigController.get"
+          ],
+          "sha256": "536b10bdd2e51f2f50b852b022ae6f79a11d9dff9eca77ef960096ea85d6cf57"
+        },
+        {
+          "file": "packages/backend/src/auth-crypto.ts",
+          "symbols": [
+            "randomToken",
+            "tokenHash",
+            "key",
+            "hashPassword",
+            "verifyPassword"
+          ],
+          "sha256": "3dbf4b5a43cc6ab4cf1c46309d3b64b64171f5f2ab805ef4698647e5f5cc8587"
+        },
+        {
+          "file": "tests/e2e/nest-auth.spec.ts",
+          "symbols": [
+            "routes"
+          ],
+          "sha256": "f29408ef21590ff4ed160e18b67b54ad755d8ae791edff4d034fe41c4956937d"
+        },
+        {
+          "file": "tests/unit/auth-crypto.test.ts",
+          "symbols": [],
+          "sha256": "9a3ace65288721dd3e675c01b6dd57cfd857ad3b08227fe3096c2283b1315aa3"
+        },
+        {
+          "file": "tests/e2e/helpers/jwt-context.ts",
+          "symbols": [
+            "installed",
+            "installJwtContext"
+          ],
+          "sha256": "4d876fa9ca121548870d8709a7257229ea726a29a8abdce502609d7b3c2b4915"
+        },
+        {
+          "file": "tests/unit/nest-jwt.test.ts",
+          "symbols": [],
+          "sha256": "6ee0c157d3eb801a27eb4c22293587c287cc2c56e974b30638413b1d4e357312"
         }
       ]
     },
@@ -75,32 +176,32 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/profile/page.tsx",
+          "file": "apps/web/app/profile/page.tsx",
           "symbols": [
             "Profile",
-            "saveProfile",
             "AccountSecurity",
             "LegacyDraftImport"
           ],
-          "sha256": "b3a349374db286f56e108c2c86d89b2d58cffe37992c22551e26730c1c3ea90b"
+          "sha256": "9e439e09855ed0199c12412ac0bfbbc93f832c00b030443398f211918380f633"
         },
         {
-          "file": "app/api/profile/route.ts",
+          "file": "apps/api/src/domains/profile.service.ts",
           "symbols": [
-            "GET",
-            "PUT"
+            "ProfileService",
+            "ProfileService.get",
+            "ProfileService.put"
           ],
-          "sha256": "98fa128710a1284c2262579a18d36a93e8b21ebe720babfcd5ccd3284feab0f7"
+          "sha256": "57cf3415338f9fa31061e3167c0fe76b68e57787c09efae11c6b3307a036ff34"
         },
         {
-          "file": "components/user-avatar.tsx",
+          "file": "apps/web/components/user-avatar.tsx",
           "symbols": [
             "UserAvatar"
           ],
           "sha256": "bfe957546c1ffa042a68e13e6a54465f9d3e9f480c05484f61e32f32982960fa"
         },
         {
-          "file": "lib/profile.ts",
+          "file": "packages/contracts/src/profile.ts",
           "symbols": [
             "profileInput",
             "ProfileResponse"
@@ -109,18 +210,33 @@
         },
         {
           "file": "tests/unit/profile.test.ts",
-          "symbols": [],
-          "sha256": "70611686f70bbf4ad4f0de1d578edac3ff1b8131302afcb120518ca7809a0bad"
+          "symbols": [
+            "valid"
+          ],
+          "sha256": "4d0c0bf5186abeec656614b0a73e023651b604de409d6434cd61ae0b040a599f"
         },
         {
           "file": "tests/e2e/profile-ui.spec.ts",
-          "symbols": [],
-          "sha256": "be06d3ab34a2740d29e6148cb24dcc054c57e02b3463582988333ed17ab39169"
+          "symbols": [
+            "user",
+            "profile",
+            "session"
+          ],
+          "sha256": "8da807193113f757c7d2e0d977da109af52278d4e5a43c7005c9b855f92a17ef"
         },
         {
-          "file": "app/profile/profile.css",
+          "file": "apps/web/app/profile/profile.css",
           "symbols": [],
           "sha256": "b360ab6c9ca796bab4bd086b8707db8ff7b5a9602be9dea9c4c66dc598fd9fc3"
+        },
+        {
+          "file": "apps/api/src/domains/profile.controller.ts",
+          "symbols": [
+            "ProfileController",
+            "ProfileController.get",
+            "ProfileController.put"
+          ],
+          "sha256": "8b3206e65ab75d8a4feb765fc1ff3c018708223cce527776ddd18982ff36b4cf"
         }
       ]
     },
@@ -129,27 +245,25 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/practice/page.tsx",
+          "file": "apps/web/app/practice/page.tsx",
           "symbols": [
             "Page"
           ],
-          "sha256": "e1372ee6d3c7a4d7dc025c52ca27df6cc45b7d6468404c5e3f45ae191301ab34"
+          "sha256": "94ee2d66f085c81203b18d6960382d85e31d11b12a781069f9b8261cf10e03f2"
         },
         {
-          "file": "components/practice.tsx",
+          "file": "apps/web/components/practice.tsx",
           "symbols": [
+            "Stats",
+            "DictionaryEntry",
+            "DictionaryLookup",
+            "SavedReview",
+            "SavedFavorite",
+            "EMPTY_STATS",
             "apiErrorMessage",
             "SaveKnowledge",
             "KoreanLinkedText",
             "Practice",
-            "changeFilter",
-            "saveDraft",
-            "submit",
-            "viewSaved",
-            "openLibrary",
-            "toggleFavorite",
-            "toggleAnswer",
-            "copyText",
             "SourceText",
             "AnswerInput",
             "AnswerDetails",
@@ -160,29 +274,27 @@
             "GradeModal",
             "FeedbackSection",
             "DictionarySelectionLookup",
-            "openLookup",
-            "inspectSelection",
-            "handleAutoLookup",
-            "dismissOutside",
-            "speakSelection",
+            "POS_LABELS",
             "DictionaryResultCard",
             "useLookup"
           ],
-          "sha256": "f876fbc2cae857d2182ece98c495d67e9ddce4ca9fbf6cc240273283071a3016"
+          "sha256": "a22f0e80e0e58a112d5c883ee62dd7ddad3d6fe13dacf487f9e26f15342295f4"
         },
         {
-          "file": "app/api/sentences/route.ts",
+          "file": "apps/api/src/domains/sentences.service.ts",
           "symbols": [
-            "runtime",
-            "dynamic",
             "handleGet",
-            "GET"
+            "SentencesService",
+            "SentencesService.get"
           ],
-          "sha256": "d017ab3f1a1785134daac367a5b4fc3e79d1e66b286374cb1805ed26bf7a9ae9"
+          "sha256": "61d06692452678a1188621446c076bf4c3b08e980745629101baec581f35a3b9"
         },
         {
-          "file": "components/sample-audio-player.tsx",
+          "file": "apps/web/components/sample-audio-player.tsx",
           "symbols": [
+            "PlaybackOwner",
+            "activePlayback",
+            "release",
             "SampleAudioPlayer",
             "Playback"
           ],
@@ -191,7 +303,15 @@
         {
           "file": "tests/e2e/sample-audio.spec.ts",
           "symbols": [],
-          "sha256": "d5edf31d9a7e6cd1fcfa5538cf4abf2bde6fe27d6932cc262edeb19c42f85cbc"
+          "sha256": "d0d151dc72c3e8b531534972b5b0730d82da464cd72fcb2aebec1e8c18b141e2"
+        },
+        {
+          "file": "apps/api/src/domains/sentences.controller.ts",
+          "symbols": [
+            "SentencesController",
+            "SentencesController.get"
+          ],
+          "sha256": "a93769b83739e37a1640230d5865050e051ed1d44bd87116cbc3469431ce5247"
         }
       ]
     },
@@ -200,61 +320,107 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/api/drafts/route.ts",
+          "file": "apps/api/src/domains/drafts.service.ts",
           "symbols": [
-            "GET",
-            "PUT"
+            "DraftsService",
+            "DraftsService.get",
+            "DraftsService.put"
           ],
-          "sha256": "ad107844c4b21d8332e372f6e14571765c9bf35620bd23190abc068fe64085bb"
+          "sha256": "2f5ea522a4b65d734c0def3ba91ba5935744bd111145c96a9b97a9a7858857ba"
         },
         {
-          "file": "app/api/submissions/route.ts",
+          "file": "apps/api/src/domains/submissions.service.ts",
           "symbols": [
-            "GET"
+            "SubmissionsService",
+            "SubmissionsService.get"
           ],
-          "sha256": "0b15a48133630aa61bbd80eebc86b5c3ed1270af5d3bda5ebcdfbcf560322e22"
+          "sha256": "433ced0373febbab0bf3930bb3726f468b0770fdbfe8a2e77f12446c41472dae"
         },
         {
-          "file": "app/api/user/favorites/route.ts",
+          "file": "apps/api/src/domains/user-favorites.service.ts",
           "symbols": [
-            "GET",
-            "POST"
+            "UserFavoritesService",
+            "UserFavoritesService.get",
+            "UserFavoritesService.post"
           ],
-          "sha256": "175e154ac96fd47d5bd969db680fa03ff3d080347c5596c913fabe1637e006c5"
+          "sha256": "cec85663edd59b09d648abd5939d25e2ba84b066e429bdfc81c173ad43115408"
         },
         {
-          "file": "app/api/user/stats/route.ts",
+          "file": "apps/api/src/domains/user-stats.service.ts",
           "symbols": [
-            "GET"
+            "UserStatsService",
+            "UserStatsService.get"
           ],
-          "sha256": "8dd9cbded2dd9956762cfb3830e2b1560d42888a43347863d72e76bcdcb70cf3"
+          "sha256": "075b9ad76b27cb763b5f40e5adc20c583779787f333eb1477acd476a20c30244"
         },
         {
-          "file": "lib/learning/submissions.ts",
+          "file": "packages/backend/src/learning/submissions.ts",
           "symbols": [
+            "StoredSubmission",
             "reportView",
             "statistics"
           ],
-          "sha256": "1c5475a53f9699afc64bfbd4667f7767a10e9080ed6a9e08acf217702a1b8442"
+          "sha256": "6b5e602d49188c45dd4f702d0f27af62608c1105e3bf23744802c3f355e43424"
         },
         {
-          "file": "lib/models/Submission.ts",
+          "file": "packages/backend/src/models/Submission.ts",
           "symbols": [
+            "GrammarErrorSchema",
+            "VocabSuggestionSchema",
+            "RewriteSchema",
+            "SubmissionSchema",
             "Submission"
           ],
           "sha256": "cd551c87ddc49e4f805bf0f0bae2887207971892ed8a84ebf28afbfe35d9eecd"
         },
         {
-          "file": "lib/models/UserSentenceState.ts",
+          "file": "packages/backend/src/models/UserSentenceState.ts",
           "symbols": [
+            "UserSentenceStateSchema",
             "UserSentenceState"
           ],
           "sha256": "089d4f9d837c90b40c50cc30657577680972de8a57d5525ad47848f4fcc467e4"
         },
         {
-          "file": "scripts/import-legacy.ts",
-          "symbols": [],
-          "sha256": "67f2dcdc519dd2ebbe62b3400ff5acd7d9803552a59a0d49cac4066c8eff6517"
+          "file": "scripts/import-records.ts",
+          "symbols": [
+            "c"
+          ],
+          "sha256": "3a916fed7821c39cadec70323894ce387a06ad6eb6fc258ea4e9aeddab5ae199"
+        },
+        {
+          "file": "apps/api/src/domains/drafts.controller.ts",
+          "symbols": [
+            "DraftsController",
+            "DraftsController.get",
+            "DraftsController.put"
+          ],
+          "sha256": "e1d218787cbcdbf9993de8a599c7e1e4f4caaa8847c173d556815b80028537ed"
+        },
+        {
+          "file": "apps/api/src/domains/submissions.controller.ts",
+          "symbols": [
+            "SubmissionsController",
+            "SubmissionsController.get"
+          ],
+          "sha256": "36947ed1a0ceca443e96c05e7a47129a69c01bf311f6c9765c47a5f3d3d78ca0"
+        },
+        {
+          "file": "apps/api/src/domains/user-favorites.controller.ts",
+          "symbols": [
+            "UserFavoritesController",
+            "UserFavoritesController.get",
+            "UserFavoritesController.post"
+          ],
+          "sha256": "05f9f2023d4ecfa4ae606ed59e92cfd2db3ac7b5c213247b806b8158b85c84a9"
+        },
+        {
+          "file": "apps/api/src/domains/user-stats.controller.ts",
+          "symbols": [
+            "UserStatsController",
+            "UserStatsController.get"
+          ],
+          "sha256": "04eb4069e4302bb5206d18f9d15eb3df08fa931ae5656f851b6de1bae8c06759"
         }
       ]
     },
@@ -263,51 +429,97 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/api/submissions/grade/route.ts",
+          "file": "apps/api/src/domains/submissions-grade.service.ts",
           "symbols": [
-            "POST"
+            "SubmissionsGradeService",
+            "SubmissionsGradeService.post"
           ],
-          "sha256": "a4de62444deb522bb0baf38b98cf654b2f028815513d68c6b8529d3151ef0d43"
+          "sha256": "de2234835609d2d456db6e65f86936049a5d03e4827f12165e92cb24dbbfd374"
         },
         {
-          "file": "app/api/jobs/route.ts",
+          "file": "apps/api/src/domains/jobs.service.ts",
           "symbols": [
-            "GET"
+            "JobsService",
+            "JobsService.get"
           ],
-          "sha256": "ee9adcfbbe7ee8a25fa53bd46a45819f03f0a2411334ee4a00718a9be27c5b11"
+          "sha256": "f0b524aba8b2c419aaca8b09878b7231318b579a866ec972fb820f3331bde73c"
         },
         {
-          "file": "lib/ai.ts",
+          "file": "packages/backend/src/ai.ts",
           "symbols": [
+            "ProviderError",
+            "retryAfterMs",
+            "grammarError",
+            "vocabSuggestion",
+            "rewrite",
             "gradeSchema",
+            "sentenceSchema",
+            "generationSchema",
             "generateJson",
             "generateExercises",
             "gradeTranslation",
             "aiErrorResponse"
           ],
-          "sha256": "83b00be2626e61b954344faac48a8e21ac93e138f814bf91c0a8f8af7eeb8f6d"
+          "sha256": "763a55fbe5a1cb344b94deaa82c3c0dc7fef4130d4c03d75e0bdf84d4a5737ba"
         },
         {
-          "file": "scripts/worker.ts",
+          "file": "apps/worker/src/grading.processor.ts",
           "symbols": [
-            "recover"
+            "recovering",
+            "recover",
+            "reconcileFailure",
+            "GradingProcessor",
+            "GradingProcessor.onModuleInit",
+            "GradingProcessor.onModuleDestroy",
+            "GradingProcessor.process",
+            "GradingProcessor.execute",
+            "GradingProcessor.onFailed",
+            "GradingProcessor.persistFailure",
+            "GradingProcessor.onError"
           ],
-          "sha256": "e707c4968747bfb81c19b54b4a33cc51c3035ff8039045063a7fdb8ebe2123ca"
+          "sha256": "c40b8ac4fe53de0b6c680d0a73c9cb7033bfda1718849783142f6c58f18ed9de"
         },
         {
           "file": "tests/unit/grading-worker.test.ts",
-          "symbols": [],
-          "sha256": "d90dc67d99d4cbc885d6e655f6f232db1018ba7dc2fdf564b9615f0537a417a6"
+          "symbols": [
+            "state",
+            "processor",
+            "load",
+            "signalListeners"
+          ],
+          "sha256": "e3b31b7bfac0f4b3e52ae4814a1fbc1aa55c680f259691651e4ea782fbe49260"
         },
         {
           "file": "tests/unit/grading-retry.test.ts",
-          "symbols": [],
-          "sha256": "412f845cc3ae14eb40e571217e155d9ce8af30d53ae97aa0f3edf86da936a1a7"
+          "symbols": [
+            "state",
+            "service",
+            "viewer",
+            "POST",
+            "request"
+          ],
+          "sha256": "10f808e921a3d8bfcfd22ca86e831aef8b536091ef60a53f00e694bfab9d4844"
         },
         {
           "file": "tests/e2e/grading-retry.spec.ts",
           "symbols": [],
-          "sha256": "66a8a7269ece843552b660778fcfb215894cf1b5bf5fdd31787ad6e6428e78d9"
+          "sha256": "785ed049413fa78bac7ba9b4dcc119642080f06b9b40375af54d7703ec802ebe"
+        },
+        {
+          "file": "apps/api/src/domains/jobs.controller.ts",
+          "symbols": [
+            "JobsController",
+            "JobsController.get"
+          ],
+          "sha256": "721545924443a2c266861e9dfd29550a263512e83b710d720b19d8cab1779dbd"
+        },
+        {
+          "file": "apps/api/src/domains/submissions-grade.controller.ts",
+          "symbols": [
+            "SubmissionsGradeController",
+            "SubmissionsGradeController.post"
+          ],
+          "sha256": "5e73e739947e89619bf7384703e086cf49246c54d62c2ee893292f89787b60ea"
         }
       ]
     },
@@ -316,40 +528,60 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/vocabulary/page.tsx",
+          "file": "apps/web/app/vocabulary/page.tsx",
           "symbols": [
+            "Card",
             "Vocabulary",
-            "save",
-            "rate",
-            "Page",
-            "listen"
+            "Page"
           ],
-          "sha256": "9ae306fd7dd7dc028bb652242c53eab4d019fcb5b193fcad7817be13976af9d1"
+          "sha256": "28d4f44fb8ddf38636249e3d9fee3d67441449c19bf7f3e547caacb50939a70a"
         },
         {
-          "file": "app/api/vocabulary/route.ts",
+          "file": "apps/api/src/domains/vocabulary.service.ts",
           "symbols": [
-            "GET",
-            "POST",
-            "PUT"
+            "fields",
+            "VocabularyService",
+            "VocabularyService.get",
+            "VocabularyService.post",
+            "VocabularyService.put"
           ],
-          "sha256": "0870a4d295f96ae4f2e542fff6e8ffd6cdc2607e75cd7df41bdfddac199fbaa3"
+          "sha256": "777eecc702b324570ca8f3c73138b4e8667fe63f7cf4e40aae909cbc582d52f1"
         },
         {
-          "file": "app/api/reviews/route.ts",
+          "file": "apps/api/src/domains/reviews.service.ts",
           "symbols": [
-            "POST"
+            "ReviewsService",
+            "ReviewsService.post"
           ],
-          "sha256": "8ff3f6af449f6a12d057c30ff94afad5df8554265981de04bee0a6bc743d4d28"
+          "sha256": "87b5798bab06d8abde5665aa63e573272b0703e94d31a5e9974d3d7da20a9dcf"
         },
         {
-          "file": "lib/learning/srs.ts",
+          "file": "packages/backend/src/learning/srs.ts",
           "symbols": [
             "ALGORITHM",
+            "schedulerPromise",
             "newCard",
             "reviewCard"
           ],
           "sha256": "e8e9fc8ba9cdacb970ad2e8dd608ab0cfd98a423f113223307aa5a2e00c93468"
+        },
+        {
+          "file": "apps/api/src/domains/reviews.controller.ts",
+          "symbols": [
+            "ReviewsController",
+            "ReviewsController.post"
+          ],
+          "sha256": "f6107955dee079c8c691205b4483fae929bd70d0f7bb18e3d0fab9a003906afe"
+        },
+        {
+          "file": "apps/api/src/domains/vocabulary.controller.ts",
+          "symbols": [
+            "VocabularyController",
+            "VocabularyController.get",
+            "VocabularyController.post",
+            "VocabularyController.put"
+          ],
+          "sha256": "6482468d05ac25981d98d21dbec423db52dec794389a0616ef6309d900db1b69"
         }
       ]
     },
@@ -358,36 +590,47 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/page.tsx",
+          "file": "apps/web/app/page.tsx",
           "symbols": [
             "Home"
           ],
           "sha256": "f14006ae23e1d7f495afecc1b4100b16ce617b6f119fd8dd7ab0b64a11c3480d"
         },
         {
-          "file": "components/dashboard.tsx",
+          "file": "apps/web/components/dashboard.tsx",
           "symbols": [
-            "Dashboard",
-            "change"
+            "Data",
+            "Dashboard"
           ],
-          "sha256": "d69b1d50f4a1671299010333b15ef3a852375a6736289074876b14219490670d"
+          "sha256": "bef13cb1060fac5a395a5069caca21d65d9cf4213ccf360a085bd8cca63bfce6"
         },
         {
-          "file": "app/api/dashboard/route.ts",
+          "file": "apps/api/src/domains/dashboard.service.ts",
           "symbols": [
-            "GET",
-            "PATCH"
+            "DashboardService",
+            "DashboardService.get",
+            "DashboardService.patch"
           ],
-          "sha256": "0ab7e303412ee5a165f871c48e633e100bfd65d27b9ca384990130ea798ab9e2"
+          "sha256": "fd3b208a849274ca533a1676c82a0beed32a7136837e46a95adbe14f6fb3949a"
         },
         {
-          "file": "lib/learning/schedule.ts",
+          "file": "packages/contracts/src/learning/schedule.ts",
           "symbols": [
+            "DailyTask",
             "localDay",
             "makePlan",
             "streak"
           ],
           "sha256": "90db1a4f925576b4510019f32b9a4a03bb051c21830ed34a529d84e3e80b99aa"
+        },
+        {
+          "file": "apps/api/src/domains/dashboard.controller.ts",
+          "symbols": [
+            "DashboardController",
+            "DashboardController.get",
+            "DashboardController.patch"
+          ],
+          "sha256": "913f6ec614fe3d9efb7b3bd94d832dd6c21efea072f6dd7571f2bd97d37dd234"
         }
       ]
     },
@@ -396,16 +639,26 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/api/dictionary/route.ts",
+          "file": "apps/api/src/domains/dictionary.service.ts",
           "symbols": [
-            "runtime",
+            "XmlNode",
+            "EntryPart",
+            "parser",
             "asArray",
             "text",
             "handleGet",
-            "search",
-            "GET"
+            "DictionaryService",
+            "DictionaryService.get"
           ],
-          "sha256": "bd5adfe22a38915b8f7468bdf89232f5c9761fd30a638e7821a68f0dd1df9f35"
+          "sha256": "7d098a9d8f198ed42d5e1a590fc0026ea1ac96401507e5d9f92f2f853675fa2e"
+        },
+        {
+          "file": "apps/api/src/domains/dictionary.controller.ts",
+          "symbols": [
+            "DictionaryController",
+            "DictionaryController.get"
+          ],
+          "sha256": "aa059606d16ee29420ac496915ba9139b90d399fc5c9021f059465b736d5e55a"
         }
       ]
     },
@@ -414,45 +667,52 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/admin/page.tsx",
+          "file": "apps/web/app/admin/page.tsx",
           "symbols": [
+            "Content",
             "Admin",
-            "transition",
             "AdvancedTools"
           ],
-          "sha256": "526e3ebc275c5c98658c10449c32fd0348868f3b3a3929b42fe72c0770ba4a35"
+          "sha256": "1b40f94d7a7e4338e86ff65ce9d31d97a42ee0874d0c606abe723a093fd72573"
         },
         {
-          "file": "app/api/admin/content/route.ts",
+          "file": "apps/api/src/domains/admin-content.service.ts",
           "symbols": [
-            "GET",
-            "POST",
-            "PATCH"
+            "body",
+            "AdminContentService",
+            "AdminContentService.get",
+            "AdminContentService.post",
+            "AdminContentService.patch"
           ],
-          "sha256": "d4dc3afbe606e945617fbfb8dd40f1d330a317f221c5c10f89f9b2c391a9057b"
+          "sha256": "2e019fffed99d06eeae0cb649ea6c2363de6729d7c84ba7ecd90375c76ab81fc"
         },
         {
-          "file": "app/api/sentences/generate/route.ts",
+          "file": "apps/api/src/domains/sentences-generate.service.ts",
           "symbols": [
-            "POST"
+            "SentencesGenerateService",
+            "SentencesGenerateService.post"
           ],
-          "sha256": "b9599f039402f4ad9b2ced802149ec697f3f783080682f3f6cb90450a56820ea"
+          "sha256": "edde32ad0041e4f371b41b343a6e4f781e1c09430ab4a5f48e8328756efb9430"
         },
         {
-          "file": "lib/models/Sentence.ts",
+          "file": "packages/backend/src/models/Sentence.ts",
           "symbols": [
+            "ISentence",
+            "SentenceSchema",
             "Sentence"
           ],
-          "sha256": "2cc92fb0c9e027910a2801c06f406d7ec78d5e7b21143af524e4e880151b4d06"
+          "sha256": "14fbd077c7ef34029143ba70505ac89ef2990eb677e993983b95ed1159cf0c3a"
         },
         {
-          "file": "lib/content.ts",
+          "file": "packages/backend/src/content.ts",
           "symbols": [
+            "seed",
             "initializeContent",
             "publishedSentence",
+            "contentReady",
             "ensureContent"
           ],
-          "sha256": "124bf99aba5347a22999d96771d45088851b91743fedb2efdb43d9f73348ccd2"
+          "sha256": "1b783247134e988330ac1e6fb45cea03ea1adf7da828d702f2bb33d90ce6c950"
         },
         {
           "file": "data/seed-sentences.json",
@@ -463,6 +723,24 @@
           "file": "scripts/extract-seed.py",
           "symbols": [],
           "sha256": "52f944a68de346f363fd318cb261179752f833edfae63d0621cfe116a8f71328"
+        },
+        {
+          "file": "apps/api/src/domains/admin-content.controller.ts",
+          "symbols": [
+            "AdminContentController",
+            "AdminContentController.get",
+            "AdminContentController.post",
+            "AdminContentController.patch"
+          ],
+          "sha256": "3673251d7fd55cf902b7715a38781bcdca017c572f2bcc9a41e10ca2ba0fb58b"
+        },
+        {
+          "file": "apps/api/src/domains/sentences-generate.controller.ts",
+          "symbols": [
+            "SentencesGenerateController",
+            "SentencesGenerateController.post"
+          ],
+          "sha256": "cdc686524a0aeee7979bd1e0d914a75d45e2da2293722ad451a1e39d2a6aa358"
         }
       ]
     },
@@ -471,31 +749,30 @@
       "status": "blocked",
       "code": [
         {
-          "file": "app/library/page.tsx",
+          "file": "apps/web/app/library/page.tsx",
           "symbols": [
-            "Library",
-            "record",
-            "send"
+            "Library"
           ],
           "sha256": "77a4aebd3783a8e520a2290937a424ec8ccf9efe3b571b23b9d505f0fce2670c"
         },
         {
-          "file": "data/reading-lessons.ts",
+          "file": "apps/web/data/reading-lessons.ts",
           "symbols": [
             "readingLessons"
           ],
           "sha256": "2d1b24e3016e07360ffe37b0d395511cd7cb5a85f06ee7138bf9cce4c9f569c3"
         },
         {
-          "file": "app/api/recordings/route.ts",
+          "file": "apps/api/src/domains/recordings.service.ts",
           "symbols": [
-            "GET",
-            "POST"
+            "RecordingsService",
+            "RecordingsService.get",
+            "RecordingsService.post"
           ],
-          "sha256": "971350baaf9ad198ad1a69010ad7aaafaa23a854bd7ef8670d7c62dff74fa4fc"
+          "sha256": "e80df0f6b0e8cc63da8a6eff90974787f84a8c8cb7a511d5a94cb47e733a4a06"
         },
         {
-          "file": "lib/media.ts",
+          "file": "packages/backend/src/media.ts",
           "symbols": [
             "mediaConfigured",
             "storage",
@@ -503,6 +780,15 @@
             "audioUrl"
           ],
           "sha256": "a02626971c5e60685ef2f8f7ac709301bc4034dfa787109944736b84bb1e2202"
+        },
+        {
+          "file": "apps/api/src/domains/recordings.controller.ts",
+          "symbols": [
+            "RecordingsController",
+            "RecordingsController.get",
+            "RecordingsController.post"
+          ],
+          "sha256": "f5efd16d90f8639f18c2c2b21f34639d4150b2898771e39b2caf61582291987f"
         }
       ]
     },
@@ -511,19 +797,29 @@
       "status": "blocked",
       "code": [
         {
-          "file": "app/api/tutor/route.ts",
+          "file": "apps/api/src/domains/tutor.service.ts",
           "symbols": [
-            "POST",
-            "PUT"
+            "TutorService",
+            "TutorService.post",
+            "TutorService.put"
           ],
-          "sha256": "9df1b37af1e874d0ec93cefe7b401bc3110186b99b88879bb1570c08b058f63c"
+          "sha256": "f867bfcfdd8ce66e0a0cf9f6a23221f36351165f723ce1910246088eb1ddef30"
         },
         {
-          "file": "lib/tutor.ts",
+          "file": "packages/backend/src/tutor.ts",
           "symbols": [
             "embed"
           ],
           "sha256": "62baa71c2c709593e6f477c834bd09d409e1f784a66f4db9553e758aa8cf1009"
+        },
+        {
+          "file": "apps/api/src/domains/tutor.controller.ts",
+          "symbols": [
+            "TutorController",
+            "TutorController.post",
+            "TutorController.put"
+          ],
+          "sha256": "74dd8af9504d1546239d174fc794db58041742661da3e97138416afb6528cfcf"
         }
       ]
     },
@@ -532,38 +828,55 @@
       "status": "implemented",
       "code": [
         {
-          "file": "app/exams/page.tsx",
+          "file": "apps/web/app/exams/page.tsx",
           "symbols": [
+            "Q",
+            "Attempt",
             "Exams"
           ],
           "sha256": "13d4c62c0820875e1c5ec9f351a8b98c61a9b564872411b4488908bc0c250ba6"
         },
         {
-          "file": "app/api/exams/route.ts",
+          "file": "apps/api/src/domains/exams.service.ts",
           "symbols": [
-            "GET",
-            "POST",
-            "PATCH",
-            "PUT"
+            "mini",
+            "ExamsService",
+            "ExamsService.get",
+            "ExamsService.post",
+            "ExamsService.patch",
+            "ExamsService.put"
           ],
-          "sha256": "c9ba109118c17646a6d07b04e343faf7b21637b0e74e19a818703a6f4ca7752e"
+          "sha256": "f2cbcd84c97242bac9bff1685af4fb7e7e357056497ee2b505f80e9c3cd54bf7"
         },
         {
-          "file": "lib/exams.ts",
+          "file": "packages/contracts/src/exams.ts",
           "symbols": [
             "questionSchema",
             "examSchema",
+            "Exam",
             "publicExam",
             "scoreExam"
           ],
           "sha256": "36488c03d627aebfd986a28ab326653f1e7d801c67c6394ea325cc7252088a3a"
         },
         {
-          "file": "lib/models/Exam.ts",
+          "file": "packages/backend/src/models/Exam.ts",
           "symbols": [
+            "ExamSchema",
             "ExamModel"
           ],
           "sha256": "266619ccba1962b63e6dbce8306f34d25736b429294006b1b2237651c50d90f8"
+        },
+        {
+          "file": "apps/api/src/domains/exams.controller.ts",
+          "symbols": [
+            "ExamsController",
+            "ExamsController.get",
+            "ExamsController.post",
+            "ExamsController.patch",
+            "ExamsController.put"
+          ],
+          "sha256": "ae6f9ccb440aa0ffbd5da00f296038dec54ef4d29f305c2236642d9a7797e98d"
         }
       ]
     },
@@ -572,54 +885,62 @@
       "status": "implemented",
       "code": [
         {
-          "file": "components/shell.tsx",
+          "file": "apps/web/components/shell.tsx",
           "symbols": [
             "Shell"
           ],
-          "sha256": "9d0e660bf8d5c84f9f32445506e2f97bf15caa91666cbde9d72350a5811463ac"
+          "sha256": "99406b8b0e3c572d485d93f56e83e622d7447a76bc0c0f4cb9d347019dccc0d6"
         },
         {
-          "file": "app/layout.tsx",
+          "file": "apps/web/app/layout.tsx",
           "symbols": [
             "metadata",
             "RootLayout"
           ],
-          "sha256": "e6d4f1d511406485b692b5c51647f9e4a185c4f158c80edfc51d92ec6267d2aa"
+          "sha256": "bf4498d6d8817bd44fa602abb684d6870fe91076d921dff93b19dfc2c39e077b"
         },
         {
-          "file": "app/globals.css",
+          "file": "apps/web/app/globals.css",
           "symbols": [],
           "sha256": "e4dd9a7e620fc2ff370d1a31903db4e2a821b8f878650358a100824440a40d06"
         },
         {
-          "file": "app/icon.svg",
+          "file": "apps/web/app/icon.svg",
           "symbols": [],
-          "sha256": "716d3c86b491a5d9f530dcfcfbb13961d473a11d7f17f43f77e7883b9df38a26"
+          "sha256": "abeac8bbf48172d5c7f6833987787ce77c92a103c4fbd0cc3b2e5000d6d4bde2"
         },
         {
-          "file": "app/favicon.ico",
+          "file": "apps/web/app/favicon.ico",
           "symbols": [],
           "sha256": "e0b310dee2cf91cfe525879fe41982e21ea139e0fa70c72cec595272b27252d3"
         },
         {
-          "file": "app/design-tokens.css",
+          "file": "apps/web/app/design-tokens.css",
           "symbols": [],
           "sha256": "5db650e35a1fd5abd35ddd1a21248980b01bb319531fe858e568f0bf1ec834de"
         },
         {
-          "file": "app/editorial.css",
+          "file": "apps/web/app/editorial.css",
           "symbols": [],
           "sha256": "5af78422de129de22fc9c0681ba1b6aacb3770772edb323e6372161ad2639f57"
         },
         {
-          "file": "public/fonts/INTER-LICENSE.txt",
+          "file": "apps/web/public/fonts/INTER-LICENSE.txt",
           "symbols": [],
           "sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345"
         },
         {
           "file": "tests/e2e/editorial-design.spec.ts",
-          "symbols": [],
-          "sha256": "09dd51fdded0ae79456d6be3eecca86477d0035a93e449f55a051ad5bc8e751a"
+          "symbols": [
+            "seed",
+            "user",
+            "lesson",
+            "fixtures",
+            "selectors",
+            "properties",
+            "dir"
+          ],
+          "sha256": "cd4fc430cc6fc98a84b7395ce8f59523f9e4dd49a3c0735e546ca630e5d3208a"
         }
       ]
     },
@@ -628,80 +949,91 @@
       "status": "implemented",
       "code": [
         {
-          "file": "lib/api.ts",
-          "symbols": [
-            "api"
-          ],
-          "sha256": "2f4623b5eea82db56f1c25f2b190997559145f7b31cdc05ad6cb7a1665c367c2"
-        },
-        {
-          "file": "lib/client.ts",
+          "file": "apps/web/lib/client.ts",
           "symbols": [
             "request",
             "speak"
           ],
-          "sha256": "c9e2eb6f391b4e4a054a3875387004f022f9389ccc96ba8de8df1169a0832c13"
+          "sha256": "ed4c7dd8a9164818c7efd0e4233f4781795ab3ac201ed4ef46450676c7e1177b"
         },
         {
-          "file": "lib/db.ts",
+          "file": "packages/backend/src/db.ts",
           "symbols": [
+            "CachedConnection",
+            "globalWithMongoose",
+            "cache",
             "connectDb"
           ],
           "sha256": "e7ae2addc32913dc27bb4fce6dc692b483be13a6fbfeacea28cabc624349ceea"
         },
         {
-          "file": "lib/logger.ts",
+          "file": "packages/backend/src/logger.ts",
           "symbols": [
+            "RequestContext",
+            "LogLevel",
+            "LogFields",
+            "requestContext",
+            "correlationId",
+            "levelWeight",
             "configuredLevel",
             "redact",
             "safeFields",
             "log",
-            "logError",
-            "incomingRequestId",
-            "withApiLogging"
+            "logError"
           ],
-          "sha256": "1695f10547fa34a01b38d196bff924f1ed968ae03a8d99b3b159ab12ed4683f0"
+          "sha256": "e541e4435068534915f35b60136057b94b3158051e85d72378feb8bf3ecfe3e1"
         },
         {
-          "file": "lib/redis.ts",
+          "file": "packages/backend/src/redis.ts",
           "symbols": [
+            "state",
             "redis",
             "getGradingQueue",
             "rateLimit"
           ],
-          "sha256": "d6f190b8ff1b2e3eb070730baa4f5270a1c23468574456ad385ba23e2e5b0ced"
+          "sha256": "f0e0a894892b9e7264382ad08b5a2befaf2ed424af7c2eec7617949e05738241"
         },
         {
-          "file": "lib/sql/index.ts",
+          "file": "packages/backend/src/sql/index.ts",
           "symbols": [
+            "shared",
             "pool",
-            "db",
             "query"
           ],
-          "sha256": "2e38735b2a1ebafa414db8e903b47884c2c020fca27e5fc92e36e996ad4a5144"
+          "sha256": "836d6e86f4c05ce64542ed64792d39c426c5695ee494cc8242095cdc3f55c85c"
         },
         {
-          "file": "lib/types.ts",
+          "file": "packages/contracts/src/types.ts",
           "symbols": [
             "TOPICS",
-            "LEVELS"
+            "LEVELS",
+            "Topic",
+            "Level",
+            "Sentence",
+            "GradeReport"
           ],
           "sha256": "f7f7cb4ec2b3bf0fc11228dbc5c95ff1ac47fde4d656c353c00b5c223c607354"
         },
         {
           "file": "scripts/backup.ps1",
           "symbols": [],
-          "sha256": "53a6d9b351c9a65174b1a418399d2c8985eed3571b7143adcff80b3285097c5e"
+          "sha256": "4c26a3639b2ef004079129b328856f783fd35d0b344b4cb9f5917e791852dddb"
         },
         {
           "file": "scripts/migrate.ts",
-          "symbols": [],
-          "sha256": "7fe9e3495d9ee83ca707fb2c485641cfc1592bb179af2ffbad6f859a786a77a6"
+          "symbols": [
+            "client"
+          ],
+          "sha256": "150e977da37b1134e4ccd7041ca5233c1ebadfa14b2dc8e20c9b301825134366"
         },
         {
-          "file": "scripts/start-standalone.mjs",
-          "symbols": [],
-          "sha256": "d3e5a052c7fd5d1e8b0ac7f9011727de39ed398f1bc005fe363679019463af43"
+          "file": "scripts/gateway.mjs",
+          "symbols": [
+            "port",
+            "target",
+            "server"
+          ],
+          "sha256": "a7e49f98ee550a2c0b35b23b2740e8ae25dd2b46b6bdb09e1bd22eb973ffd3ec"
         },
         {
           "file": "migrations/001_beta.sql",
@@ -720,65 +1052,67 @@
         },
         {
           "file": "tests/e2e/beta.spec.ts",
-          "symbols": [
-            "signup"
-          ],
-          "sha256": "b21f64f8001a2989f1312298a972cd24a7d9ede9e92d6208cddf8cfe7f1a9570"
+          "symbols": [],
+          "sha256": "35e88035e6286d4808e9bb7a1c15920e62d0add247ec3f152ed59d9ecc0dfc0b"
         },
         {
           "file": "tests/unit/grading.test.ts",
           "symbols": [],
-          "sha256": "6d886087835ac60f496c54a750aae296953040d3feafc26dc6667e5bebcea33e"
+          "sha256": "ad3e976dcc3801dbf90ec3417e801cae6bda8206eef14a00521c5700439b7c96"
         },
         {
           "file": "tests/unit/learning.test.ts",
           "symbols": [],
-          "sha256": "a1f4c66c04a80d43b728f6185cd5fd4016a6676c91714851ecf1b9b0e0681188"
+          "sha256": "fdeab03a17d26731a3e16e5fe0b1fc41a03819e20d038f82498420c5022856d3"
         },
         {
           "file": "package.json",
           "symbols": [],
-          "sha256": "d598db68cee9805d460acb54e07c4a5d4c1ec058626305ca2331c9b907a56a8e"
+          "sha256": "d612581db5078a466057219a74f5c79b0423536d5374dbd56cbbe242e5af8784"
         },
         {
           "file": "package-lock.json",
           "symbols": [],
-          "sha256": "774de1205b507059c4b643dcc31c41b6a8f50932d4646d786b2ddfbc6f0eb4ad"
+          "sha256": "da54c20b904528b7e88d58e94c4786a2a1b731172225e272ce6653c9fd1a093d"
         },
         {
-          "file": "next.config.ts",
-          "symbols": [],
+          "file": "apps/web/next.config.ts",
+          "symbols": [
+            "nextConfig"
+          ],
           "sha256": "72cc33b9a195a1b39f2fdfcf001fe8b18c86b4d7522d9be586dc84d7e680e3ff"
         },
         {
           "file": "tsconfig.json",
           "symbols": [],
-          "sha256": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3"
+          "sha256": "8f4492a78065b85b25b881cb8850d78527eab5997cab3c9d7e60f109a8b8199c"
         },
         {
           "file": "eslint.config.mjs",
-          "symbols": [],
-          "sha256": "870f1adccecf3051cbcd9fd307cef51d7633cf510979c181a81f4b1797273493"
+          "symbols": [
+            "eslintConfig"
+          ],
+          "sha256": "506da8fb45c8b36e38bc3d2884ca8492e4c7d038037290eb0eac8be8fecb267c"
         },
         {
           "file": "Dockerfile",
           "symbols": [],
-          "sha256": "845d4db3933b7b2cdf936edeeae94100e47e244a7f8bbb916bd333c134c1d0e3"
+          "sha256": "afbd7280509de72d2d813a645f163b813f3380e7c90703140cb6b8f14586ca33"
         },
         {
           "file": "docker-compose.yml",
           "symbols": [],
-          "sha256": "f6ddf3bf6db6596fc83d0a6c352247f5ea3b6115a2b7ed3397baa99a7098c1da"
+          "sha256": "f06c141bc31281cf37ab6ec906c83392ceec340aab18dc20da95d4bf57ecf2ed"
         },
         {
           "file": "Caddyfile",
           "symbols": [],
-          "sha256": "bcb2fefff1bce5074210473394f47ad68a08d907833ffbbf565be404d1fabc43"
+          "sha256": "5822fea0ad7b5188957e587ba26e5765b905e24f69237b1c75b0596ad0696beb"
         },
         {
           "file": ".dockerignore",
           "symbols": [],
-          "sha256": "4a67f3b61adb1f7c5057aefe049f4990df2a1a1b43131f8a41a198c5baa06078"
+          "sha256": "deac0cf6fbc58624aae924ab0d189c97b506faea9953e46b81b8f971ac0b6a56"
         },
         {
           "file": "playwright.config.ts",
@@ -788,16 +1122,30 @@
         {
           "file": "vitest.config.ts",
           "symbols": [],
-          "sha256": "3b31fce9b8be4c50269378637cb1ad4626cf90fc0ed95fab32067f3a578277ad"
+          "sha256": "99b29a5f19080af38ae71982fe7d5cec6d58d913a5a5feb080c8af824f3bc7f5"
         },
         {
           "file": "scripts/check-documentation.mjs",
-          "symbols": [],
-          "sha256": "df8c051f6dedb94446982b70acc1102d7b80f9b878138be786e6e27474023de5"
+          "symbols": [
+            "manifestPath",
+            "manifest",
+            "refresh",
+            "failures",
+            "sourceRoots",
+            "filesIn",
+            "sourceFiles",
+            "byFile",
+            "links"
+          ],
+          "sha256": "83fc03e3a7c2ccd802fe397d28bb9f599860fe782eb7a4ffb1f43d464fa4296e"
         },
         {
           "file": "scripts/planning.mjs",
           "symbols": [
+            "root",
+            "table",
+            "csv",
+            "generated",
             "validatePlanning",
             "buildViews",
             "run"
@@ -806,7 +1154,10 @@
         },
         {
           "file": "tests/unit/planning.test.ts",
-          "symbols": [],
+          "symbols": [
+            "current",
+            "model"
+          ],
           "sha256": "b23eb7b45e58e4a3f60fbc362f502783b43376b8fca6b5d987afde18da13d807"
         },
         {
@@ -814,10 +1165,10 @@
           "symbols": [
             "verifiedAccount"
           ],
-          "sha256": "9996a86e2013adfbe744c622ee997e10ef48acea9829f8788cffd5e581f3f59d"
+          "sha256": "91bd874ad214ed901a28c71945c33358dbf7835a354d399ef1184e26c821dff6"
         },
         {
-          "file": "lib/process-errors.ts",
+          "file": "packages/backend/src/process-errors.ts",
           "symbols": [
             "installProcessErrorHandlers",
             "guardedTask"
@@ -827,12 +1178,20 @@
         {
           "file": "tests/unit/runtime-errors.test.ts",
           "symbols": [],
-          "sha256": "14aad531d770f97c711a4a40b9c9a8f2f985286f0c913f3a01caecacfcdeaa7b"
+          "sha256": "91fde1c083f6f4e96b586c26d195138a9ebbd94af2b33c3a23c76ed32af6dd11"
         },
         {
           "file": "tests/integration/worker-runtime.ts",
-          "symbols": [],
-          "sha256": "faa6b5a4e30f7d1e9608da13072c467a1891995a3fff827c3f377e8252e9c5ed"
+          "symbols": [
+            "connection",
+            "name",
+            "queue",
+            "events",
+            "times",
+            "worker",
+            "killer"
+          ],
+          "sha256": "b3882f7114aa5be65020e4071149491dbcf111dd27a3f20cf99fec7f21d4c2dd"
         }
       ]
     },
@@ -841,80 +1200,99 @@
       "status": "implemented",
       "code": [
         {
-          "file": "lib/knowledge-contract.ts",
+          "file": "packages/contracts/src/knowledge-contract.ts",
           "symbols": [
+            "knowledgeKinds",
+            "knowledgeLabels",
+            "short",
             "knowledgeSchema",
+            "KnowledgeContent",
+            "KnowledgeEntry",
             "publicEntry",
-            "gradeKnowledge",
+            "PublicKnowledge",
             "normalizeKnowledgeAnswer",
-            "stateSchema",
-            "knowledgeKey"
+            "gradeKnowledge",
+            "knowledgeKey",
+            "stateSchema"
           ],
           "sha256": "694cb0e499f0d4b64bd2211f11033d32ccc1e86a555f81f5a3a5c27410e82f51"
         },
         {
-          "file": "lib/knowledge.ts",
+          "file": "packages/backend/src/knowledge.ts",
           "symbols": [
             "getKnowledge",
             "listKnowledge",
             "publicKnowledge",
             "knowledgeTitles"
           ],
-          "sha256": "604263f2c04edc3743cb3a462db4abf688bce001d02e759c6d9dce1166b1f782"
+          "sha256": "5091de153f2bba63546df839ec3f395bb99668a5536752917f55f77412e36109"
         },
         {
-          "file": "lib/models/Knowledge.ts",
+          "file": "packages/backend/src/models/Knowledge.ts",
           "symbols": [
+            "KnowledgeDocument",
+            "schema",
             "Knowledge"
           ],
-          "sha256": "7a107ff1bac86bdaaba677d538859b997a8c011d57ae4520465581c5271eb9b7"
+          "sha256": "8d03035c87c831412f8a1b53f1a91e9ef37c27418729d73a54c2675417057bd0"
         },
         {
-          "file": "app/knowledge/page.tsx",
+          "file": "apps/web/app/knowledge/page.tsx",
           "symbols": [
-            "KnowledgePage",
+            "Summary",
+            "State",
+            "Feedback",
+            "emptyState",
+            "Reader",
             "KnowledgeBrowser",
-            "Reader"
+            "KnowledgePage"
           ],
-          "sha256": "0aaf1926c415d24422bb80eb49880d350d7c4b7819e5a72e75bb0bd378bc49f5"
+          "sha256": "fc37d73e911a27ec0c50ea1a699689ee1ad120bc370dfed3e9feb98f55b1ed58"
         },
         {
-          "file": "app/api/knowledge/route.ts",
+          "file": "apps/api/src/domains/knowledge.service.ts",
           "symbols": [
-            "GET"
+            "KnowledgeService",
+            "KnowledgeService.get"
           ],
-          "sha256": "0235e1ffb8883d98b291a93aa0d385317cb29b068a7d9979478391a20f1e69f4"
+          "sha256": "5d2085a43c24b5b8f07b3f0e0ddc48ea0f92c70f3c8e0350e60841e78150ed38"
         },
         {
-          "file": "app/api/knowledge/state/route.ts",
+          "file": "apps/api/src/domains/knowledge-state.service.ts",
           "symbols": [
-            "GET",
-            "PUT"
+            "KnowledgeStateService",
+            "KnowledgeStateService.get",
+            "KnowledgeStateService.put"
           ],
-          "sha256": "559dcce5e6b1a24fc4bf3cf214973fd8338641ce75742c7ff21371bdeeb704f5"
+          "sha256": "e5e93dda70dd78fc1f080447ca8a0d3ddda13e86ebf1cd252cc98dcc3b63991f"
         },
         {
-          "file": "app/api/knowledge/attempts/route.ts",
+          "file": "apps/api/src/domains/knowledge-attempts.service.ts",
           "symbols": [
-            "POST"
+            "body",
+            "KnowledgeAttemptsService",
+            "KnowledgeAttemptsService.post"
           ],
-          "sha256": "1febc1a7167a2927108178f980a5ba05a2a73abb937462a7124fc9f149a6aee7"
+          "sha256": "494e79258c5503836f5163a150207a7dce568bfee3252a3347dc6112cb2724b3"
         },
         {
-          "file": "app/api/admin/knowledge/route.ts",
+          "file": "apps/api/src/domains/admin-knowledge.service.ts",
           "symbols": [
-            "GET",
-            "POST",
-            "PATCH"
+            "AdminKnowledgeService",
+            "AdminKnowledgeService.get",
+            "AdminKnowledgeService.post",
+            "AdminKnowledgeService.patch"
           ],
-          "sha256": "f816cb7d9616258b71b2d3053016a9d3a723be15951cfca15ec4fed9f2173db4"
+          "sha256": "4457ff0828d0dfadda92b8fafad11018d626c71d9766ca148d30fc09a58371db"
         },
         {
-          "file": "app/admin/knowledge/page.tsx",
+          "file": "apps/web/app/admin/knowledge/page.tsx",
           "symbols": [
+            "Item",
+            "blank",
             "KnowledgeAdmin"
           ],
-          "sha256": "9834f00b46ed41e8eb7b4579ba1f223c825d46b57529edae3c5fdd0edad7df46"
+          "sha256": "0780fcdf6c6d9124becc22abba526d5c3b8da77aed447a02bc6644ec65837dff"
         },
         {
           "file": "migrations/004_knowledge.sql",
@@ -924,31 +1302,68 @@
         {
           "file": "data/knowledge-seed.ts",
           "symbols": [
+            "SeedRow",
+            "rows",
             "knowledgeSeed"
           ],
-          "sha256": "61afd15bcf33a2ffeaf006a709d66612f53edebd7d7f3a451321501f7e5f73e0"
+          "sha256": "6ab603ecf2195e9de9bffbf0c0a19036fa9c21d7bf7766525d070c3fa1574706"
         },
         {
           "file": "scripts/seed-knowledge.ts",
           "symbols": [
             "seedKnowledge"
           ],
-          "sha256": "6cb7c6e2165d0ea88aaf0e5ffe847e2b43f157282d357aa1d81fcc116f634c13"
+          "sha256": "48dee3b3f3b1a52fd005565a62466be504e5570b735e32fb7e1a84d35eb2e3c0"
         },
         {
           "file": "tests/unit/knowledge.test.ts",
           "symbols": [],
-          "sha256": "32461c8534fd0b5ec9e891f719fe5c36a73f7dfe4ecf125b5bb1645e3fb4ab1e"
+          "sha256": "5759f394eb176a668ced608a90efc668d2d6e72520cfd50fd0951dce6cc656d2"
         },
         {
           "file": "tests/e2e/knowledge.spec.ts",
           "symbols": [],
-          "sha256": "30866f5e7328f7da767ddfe9b5ee3af40323e494e10a7b8ec4747bfb8a6d53bc"
+          "sha256": "421b238a8b9d531c11ffc660ed8101849840f55f9883a9ac87307ed2f189fe9c"
         },
         {
-          "file": "app/knowledge/knowledge.css",
+          "file": "apps/web/app/knowledge/knowledge.css",
           "symbols": [],
           "sha256": "6a69eceb4e94fc39692a192b24d3a635962ce54c0fa75253e009df4425789472"
+        },
+        {
+          "file": "apps/api/src/domains/admin-knowledge.controller.ts",
+          "symbols": [
+            "AdminKnowledgeController",
+            "AdminKnowledgeController.get",
+            "AdminKnowledgeController.post",
+            "AdminKnowledgeController.patch"
+          ],
+          "sha256": "f846415c7bfc5aca82da93d22391482f37380b896eb6aeedd3a2d2a342c5c646"
+        },
+        {
+          "file": "apps/api/src/domains/knowledge-attempts.controller.ts",
+          "symbols": [
+            "KnowledgeAttemptsController",
+            "KnowledgeAttemptsController.post"
+          ],
+          "sha256": "6c838aa429932c8d938047056188fe8e2fe018dc5411547870096d238e9dcdb4"
+        },
+        {
+          "file": "apps/api/src/domains/knowledge-state.controller.ts",
+          "symbols": [
+            "KnowledgeStateController",
+            "KnowledgeStateController.get",
+            "KnowledgeStateController.put"
+          ],
+          "sha256": "a0db7c893afa8dc1f97f2a4fb208b3031c20345d4fd24d9223d881c0c8317c9d"
+        },
+        {
+          "file": "apps/api/src/domains/knowledge.controller.ts",
+          "symbols": [
+            "KnowledgeController",
+            "KnowledgeController.get"
+          ],
+          "sha256": "2328d8808912beebf3e25ea3e83eb297203e3df611ccaad430bdc8bc9f42d2bc"
         }
       ]
     },
@@ -957,19 +1372,25 @@
       "status": "implemented",
       "code": [
         {
-          "file": "lib/speech/contract.ts",
+          "file": "packages/backend/src/speech/contract.ts",
           "symbols": [
+            "MAX_SPEECH_BYTES",
+            "MAX_SPEECH_SECONDS",
+            "SPEECH_ENGINE",
+            "SPEECH_MODEL",
+            "SPEECH_MODEL_SHA256",
             "speechBody",
             "decodeSpeech",
             "speechFingerprint",
             "speechFileKey",
             "validSpeechFileKey",
+            "SpeechRow",
             "speechView"
           ],
           "sha256": "e6ddfe7d6ef9138ca46486f40c91d2616a188dfc32ea0c0c3aa660adcc371865"
         },
         {
-          "file": "lib/speech/storage.ts",
+          "file": "packages/backend/src/speech/storage.ts",
           "symbols": [
             "speechMediaPath",
             "writeSpeechAudio",
@@ -980,72 +1401,96 @@
           "sha256": "f9edcc2aa95b0b0949f631016a759380a68ad030b729145689954382e5cc62a4"
         },
         {
-          "file": "lib/speech/queue.ts",
+          "file": "packages/backend/src/speech/queue.ts",
           "symbols": [
+            "shared",
+            "SPEECH_QUEUE",
+            "SPEECH_HEARTBEAT",
             "getSpeechQueue",
             "enqueueSpeech"
           ],
-          "sha256": "c969c74aab5130edb6f311c19c88b1de6da3df395d1de9d0aa0ec2148ebe4661"
+          "sha256": "542714697be5f589d181b7931b320518ab684845c5da12a6982bfbeb21aae2bd"
         },
         {
-          "file": "lib/speech/runtime.ts",
+          "file": "packages/backend/src/speech/runtime.ts",
           "symbols": [
             "chooseSpeechBackend",
+            "selected",
             "speechRuntime"
           ],
           "sha256": "fa9915cf7a354cd3422f0bdf30fee67d1cfd52d2a82f3f48933e3873325840f5"
         },
         {
-          "file": "lib/speech/transcribe.ts",
+          "file": "packages/backend/src/speech/transcribe.ts",
           "symbols": [
+            "execute",
+            "segments",
             "SpeechInputError",
             "inspectSpeechPcm",
             "pcmIsQuiet",
             "transcribeLocal"
           ],
-          "sha256": "f58105992d20f85d9a92856f0b027423103fa73fa5001e5236fb2baed239c8dd"
+          "sha256": "8437deef1ea7777c4fcce9a347b0166d936ea2f2fa1805d93907f500918a787e"
         },
         {
-          "file": "scripts/speech-worker.ts",
+          "file": "apps/worker/src/speech.processor.ts",
           "symbols": [
+            "provider",
             "verifyRuntime",
-            "recoverSpeech"
+            "recovering",
+            "recoverSpeech",
+            "SpeechProcessor",
+            "SpeechProcessor.onModuleInit",
+            "SpeechProcessor.onModuleDestroy",
+            "SpeechProcessor.process",
+            "SpeechProcessor.execute",
+            "SpeechProcessor.onFailed",
+            "SpeechProcessor.persistFailure",
+            "SpeechProcessor.onError"
           ],
-          "sha256": "c0fc17ae61fd9349ec6de8ad647dafc9c1b385ec70729e62909411af746adb76"
+          "sha256": "5422ed36355f8f479647979e91343b3fd76e2020051bc0fdb6944e3b6985b546"
         },
         {
           "file": "scripts/download-speech-model.mjs",
           "symbols": [
+            "root",
+            "target",
+            "expected",
             "checksum"
           ],
           "sha256": "6663aadb6262ee2240ecb3147e551b48fc371bdac7be225d7c6ebd1b5f7dcea5"
         },
         {
-          "file": "app/api/speech/route.ts",
+          "file": "apps/api/src/domains/speech.service.ts",
           "symbols": [
-            "GET",
-            "POST",
-            "DELETE"
+            "SpeechService",
+            "SpeechService.get",
+            "SpeechService.post",
+            "SpeechService.delete"
           ],
-          "sha256": "3882798f14cbf76537b0e518b37e8836cbce5ed202fef4a5ea6c6e6149fc6617"
+          "sha256": "baaa81c204f93c6b6745c03e25b0a527b851376f03fd7d0f1abda6452a015b1f"
         },
         {
-          "file": "app/api/speech/audio/route.ts",
+          "file": "apps/api/src/domains/speech-audio.service.ts",
           "symbols": [
-            "GET"
+            "SpeechAudioService",
+            "SpeechAudioService.get"
           ],
-          "sha256": "97e744fee6b629032ad25d7e7719cd8d9fe81a823756f7b3d345b1792191805a"
+          "sha256": "4deb47068bf6222395210fdf3c7acb2853bbf5dfd465ad0390a7fae015d7c0b5"
         },
         {
-          "file": "app/speech/page.tsx",
+          "file": "apps/web/app/speech/page.tsx",
           "symbols": [
+            "Item",
+            "Capabilities",
+            "labels",
             "SpeechSession",
             "SpeechPage"
           ],
-          "sha256": "fd970fdfe0fe8e96cc498f9aec89864c05deb4b5b77ace40b35db027f048906f"
+          "sha256": "199b2d90f745d124bea596606ef27da064b235c74f204ce0e1c1df3f7599267d"
         },
         {
-          "file": "app/speech/speech.css",
+          "file": "apps/web/app/speech/speech.css",
           "symbols": [],
           "sha256": "a31a654afb0745f63cfe5e35e5dd1f4badca2f69e80705c3bbe6f80278215f7d"
         },
@@ -1056,17 +1501,24 @@
         },
         {
           "file": "tests/unit/speech.test.ts",
-          "symbols": [],
-          "sha256": "3321b91196eb196576ca08e863aac1b89d551165ea8a357350e6116769dbed2e"
+          "symbols": [
+            "wav"
+          ],
+          "sha256": "e2b370f4eaa7ea21aa3d599d04a805af883d7d065b277ee869b3f439cc2aae1a"
         },
         {
           "file": "tests/e2e/speech.spec.ts",
-          "symbols": [],
-          "sha256": "f7d3f1e68bb80b7d6b84703550e8e34124c390ad14e4a5d274167b5a328accd2"
+          "symbols": [
+            "silentWav"
+          ],
+          "sha256": "df873e98b77a15e0cf53cbb44a6d2986dce493da556849740e05c3990d13693f"
         },
         {
-          "file": "lib/speech/provider.ts",
+          "file": "packages/backend/src/speech/provider.ts",
           "symbols": [
+            "SpeechProvider",
+            "SPEECH_CONSENT_VERSION",
+            "GEMINI_SPEECH_MODEL",
             "selectedSpeechProvider",
             "speechServiceReady",
             "heartbeatMatches"
@@ -1074,11 +1526,13 @@
           "sha256": "65fcd6282f71419988229535337247821ea4121f0f192c89eb0593bf88cfb3ce"
         },
         {
-          "file": "lib/speech/gemini.ts",
+          "file": "packages/backend/src/speech/gemini.ts",
           "symbols": [
-            "transcribeGeminiWav",
             "SpeechServiceError",
-            "geminiTranscript"
+            "geminiTranscript",
+            "budgetScript",
+            "Budget",
+            "transcribeGeminiWav"
           ],
           "sha256": "39824c16cfb4fcc1300b3faac3af612d177cc7d7dac1e616feac194047df6a17"
         },
@@ -1089,8 +1543,36 @@
         },
         {
           "file": "tests/unit/speech-gemini.test.ts",
-          "symbols": [],
-          "sha256": "28e482e7bd6ac90552ea17bd5b641fc6e7934310fbfe94cd58df55e49b7db632"
+          "symbols": [
+            "budget",
+            "response"
+          ],
+          "sha256": "c0cbbdceab0e07eafdd9bf072bb278a2234db18f1f7f9da55fe19ff1ff80190a"
+        },
+        {
+          "file": "apps/api/src/domains/speech-audio.controller.ts",
+          "symbols": [
+            "SpeechAudioController",
+            "SpeechAudioController.get"
+          ],
+          "sha256": "654fcd349e7663caad4380de0b185a5b78e1c9998a83293c7dee1223a138a578"
+        },
+        {
+          "file": "apps/api/src/domains/speech.controller.ts",
+          "symbols": [
+            "SpeechController",
+            "SpeechController.get",
+            "SpeechController.post",
+            "SpeechController.delete"
+          ],
+          "sha256": "a8a8b3dc068b4982ee04e72cfd3ba4e2a60c130cc4598ea802f29dd051195cc6"
+        },
+        {
+          "file": "apps/web/components/private-audio.tsx",
+          "symbols": [
+            "PrivateAudio"
+          ],
+          "sha256": "b3d45bec2002c8f029043ec35d73effad6b9587def629fe2c73e57578b1643aa"
         }
       ]
     },
@@ -1099,51 +1581,65 @@
       "status": "implemented",
       "code": [
         {
-          "file": "lib/vocabulary-catalog-contract.ts",
+          "file": "packages/contracts/src/vocabulary-catalog-contract.ts",
           "symbols": [
+            "CATALOG_TAXONOMY_VERSION",
             "catalogTopics",
             "catalogKey",
+            "text",
+            "bilingual",
+            "base",
             "senseSchema",
             "setSchema",
             "catalogContentSchema",
+            "SenseContent",
+            "SetContent",
+            "CatalogContent",
+            "CatalogRecord",
             "catalogPublic",
-            "catalogLearningBody",
-            "catalogRecallContext"
+            "PublicCatalog",
+            "CatalogSnapshot",
+            "catalogRecallContext",
+            "catalogLearningBody"
           ],
           "sha256": "5d59ea95ecb0058119de255e8ea894cabf27f565d99fc1f68d12063cf555d618"
         },
         {
-          "file": "lib/vocabulary-catalog.ts",
+          "file": "packages/backend/src/vocabulary-catalog.ts",
           "symbols": [
             "getCatalog",
             "catalogSetDetail",
             "listCatalog",
             "transitionCatalog"
           ],
-          "sha256": "a41ca997cc4840bd26682c8f60cce42dd0bbb2081675334f7ed948d3a75c34c3"
+          "sha256": "85eb47c4b26bafee35cfa82183257d019f219859ecb04654e6e06f6f7c53e539"
         },
         {
-          "file": "lib/models/VocabularyCatalog.ts",
+          "file": "packages/backend/src/models/VocabularyCatalog.ts",
           "symbols": [
+            "schema",
             "VocabularyCatalog"
           ],
-          "sha256": "87aac0a27e85cd5a04729d1a899cec37419f564aa230b34bbced7a5ac6caca99"
+          "sha256": "1594d843642b06f65ce1ae3e9e18016f51287e94f1784bd5e15835fa6b9d2230"
         },
         {
-          "file": "lib/catalog-learning.ts",
+          "file": "packages/backend/src/catalog-learning.ts",
           "symbols": [
             "catalogDay",
+            "budget",
             "catalogLearning",
             "saveCatalogLearning",
             "saveCatalogPreferences"
           ],
-          "sha256": "b24f4268e4d6eb554d3f7e58eae75c496a80aaf29ea0089a54a738d4c4af95c8"
+          "sha256": "c3e70f14f03dd45b22ba6f8136f27592f5164aba3f7e37823cda3ca62785fd17"
         },
         {
-          "file": "lib/korean-audio.ts",
+          "file": "apps/web/lib/korean-audio.ts",
           "symbols": [
-            "playKorean",
-            "stopKorean"
+            "generation",
+            "active",
+            "stopKorean",
+            "playKorean"
           ],
           "sha256": "cc19da842f81e2262b822283d5828704b5a06483452e022ff16af56e6725e906"
         },
@@ -1156,54 +1652,66 @@
         },
         {
           "file": "scripts/seed-vocabulary-catalog.ts",
-          "symbols": [],
-          "sha256": "9722ce7aa977b9b3ccd61834255e4da38555bbbfb728dcab4997d30b46ed2aec"
-        },
-        {
-          "file": "app/api/word-sets/route.ts",
           "symbols": [
-            "GET"
+            "common",
+            "entries",
+            "inserted"
           ],
-          "sha256": "f77f5ef4280608a1e4bdf3018c12d9efac109ff2f8c9c6458058db2152036867"
+          "sha256": "8c840e80bd9df7d86e12f10b519f2a3edee6be63a73bd53bafb1e5616e7706f9"
         },
         {
-          "file": "app/api/word-sets/learn/route.ts",
+          "file": "apps/api/src/domains/word-sets.service.ts",
           "symbols": [
-            "GET",
-            "POST",
-            "PUT"
+            "WordSetsService",
+            "WordSetsService.get"
           ],
-          "sha256": "89dadf340cdd6f6b141c348afcee9a06358ceabd9915ac4e0bfbc434c353ea79"
+          "sha256": "8769566fc584a03f9478c276ef5fb040396957d98e32a4bb3978b05a3c71af9e"
         },
         {
-          "file": "app/api/admin/word-sets/route.ts",
+          "file": "apps/api/src/domains/word-sets-learn.service.ts",
           "symbols": [
-            "GET",
-            "POST",
-            "PATCH"
+            "WordSetsLearnService",
+            "WordSetsLearnService.get",
+            "WordSetsLearnService.post",
+            "WordSetsLearnService.put"
           ],
-          "sha256": "8859ffc356f2da3d3636a7eb691c225b9cd42d0b58435e2e5063f6258fd8e6f2"
+          "sha256": "8ac983278a6d9c425e2480c5e4ae50b131bb1c2d13ae5d3e32292f1683dc3114"
         },
         {
-          "file": "app/word-sets/page.tsx",
+          "file": "apps/api/src/domains/admin-word-sets.service.ts",
           "symbols": [
+            "AdminWordSetsService",
+            "AdminWordSetsService.get",
+            "AdminWordSetsService.post",
+            "AdminWordSetsService.patch"
+          ],
+          "sha256": "bf7cefd63603b2fece5cd855c84eb08d0fa58a3cc43d9fd361d1a08fb4d5828b"
+        },
+        {
+          "file": "apps/web/app/word-sets/page.tsx",
+          "symbols": [
+            "Summary",
+            "Learning",
+            "statuses",
             "WordSets",
             "Page"
           ],
-          "sha256": "a990795c161cd283f237334195224d1ea798aba9f17bf1188460da253d0d193c"
+          "sha256": "bd6c7210533a276501a0a11012917bee3d7ae5b1aff647060aa99d7d5b51efc2"
         },
         {
-          "file": "app/word-sets/word-sets.css",
+          "file": "apps/web/app/word-sets/word-sets.css",
           "symbols": [],
           "sha256": "c09a0413c4d9ef0be6740f314541f2f97443a71da707ce05085c6c5eac40ba74"
         },
         {
-          "file": "app/admin/word-sets/page.tsx",
+          "file": "apps/web/app/admin/word-sets/page.tsx",
           "symbols": [
-            "WordSetsAdmin",
-            "blank"
+            "blank",
+            "statusLabels",
+            "Choice",
+            "WordSetsAdmin"
           ],
-          "sha256": "c551b5f0ff7facf2781792d57763fb8d3a48541d54b8eb099ff32a10092dd4f7"
+          "sha256": "4b279fd1a04a7b4e39b1e82d27e8fe911a6abe0ec82824643b8ce53fe037436b"
         },
         {
           "file": "migrations/007_vocabulary_catalog.sql",
@@ -1212,23 +1720,295 @@
         },
         {
           "file": "tests/unit/vocabulary-catalog.test.ts",
-          "symbols": [],
-          "sha256": "a5a645be7318c32375fe433af38ea6f6fef71f8f89150cc3ecc8d59bc8563d39"
+          "symbols": [
+            "base"
+          ],
+          "sha256": "3e4e66be2b80d137868710d108b6534607464f79584c10959e837447c82439e8"
         },
         {
           "file": "tests/e2e/vocabulary-catalog.spec.ts",
           "symbols": [],
-          "sha256": "bd45b51d4f80f7bf81c4efd0f05cc73c5e5f1b6eaf37ae79903417568af25c57"
+          "sha256": "2728036aade47c7f84c35bfef20b6f7c0df9ae0c91bb394af4d04dd57bfe7a7a"
         },
         {
           "file": "tests/unit/korean-audio.test.ts",
-          "symbols": [],
-          "sha256": "18ae87e1376c0e30a47ae294f210978575f20b8a279ce9f262f0e0960de5377d"
+          "symbols": [
+            "FakeUtterance",
+            "platform"
+          ],
+          "sha256": "4e3367f943fd77f1a2b74aecad4a611480a9795dd8f32cabbc855c20f9cad258"
         },
         {
           "file": "tests/e2e/vocabulary-catalog-ui.spec.ts",
           "symbols": [],
           "sha256": "17503826055429f75dc0df6c44493914b929598074595aa0f32f4421e862b72a"
+        },
+        {
+          "file": "apps/api/src/domains/admin-word-sets.controller.ts",
+          "symbols": [
+            "AdminWordSetsController",
+            "AdminWordSetsController.get",
+            "AdminWordSetsController.post",
+            "AdminWordSetsController.patch"
+          ],
+          "sha256": "fdb0d674e532968445031e3485a061b28e8d621fe33ddade26987b6291e89445"
+        },
+        {
+          "file": "apps/api/src/domains/word-sets-learn.controller.ts",
+          "symbols": [
+            "WordSetsLearnController",
+            "WordSetsLearnController.get",
+            "WordSetsLearnController.post",
+            "WordSetsLearnController.put"
+          ],
+          "sha256": "ff66d68813a53a2f2dd06738e841469753efbc5093b4b4c90fe8a701b4873235"
+        },
+        {
+          "file": "apps/api/src/domains/word-sets.controller.ts",
+          "symbols": [
+            "WordSetsController",
+            "WordSetsController.get"
+          ],
+          "sha256": "197b71bd0579ac3f1b99c06ea67ed09761fbd61e7e7c8a27997569f1fd08fd28"
+        }
+      ]
+    },
+    {
+      "id": "backend-nestjs-migration",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "apps/api/package.json",
+          "symbols": [],
+          "sha256": "f8aaf3ee19e5b7fa32ef3ee7434d37cf7725aa360a5a29f3eb1175e312eb7324"
+        },
+        {
+          "file": "apps/api/tsconfig.json",
+          "symbols": [],
+          "sha256": "d2ae57a8536a43cb40d3795ab15f456e336e31f4eff9bb90b303ac4a6849eff6"
+        },
+        {
+          "file": "apps/web/next-env.d.ts",
+          "symbols": [],
+          "sha256": "1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b"
+        },
+        {
+          "file": "apps/web/package.json",
+          "symbols": [],
+          "sha256": "821625e6cabbcb1c910c60a78b1ce060e3064aabc6c8b2d8d852fdfbc9f9650e"
+        },
+        {
+          "file": "apps/web/tsconfig.json",
+          "symbols": [],
+          "sha256": "cea9bcdf33dee256d760cece79b46f007c9013032a17d5638e51a40b236b5d3b"
+        },
+        {
+          "file": "apps/worker/package.json",
+          "symbols": [],
+          "sha256": "e9d3b38c5a1244728d9ecd7dd724663cccd49f234f5cff6dfe8f8a4715a4f4a7"
+        },
+        {
+          "file": "apps/worker/tsconfig.json",
+          "symbols": [],
+          "sha256": "d2ae57a8536a43cb40d3795ab15f456e336e31f4eff9bb90b303ac4a6849eff6"
+        },
+        {
+          "file": "apps/api/src/app.module.ts",
+          "symbols": [
+            "AppModule"
+          ],
+          "sha256": "600991e5f2d7fb9e4fdbd9b80d4d1d3a8fbc2b2f70789e8451b5110601b7282a"
+        },
+        {
+          "file": "apps/api/src/health.controller.ts",
+          "symbols": [
+            "HealthController",
+            "HealthController.live",
+            "HealthController.ready"
+          ],
+          "sha256": "cbea39e0618046ae6c921e6c046c84cc7ff17d0651ce4de9876c411f2fde9738"
+        },
+        {
+          "file": "apps/api/src/http-boundary.ts",
+          "symbols": [
+            "requestLogging",
+            "respondError",
+            "GlobalExceptionFilter",
+            "GlobalExceptionFilter.catch",
+            "ResponseInterceptor",
+            "ResponseInterceptor.intercept"
+          ],
+          "sha256": "a6e48f03db16502e8370a71375e31a29bc20e9a50e134d4887808883b5017e7a"
+        },
+        {
+          "file": "apps/api/src/main.ts",
+          "symbols": [
+            "bootstrap"
+          ],
+          "sha256": "15c541ffe68de5d7f10153a70f3abd7b283bac4b42ac4864c3925affe260ed10"
+        },
+        {
+          "file": "apps/api/src/domains/domains.module.ts",
+          "symbols": [
+            "DomainsModule"
+          ],
+          "sha256": "d418486e9ac8ad906c3ed62fe9db5aed0436f0837d06a5b849e0b91cbb11416f"
+        },
+        {
+          "file": "apps/web/public/file.svg",
+          "symbols": [],
+          "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307"
+        },
+        {
+          "file": "apps/web/public/globe.svg",
+          "symbols": [],
+          "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9"
+        },
+        {
+          "file": "apps/web/public/next.svg",
+          "symbols": [],
+          "sha256": "3745ec618b72e263a1f0f134602f78900fd061615a184d426224a7b1b3eec07c"
+        },
+        {
+          "file": "apps/web/public/vercel.svg",
+          "symbols": [],
+          "sha256": "fad0faf8d9f5f38dd9fc3b7a9951a70c9875c96ebfb1daccb52f538d0845007f"
+        },
+        {
+          "file": "apps/web/public/window.svg",
+          "symbols": [],
+          "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66"
+        },
+        {
+          "file": "apps/worker/src/main.ts",
+          "symbols": [
+            "speech",
+            "url",
+            "WorkerModule",
+            "main"
+          ],
+          "sha256": "9dc481802d204af914d04d824a828ec35b1c4830d3a60da118bc71e62c6ff4d9"
+        },
+        {
+          "file": "packages/backend/package.json",
+          "symbols": [],
+          "sha256": "a6b9bf58bccf79637307717ee766e5ebe1835cf7dd5548d066a86d7eedc236fa"
+        },
+        {
+          "file": "packages/backend/tsconfig.json",
+          "symbols": [],
+          "sha256": "b9efb05dc4b37c96ff74bd67a82b9a01e40c1df0e4952fe83569bfdb254e07bd"
+        },
+        {
+          "file": "packages/contracts/package.json",
+          "symbols": [],
+          "sha256": "c4602411e212419a549c96e081465acde5fe48dad1558bb2af572c73fa192165"
+        },
+        {
+          "file": "packages/contracts/tsconfig.json",
+          "symbols": [],
+          "sha256": "a865260c3764b1fb0592290ae9ce1e1271bbe0167ab07a0767846a8ea9843113"
+        },
+        {
+          "file": "packages/backend/src/http.ts",
+          "symbols": [
+            "Viewer",
+            "HttpError",
+            "HttpResult",
+            "HttpResult.json",
+            "BinaryResult",
+            "queryParams"
+          ],
+          "sha256": "d15323de3cde05bc2b96e71ae0e3245be1858bed712b01d65f2bdbea2a9c1f8b"
+        },
+        {
+          "file": "packages/backend/src/queue.ts",
+          "symbols": [
+            "CorrelatedQueue",
+            "CorrelatedQueue.add"
+          ],
+          "sha256": "8e188b2e291f95345e0d06373e18626d24705a90c18d8304cffcde3bcaac342b"
+        },
+        {
+          "file": "packages/contracts/src/speech.ts",
+          "symbols": [
+            "SpeechAttemptView"
+          ],
+          "sha256": "b58f14fffc6ca2373e610d86ca80107b2bafff99f68f1794394ee75fda9f89ea"
+        },
+        {
+          "file": "scripts/dev.mjs",
+          "symbols": [
+            "children"
+          ],
+          "sha256": "94cef6b761f1bacd7c985d1187732780e2329d168032e3bb388483373f21407f"
+        },
+        {
+          "file": "Gatewayfile",
+          "symbols": [],
+          "sha256": "8f38b7232aa3de6d5303c9c94f581c2c675077b40cb073c29b462c03b63be550"
+        },
+        {
+          "file": ".env.example",
+          "symbols": [],
+          "sha256": "37eedeb7192b9ef8ee66d0ab6c89a0906cb04d0e2ae866cac3bc0a8875aa4b51"
+        },
+        {
+          "file": "tsconfig.tools.json",
+          "symbols": [],
+          "sha256": "4bab9be1d92b55d3ce02fe096e6824eb2c9033fe70154ddd7cc01d7e36892f16"
+        },
+        {
+          "file": "scripts/check-backend-boundary.mjs",
+          "symbols": [
+            "files",
+            "lock"
+          ],
+          "sha256": "4d4d8eb4295116b385499c62f5a28e22e1270a3410ff2e157fb6fa6facb8af51"
+        },
+        {
+          "file": "scripts/init-auth-keys.mjs",
+          "symbols": [
+            "target",
+            "existing",
+            "keys",
+            "output"
+          ],
+          "sha256": "5ceeadaf82e687aaf11302f30f127877fe220fa03f9ef112cf8af8aecdfe8086"
+        },
+        {
+          "file": "tests/e2e/private-audio.spec.ts",
+          "symbols": [],
+          "sha256": "0a3ecd9b52b8801ac539952ea285779d2c8614a9d05ab00d4e5f3ee05a121743"
+        },
+        {
+          "file": "tests/integration/auth-preservation.sql",
+          "symbols": [],
+          "sha256": "4e11e37e3014ba474c3893cc2edc541e449ea66145fd356283c59739474e3e13"
+        },
+        {
+          "file": "tests/integration/private-audio-fixture.mjs",
+          "symbols": [
+            "key"
+          ],
+          "sha256": "7a9f297fcd63b3cb22ba151cef23144d2ea0c1192d37e7b703275afe72d0002a"
+        },
+        {
+          "file": "tests/unit/nest-boundary.test.ts",
+          "symbols": [
+            "response"
+          ],
+          "sha256": "12c12fa6197063a81bbd5acaa590af109329755df43be3dbdab2bf8103d7969d"
+        },
+        {
+          "file": "tests/integration/compose.nest-qa.yml",
+          "symbols": [],
+          "sha256": "4480d96c858fd85fee4d8e1663f0a1ab00a92382a6318cc521ad7af28ea9036c"
+        },
+        {
+          "file": "tests/integration/NestQaGatewayfile",
+          "symbols": [],
+          "sha256": "a80415644d41ebfb11af5b8a516857dadd9e95f310e4b6ed69d8cd593abdecaf"
         }
       ]
     }

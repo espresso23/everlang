@@ -1,4 +1,4 @@
-import type { KnowledgeContent } from "../lib/knowledge-contract";
+import type { KnowledgeContent } from "@everlang/contracts/knowledge-contract";
 
 type SeedRow = [
   string,

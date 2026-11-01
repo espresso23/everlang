@@ -1,3 +1,4 @@
+import { installJwtContext } from "./jwt-context";
 import { expect, type APIRequestContext } from "@playwright/test";
 
 export async function verifiedAccount(
@@ -8,6 +9,7 @@ export async function verifiedAccount(
   password: string,
   callbackURL = "/",
 ) {
+  installJwtContext(client,baseURL);
   expect(
     (
       await client.post("/api/auth/sign-up/email", {

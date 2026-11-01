@@ -1,19 +1,17 @@
-# Function/component description — design-system
+# Function map — design-system
 
-| Source / symbol | Trách nhiệm và contract |
-|---|---|
-| [app/layout.tsx](../../../app/layout.tsx) · RootLayout | Imports self-host font, globals, editorial in order; wraps Shell, lang vi, giữ children và metadata |
-| [app/layout.tsx](../../../app/layout.tsx) · metadata | Title/description hiện có, không sửa nội dung SEO trong lượt theme |
-| [components/shell.tsx](../../../components/shell.tsx) · Shell | Header/nav/session/avatar/footer giữ hành vi; class styles kế thừa skin mới |
-| [components/dashboard.tsx](../../../components/dashboard.tsx) · Dashboard | Owner daily-dashboard; thêm aria-hidden quote/vertical note, data-word và editorial-title span trong khối cũ; không sửa task/data |
-| [app/design-tokens.css](../../../app/design-tokens.css) · :root | Font/palette semantic và aliases; source chuẩn cho CSS/guide |
-| [app/globals.css](../../../app/globals.css) · @theme | Existing layout và Tailwind palette aliases, import design tokens |
-| [app/editorial.css](../../../app/editorial.css) | Skin visual theo guide: headings, controls, cards, reading exceptions, focus, artwork |
-| [app/icon.svg](../../../app/icon.svg), [app/favicon.ico](../../../app/favicon.ico) | Giữ nguyên asset e hiện có; header logo chỉ đổi palette bằng CSS |
-| [tests/e2e/editorial-design.spec.ts](../../../tests/e2e/editorial-design.spec.ts) | Mock identity/content cố định, không viết DB; before capture chỉ khi DESIGN_BASELINE=1, default compare structural snapshots; font/focus/spacing assertions |
+2026-11-01, branch `feature/nestjs-jwt-migration`. Bản đồ hiện tại sau chuyển monorepo. [Đặc tả](README.md) · [Thiết kế](system-design.md) · [UI](ui.md) · [Audit](audit.md).
 
-Không thêm public function/API ngoài component hiện có. [Guide](../../design/README.md), [audit](audit.md), [UI](ui.md).
+| File/điểm vào | Symbol hiện có | Trách nhiệm/hợp đồng |
+|---|---|---|
+| [apps/web/components/shell.tsx](../../../apps/web/components/shell.tsx) | `Shell` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/web/app/layout.tsx](../../../apps/web/app/layout.tsx) | `metadata`, `RootLayout` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/web/app/globals.css](../../../apps/web/app/globals.css) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/web/app/icon.svg](../../../apps/web/app/icon.svg) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/web/app/favicon.ico](../../../apps/web/app/favicon.ico) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/web/app/design-tokens.css](../../../apps/web/app/design-tokens.css) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/web/app/editorial.css](../../../apps/web/app/editorial.css) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/web/public/fonts/INTER-LICENSE.txt](../../../apps/web/public/fonts/INTER-LICENSE.txt) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [tests/e2e/editorial-design.spec.ts](../../../tests/e2e/editorial-design.spec.ts) | `seed`, `user`, `lesson`, `fixtures`, `selectors`, `properties`, `dir` | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
 
-Light surface update: editorial.css override đủ .notebook h2/h3/eyebrow/p/error-note del/strong/p/a và empty-note để loại white-on-white khi bỏ inverse. Title, Beta/date, completed task, auth art note, layer artwork dùng sáng/tint. CSS cascade globals→editorial giữ nguyên; không đổi API/component signatures. Test editorial-design.spec.ts thêm empty/filled regression và chuyển focus từ trắng sang Cobalt.
-
-Mobile wordmark rule: app/editorial.css .brand font-size clamp20–22px inside existing max-width760px media; typography-only override. Scoped real admin320/text-spacing and keyboard evidence in [catalog UI test](../../../tests/e2e/vocabulary-catalog-ui.spec.ts); no shell function/API change.
+Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.

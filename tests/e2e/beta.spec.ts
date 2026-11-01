@@ -1,3 +1,4 @@
+import { installJwtContext } from "./helpers/jwt-context";
 import { test, expect } from "@playwright/test";
 import { randomUUID } from "node:crypto";
 test("EverLang sign-in is responsive and no anonymous identity is accepted", async ({
@@ -38,6 +39,7 @@ test("email verification, cloud drafts, SRS concurrency, daily plan, and isolati
   playwright,
   request,
   page,
+  baseURL,
 }) => {
   test.skip(
     process.env.E2E_AUTH_TESTS !== "1",
@@ -46,14 +48,15 @@ test("email verification, cloud drafts, SRS concurrency, daily plan, and isolati
   test.setTimeout(180000);
   const password = randomUUID() + "aA1!";
   const a = await playwright.request.newContext({
-    baseURL: "http://localhost:3000",
-    extraHTTPHeaders: { Origin: "http://localhost:3000" },
+    baseURL: baseURL!,
+    extraHTTPHeaders: { Origin: baseURL! },
   });
   const b = await playwright.request.newContext({
-    baseURL: "http://localhost:3000",
-    extraHTTPHeaders: { Origin: "http://localhost:3000" },
+    baseURL: baseURL!,
+    extraHTTPHeaders: { Origin: baseURL! },
   });
   async function signup(client: typeof a, email: string) {
+    installJwtContext(client,baseURL!);
     const res = await client.post("/api/auth/sign-up/email", {
       data: { name: "EverLang QA", email, password, callbackURL: "/" },
     });
@@ -106,7 +109,7 @@ test("email verification, cloud drafts, SRS concurrency, daily plan, and isolati
   expect(updatedProfile.profile.minutes).toBe(30);
   expect(updatedProfile.providers).toEqual(["credential"]);
   expect(Object.keys(updatedProfile.user).sort()).toEqual(["admin", "email", "emailVerified", "id", "image", "name"].sort());
-  expect((await (await a.get("/api/auth/get-session")).json()).user.name).toBe(preferences.name);
+  expect((await (await a.get("/api/auth/me")).json()).user.name).toBe(preferences.name);
   expect((await (await b.get("/api/profile")).json()).user.name).toBe("EverLang QA");
   for (const invalid of [{ minutes: 121 }, { timezone: "invalid/zone" }, { admin: true }, { user_id: "other" }]) {
     expect((await a.put("/api/profile", { data: { ...preferences, ...invalid } })).status()).toBe(400);
@@ -405,10 +408,10 @@ test("email verification, cloud drafts, SRS concurrency, daily plan, and isolati
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
-  const logout = await a.post("/api/auth/sign-out", { data: {} });
+  const logout = await a.post("/api/auth/logout", { data: {} });
   expect(logout.ok()).toBe(true);
   expect((await a.get("/api/profile")).status()).toBe(401);
-  const reset=await a.post('/api/auth/request-password-reset',{data:{email:process.env.E2E_EMAIL_A||'everlang-qa-a@example.test',redirectTo:'/sign-in'}});expect(reset.ok()).toBe(true);
+  const reset=await a.post('/api/auth/request-password-reset',{data:{email:process.env.E2E_EMAIL_A||'everlang-qa-a@example.test'}});expect(reset.ok()).toBe(true);
   const inbox=await (await request.get('http://localhost:8025/api/v1/messages')).json();let resetUrl='';
   for(const m of inbox.messages||[]){if(!m.To?.some((t:{Address:string})=>t.Address===(process.env.E2E_EMAIL_A||'everlang-qa-a@example.test')))continue;const detail=await (await request.get('http://localhost:8025/api/v1/message/'+m.ID)).json();if(detail.Subject?.includes('Đặt lại')||m.Subject?.includes('Đặt lại')){resetUrl=detail.Text?.match(/https?:\/\/[^\s]+/)?.[0]||'';break;}}
   expect(Boolean(resetUrl)).toBe(true);const redirect=await a.get(resetUrl);const token=new URL(redirect.url()).searchParams.get('token');expect(Boolean(token)).toBe(true);

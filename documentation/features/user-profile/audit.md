@@ -1,3 +1,12 @@
+## 2026-11-01 — Native Nest migration regression audit
+
+Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
+
+- PASS: native profile GET/PUT strict/transaction/isolation; UI edit/cancel/error/avatar/mobile.
+- Google live/link confirmation còn mở.
+- Evidence/checks: beta.spec.ts, profile-ui.spec.ts; [bảng tích hợp và lệnh tái hiện](../../audits/nestjs-jwt-migration.md), [kết quả migration](../backend-nestjs-migration/audit.md).
+- Functions/routes hiện tại: [function map](functions.md); auth/error chuẩn trong shared docs. Audit phía dưới trước ngày này là provenance của backend cũ, không chứng nhận runtime Nest. Không đánh dấu toàn feature Done chỉ vì migration build được.
+
 # Audit cập nhật — Learning Passport / profile view & edit
 
 2026-10-30, feature/profile-editorial-layout, baseline f7fa4cf.

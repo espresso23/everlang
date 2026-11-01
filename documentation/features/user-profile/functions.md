@@ -1,29 +1,16 @@
-# Function description — user-profile
+# Function map — user-profile
 
-[Đặc tả](README.md) · [System design](system-design.md).
+2026-11-01, branch `feature/nestjs-jwt-migration`. Bản đồ hiện tại sau chuyển monorepo. [Đặc tả](README.md) · [Thiết kế](system-design.md) · [UI](ui.md) · [Audit](audit.md).
 
-| File / symbol | Input → output | Side effect / lỗi |
+| File/điểm vào | Symbol hiện có | Trách nhiệm/hợp đồng |
 |---|---|---|
-| [lib/profile.ts](../../../lib/profile.ts) · profileInput | Unknown JSON → five validated fields | trim name/goal, strict keys, IANA timezone; Zod error → 400 |
-| [lib/profile.ts](../../../lib/profile.ts) · ProfileResponse | Compile-time response contract | Không chứa provider token/password/session token |
-| [app/api/profile/route.ts](../../../app/api/profile/route.ts) · GET | Verified session → ProfileResponse | Insert default profile if absent; SELECT own fields/provider names, no-store |
-| [app/api/profile/route.ts](../../../app/api/profile/route.ts) · PUT | Verified session + profileInput → saved:true | One PG transaction updates name/settings; rollback on failure, no role/email edit |
-| [app/profile/page.tsx](../../../app/profile/page.tsx) · Profile | /api/profile response + form → UI | Loading/error retry, saving, GET refresh then useSession.refetch; provider-aware security actions report failures |
-| [app/profile/page.tsx](../../../app/profile/page.tsx) · LegacyDraftImport | Confirm + localStorage → draft PUT version0 | Preserves cloud drafts; reports imported count, catches malformed legacy data |
-| [components/user-avatar.tsx](../../../components/user-avatar.tsx) · UserAvatar | name/image/large → image or initials | HTTPS only, onError fallback, 32/72px geometry, descriptive alt |
-| [components/shell.tsx](../../../components/shell.tsx) · Shell | useSession → protected children or auth state | Shared owner [design system](../design-system/functions.md); pending/error do not mount private pages |
+| [apps/web/app/profile/page.tsx](../../../apps/web/app/profile/page.tsx) | `Profile`, `AccountSecurity`, `LegacyDraftImport` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/domains/profile.service.ts](../../../apps/api/src/domains/profile.service.ts) | `ProfileService`, `ProfileService.get`, `ProfileService.put` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/web/components/user-avatar.tsx](../../../apps/web/components/user-avatar.tsx) | `UserAvatar` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/contracts/src/profile.ts](../../../packages/contracts/src/profile.ts) | `profileInput`, `ProfileResponse` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [tests/unit/profile.test.ts](../../../tests/unit/profile.test.ts) | `valid` | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
+| [tests/e2e/profile-ui.spec.ts](../../../tests/e2e/profile-ui.spec.ts) | `user`, `profile`, `session` | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
+| [apps/web/app/profile/profile.css](../../../apps/web/app/profile/profile.css) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/domains/profile.controller.ts](../../../apps/api/src/domains/profile.controller.ts) | `ProfileController`, `ProfileController.get`, `ProfileController.put` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
 
-UI tests with fake provider: [profile-ui.spec.ts](../../../tests/e2e/profile-ui.spec.ts). Actual email session/API/DB/header: [beta.spec.ts](../../../tests/e2e/beta.spec.ts). Pure validation: [profile.test.ts](../../../tests/unit/profile.test.ts).
-
-
-## Điểm vào layout mới
-
-| Source/symbol | Contract |
-|---|---|
-| [page.tsx](../../../app/profile/page.tsx) · Profile | Learning passport view, inline editing state, loading/error, focus Tên khi mở và CTA khi đóng |
-| [page.tsx](../../../app/profile/page.tsx) · saveProfile | FormData 5 fields → PUT/GET/refetch; pending locks fields and buttons, success view, failure keeps draft/alert |
-| [page.tsx](../../../app/profile/page.tsx) · AccountSecurity | ProfileResponse → existing provider-aware actions; local busy/status trong disclosure |
-| [profile.css](../../../app/profile/profile.css) | Desktop sidebar304px/main, responsive1000/760/360; chỉ selectors profile- |
-| LegacyDraftImport | Giữ confirm và draft version0; placement chuyển vào disclosure, không đổi ownership |
-
-Test beta click Edit trước khi fill và mở security trước kiểm password; UI test thêm cancel/no-write, saving lock, failure retry, successful view/name/session, focus và long content320px.
+Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.

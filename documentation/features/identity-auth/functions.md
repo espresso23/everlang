@@ -1,42 +1,38 @@
-# Function description — identity-auth
+# Function map — identity-auth
 
-[Đặc tả và contract](README.md) · [System design](system-design.md)
+2026-11-01, branch `feature/nestjs-jwt-migration`. Bản đồ hiện tại sau chuyển monorepo. [Đặc tả](README.md) · [Thiết kế](system-design.md) · [UI](ui.md) · [Audit](audit.md).
 
-## File + symbol → trách nhiệm
-
-Các callback vô danh nằm trong component/handler được mô tả cùng component chủ. Schema/constant có thể là binding chứ không phải hàm; không tạo thêm API ngoài code.
-
-| Code/symbol | Chữ ký/binding hiện tại | Hành vi, I/O và side effect |
+| File/điểm vào | Symbol hiện có | Trách nhiệm/hợp đồng |
 |---|---|---|
-| [lib/auth.ts](../../../lib/auth.ts) · `isAdmin` | `(email: string) ` | So email chuẩn hóa với ADMIN_EMAILS; không lấy role từ client. |
-| [lib/auth.ts](../../../lib/auth.ts) · `sendMail` | `async function sendMail(to: string, subject: string, url: string)` | Gửi URL verify/reset qua SMTP; không log URL có token. |
-| [lib/auth.ts](../../../lib/auth.ts) · `createAuth` | `function createAuth()` | Hàm/binding `createAuth` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [lib/auth.ts](../../../lib/auth.ts) · `getAuth` | `export function getAuth()` | Khởi tạo lazy singleton Better Auth; yêu cầu BETTER_AUTH_SECRET ở runtime. |
-| [lib/auth-client.ts](../../../lib/auth-client.ts) · `authClient` | `export const authClient` | Hàm/binding `authClient` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [lib/sql/schema.ts](../../../lib/sql/schema.ts) · `user` | `export const user` | Hàm/binding `user` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [lib/sql/schema.ts](../../../lib/sql/schema.ts) · `session` | `export const session` | Hàm/binding `session` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [lib/sql/schema.ts](../../../lib/sql/schema.ts) · `account` | `export const account` | Hàm/binding `account` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [lib/sql/schema.ts](../../../lib/sql/schema.ts) · `verification` | `export const verification` | Hàm/binding `verification` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [app/sign-in/page.tsx](../../../app/sign-in/page.tsx) · `Form` | `function Form()` | Component/type `Form` thuộc luồng tài khoản và xác thực; hành vi và trạng thái UI ở [ui.md](ui.md). |
-| [app/sign-in/page.tsx](../../../app/sign-in/page.tsx) · `submit` | `async function submit(e: React.FormEvent<HTMLFormElement>)` | Hàm/binding `submit` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [app/sign-in/page.tsx](../../../app/sign-in/page.tsx) · `SignIn` | `export default function SignIn()` | Component/type `SignIn` thuộc luồng tài khoản và xác thực; hành vi và trạng thái UI ở [ui.md](ui.md). |
-| [app/api/auth/[...all]/route.ts](../../../app/api/auth/[...all]/route.ts) · `runtime` | `export const runtime` | Hàm/binding `runtime` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [app/api/auth/[...all]/route.ts](../../../app/api/auth/[...all]/route.ts) · `GET` | `(request: Request) ` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/auth/[...all]/route.ts](../../../app/api/auth/[...all]/route.ts) · `POST` | `(request: Request) ` | Handler `POST`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/config/route.ts](../../../app/api/config/route.ts) · `dynamic` | `export const dynamic` | Hàm/binding `dynamic` phục vụ tài khoản và xác thực; input/return và side effect xem chữ ký và module nguồn, không phải API độc lập. |
-| [app/api/config/route.ts](../../../app/api/config/route.ts) · `GET` | `() ` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
+| [apps/api/src/auth/auth.service.ts](../../../apps/api/src/auth/auth.service.ts) | `isAdmin`, `origin`, `secure`, `refreshName`, `issuer`, `audience`, `UserRow`, `publicUser`, `AuthService`, `AuthService.csrf`, `AuthService.protect`, `AuthService.cookie`, `AuthService.access`, `AuthService.startSession`, `AuthService.login`, `AuthService.refresh`, `AuthService.authenticate`, `AuthService.logout`, `AuthService.mail`, `AuthService.oneTime`, `AuthService.signup`, `AuthService.verifyEmail`, `AuthService.requestReset`, `AuthService.resetPassword`, `AuthService.changePassword`, `AuthService.googleStart`, `AuthService.googleCallback` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/web/lib/auth.tsx](../../../apps/web/lib/auth.tsx) | `User`, `Snapshot`, `snapshot`, `serverSnapshot`, `accessToken`, `initialized`, `refreshing`, `listeners`, `channel`, `update`, `signedOut`, `csrf`, `authRequest`, `refresh`, `bootstrap`, `AuthProvider`, `useAuth`, `apiFetch`, `execute`, `auth` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [migrations/008_nest_auth.sql](../../../migrations/008_nest_auth.sql) | Cấu hình / dữ liệu / schema | Schema/version migration; chạy bằng scripts/migrate.ts trong thứ tự số. |
+| [apps/web/app/sign-in/page.tsx](../../../apps/web/app/sign-in/page.tsx) | `Form`, `SignIn` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/auth/auth.controller.ts](../../../apps/api/src/auth/auth.controller.ts) | `password`, `email`, `AuthController`, `AuthController.csrf`, `AuthController.login`, `AuthController.signup`, `AuthController.refresh`, `AuthController.me`, `AuthController.logout`, `AuthController.logoutAll`, `AuthController.verify`, `AuthController.forgot`, `AuthController.reset`, `AuthController.change`, `AuthController.google`, `AuthController.callback` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
+| [apps/api/src/domains/config.service.ts](../../../apps/api/src/domains/config.service.ts) | `ConfigService`, `ConfigService.get` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/web/lib/auth-errors.ts](../../../apps/web/lib/auth-errors.ts) | `authErrorMessage` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/auth/jwt.guard.ts](../../../apps/api/src/auth/jwt.guard.ts) | `AuthenticatedRequest`, `JwtGuard`, `JwtGuard.canActivate` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/domains/config.controller.ts](../../../apps/api/src/domains/config.controller.ts) | `ConfigController`, `ConfigController.get` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
+| [packages/backend/src/auth-crypto.ts](../../../packages/backend/src/auth-crypto.ts) | `randomToken`, `tokenHash`, `key`, `hashPassword`, `verifyPassword` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [tests/e2e/nest-auth.spec.ts](../../../tests/e2e/nest-auth.spec.ts) | `routes` | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
+| [tests/unit/auth-crypto.test.ts](../../../tests/unit/auth-crypto.test.ts) | Cấu hình / dữ liệu / schema | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
+| [tests/e2e/helpers/jwt-context.ts](../../../tests/e2e/helpers/jwt-context.ts) | `installed`, `installJwtContext` | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
+| [tests/unit/nest-jwt.test.ts](../../../tests/unit/nest-jwt.test.ts) | Cấu hình / dữ liệu / schema | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
 
-## Input, output và lỗi theo điểm vào
+Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.
 
-[lib/auth-errors.ts](../../../lib/auth-errors.ts) · authErrorMessage(code:string|null) → thông báo tiếng Việt cố định: account_not_linked, token hết hạn, Google lỗi hoặc generic. Không phản chiếu query. [Auth route](../../../app/api/auth/[...all]/route.ts) · handleAuth(NextRequest) → Better Auth Response, logging callback đã redacted theo whitelist.
+## Native auth contracts
 
-- GET/POST /api/auth/* — handler Better Auth cho sign-up/email, sign-in/email, sign-in/social, callback/google, get-session, verify-email, reset/change password, sign-out.
-- GET /api/config — {google:boolean}, no-store; không trả credential.
+| Symbol | Input → output / side effect / errors |
+|---|---|
+| AuthService.protect/csrf | Request/Response→signed CSRF JSON+nonce HttpOnly; Origin/signature403,rate429 |
+| signup/verifyEmail | name/email/password→pending verify; one-time token→verified user/session+redirect; duplicate409,expired400 |
+| login/startSession | credentials/userId→accessToken/expiresIn/user+cookie; transaction creates family/hash; credentials401,unverified403 |
+| refresh | HttpOnly token→rotated hash/cookie, same absolute expiry,new access; FOR UPDATE/replay revokes family401 |
+| authenticate | Bearer→Viewer+sid from DB; RS256/issuer/aud/exp+active session;401 invalid/expired/revoked |
+| logout | current/all flag→revoke sid/all sessions,clear cookie; valid JWT required |
+| requestReset/resetPassword/changePassword | email/token/current+new password→generic success/password replacement; one-time reset,session revocation |
+| googleStart/googleCallback | link+relative callback→PKCE URL; code/state/browser cookie→verify ID token,lookup/explicit link,session+redirect; no implicit email merge/token storage |
+| AuthProvider/useAuth/apiFetch/auth | RAM/Bearer,bootstrap/singleflight/tab lock,one expiry retry,CSRF auth POST,logout broadcast; no persistent browser token |
 
-auth_user, auth_account, auth_session, auth_verification trong PostgreSQL; SMTP/Mailpit chỉ phục vụ email, không tham gia OAuth.
-
-Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
-
-## Cập nhật profile/auth 2026-10-30
-
-Google login thực tế đã được chủ tài khoản xác nhận sau cập nhật secret; DB xác nhận provider/image/session (không ghi danh tính/token). Sign-in social và linkSocial dùng errorCallbackURL=/sign-in; lỗi account_not_linked hướng dẫn explicit linking, lỗi khác hiển thị thông báo chung, không phản chiếu raw query. [Auth route](../../../app/api/auth/[...all]/route.ts) handleAuth bọc withApiLogging và log callback outcome/mã whitelist, không query/Location/code/state. Redirected chỉ có nghĩa HTTP redirect, không tự chứng nhận session. [UI tests](../../../tests/e2e/profile-ui.spec.ts) và [audit nhóm](../../audits/profile-auth-integration.md).
+Methods are native AuthController decorators; body schemas strict Zod. Callback Location has whitelisted account_not_linked or generic google_login_failed; never raw query/provider text. Actual verification in audit.

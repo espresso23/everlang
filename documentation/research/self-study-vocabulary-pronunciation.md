@@ -10,10 +10,10 @@ Hai hướng: (A, khuyến nghị) hoàn thiện một lát cắt từ vựng/au
 
 ## Hiện trạng đã đối chiếu tĩnh
 
-- [Vocabulary API](../../app/api/vocabulary/route.ts), `GET/POST/PUT`: từ/cụm/ngữ pháp, nghĩa/ngữ cảnh/nguồn cá nhân; chống trùng hiện dùng user + term + kind, chưa phân biệt sense của cùng một từ.
-- [Vocabulary screen](../../app/vocabulary/page.tsx), `Vocabulary`: thêm/sửa/ôn và gọi `speak`; chưa có thư viện bộ từ theo chủ đề được biên soạn ở luồng này.
-- [SRS](../../lib/learning/srs.ts), `newCard/reviewCard`: FSRS hiện có; giữ lịch/log, không gán điểm phát âm thành mức nhớ tự động.
-- [Recordings API](../../app/api/recordings/route.ts), `POST`: Google STT → AI góp ý transcript → S3/SQL. Prompt hiện chủ động không chấm phát âm. [Đặc tả/audit](../features/immersive-learning/README.md) ghi provider/device chưa verified trọn luồng.
+- [Vocabulary API](../../apps/api/src/domains/vocabulary.service.ts), `GET/POST/PUT`: từ/cụm/ngữ pháp, nghĩa/ngữ cảnh/nguồn cá nhân; chống trùng hiện dùng user + term + kind, chưa phân biệt sense của cùng một từ.
+- [Vocabulary screen](../../apps/web/app/vocabulary/page.tsx), `Vocabulary`: thêm/sửa/ôn và gọi `speak`; chưa có thư viện bộ từ theo chủ đề được biên soạn ở luồng này.
+- [SRS](../../packages/backend/src/learning/srs.ts), `newCard/reviewCard`: FSRS hiện có; giữ lịch/log, không gán điểm phát âm thành mức nhớ tự động.
+- [Recordings API](../../apps/api/src/domains/recordings.service.ts), `POST`: Google STT → AI góp ý transcript → S3/SQL. Prompt hiện chủ động không chấm phát âm. [Đặc tả/audit](../features/immersive-learning/README.md) ghi provider/device chưa verified trọn luồng.
 - Đây là review source/docs, **không** là kiểm thử microphone/provider/browser hoặc audit runtime mới.
 
 ## Bằng chứng tham khảo

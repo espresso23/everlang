@@ -1,5 +1,14 @@
 # EverLang — checkpoint chuẩn bị sprint tiếp theo
 
+## Cập nhật hiện hành — 2026-11-01
+
+Backend hiện chạy native NestJS/JWT sau cutover008 trên localhost:3000: web/API/worker riêng, access RAM/Bearer, rotating HttpOnly refresh, global exception/filter và log requestId xuyên BullMQ. 20 bảng bảo toàn và Mongo6collections/172docs đã restore/hash-check; backup PG/Mongo/Redis/media/env giữ riêng ngoài Git. Old sessions invalidated, đăng nhập lại. Không Better Auth/Next backend runtime, old endpoints404; checkpoint offline trước migration giữ để rollback qua full restore.
+
+77unit và các native auth/business/worker/private-audio/UI gates đã qua. Google live trên Nest, cloud AI/ASR/KRdict/Tutor/SMTPproduction vẫn NOT VERIFIED theo phạm vi; không tái sử dụng kết quả backend cũ như chứng nhận mới. PB-039 ở Review, sprint vẫn Proposed, không full feature Done. Đọc [migration audit](features/backend-nestjs-migration/audit.md) và [verification](features/backend-nestjs-migration/assets/verification.md) trước phát triển tiếp.
+
+Phần snapshot2026-10-31 bên dưới là inventory nền/lịch sử; các mô tả framework/auth cũ đã được thay bởi hợp đồng Nest hiện hành trong documentation/shared và feature docs.
+
+
 Snapshot mới nhất: **2026-10-31**. Bản nén ngữ cảnh bên dưới thay phần baseline lịch sử về trạng thái hiện tại. Chi tiết và lịch sử giữ ở [HANDOFF](../HANDOFF.md); nguồn trạng thái task là [work-items.json](planning/work-items.json). Đây là checkpoint kỹ thuật local, chưa hoàn tất toàn bộ mục tiêu tự học hoặc đủ điều kiện phát hành.
 
 ## Đọc khi tiếp tục

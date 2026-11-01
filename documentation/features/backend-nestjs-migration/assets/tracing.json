@@ -1,0 +1,95 @@
+[
+  {
+    "timestamp": "2026-11-01T03:32:47.293Z",
+    "level": "info",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.started",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 1,
+    "queue": "everlang-grading"
+  },
+  {
+    "timestamp": "2026-11-01T03:32:47.336Z",
+    "level": "error",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.failed",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 1,
+    "queue": "everlang-grading"
+  },
+  {
+    "timestamp": "2026-11-01T03:32:47.342Z",
+    "level": "info",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.finished",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 1,
+    "queue": "everlang-grading",
+    "durationMs": 50
+  },
+  {
+    "timestamp": "2026-11-01T03:32:52.700Z",
+    "level": "info",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.started",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 2,
+    "queue": "everlang-grading"
+  },
+  {
+    "timestamp": "2026-11-01T03:32:52.708Z",
+    "level": "error",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.failed",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 2,
+    "queue": "everlang-grading"
+  },
+  {
+    "timestamp": "2026-11-01T03:32:52.709Z",
+    "level": "info",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.finished",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 2,
+    "queue": "everlang-grading",
+    "durationMs": 9
+  },
+  {
+    "timestamp": "2026-11-01T03:33:02.812Z",
+    "level": "info",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.started",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 3,
+    "queue": "everlang-grading"
+  },
+  {
+    "timestamp": "2026-11-01T03:33:02.820Z",
+    "level": "error",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.failed",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 3,
+    "queue": "everlang-grading"
+  },
+  {
+    "timestamp": "2026-11-01T03:33:02.820Z",
+    "level": "info",
+    "service": "everlang-grading-worker-qa",
+    "event": "job.finished",
+    "requestId": "nest-pipeline-correlation",
+    "jobId": "8d62f836-4bd7-4c4f-9fe2-5d5a8c8beb1b",
+    "attempt": 3,
+    "queue": "everlang-grading",
+    "durationMs": 8
+  }
+]

@@ -7,7 +7,7 @@ import {
   type CatalogRecord,
   type SenseContent,
   type SetContent,
-} from "../../lib/vocabulary-catalog-contract";
+} from "@everlang/contracts/vocabulary-catalog-contract";
 
 test("versioned vocabulary catalog, homograph SRS, quota, legacy mapping and integrated UI", async ({
   playwright,

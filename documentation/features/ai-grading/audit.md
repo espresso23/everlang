@@ -1,3 +1,12 @@
+## 2026-11-01 — Native Nest migration regression audit
+
+Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
+
+- PASS: HTTP→SQL→BullMQ→native WorkerHost, 3 attempts/no key failure, cached409; unit429 cooldown và recovery.
+- NOT VERIFIED: live OpenRouter quota/provider recovery/quality trên Nest; không gọi provider trả phí.
+- Evidence/checks: nest-auth.spec.ts, grading-retry.spec.ts; grading-worker/runtime-errors unit; [bảng tích hợp và lệnh tái hiện](../../audits/nestjs-jwt-migration.md), [kết quả migration](../backend-nestjs-migration/audit.md).
+- Functions/routes hiện tại: [function map](functions.md); auth/error chuẩn trong shared docs. Audit phía dưới trước ngày này là provenance của backend cũ, không chứng nhận runtime Nest. Không đánh dấu toàn feature Done chỉ vì migration build được.
+
 # Audit — ai-grading
 
 - Ngày: 2026-10-30; baseline code `1d0fbad`; tài liệu được đối chiếu nguồn trước bắt đầu profile mới.

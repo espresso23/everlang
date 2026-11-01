@@ -2,7 +2,7 @@
 
 Date:2026-10-31. Branch:`bugfix/sample-audio-player`.
 
-- Scope: [translation practice](../features/translation-practice/audit.md) `AnswerInput` and [immersive learning](../features/immersive-learning/audit.md) `Library` speak → [SampleAudioPlayer](../../components/sample-audio-player.tsx) → browser SpeechSynthesis → icon/time/progress/error.
+- Scope: [translation practice](../features/translation-practice/audit.md) `AnswerInput` and [immersive learning](../features/immersive-learning/audit.md) `Library` speak → [SampleAudioPlayer](../../apps/web/components/sample-audio-player.tsx) → browser SpeechSynthesis → icon/time/progress/error.
 - PASS: separate requirements→code→browser review, lifecycle smoke with synthetic speech events, Korean sample text passed to player, native progress accessible name, 44px button, keyboard, responsive screenshots1440/390/320. Scope does not add API/auth/schema/queue/storage changes (N/A).
 - PASS: lint/typecheck/Next production42routes; regression and deployment results below.
 - NOT VERIFIED: physical voice quality, real boundary event availability per device, screenreader and manual zoom. Progress follows text boundaries; elapsed excludes pauses; no fabricated media duration or seek. Full features retain their existing open provider/content gates.

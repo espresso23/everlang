@@ -1,35 +1,25 @@
-# System design hiện tại — 2026-10-30
+# Kiến trúc hiện tại — 2026-11-01
 
-Next.js nguyên khối theo module và worker riêng. [Code map](../code-map.json) xác định owner cho từng file; [feature index](../README.md) chứa đặc tả chi tiết.
+Monorepo ba runtime: Next.js chỉ render UI tại `apps/web`, NestJS HTTP tại `apps/api`, NestJS ApplicationContext/BullMQ tại `apps/worker`. Hợp đồng browser-safe ở `packages/contracts`; dữ liệu, provider, queue và log dùng chung ở `packages/backend`. [Code map](../code-map.json) là bảng owner chuẩn.
 
 ```mermaid
 flowchart LR
-  Browser --> Next[Next.js Shell và Route Handlers]
-  Next --> Auth[Better Auth / session / API guard]
-  Auth --> PG[(PostgreSQL)]
-  Next --> Mongo[(MongoDB học liệu)]
-  Next --> Redis[(Redis / BullMQ)]
-  Redis --> Worker[Node worker]
-  Worker --> AI[OpenRouter]
-  Worker --> PG
-  Next --> SMTP[SMTP: Mailpit local hoặc nhà cung cấp thật]
-  Next --> Speech[Google Speech-to-Text]
-  Next --> S3[S3 riêng tư]
-  Next --> Vector[pgvector / Tutor]
+ Browser --> Gateway[Caddy cùng origin]
+ Gateway --> Web[Next web :3001]
+ Gateway --> API[Nest API :4000]
+ API --> Guard[JWT guard / RBAC / ownership]
+ Guard --> PG[(PostgreSQL)]
+ API --> Mongo[(MongoDB)]
+ API --> Redis[(Redis / BullMQ)]
+ Redis --> Worker[Nest WorkerHost]
+ Worker --> PG
+ Worker --> Provider[AI / ASR provider]
+ API --> SMTP[SMTP]
+ API --> Storage[Private media / S3]
 ```
 
-Browser chỉ gửi cookie session; API lấy danh tính từ Better Auth, không tin `x-user-id`. PostgreSQL giữ dữ liệu cá nhân; MongoDB giữ đề/học liệu có phiên bản. Redis không phải nguồn tiến độ lâu dài. Worker lưu kết quả chấm trong PostgreSQL; browser theo dõi job và nhận báo cáo. Snapshot đề/rubric bảo vệ lịch sử khi học liệu thay đổi.
+Access JWT RS256 15 phút chỉ trong RAM, gửi Bearer; refresh opaque 30 ngày tuyệt đối ở HttpOnly cookie. Cookie không cấp quyền cho API nghiệp vụ. Native AuthService kiểm active session cùng JWT, PostgreSQL là nguồn thu hồi phiên. Guard kiểm email/admin, service kiểm ownership. Không có Next API route, Better Auth hoặc adapter fallback.
 
-Luồng chính: luyện dịch → job chấm → báo cáo/lưu từ → SRS → dashboard ngày địa phương. Profile cung cấp phút/ngày và múi giờ cho lần tạo lịch tiếp theo. Lịch có sẵn trong ngày giữ snapshot. Caddy là reverse proxy HTTPS trong cấu hình production; local chỉ bind loopback.
+PostgreSQL giữ tiến độ, SRS, durable grading/speech jobs; MongoDB giữ học liệu phiên bản. Redis không giữ tiến độ lâu dài. Học liệu knowledge/catalog là của hệ thống theo language; lưu, note, SRS và tiến độ là riêng user. Snapshot/rubric/idempotency/version giữ nguyên qua migration. Các provider ngoài chỉ được coi verified khi có evidence thực tế.
 
-S3/STT/Tutor có code tích hợp nhưng còn phụ thuộc cấu hình và xác minh dịch vụ; không coi sơ đồ này là bằng chứng chạy thành công. Xem [audit tích hợp](../audits/baseline-integration.md).
-
-## Knowledge library — 2026-10-31
-
-[Thư viện kiến thức](../features/knowledge-library/system-design.md) dùng Route Handlers/service trong monolith: học liệu versioned ở MongoDB, notes/progress/attempts ở PostgreSQL; không thêm backend framework hoặc queue riêng. TTS là thiết bị, chưa audio curated/scoring.
-
-## Speech worker boundary
-
-[self-hosted-speech](../features/self-hosted-speech/system-design.md) là module cùng monolith và Node worker queue riêng. SQL durable outbox + private volume là nguồn chính; Redis queue/heartbeat không chứa kết quả lâu dài. Gemini API là optional explicit external provider, Whisper CPU local là option khác; không chạy đồng thời hai profile worker cùng queue/heartbeat. Không đưa learner reference vào ASR.
-
-Vocabulary catalog: [canonical design](../features/vocabulary-catalog/system-design.md). Mongo vocabulary_catalog giữ immutable common senses/sets; PostgreSQL vocabulary vẫn là SRS duy nhất, thêm sense identity/snapshot và catalog progress/preferences/introductions riêng user. No AI dependency for browsing/learning, quota new/day không phải quota AI kinh doanh.
+[Auth/API](auth-and-api.md) · [Lỗi/log](error-handling.md) · [Vận hành](operations.md) · [Audit migration](../features/backend-nestjs-migration/audit.md).

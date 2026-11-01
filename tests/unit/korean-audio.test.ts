@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { playKorean, stopKorean } from "../../lib/korean-audio";
+import { playKorean, stopKorean } from "@/lib/korean-audio";
 type FakeUtterance = {
   onend: (() => void) | null;
   onerror: ((event: { error: string }) => void) | null;

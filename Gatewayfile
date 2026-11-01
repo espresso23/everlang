@@ -1,0 +1,13 @@
+:8080 {
+  handle /api/* {
+    reverse_proxy api:4000
+  }
+  handle {
+    reverse_proxy app:3001
+  }
+  header {
+    X-Content-Type-Options nosniff
+    Referrer-Policy strict-origin-when-cross-origin
+    Permissions-Policy "camera=(), microphone=(self)"
+  }
+}

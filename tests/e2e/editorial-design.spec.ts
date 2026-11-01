@@ -6,7 +6,7 @@ const seed = JSON.parse(fs.readFileSync("data/seed-sentences.json", "utf8"));
 const user = { id: "editorial-qa", name: "EverLang QA", email: "editorial@example.test", emailVerified: true, image: null, admin: true };
 const lesson = { ...seed[0], _id: "111111111111111111111111", isAiGenerated: false };
 const fixtures: Record<string, unknown> = {
-  "/api/auth/get-session": { user, session: { id: "qa", userId: user.id, token: "mock", expiresAt: "2099-01-01T00:00:00Z" } },
+  "/api/auth/refresh": { accessToken: "fixture-access", user, session: { id: "qa", userId: user.id, token: "mock", expiresAt: "2099-01-01T00:00:00Z" } },
   "/api/config": { google: true },
   "/api/profile": { user, profile: { level: "Trung cấp", goal: "Đọc hiểu tiếng Hàn mỗi ngày", minutes: 20, timezone: "Asia/Ho_Chi_Minh" }, providers: ["google"], googleEnabled: true },
   "/api/dashboard": { profile: { minutes: 20, goal: "Đọc hiểu tiếng Hàn" }, dueCount: 12, streak: 8,
@@ -21,6 +21,7 @@ const fixtures: Record<string, unknown> = {
   "/api/exams": { items: [{ id: "mini", title: "Bài luyện TOPIK ngắn", kind: "mini", minutes: 10 }], attempts: [] },
   "/api/admin/content": { items: [] },
 };
+fixtures["/api/auth/me"]=fixtures["/api/auth/refresh"];
 const selectors = [".app-header", ".app-nav", ".page", ".hero", ".hero-art", ".stats-grid", ".dashboard-grid", ".auth-layout", ".form-stack", ".practice"];
 const properties = ["display", "grid-template-columns", "flex-direction", "gap", "padding-top", "padding-right", "padding-bottom", "padding-left", "max-width", "width"];
 const dir = "documentation/features/design-system/assets";

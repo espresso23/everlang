@@ -1,3 +1,4 @@
+import { installJwtContext } from "./helpers/jwt-context";
 import { test, expect, type APIRequestContext } from "@playwright/test";
 import { randomUUID } from "node:crypto";
 import fs from "node:fs";
@@ -48,6 +49,7 @@ test(
     });
     const password = randomUUID() + "aA1!";
     async function signup(client: APIRequestContext, email: string) {
+    installJwtContext(client,baseURL!);
       expect(
         (
           await client.post("/api/auth/sign-up/email", {

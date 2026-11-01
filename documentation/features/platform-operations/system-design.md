@@ -4,7 +4,7 @@
 
 ## Luồng thực tế
 
-Browser → Next → API guard/services → SQL/Mongo/Redis/providers; Docker migrations → app/worker; Caddy → app
+Browser → Caddy gateway → Next web hoặc Nest API → JWT guard/services → SQL/Mongo/Redis/providers; native Nest workers qua BullMQ.
 
 ```mermaid
 flowchart LR
@@ -20,14 +20,14 @@ Sơ đồ khái quát ranh giới; chuỗi phía trên nêu rõ worker/provider/
 
 Internal planning data: work-items.json → validatePlanning → buildViews → generated WBS/backlog/sprint/task/dashboard + CSV. Source ở documentation/planning, owner platform-operations; không nằm trong runtime/app DB. Check mode không sửa file, sync mode chỉ sinh7 views cố định. Dependencies và evidence là guard cấu trúc, không thay PO review hoặc quality audit. Solo/reviewer do user xác nhận; hours/capacity/date chưa chốt nên các sprint Proposed.
 
-Migrations001–003 tạo schema PostgreSQL; lib/sql/index dùng pg Pool + Drizzle auth; Redis queue có AOF/noeviction. lib/types là hợp đồng shared.
+Migrations001–008 giữ lịch sử và auth cutover; packages/backend/src/sql/index.ts dùng pg Pool. Redis queue có AOF/noeviction; packages/contracts chứa hợp đồng browser-safe.
 
-API cá nhân luôn lấy user từ session ở [api](../../../lib/api.ts), không nhận user_id tùy ý từ request. Mutation dùng JSON/Origin; lỗi auth 401/403 không phải dữ liệu trống hợp lệ.
+API cá nhân luôn lấy user từ session ở [api](../../../apps/api/src/auth/jwt.guard.ts), không nhận user_id tùy ý từ request. Mutation dùng JSON/Origin; lỗi auth 401/403 không phải dữ liệu trống hợp lệ.
 
 ## Hợp đồng tích hợp
 
-- api(path,handler,admin) — guard và JSON/error wrapper.
-- query(sql,values), connectDb(), rateLimit(), getGradingQueue(), log/withApiLogging là module shared.
+- JwtGuard.canActivate + GlobalExceptionFilter.respondError + ResponseInterceptor — native authentication, role và response/error boundary.
+- query(sql,values), connectDb(), rateLimit(), getGradingQueue(), log/requestLogging là module shared.
 
 ## Failure modes và vận hành
 
@@ -37,6 +37,6 @@ Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [sto
 
 ## Bản sửa worker/error boundary — 2026-10-31 (implemented; đặc tả ghi trước code)
 
-Tái sử dụng `log`/`logError` và API boundary `api`→`withApiLogging`. Pool idle errors có listener không nhận/log client; worker listeners/startup/recovery/shutdown đều có catch. Fatal process exception/rejection được log an toàn rồi exit1 để supervisor khởi động lại, không tiếp tục process hỏng. AI429 giữ HTTP status và Retry-After kể cả body không phải JSON; cooldown Redis toàn grading queue, retry hữu hạn3lần, lỗi cuối không lưu điểm giả, thông báo giữ nháp. Không đổi model/billing. Kiểm unit fault injection + real Redis/BullMQ cooldown + build/container.
+Tái sử dụng `log`/`logError` và Nest boundary requestLogging→JwtGuard→GlobalExceptionFilter. Pool idle errors có listener không nhận/log client; worker listeners/startup/recovery/shutdown đều có catch. Fatal process exception/rejection được log an toàn rồi exit1 để supervisor khởi động lại, không tiếp tục process hỏng. AI429 giữ HTTP status và Retry-After kể cả body không phải JSON; cooldown Redis toàn grading queue, retry hữu hạn3lần, lỗi cuối không lưu điểm giả, thông báo giữ nháp. Không đổi model/billing. Kiểm unit fault injection + real Redis/BullMQ cooldown + build/container.
 
 Hợp đồng triển khai đầy đủ: [error handling](../../shared/error-handling.md).

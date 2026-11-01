@@ -1,38 +1,9 @@
 # System design — identity-auth
 
-[Đặc tả](README.md) · [Functions](functions.md) · [UI](ui.md)
+[Nguồn hợp đồng auth duy nhất](../../shared/auth-and-api.md). Browser AuthProvider→Nest AuthController→AuthService→PG auth_refresh_sessions/auth_refresh_tokens/auth_one_time_tokens/users/auth_identities; SMTP verify/reset, Google token endpoint/JWKS cho code flow.
 
-## Luồng thực tế
+008 rename user/account, bỏ session/verification/provider tokens cũ; IDs/password/provider subjects không đổi, business FK được PostgreSQL giữ theo rename. Session/token insert và refresh transaction; replay lock serialized và revoke family. JWT verification kiểm RS256/issuer/audience/exp rồi truy vấn active session; quyền server hiện tại không phụ thuộc roles claim.
 
-Form/Google → Better Auth → PostgreSQL account/session → cookie → useSession → Shell/API
+Google state token hash+PKCE verifier/nonce/link target lưu one-time server; cookie hash(state) ràng buộc browser,10phút. Callback consume một lần, verify ID token/JWKS/nonce/email, explicit linking không email takeover. Không lưu Google tokens. Lỗi callback chỉ code whitelist/generic trên UI; query/code/state không log.
 
-```mermaid
-flowchart LR
-  UI["UI / caller"] --> API["Session / API / service"]
-  API --> Data["Data / provider"]
-  Data --> Result["Result / error"]
-  Result --> UI
-```
-
-Sơ đồ khái quát ranh giới; chuỗi phía trên nêu rõ worker/provider/storage có áp dụng cho feature này.
-
-## Dữ liệu và ownership
-
-auth_user, auth_account, auth_session, auth_verification trong PostgreSQL; SMTP/Mailpit chỉ phục vụ email, không tham gia OAuth.
-
-API cá nhân luôn lấy user từ session ở [api](../../../lib/api.ts), không nhận user_id tùy ý từ request. Mutation dùng JSON/Origin; lỗi auth 401/403 không phải dữ liệu trống hợp lệ.
-
-## Hợp đồng tích hợp
-
-- GET/POST /api/auth/* — handler Better Auth cho sign-up/email, sign-in/email, sign-in/social, callback/google, get-session, verify-email, reset/change password, sign-out.
-- GET /api/config — {google:boolean}, no-store; không trả credential.
-
-## Failure modes và vận hành
-
-OAuth từng lỗi redirect_uri_mismatch đã khắc phục; log 2026-10-30 ghi invalid_client vì secret không hợp lệ. Probe sau khi người dùng cập nhật trả invalid_grant với refresh token giả; sau đó chủ tài khoản đã đăng nhập thật, DB xác nhận một Google account có image và session hoạt động. Email đã có tài khoản phải dùng explicit linking. SMTP production chưa được cấu hình.
-
-Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [storage/migrations](../../shared/data-model.md), [vận hành](../../shared/operations.md). Chỉ tên biến môi trường được ghi ở docs; không đưa token, cookie hay credential vào ví dụ/log.
-
-## Cập nhật profile/auth 2026-10-30
-
-Google login thực tế đã được chủ tài khoản xác nhận sau cập nhật secret; DB xác nhận provider/image/session (không ghi danh tính/token). Sign-in social và linkSocial dùng errorCallbackURL=/sign-in; lỗi account_not_linked hướng dẫn explicit linking, lỗi khác hiển thị thông báo chung, không phản chiếu raw query. [Auth route](../../../app/api/auth/[...all]/route.ts) handleAuth bọc withApiLogging và log callback outcome/mã whitelist, không query/Location/code/state. Redirected chỉ có nghĩa HTTP redirect, không tự chứng nhận session. [UI tests](../../../tests/e2e/profile-ui.spec.ts) và [audit nhóm](../../audits/profile-auth-integration.md).
+Backup/restore/cutover theo [operations](../../shared/operations.md), kết quả [migration audit](../backend-nestjs-migration/audit.md).

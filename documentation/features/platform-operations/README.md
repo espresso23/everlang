@@ -17,8 +17,8 @@
 
 - Internal project planning: [work-items.json](../../planning/work-items.json) là nguồn duy nhất; [planning.mjs](../../../scripts/planning.mjs) sinh/check WBS/backlog/sprints/task CSV/dashboard. Không phải feature học hoặc route mới, không ghi DB. Xem [hướng dẫn](../../planning/README.md).
 
-- api(path,handler,admin) — guard và JSON/error wrapper.
-- query(sql,values), connectDb(), rateLimit(), getGradingQueue(), log/withApiLogging là module shared.
+- JwtGuard.canActivate + GlobalExceptionFilter.respondError + ResponseInterceptor — native authentication, role và response/error boundary.
+- query(sql,values), connectDb(), rateLimit(), getGradingQueue(), log/requestLogging là module shared.
 
 ## Tài liệu chuẩn
 

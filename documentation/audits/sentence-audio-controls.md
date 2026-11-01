@@ -4,8 +4,8 @@ Ngày2026-10-31; branch `bugfix/sample-audio-player`, HEAD13d432b + working chan
 
 ## Review đặc tả → code → browser
 
-- [Library](../../app/library/page.tsx) read3segments/play labels, listen first sentence, speak sample đều dùng [SampleAudioPlayer](../../components/sample-audio-player.tsx). Bỏ import/helper speak ở Library. Selected tab/lesson có aria-pressed/current, stable keys đổi lesson/tab reset playback.
-- [Practice](../../components/practice.tsx): AnswerDetails chuyển icon player, bỏ callback onSpeak và helper speak mẫu cũ; AnswerInput dùng player chuẩn. Dictionary selection speech giữ workflow cũ.
+- [Library](../../apps/web/app/library/page.tsx) read3segments/play labels, listen first sentence, speak sample đều dùng [SampleAudioPlayer](../../apps/web/components/sample-audio-player.tsx). Bỏ import/helper speak ở Library. Selected tab/lesson có aria-pressed/current, stable keys đổi lesson/tab reset playback.
+- [Practice](../../apps/web/components/practice.tsx): AnswerDetails chuyển icon player, bỏ callback onSpeak và helper speak mẫu cũ; AnswerInput dùng player chuẩn. Dictionary selection speech giữ workflow cũ.
 - Shared `activePlayback`/`PlaybackOwner`/`release` đảm bảo dừng1player/reset UI cũ kể cả engine không emit canceled event; detach callbacks trước cancel; cleanup player không active không dừng utterance của player khác. Loading spinner/live status/aria-busy, timeout10s, unsupported/error, compact210px, reduced-motion, focus44px theo Editorial.
 - Không đổi grid/container/breakpoint/palette/backend/API/schema/data. Progress theo text boundary, elapsed không gồm pause; không có seek/total duration thật. Physical Korean voice/screenreader/native zoom vẫn NOT VERIFIED.
 

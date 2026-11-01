@@ -1,9 +1,9 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { transcribeGeminiWav } from "../../lib/speech/gemini";
+import { transcribeGeminiWav } from "@everlang/backend/speech/gemini";
 import {
   heartbeatMatches,
   speechServiceReady,
-} from "../../lib/speech/provider";
+} from "@everlang/backend/speech/provider";
 const budget = (value: unknown = 1) => ({
   eval: vi.fn().mockResolvedValue(value),
 });

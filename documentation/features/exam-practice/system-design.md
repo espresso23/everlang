@@ -20,7 +20,7 @@ Sơ đồ khái quát ranh giới; chuỗi phía trên nêu rõ worker/provider/
 
 Đề trong Mongo ExamModel; exam_attempts SQL; index unique partial ở migration003. Khi hết deadline, server giữ câu trả lời đã lưu thay vì nhận chỉnh sửa muộn.
 
-API cá nhân luôn lấy user từ session ở [api](../../../lib/api.ts), không nhận user_id tùy ý từ request. Mutation dùng JSON/Origin; lỗi auth 401/403 không phải dữ liệu trống hợp lệ.
+API cá nhân luôn lấy user từ session ở [api](../../../apps/api/src/auth/jwt.guard.ts), không nhận user_id tùy ý từ request. Mutation dùng JSON/Origin; lỗi auth 401/403 không phải dữ liệu trống hợp lệ.
 
 ## Hợp đồng tích hợp
 

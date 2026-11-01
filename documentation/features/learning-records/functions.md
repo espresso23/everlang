@@ -1,32 +1,20 @@
-# Function description — learning-records
+# Function map — learning-records
 
-[Đặc tả và contract](README.md) · [System design](system-design.md)
+2026-11-01, branch `feature/nestjs-jwt-migration`. Bản đồ hiện tại sau chuyển monorepo. [Đặc tả](README.md) · [Thiết kế](system-design.md) · [UI](ui.md) · [Audit](audit.md).
 
-## File + symbol → trách nhiệm
-
-Các callback vô danh nằm trong component/handler được mô tả cùng component chủ. Schema/constant có thể là binding chứ không phải hàm; không tạo thêm API ngoài code.
-
-| Code/symbol | Chữ ký/binding hiện tại | Hành vi, I/O và side effect |
+| File/điểm vào | Symbol hiện có | Trách nhiệm/hợp đồng |
 |---|---|---|
-| [app/api/drafts/route.ts](../../../app/api/drafts/route.ts) · `GET` | `export const GET` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/drafts/route.ts](../../../app/api/drafts/route.ts) · `PUT` | `export const PUT` | Handler `PUT`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/submissions/route.ts](../../../app/api/submissions/route.ts) · `GET` | `export const GET` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/user/favorites/route.ts](../../../app/api/user/favorites/route.ts) · `GET` | `export const GET` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/user/favorites/route.ts](../../../app/api/user/favorites/route.ts) · `POST` | `export const POST` | Handler `POST`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [app/api/user/stats/route.ts](../../../app/api/user/stats/route.ts) · `GET` | `export const GET` | Handler `GET`; payload, output và mã lỗi theo các hợp đồng ở [đặc tả](README.md). Guard chung áp dụng nếu route dùng api(). |
-| [lib/learning/submissions.ts](../../../lib/learning/submissions.ts) · `reportView` | `export function reportView(row: StoredSubmission)` | Đổi row SQL sang contract báo cáo client và metadata phiên bản. |
-| [lib/learning/submissions.ts](../../../lib/learning/submissions.ts) · `statistics` | `export async function statistics(userId: string)` | Chọn report completed mới nhất mỗi câu, tổng hợp điểm/chủ đề yếu. |
-| [lib/models/Submission.ts](../../../lib/models/Submission.ts) · `Submission` | `export const Submission` | Component/type `Submission` thuộc luồng nháp, lịch sử, yêu thích và thống kê; hành vi và trạng thái UI ở [ui.md](ui.md). |
-| [lib/models/UserSentenceState.ts](../../../lib/models/UserSentenceState.ts) · `UserSentenceState` | `export const UserSentenceState` | Component/type `UserSentenceState` thuộc luồng nháp, lịch sử, yêu thích và thống kê; hành vi và trạng thái UI ở [ui.md](ui.md). |
-| [scripts/import-legacy.ts](../../../scripts/import-legacy.ts) | Cấu hình/schema/asset/script | drafts, favorites, submissions, legacy_imports. Hai model Mongo cũ chỉ phục vụ di sản, API hiện hành dùng SQL. |
+| [apps/api/src/domains/drafts.service.ts](../../../apps/api/src/domains/drafts.service.ts) | `DraftsService`, `DraftsService.get`, `DraftsService.put` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/api/src/domains/submissions.service.ts](../../../apps/api/src/domains/submissions.service.ts) | `SubmissionsService`, `SubmissionsService.get` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/api/src/domains/user-favorites.service.ts](../../../apps/api/src/domains/user-favorites.service.ts) | `UserFavoritesService`, `UserFavoritesService.get`, `UserFavoritesService.post` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [apps/api/src/domains/user-stats.service.ts](../../../apps/api/src/domains/user-stats.service.ts) | `UserStatsService`, `UserStatsService.get` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
+| [packages/backend/src/learning/submissions.ts](../../../packages/backend/src/learning/submissions.ts) | `StoredSubmission`, `reportView`, `statistics` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/models/Submission.ts](../../../packages/backend/src/models/Submission.ts) | `GrammarErrorSchema`, `VocabSuggestionSchema`, `RewriteSchema`, `SubmissionSchema`, `Submission` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/models/UserSentenceState.ts](../../../packages/backend/src/models/UserSentenceState.ts) | `UserSentenceStateSchema`, `UserSentenceState` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [scripts/import-records.ts](../../../scripts/import-records.ts) | `c` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [apps/api/src/domains/drafts.controller.ts](../../../apps/api/src/domains/drafts.controller.ts) | `DraftsController`, `DraftsController.get`, `DraftsController.put` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
+| [apps/api/src/domains/submissions.controller.ts](../../../apps/api/src/domains/submissions.controller.ts) | `SubmissionsController`, `SubmissionsController.get` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
+| [apps/api/src/domains/user-favorites.controller.ts](../../../apps/api/src/domains/user-favorites.controller.ts) | `UserFavoritesController`, `UserFavoritesController.get`, `UserFavoritesController.post` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
+| [apps/api/src/domains/user-stats.controller.ts](../../../apps/api/src/domains/user-stats.controller.ts) | `UserStatsController`, `UserStatsController.get` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
 
-## Input, output và lỗi theo điểm vào
-
-- GET/PUT /api/drafts — {sentenceId,text,version}; PUT trả version mới hoặc 409.
-- GET /api/submissions — sentenceId tùy chọn; {submission} hoặc {submissions}.
-- GET/POST /api/user/favorites — {favorites}; mutation {sentenceId,favorite}.
-- GET /api/user/stats — totalCompleted,averageScore,weakTopics.
-
-drafts, favorites, submissions, legacy_imports. Hai model Mongo cũ chỉ phục vụ di sản, API hiện hành dùng SQL.
-
-Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) và schema trong module tương ứng. Việc một route/hàm có tồn tại không chứng minh provider đã chạy thành công; xem [audit](audit.md).
+Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.

@@ -1,3 +1,12 @@
+## 2026-11-01 — Native Nest migration regression audit
+
+Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
+
+- PASS: native author/publish/sense identity/quota/CAS/legacy attach/same FSRS/integrated UI.
+- Failure override/old bridge options không chạy; owner content coverage còn mở.
+- Evidence/checks: vocabulary-catalog.spec.ts; [bảng tích hợp và lệnh tái hiện](../../audits/nestjs-jwt-migration.md), [kết quả migration](../backend-nestjs-migration/audit.md).
+- Functions/routes hiện tại: [function map](functions.md); auth/error chuẩn trong shared docs. Audit phía dưới trước ngày này là provenance của backend cũ, không chứng nhận runtime Nest. Không đánh dấu toàn feature Done chỉ vì migration build được.
+
 # Audit — vocabulary-catalog
 
 2026-10-31 · branch feature/topic-vocabulary-catalog · PB-035. Implementation checkpoint; chưa đóng toàn bộ feature/corpus. Đối chiếu độc lập yêu cầu → code → actual API/database/browser sau triển khai; chi tiết tại [bằng chứng](assets/verification.md), [audit kết nối](../../audits/vocabulary-catalog-integration.md).

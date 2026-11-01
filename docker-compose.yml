@@ -2,8 +2,7 @@ x-app-env: &app-env
   DATABASE_URL: postgresql://everlang:${POSTGRES_PASSWORD}@postgres:5432/everlang
   MONGODB_URI: ${MONGODB_URI:-mongodb://mongo:27017/korean_practice}
   REDIS_URL: redis://redis:6379
-  BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3000}
-  BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?Set BETTER_AUTH_SECRET}
+  PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:3000}
   ADMIN_EMAILS: ${ADMIN_EMAILS:-}
   GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
   GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
@@ -68,43 +67,67 @@ services:
     ports: ["127.0.0.1:8025:8025"]
     restart: unless-stopped
   migrate:
+    image: everlang-worker:local
     build: {context: ., target: worker}
     environment: *app-env
     command: [npm, run, db:migrate]
     depends_on:
       postgres: {condition: service_healthy}
   worker:
+    image: everlang-worker:local
+    stop_grace_period: 150s
     build: {context: ., target: worker}
-    environment: *app-env
+    environment:
+      <<: *app-env
+      SERVICE_NAME: everlang-grading-worker
+    logging: {driver: json-file, options: {max-size: 10m, max-file: "5"}}
     restart: unless-stopped
     depends_on:
       migrate: {condition: service_completed_successfully}
       redis: {condition: service_healthy}
-  app:
-    build: {context: ., target: runner}
-    ports: ["127.0.0.1:3000:3000"]
-    environment: *app-env
-    restart: unless-stopped
+  api:
+    image: everlang-api:local
+    build: {context: ., target: api}
+    environment:
+      <<: *app-env
+      SERVICE_NAME: everlang-api
+      JWT_PRIVATE_KEY_B64: ${JWT_PRIVATE_KEY_B64:?Set JWT_PRIVATE_KEY_B64}
+      JWT_PUBLIC_KEY_B64: ${JWT_PUBLIC_KEY_B64:?Set JWT_PUBLIC_KEY_B64}
+      CSRF_SECRET: ${CSRF_SECRET:?Set CSRF_SECRET}
     volumes: ["speech_media:/data/speech-media"]
+    restart: unless-stopped
     depends_on:
+      migrate: {condition: service_completed_successfully}
       mongo: {condition: service_healthy}
       redis: {condition: service_healthy}
-      migrate: {condition: service_completed_successfully}
-    logging:
-      driver: json-file
-      options: {max-size: 10m, max-file: "5"}
+    logging: {driver: json-file, options: {max-size: 10m, max-file: "5"}}
+  app:
+    image: everlang-web:local
+    build: {context: ., target: web}
+    environment: {NODE_ENV: production, PORT: 3001, HOSTNAME: 0.0.0.0}
+    restart: unless-stopped
+    logging: {driver: json-file, options: {max-size: 10m, max-file: "5"}}
+  gateway:
+    image: caddy:2-alpine
+    ports: ["127.0.0.1:3000:8080"]
+    volumes: ["./Gatewayfile:/etc/caddy/Caddyfile:ro"]
+    depends_on: [api, app]
+    restart: unless-stopped
   caddy:
     image: caddy:2-alpine
     profiles: [production]
     ports: ["80:80", "443:443"]
     environment: {EVERLANG_DOMAIN: "${EVERLANG_DOMAIN:-localhost}"}
     volumes: ["./Caddyfile:/etc/caddy/Caddyfile:ro", "caddy_data:/data", "caddy_config:/config"]
-    depends_on: [app]
+    depends_on: [gateway]
     restart: unless-stopped
   speech-api-worker:
     profiles: [speech-api]
     build: {context: ., target: speech-api-worker}
-    environment: *app-env
+    environment:
+      <<: *app-env
+      SERVICE_NAME: everlang-speech-worker
+    logging: {driver: json-file, options: {max-size: 10m, max-file: "5"}}
     volumes: ["speech_media:/data/speech-media"]
     cpus: 1
     mem_limit: 384m
@@ -122,7 +145,10 @@ services:
   speech-worker:
     profiles: [speech]
     build: {context: ., target: speech-worker}
-    environment: *app-env
+    environment:
+      <<: *app-env
+      SERVICE_NAME: everlang-speech-worker
+    logging: {driver: json-file, options: {max-size: 10m, max-file: "5"}}
     volumes: ["speech_media:/data/speech-media", "speech_models:/models:ro"]
     cpus: 2
     mem_limit: 1200m

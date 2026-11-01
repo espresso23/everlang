@@ -8,10 +8,10 @@ import {
   speechBody,
   speechView,
   type SpeechRow,
-} from "../../lib/speech/contract";
-import { speechMediaPath } from "../../lib/speech/storage";
-import { pcmIsQuiet } from "../../lib/speech/transcribe";
-import { chooseSpeechBackend } from "../../lib/speech/runtime";
+} from "@everlang/backend/speech/contract";
+import { speechMediaPath } from "@everlang/backend/speech/storage";
+import { pcmIsQuiet } from "@everlang/backend/speech/transcribe";
+import { chooseSpeechBackend } from "@everlang/backend/speech/runtime";
 
 function wav(amplitude = 0, rate = 16000) {
   const buffer = Buffer.alloc(44 + 32000);

@@ -4,8 +4,8 @@ Ngày2026-10-31; branch bugfix/retry-failed-grading từ main af438bf. User log 
 
 ## Review riêng
 
-- [POSTgrade](../../app/api/submissions/grade/route.ts) giữ auth/Origin/rate-limit/published source/snapshot/dedup. Own failed row trả409/code GRADING_PREVIOUS_FAILED/submissionId/retryable, không enqueue hoặc update failed attempt. Completed trảcache200; forceRegrade dùng requestId mới tạo dedupkey riêng/202.
-- [Practice.submit](../../components/practice.tsx) đưa retryGrading tới error alert cho failed409 và failed polling. Click Chấm lại bằng AI gọi forceRegrade=true; không phụ thuộc report modal, không tự retry vô hạn, gradingRequestRef chặn double submission. Draft/textarea giữ nguyên; không đổi model/billing/worker/cooldown/schema hoặc reset dữ liệu.
+- [POSTgrade](../../apps/api/src/domains/submissions-grade.service.ts) giữ auth/Origin/rate-limit/published source/snapshot/dedup. Own failed row trả409/code GRADING_PREVIOUS_FAILED/submissionId/retryable, không enqueue hoặc update failed attempt. Completed trảcache200; forceRegrade dùng requestId mới tạo dedupkey riêng/202.
+- [Practice.submit](../../apps/web/components/practice.tsx) đưa retryGrading tới error alert cho failed409 và failed polling. Click Chấm lại bằng AI gọi forceRegrade=true; không phụ thuộc report modal, không tự retry vô hạn, gradingRequestRef chặn double submission. Draft/textarea giữ nguyên; không đổi model/billing/worker/cooldown/schema hoặc reset dữ liệu.
 - Endpoint/API logger chung vẫn có x-request-id và phân loại409warning thay502error. Thông báo provider-safe lấy từ failed row do server tạo.
 
 ## Checks
