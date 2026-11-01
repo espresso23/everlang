@@ -34,3 +34,7 @@ Quyền/validation, contract hai đầu, snapshot/state và lỗi cần đối c
 Chưa kiểm chứng indexing/retrieval/grounding qua dịch vụ thật. Citation trả từ retrieval, không phải kiểm định mọi câu AI đều được nguồn hỗ trợ.
 
 Điều kiện nâng trạng thái verified: yêu cầu bắt buộc trong [README](README.md) có bằng chứng tương ứng, không còn lỗi bắt buộc, docs/symbol/hash đúng và provider đã kiểm trong môi trường mục tiêu. Lịch sử kiểm tra trước đây giữ ở [FEATURE_AUDIT](../../../FEATURE_AUDIT.md); đây không phải khẳng định đã chạy lại mọi ca trong lượt tài liệu này.
+
+## PostgreSQL-only re-audit — 2026-11-01
+
+PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.

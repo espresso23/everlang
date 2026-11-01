@@ -6,7 +6,7 @@
 |---|---|---|
 | [packages/contracts/src/vocabulary-catalog-contract.ts](../../../packages/contracts/src/vocabulary-catalog-contract.ts) | `CATALOG_TAXONOMY_VERSION`, `catalogTopics`, `catalogKey`, `text`, `bilingual`, `base`, `senseSchema`, `setSchema`, `catalogContentSchema`, `SenseContent`, `SetContent`, `CatalogContent`, `CatalogRecord`, `catalogPublic`, `PublicCatalog`, `CatalogSnapshot`, `catalogRecallContext`, `catalogLearningBody` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/backend/src/vocabulary-catalog.ts](../../../packages/backend/src/vocabulary-catalog.ts) | `getCatalog`, `catalogSetDetail`, `listCatalog`, `transitionCatalog` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
-| [packages/backend/src/models/VocabularyCatalog.ts](../../../packages/backend/src/models/VocabularyCatalog.ts) | `schema`, `VocabularyCatalog` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/content-store.ts](../../../packages/backend/src/content-store.ts) | `schema`, `VocabularyCatalog` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/backend/src/catalog-learning.ts](../../../packages/backend/src/catalog-learning.ts) | `catalogDay`, `budget`, `catalogLearning`, `saveCatalogLearning`, `saveCatalogPreferences` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [apps/web/lib/korean-audio.ts](../../../apps/web/lib/korean-audio.ts) | `generation`, `active`, `stopKorean`, `playKorean` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [data/vocabulary-drafts.ts](../../../data/vocabulary-drafts.ts) | `vocabularyDrafts` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
@@ -35,3 +35,7 @@ Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [
 Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.
 
 Audit harness: vocabulary-catalog-ui.spec.ts đọc E2E_CATALOG_UI_EMAIL để test editor và full catalogue dùng hai QA admin khác nhau; danh sách chỉ mở trong compose.orm-qa.yml. Không đổi RBAC/runtime admin settings.
+
+## PostgreSQL-only — 2026-11-01
+
+Current persistence: [content store](../../../packages/backend/src/content-store.ts), [mapped envelopes](../../../packages/backend/src/content-entities.ts), [atomic offline importer](../../../packages/backend/src/content-import.ts). Mongo models/connectDb are removed; existing routes, validation, ownership, version/CAS and snapshots remain. [Canonical migration contract](../postgresql-only/README.md) supersedes the earlier Mongo persistence descriptions; historical evidence is not new verification.

@@ -43,3 +43,7 @@ Methods are native AuthController decorators; body schemas strict Zod. Callback 
 - [tests/unit/nest-jwt.test.ts](../../../tests/unit/nest-jwt.test.ts): Kiểm regression hành vi bằng ORM mock hoặc native runtime.
 
 Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.
+
+## PostgreSQL-only configuration — 2026-11-01
+
+[validateRuntimeEnvironment](../../../apps/api/src/runtime-config.ts) is used by AppModule: DATABASE_URL/Redis/JWT/CSRF are required; MONGODB_URI is not. Red/green [configuration regression](../../../tests/unit/runtime-config.test.ts) and actual Mongo-free startup verified; token/session/provider behavior unchanged. [Migration audit](../postgresql-only/audit.md).

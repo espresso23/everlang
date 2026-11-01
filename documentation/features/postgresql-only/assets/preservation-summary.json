@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-01",
+  "sourceCollections": {
+    "exams": {
+      "count": 1,
+      "sha256": "3d1edf1cc664f4231896ab58646fd1ebb012b400f9e5258322f4d15fa75a6208"
+    },
+    "knowledge_entries": {
+      "count": 13,
+      "sha256": "427592295f118cb3b5a5f8e6fd349ab18f97a0fc9efa10e081a5ede4f365795d"
+    },
+    "sentences": {
+      "count": 100,
+      "sha256": "c30fc2a8c5b15c8e3cf83f8a086e5c9f36c7c6078ab6080d791cc7cecae8a30d"
+    },
+    "submissions": {
+      "count": 5,
+      "sha256": "cd5307560becd484601c64223d67bb0f2c70ad9d2dd9a12c93bc8eaa3f5083d7"
+    },
+    "usersentencestates": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "vocabulary_catalog": {
+      "count": 53,
+      "sha256": "a7ed6ed4d39c8baa6a11b4946981c94fa87a2ff02c85b34dd535e50767e9611b"
+    }
+  },
+  "sourceDocuments": 172,
+  "operationalCounts": {
+    "content_sentences": 100,
+    "content_exams": 1,
+    "knowledge_entries": 13,
+    "vocabulary_catalog": 53,
+    "legacy_documents": 172
+  },
+  "preservation": {
+    "beforeRestart": {
+      "tableRows": 25,
+      "columnIndexConstraintHashesEqual": true
+    },
+    "afterTraffic": {
+      "stableTableRows": 24,
+      "columnIndexConstraintHashesEqual": true,
+      "transientRateLimitBucketChanged": true
+    }
+  },
+  "checks": {
+    "unit": 80,
+    "candidateE2E": 29,
+    "postCutoverSmoke": 2,
+    "mongoStopped": true
+  }
+}

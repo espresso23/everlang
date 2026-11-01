@@ -1,3 +1,11 @@
+# PostgreSQL-only operations — current update 2026-11-01
+
+Runtime uses PostgreSQL + Redis + private media; MongoDB/Mongoose removed. Backup script now saves PG/Redis/media. Do not delete retained Mongo volumes/snapshots: they are rollback artifacts, never a live fallback. Source export: run scripts/export-mongo-snapshot.js through mongosh against the explicit source DB, redirect privately. Backup target, run migration10, then node --import tsx scripts/import-mongo-snapshot.ts <private-snapshot.json> --confirm-snapshot. Import atomically checks every archive/operational document and rejects differing targets. Cutover evidence: [PostgreSQL-only audit](../features/postgresql-only/audit.md). After writes on the new runtime, rollback requires reconciliation of new PG data; never blindly restore an older snapshot.
+
+## Historical operations notes
+
+The sections below record earlier migrations; references to Mongo apply to those snapshots, not a runtime prerequisite.
+
 # Vận hành và rollback
 
 Nguồn: [Compose](../../docker-compose.yml), [Dockerfile](../../Dockerfile), [Caddy](../../Caddyfile), [scripts](../features/platform-operations/functions.md).

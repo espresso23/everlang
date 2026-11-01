@@ -20,3 +20,7 @@
 Review found/fixed targeted ON CONFLICT omission (profile/grading/knowledge/import/catalog progress), insert count without RETURNING, and readiness waiting on reconnect. CLI real import confirms1new/0repeat, ownership guard and original Mongo preservation. First full run27PASS/2FAIL; fixed actual timeout and isolated two suites' QA admin emails; final29/29PASS. Restrictive legacy_imports FK was a test cleanup issue, fixed explicitly; production FK retained.
 
 [Detailed commands/results](assets/verification.md), [integration audit](../../audits/postgresql-orm-migration.md), [function map](functions.md), [shared architecture](../../shared/architecture.md). Raw backups/traces remain private, durable summary lives here. External limits are not silently converted to PASS.
+
+## PostgreSQL-only re-audit — 2026-11-01
+
+PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.

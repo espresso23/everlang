@@ -19,3 +19,7 @@
 CRUD giữ trong từng canonical feature, xem [source ownership](../../code-map.json). Auth credential password/refresh used_at giữ alias explicit; profile dùng upsert user_id; grading/knowledge/import conflict target giữ chính xác; catalogue progress update version trong per-user advisory lock; FSRS/exam giữ row locks/CAS. JSONB insert dùng bound expression với JSON.stringify DTO hiện hữu để tránh double encoding; vector bound cast giữ1536. Không facade nhận nguyên SQL.
 
 [orm-import-fixture.mjs](../../../tests/integration/orm-import-fixture.mjs) kiểm CLI thật trong QA PG/Mongo: import1/reimport0, thiếu confirm/đổi owner bị chặn, Mongo originals còn nguyên, cleanup explicit legacy_imports trước user (FK restrictive). CLI migrate/import cài process error handlers chung, không để uncaught QueryFailedError dump query/params.
+
+## PostgreSQL-only — 2026-11-01
+
+Current persistence: [content store](../../../packages/backend/src/content-store.ts), [mapped envelopes](../../../packages/backend/src/content-entities.ts), [atomic offline importer](../../../packages/backend/src/content-import.ts). Mongo models/connectDb are removed; existing routes, validation, ownership, version/CAS and snapshots remain. [Canonical migration contract](../postgresql-only/README.md) supersedes the earlier Mongo persistence descriptions; historical evidence is not new verification.

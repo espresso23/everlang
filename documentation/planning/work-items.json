@@ -1231,6 +1231,27 @@
         "PB-040-T02"
       ],
       "scope": "Core"
+    },
+    {
+      "id": "PB-041",
+      "wbs": "WBS-5.41",
+      "epic": "WBS-5",
+      "title": "Replace MongoDB with PostgreSQL primary business storage",
+      "priority": "P0",
+      "sprint": null,
+      "points": null,
+      "featureId": "postgresql-only",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "Preserve content/legacy IDs and revisions; PostgreSQL-only runtime, atomic idempotent import/rollback evidence and observable learning/admin demo.",
+      "refinement": "Ready",
+      "contentCapacity": "N/A data migration; no content approval",
+      "tasks": [
+        "PB-041-T01",
+        "PB-041-T02",
+        "PB-041-T03"
+      ],
+      "scope": "Core"
     }
   ],
   "tasks": [
@@ -2571,6 +2592,53 @@
         "documentation/audits/postgresql-orm-migration.md"
       ],
       "verification": "Pass",
+      "updated": "2026-11-01"
+    },
+    {
+      "id": "PB-041-T01",
+      "parent": "PB-041",
+      "title": "PostgreSQL-only migration increment: learning/admin, preservation and runnable demo",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Review",
+      "dependsOn": [],
+      "blocker": "Technical migration/local cutover verified; owner acceptance pending. No auto Done/merge.",
+      "evidence": [
+        "documentation/features/postgresql-only/audit.md",
+        "documentation/features/postgresql-only/assets/verification.md",
+        "documentation/audits/postgresql-only-integration.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-11-01"
+    },
+    {
+      "id": "PB-041-T02",
+      "parent": "PB-041",
+      "title": "Owner QA PostgreSQL-only learning and authoring increment",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-041-T01"
+      ],
+      "blocker": "Owner accepts T01, then verifies the app using existing content/account; code and technical evidence already delivered in T01.",
+      "evidence": [],
+      "verification": "Not run",
+      "updated": "2026-11-01"
+    },
+    {
+      "id": "PB-041-T03",
+      "parent": "PB-041",
+      "title": "Owner merge and release decision after QA",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Todo",
+      "dependsOn": [
+        "PB-041-T02"
+      ],
+      "blocker": "Wait owner QA; no automatic new branch merge or production release.",
+      "evidence": [],
+      "verification": "Not run",
       "updated": "2026-11-01"
     }
   ],

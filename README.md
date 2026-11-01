@@ -10,11 +10,11 @@ Beta tự học tiếng Hàn trung–cao cấp: luyện dịch → hiểu lỗi 
 
 1. Sao chép `.env.example` sang `.env`; tạo `POSTGRES_PASSWORD` ngẫu nhiên, chạy `npm run auth:keys` để ghi RSA/CSRF keys vào `.env`. Không có tài khoản/mật khẩu mặc định.
 2. Mọi email đều có thể đăng ký; đặt riêng email quản trị trong `ADMIN_EMAILS`, phân cách dấu phẩy.
-3. Chạy `docker compose --profile local up --build -d`. Migration chạy trước app/worker. Giữ nguyên volume MongoDB hiện tại.
+3. Chạy `docker compose --profile local up --build -d`. Migration chạy trước app/worker. Với bản cũ dùng MongoDB, đọc bước snapshot/cutover PostgreSQL-only trước khi chạy runtime mới.
 4. Mở [EverLang](http://localhost:3000/sign-in), đăng ký rồi xác minh email qua [Mailpit local](http://localhost:8025).
 5. AI cần `OPENROUTER_API_KEY`; từ điển cần `KRDICT_API_KEY`. Không tạo phản hồi giả khi thiếu khóa.
 
-Node.js 24.11 trở lên. Web dùng Next.js/TypeScript/Tailwind; API và worker dùng NestJS, JWT RS256 và PostgreSQL/TypeORM (pg chỉ là driver). MongoDB/Mongoose giữ học liệu; Redis/BullMQ phục vụ cache và hàng đợi. FSRS dùng `ts-fsrs@6.0.0`, FSRS-7, retention 0.9.
+Node.js 24.11 trở lên. Web dùng Next.js/TypeScript/Tailwind; API và worker dùng NestJS, JWT RS256 và PostgreSQL/TypeORM (pg chỉ là driver). PostgreSQL JSONB giữ cả học liệu; không cần MongoDB/Mongoose; Redis/BullMQ phục vụ cache và hàng đợi. FSRS dùng `ts-fsrs@6.0.0`, FSRS-7, retention 0.9.
 
 ## Google và email
 
@@ -52,7 +52,7 @@ Node.js 24.11 trở lên. Web dùng Next.js/TypeScript/Tailwind; API và worker 
 - `npm run test:e2e`: smoke UI/anonymous isolation. Test tài khoản dùng môi trường riêng với `E2E_AUTH_TESTS=1` và hai email QA riêng biệt; không dùng dữ liệu người học thật.
 - `docker compose logs --tail=100 api worker`. API có `x-request-id`; không log body, credential hay audio.
 - Backup: `./scripts/backup.ps1`, lưu riêng tư trong `.local/backups` (gitignored). Thử phục hồi vào database khác trước khi chuyển dữ liệu.
-- Import lịch sử: `docker compose run --rm worker npm run records:import -- <legacyUUID> <verifiedEmail> --confirm-owner`. Đối chiếu chủ dữ liệu trước khi chạy. Giữ Mongo gốc, chạy lại không tạo trùng. Không có API nhận UUID để tự nhận lịch sử.
+- Import lịch sử: `docker compose run --rm worker npm run records:import -- <legacyUUID> <verifiedEmail> --confirm-owner`. Đối chiếu chủ dữ liệu trước khi chạy. Đọc PG legacy archive đã nhập từ snapshot, chạy lại không tạo trùng. Không có API nhận UUID để tự nhận lịch sử.
 - Khi migration lỗi: giữ bản app cũ; khôi phục PostgreSQL từ backup vào database mới rồi đổi cấu hình. Không xóa volume để cập nhật app.
 - Production: cấu hình DNS/domain, `PUBLIC_ORIGIN=https://<domain>`, SMTP thật và profile `production`. Caddy cấp HTTPS; database không publish cổng. Không mở Mailpit khi phát hành Internet.
 
@@ -62,8 +62,10 @@ Xem [FEATURE_AUDIT.md](FEATURE_AUDIT.md) và [HANDOFF.md](HANDOFF.md) cho bằng
 
 `apps/web` UI (3001), `apps/api` native HTTP (4000), `apps/worker` BullMQ; Caddy gateway tại3000. Không public API/web port riêng. `packages/contracts` browser-safe; `packages/backend` dữ liệu/provider/log. [Kiến trúc](documentation/shared/architecture.md), [JWT contract](documentation/shared/auth-and-api.md), [cutover/rollback](documentation/shared/operations.md), [migration audit](documentation/features/backend-nestjs-migration/audit.md).
 
-`npm ci`, `npm run build`, `npm run typecheck`, `npm test`, `npm run lint`, `npm run backend:check`, `npm run docs:check`, `npm run plan:check`. Host dev cần DB/Mongo/Redis và env endpoints truy cập được: `npm run dev` khởi động bốn process. Docker là cách chạy đầy đủ mặc định. Swagger `/api/docs`, health `/api/health/ready`. `npm run start` chỉ khởi gateway cho các runtime đã chạy; production dùng Compose.
+`npm ci`, `npm run build`, `npm run typecheck`, `npm test`, `npm run lint`, `npm run backend:check`, `npm run docs:check`, `npm run plan:check`. Host dev cần PostgreSQL/Redis và env endpoints truy cập được: `npm run dev` khởi động bốn process. Docker là cách chạy đầy đủ mặc định. Swagger `/api/docs`, health `/api/health/ready`. `npm run start` chỉ khởi gateway cho các runtime đã chạy; production dùng Compose.
 
 Migration008 giữ ID/password/Google identity/business data, vô hiệu phiên và link verify/reset cũ. Không rollback bằng image cũ trên schema mới: phục hồi đủ snapshot PG/Mongo/Redis/media vào môi trường riêng. Google thật trên Nest cần chủ tài khoản xác nhận; không dùng xác minh backend cũ để kết luận backend mới.
 
 Data layer: [TypeORM migration/design/audit](documentation/features/postgresql-orm-migration/README.md); [system design](documentation/shared/architecture.md). PostgreSQL kiểm soát rate limit, tiến độ/auth hoạt động khi Redis down; queue trả503 có requestId và phục hồi khi Redis trở lại.
+
+PostgreSQL-only migration: [PRD/kiểm chứng](documentation/features/postgresql-only/README.md). Dữ liệu Mongo được nhập bằng snapshot offline; giữ bản gốc riêng để rollback, không cần Mongo service khi chạy app.

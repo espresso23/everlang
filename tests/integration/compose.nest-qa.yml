@@ -3,7 +3,6 @@ services:
     image: everlang-api:local
     environment:
       DATABASE_URL: postgresql://everlang:${POSTGRES_PASSWORD}@postgres:5432/everlang_nest_qa_20261101
-      MONGODB_URI: mongodb://mongo:27017/everlang_nest_qa_20261101
       REDIS_URL: redis://redis:6379/15
       PUBLIC_ORIGIN: http://localhost:3002
       JWT_PRIVATE_KEY_B64: ${JWT_PRIVATE_KEY_B64}
@@ -19,7 +18,6 @@ services:
     image: everlang-worker:local
     environment:
       DATABASE_URL: postgresql://everlang:${POSTGRES_PASSWORD}@postgres:5432/everlang_nest_qa_20261101
-      MONGODB_URI: mongodb://mongo:27017/everlang_nest_qa_20261101
       REDIS_URL: redis://redis:6379/15
       SERVICE_NAME: everlang-grading-worker-qa
   nest-qa-web:

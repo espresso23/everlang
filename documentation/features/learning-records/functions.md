@@ -9,8 +9,8 @@
 | [apps/api/src/domains/user-favorites.service.ts](../../../apps/api/src/domains/user-favorites.service.ts) | `UserFavoritesService`, `UserFavoritesService.get`, `UserFavoritesService.post` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
 | [apps/api/src/domains/user-stats.service.ts](../../../apps/api/src/domains/user-stats.service.ts) | `UserStatsService`, `UserStatsService.get` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
 | [packages/backend/src/learning/submissions.ts](../../../packages/backend/src/learning/submissions.ts) | `StoredSubmission`, `reportView`, `statistics` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
-| [packages/backend/src/models/Submission.ts](../../../packages/backend/src/models/Submission.ts) | `GrammarErrorSchema`, `VocabSuggestionSchema`, `RewriteSchema`, `SubmissionSchema`, `Submission` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
-| [packages/backend/src/models/UserSentenceState.ts](../../../packages/backend/src/models/UserSentenceState.ts) | `UserSentenceStateSchema`, `UserSentenceState` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/content-store.ts](../../../packages/backend/src/content-store.ts) | `GrammarErrorSchema`, `VocabSuggestionSchema`, `RewriteSchema`, `SubmissionSchema`, `Submission` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/content-store.ts](../../../packages/backend/src/content-store.ts) | `UserSentenceStateSchema`, `UserSentenceState` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [scripts/import-records.ts](../../../scripts/import-records.ts) | `c` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [apps/api/src/domains/drafts.controller.ts](../../../apps/api/src/domains/drafts.controller.ts) | `DraftsController`, `DraftsController.get`, `DraftsController.put` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
 | [apps/api/src/domains/submissions.controller.ts](../../../apps/api/src/domains/submissions.controller.ts) | `SubmissionsController`, `SubmissionsController.get` | Native Nest controller: HTTP route/decorator, chuyển request tới service; JwtGuard/GlobalExceptionFilter áp dụng toàn cục. |
@@ -28,3 +28,7 @@ Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [
 - [scripts/import-records.ts](../../../scripts/import-records.ts): ORM transaction/advisory lock, conflict dedup_key có RETURNING id để đếm đúng; giữ owner guard/Mongo originals.
 
 Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.
+
+## PostgreSQL-only — 2026-11-01
+
+Current persistence: [content store](../../../packages/backend/src/content-store.ts), [mapped envelopes](../../../packages/backend/src/content-entities.ts), [atomic offline importer](../../../packages/backend/src/content-import.ts). Mongo models/connectDb are removed; existing routes, validation, ownership, version/CAS and snapshots remain. [Canonical migration contract](../postgresql-only/README.md) supersedes the earlier Mongo persistence descriptions; historical evidence is not new verification.

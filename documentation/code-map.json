@@ -287,7 +287,7 @@
             "SentencesService",
             "SentencesService.get"
           ],
-          "sha256": "a529108743abebcd16cf2138a12e7054c7a31d4ac33e157a1a79868aa485f37f"
+          "sha256": "abedd4a433016411d0761c965dad8eca99fad5e8b08f57b0e6b6c93c92bddb99"
         },
         {
           "file": "apps/web/components/sample-audio-player.tsx",
@@ -343,7 +343,7 @@
             "UserFavoritesService.get",
             "UserFavoritesService.post"
           ],
-          "sha256": "d0814b59ba14ca00acd1ad9ea3082942b124d808a1efc4ac344c30172d86cc59"
+          "sha256": "143798e157aa4e5ffcde8db4cf4ef966ae67c4db2c31c0068ce88fcfcdee5b76"
         },
         {
           "file": "apps/api/src/domains/user-stats.service.ts",
@@ -363,30 +363,11 @@
           "sha256": "e9e4ff7990e2c776edf6495d1c0314b71897f61413c998602f6a00441bd3527b"
         },
         {
-          "file": "packages/backend/src/models/Submission.ts",
-          "symbols": [
-            "GrammarErrorSchema",
-            "VocabSuggestionSchema",
-            "RewriteSchema",
-            "SubmissionSchema",
-            "Submission"
-          ],
-          "sha256": "cd551c87ddc49e4f805bf0f0bae2887207971892ed8a84ebf28afbfe35d9eecd"
-        },
-        {
-          "file": "packages/backend/src/models/UserSentenceState.ts",
-          "symbols": [
-            "UserSentenceStateSchema",
-            "UserSentenceState"
-          ],
-          "sha256": "089d4f9d837c90b40c50cc30657577680972de8a57d5525ad47848f4fcc467e4"
-        },
-        {
           "file": "scripts/import-records.ts",
           "symbols": [
             "c"
           ],
-          "sha256": "4824ab2bca25394bd097cf70bbb8b81339d67921e53b03a499bd307772fc99df"
+          "sha256": "53dc8a75848f6452472e9fab678ff5ab2a1bdf9322f1ce1013397cdcfe5ca7a9"
         },
         {
           "file": "apps/api/src/domains/drafts.controller.ts",
@@ -611,7 +592,7 @@
             "DashboardService.get",
             "DashboardService.patch"
           ],
-          "sha256": "e2e755bc9d7f98f322e17c12ebbd8323307072a429ec09d7d2e274d726f077e2"
+          "sha256": "a30f6a43d6b9877151dc85c77f64b6d52eba1451abef88d8753ad5f0529247df"
         },
         {
           "file": "packages/contracts/src/learning/schedule.ts",
@@ -684,7 +665,7 @@
             "AdminContentService.post",
             "AdminContentService.patch"
           ],
-          "sha256": "9f45d7770c94bc8546ae4e6a5edcf2e8be2b98651a736872c6ed778727729688"
+          "sha256": "7e3637940b8da999c30a9692663acba43c008a84591bf25c4c4d03e77bfd2d6b"
         },
         {
           "file": "apps/api/src/domains/sentences-generate.service.ts",
@@ -695,15 +676,6 @@
           "sha256": "edde32ad0041e4f371b41b343a6e4f781e1c09430ab4a5f48e8328756efb9430"
         },
         {
-          "file": "packages/backend/src/models/Sentence.ts",
-          "symbols": [
-            "ISentence",
-            "SentenceSchema",
-            "Sentence"
-          ],
-          "sha256": "14fbd077c7ef34029143ba70505ac89ef2990eb677e993983b95ed1159cf0c3a"
-        },
-        {
           "file": "packages/backend/src/content.ts",
           "symbols": [
             "seed",
@@ -712,7 +684,7 @@
             "contentReady",
             "ensureContent"
           ],
-          "sha256": "1b783247134e988330ac1e6fb45cea03ea1adf7da828d702f2bb33d90ce6c950"
+          "sha256": "45d78b07117f47080de43e59d050ddf366ef6b837d3596523fdb141cacb47b03"
         },
         {
           "file": "data/seed-sentences.json",
@@ -803,7 +775,7 @@
             "TutorService.post",
             "TutorService.put"
           ],
-          "sha256": "2a93d4302c1a37d6dab60bc0d73d95f2ff1a8b34c6e681f928423810456d92c9"
+          "sha256": "2e1a259bcf63f2eb553bb6c01fab4de6b88afc13cd30cebbb467cdfb2b624549"
         },
         {
           "file": "packages/backend/src/tutor.ts",
@@ -846,7 +818,7 @@
             "ExamsService.patch",
             "ExamsService.put"
           ],
-          "sha256": "c6f828ebbd45991ac1fe09422b22324165f0c98a8d13e45d3f36e5cee530759f"
+          "sha256": "3cca625df3a7254b704acfe96f58344e415d484a01a7b67d23795e3a069400b7"
         },
         {
           "file": "packages/contracts/src/exams.ts",
@@ -858,14 +830,6 @@
             "scoreExam"
           ],
           "sha256": "36488c03d627aebfd986a28ab326653f1e7d801c67c6394ea325cc7252088a3a"
-        },
-        {
-          "file": "packages/backend/src/models/Exam.ts",
-          "symbols": [
-            "ExamSchema",
-            "ExamModel"
-          ],
-          "sha256": "266619ccba1962b63e6dbce8306f34d25736b429294006b1b2237651c50d90f8"
         },
         {
           "file": "apps/api/src/domains/exams.controller.ts",
@@ -957,16 +921,6 @@
           "sha256": "ed4c7dd8a9164818c7efd0e4233f4781795ab3ac201ed4ef46450676c7e1177b"
         },
         {
-          "file": "packages/backend/src/db.ts",
-          "symbols": [
-            "CachedConnection",
-            "globalWithMongoose",
-            "cache",
-            "connectDb"
-          ],
-          "sha256": "e7ae2addc32913dc27bb4fce6dc692b483be13a6fbfeacea28cabc624349ceea"
-        },
-        {
           "file": "packages/backend/src/logger.ts",
           "symbols": [
             "RequestContext",
@@ -1007,7 +961,7 @@
         {
           "file": "scripts/backup.ps1",
           "symbols": [],
-          "sha256": "4c26a3639b2ef004079129b328856f783fd35d0b344b4cb9f5917e791852dddb"
+          "sha256": "43a66987f96370e10b3f8229138868f05f7a4d565783fe816deff1f8f2e642d8"
         },
         {
           "file": "scripts/migrate.ts",
@@ -1061,7 +1015,7 @@
         {
           "file": "package-lock.json",
           "symbols": [],
-          "sha256": "4665f88a275205894ac508e8951a12fc1830d86d01a0e16bab981a005e248872"
+          "sha256": "8bd4592e2fe5368af75c5c6bb6d008311f8a11e6e9fb54b0338a11c1203f91a1"
         },
         {
           "file": "apps/web/next.config.ts",
@@ -1090,7 +1044,7 @@
         {
           "file": "docker-compose.yml",
           "symbols": [],
-          "sha256": "fb27041ea49d407b226e1f80a5cf57c1f8045e54db547038b0452bc18f4221f4"
+          "sha256": "0f19321f841940907b2d2dc84643fb87c8160aa7351dc16c6a4ef1c73e6b9a30"
         },
         {
           "file": "Caddyfile",
@@ -1213,16 +1167,7 @@
             "publicKnowledge",
             "knowledgeTitles"
           ],
-          "sha256": "5091de153f2bba63546df839ec3f395bb99668a5536752917f55f77412e36109"
-        },
-        {
-          "file": "packages/backend/src/models/Knowledge.ts",
-          "symbols": [
-            "KnowledgeDocument",
-            "schema",
-            "Knowledge"
-          ],
-          "sha256": "8d03035c87c831412f8a1b53f1a91e9ef37c27418729d73a54c2675417057bd0"
+          "sha256": "83ea35745a065ccb89a92fad83f618c20977c85b4d6f37d29e43ddaec86a3797"
         },
         {
           "file": "apps/web/app/knowledge/page.tsx",
@@ -1271,7 +1216,7 @@
             "AdminKnowledgeService.post",
             "AdminKnowledgeService.patch"
           ],
-          "sha256": "4457ff0828d0dfadda92b8fafad11018d626c71d9766ca148d30fc09a58371db"
+          "sha256": "21f34d9ffd06e03d5cf5f5b97fe07abc48d30566e2113cd7455bb7a310a0d23e"
         },
         {
           "file": "apps/web/app/admin/knowledge/page.tsx",
@@ -1301,7 +1246,7 @@
           "symbols": [
             "seedKnowledge"
           ],
-          "sha256": "48dee3b3f3b1a52fd005565a62466be504e5570b735e32fb7e1a84d35eb2e3c0"
+          "sha256": "4daf0a512d7160be0b9305eaeb280c77f1dcb56a8d4d7d941b9a575d406ddda9"
         },
         {
           "file": "tests/unit/knowledge.test.ts",
@@ -1600,15 +1545,7 @@
             "listCatalog",
             "transitionCatalog"
           ],
-          "sha256": "85eb47c4b26bafee35cfa82183257d019f219859ecb04654e6e06f6f7c53e539"
-        },
-        {
-          "file": "packages/backend/src/models/VocabularyCatalog.ts",
-          "symbols": [
-            "schema",
-            "VocabularyCatalog"
-          ],
-          "sha256": "1594d843642b06f65ce1ae3e9e18016f51287e94f1784bd5e15835fa6b9d2230"
+          "sha256": "e401e118f51383464e75c1710767f60a2320e1d318cb43260899a9a6edecf020"
         },
         {
           "file": "packages/backend/src/catalog-learning.ts",
@@ -1645,7 +1582,7 @@
             "entries",
             "inserted"
           ],
-          "sha256": "8c840e80bd9df7d86e12f10b519f2a3edee6be63a73bd53bafb1e5616e7706f9"
+          "sha256": "a7753cf28964ae704308b6857bff964de8bbb4bfc8d7ce8098e34c0373bb362a"
         },
         {
           "file": "apps/api/src/domains/word-sets.service.ts",
@@ -1673,7 +1610,7 @@
             "AdminWordSetsService.post",
             "AdminWordSetsService.patch"
           ],
-          "sha256": "bf7cefd63603b2fece5cd855c84eb08d0fa58a3cc43d9fd361d1a08fb4d5828b"
+          "sha256": "d132bc4703060c43a3359d08cb208a230dd31bf69e5bf5967515bf3d3afb0980"
         },
         {
           "file": "apps/web/app/word-sets/page.tsx",
@@ -1793,7 +1730,7 @@
         {
           "file": "apps/worker/package.json",
           "symbols": [],
-          "sha256": "4ea4b01cdd856b439f9252da3b4f70c3b2f16b7040f69a2786c27fe2025f1389"
+          "sha256": "9b20371cd9e50a4f2868e1f2c80f2eb70bfa06fc288fe02e02287383002ede83"
         },
         {
           "file": "apps/worker/tsconfig.json",
@@ -1805,7 +1742,7 @@
           "symbols": [
             "AppModule"
           ],
-          "sha256": "48fb37d74d4f392f5945fd25e5060094407cf3fd3e0e708e92ae0e3f5ce51bf4"
+          "sha256": "34ea899ff451ba2481af81f729a588167782d4837b02fa37f2ab57753baca476"
         },
         {
           "file": "apps/api/src/health.controller.ts",
@@ -1814,7 +1751,7 @@
             "HealthController.live",
             "HealthController.ready"
           ],
-          "sha256": "f5f8054331f9476ea3872b3c7cbf8b5725b3efabf980345d6085b61cd0dd19d0"
+          "sha256": "59ef8c23dc3a3e0f48ef81d2992539a87a75730d82098a3e4b331f2672c5585d"
         },
         {
           "file": "apps/api/src/http-boundary.ts",
@@ -1833,7 +1770,7 @@
           "symbols": [
             "bootstrap"
           ],
-          "sha256": "ce0a05f0bb0fcfa9d244497659c0dcc2ca448aae89298c78269bcc7a478cd7ab"
+          "sha256": "c22fecc5fea6306b7b6b7d58b2aa5ca73e351b428bec1bb616ad238d55cce7e8"
         },
         {
           "file": "apps/api/src/domains/domains.module.ts",
@@ -1875,12 +1812,12 @@
             "WorkerModule",
             "main"
           ],
-          "sha256": "e63883f4329a3e4ccfdf9d49b0dc1bea68c5974ef479255eeae5eff65b8fa04d"
+          "sha256": "39595c24065a4fcb86f8798440cfaddde6f6f8ddd4e72e7922b5793e01e73cc9"
         },
         {
           "file": "packages/backend/package.json",
           "symbols": [],
-          "sha256": "52efd736a23adbf8507513c1eec657e394ba31247e594db8282718c214050b6b"
+          "sha256": "d4796f5acb2ba0d5b174452f2526064f0fd0728b9b447e04dd26478bebda48b6"
         },
         {
           "file": "packages/backend/tsconfig.json",
@@ -1939,7 +1876,7 @@
         {
           "file": ".env.example",
           "symbols": [],
-          "sha256": "37eedeb7192b9ef8ee66d0ab6c89a0906cb04d0e2ae866cac3bc0a8875aa4b51"
+          "sha256": "23e86cf636006970e91b90ea220fe230f3d9088290ab22dd07cc75026fe6034f"
         },
         {
           "file": "tsconfig.tools.json",
@@ -1952,7 +1889,7 @@
             "files",
             "lock"
           ],
-          "sha256": "c57bc43ce5bcd0ae2009ceb86f9ad84d523266939934b5ac6a0d586fe7907389"
+          "sha256": "bbb26c837d7b0cdff1d17a2b33523238c67b1bb88b9fc399ac25c38f801a6151"
         },
         {
           "file": "scripts/init-auth-keys.mjs",
@@ -1979,7 +1916,7 @@
           "symbols": [
             "key"
           ],
-          "sha256": "2f926762d1a96fb1d08a7d79c5dcd86fc1ed0f2af3686c1cd2ca11e92b0e2e7c"
+          "sha256": "079c99e9404b06dcb59272402091b2b1a8210831adaff56ae8917fa3eb1003f1"
         },
         {
           "file": "tests/unit/nest-boundary.test.ts",
@@ -1991,7 +1928,7 @@
         {
           "file": "tests/integration/compose.nest-qa.yml",
           "symbols": [],
-          "sha256": "4480d96c858fd85fee4d8e1663f0a1ab00a92382a6318cc521ad7af28ea9036c"
+          "sha256": "ee96c3037137530ed627cbb9db49bc2fe709de3f55458186454c7ec94dc7b64e"
         },
         {
           "file": "tests/integration/NestQaGatewayfile",
@@ -2024,7 +1961,7 @@
             "databaseReady",
             "ormLogger"
           ],
-          "sha256": "1308193a4bc6f703424a922b118760f69aba51b644cb71cdd3cd31acd52c18e3"
+          "sha256": "eddbd1e6b3c8f8ccbbb6df00c677637c509f575ec2f3d99559c5534fd23cf345"
         },
         {
           "file": "packages/backend/src/orm-migrations.ts",
@@ -2035,7 +1972,7 @@
             "migrateOrm",
             "RateLimitFallback1730000000008"
           ],
-          "sha256": "dec3ac1fbe3b59285adcc7df8740b7d03a282028ceb56e54d5ff2d7dc0ec7d8e"
+          "sha256": "f5d86ca9da3bad8e1ce8ca625d30c61e65f1f6898b42ec4c0ea69e09d2410d33"
         },
         {
           "file": "packages/backend/src/rate-limit.ts",
@@ -2060,7 +1997,7 @@
         {
           "file": "tests/integration/orm-preservation.ts",
           "symbols": [],
-          "sha256": "d1e65921233c271ea92477b912ddc1dd78630cda4b792a7bba33ecde595a473a"
+          "sha256": "fafd52d7431e47d9f3335fcc804e071ca7efab6e6c1bad5490f9881b0631360c"
         },
         {
           "file": "tests/e2e/orm-resilience.spec.ts",
@@ -2070,7 +2007,55 @@
         {
           "file": "tests/integration/orm-import-fixture.mjs",
           "symbols": [],
-          "sha256": "26bf276470aafb59e2d626f12106d91d83c335302a38764f206160dd581e537c"
+          "sha256": "dcd6dcb2fa1e44e55e15689982211599fb4e2ae2406cbfc159587903e9ce239b"
+        }
+      ]
+    },
+    {
+      "id": "postgresql-only",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "packages/backend/src/content-entities.ts",
+          "symbols": [],
+          "sha256": "6d2461b4f93a5a2ea1f8b45927c0562c6c1dd6e60ec32c731f83284afa2104aa"
+        },
+        {
+          "file": "packages/backend/src/content-store.ts",
+          "symbols": [],
+          "sha256": "2999e387be3f336889e188fe6fb73bb8773a0ff8eb61e854ac4d56f96939b5cc"
+        },
+        {
+          "file": "packages/backend/src/content-import.ts",
+          "symbols": [],
+          "sha256": "0dcd00a55d3da7e4c9447c1326e86356a1b6fcdc31848fd97ee175d02c90195f"
+        },
+        {
+          "file": "scripts/import-mongo-snapshot.ts",
+          "symbols": [],
+          "sha256": "b4213016ca87267e43b9ca2ffe0390079b0d1c3770d832422585e355d295cf7c"
+        },
+        {
+          "file": "tests/integration/postgresql-content.ts",
+          "symbols": [],
+          "sha256": "5c69d3fc3edcb6abb1a2958fa3e20415c1f449fb666004485e82fa9b37f924b1"
+        },
+        {
+          "file": "apps/api/src/runtime-config.ts",
+          "symbols": [
+            "validateRuntimeEnvironment"
+          ],
+          "sha256": "752dcd69f8fa699263e0b9172ff8fc09e971be4677cb5a088df71d4afbb36c21"
+        },
+        {
+          "file": "tests/unit/runtime-config.test.ts",
+          "symbols": [],
+          "sha256": "f2d8164c9bbf97a54be796f359142e78d752c0f4f98ea09b7f0557e3cde9153d"
+        },
+        {
+          "file": "scripts/export-mongo-snapshot.js",
+          "symbols": [],
+          "sha256": "afcd6c7b8570164fd9dc4ac7e6ba6d4c3d29693502924f778a3498a17d9b6d3c"
         }
       ]
     }

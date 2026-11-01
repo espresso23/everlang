@@ -1,6 +1,5 @@
 x-app-env: &app-env
   DATABASE_URL: postgresql://everlang:${POSTGRES_PASSWORD}@postgres:5432/everlang
-  MONGODB_URI: ${MONGODB_URI:-mongodb://mongo:27017/korean_practice}
   REDIS_URL: redis://redis:6379
   PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:3000}
   ADMIN_EMAILS: ${ADMIN_EMAILS:-}
@@ -29,15 +28,6 @@ x-app-env: &app-env
   SPEECH_THREADS: ${SPEECH_THREADS:-2}
   WHISPER_MODEL_PATH: /models/ggml-base.bin
 services:
-  mongo:
-    image: mongo:8.0
-    restart: unless-stopped
-    volumes: [mongo_data:/data/db]
-    healthcheck:
-      test: [CMD, mongosh, --quiet, --eval, "db.adminCommand('ping').ok"]
-      interval: 5s
-      timeout: 5s
-      retries: 12
   postgres:
     image: pgvector/pgvector:pg17
     environment:
@@ -98,7 +88,6 @@ services:
     restart: unless-stopped
     depends_on:
       migrate: {condition: service_completed_successfully}
-      mongo: {condition: service_healthy}
     logging: {driver: json-file, options: {max-size: 10m, max-file: "5"}}
   app:
     image: everlang-web:local
@@ -160,7 +149,6 @@ services:
 volumes:
   speech_media:
   speech_models:
-  mongo_data:
   postgres_data:
   redis_data:
   caddy_data:

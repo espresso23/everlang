@@ -1,6 +1,16 @@
+# EverLang — trạng thái hiện tại2026-11-01
+
+PostgreSQL-only increment đã triển khai và local cutover18:40–18:42: TypeORM cho dữ liệu người học và4kho học liệu JSONB, legacy archive172documents; không Mongo/Mongoose runtime, Mongo container cũ đã dừng và giữ backup. App localhost3000 ready. TypeORM e0ad32f đã merge local main theo chỉ định owner; PostgreSQL-only ở refactor/postgresql-only, chờ owner QA/merge.
+
+80unit/29candidate E2E/2postcutover smoke, workspace/tools typecheck/lint/Docker build và fresh10migrations/30mapped schemas PASS. Latest backup restore + import/rerun/conflict/preservation verified; [audit](features/postgresql-only/audit.md) ghi rõ25tables trước start,24stable tables sau traffic và rate-limit bucket expiry bình thường. Không đổi content drafts thành approved/published.
+
+Planning nguồn JSON:41PBI/89tasks/6Proposed; PB-041-T01 Review, T02/T03 là owner QA/merge gates. Chưa có sprint capacity/date được chốt, không tuyên bố sprint/product Done. Ưu tiên tiếp theo đã chọn: học liệu owner duyệt → luyện → SRS → tiến độ. Google/provider/pronunciation/corpus quality và production gates vẫn mở đúng feature.
+
+## Lịch sử checkpoint (không thay trạng thái hiện tại ở trên)
+
 # EverLang — checkpoint chuẩn bị sprint tiếp theo
 
-## Cập nhật hiện hành — 2026-11-01
+## Checkpoint ORM/Nest trước PostgreSQL-only (lịch sử)
 
 ORM cập nhật: API/auth/worker/CLI PostgreSQL dùng TypeORM, MongoDB vẫn Mongoose. Local cutover bảo toàn24bảng/schema/index/constraint;9TypeORMmigration, re-run0.78unit/29E2E PASS, bao gồm Redis outage login/profile/draft CAS vẫn chạy, queue503/recovery202. [ORM audit](features/postgresql-orm-migration/audit.md), PB-040 Review; không đổi sprint Proposed. Phần Nest checkpoint dưới đây giữ lịch sử, source/query pool cũ đã được thay.
 

@@ -50,3 +50,7 @@ Theo ảnh user: Library read/listen và Practice reference đã thống nhất 
 ## 2026-10-31 — Cached grading failure và retry action
 
 Branch bugfix/retry-failed-grading.74unitPASS; failed duplicate đổi502→409/machinecode và retry explicit trong alert, giữ draft/dedup/history. [Audit/bằng chứng/final gates](../../audits/grading-retry.md). Chưa xác minh provider thật hồi phục, không chạy cloud hoặc tự tạo report/score.
+
+## PostgreSQL-only re-audit — 2026-11-01
+
+PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.

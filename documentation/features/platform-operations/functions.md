@@ -5,7 +5,7 @@
 | File/điểm vào | Symbol hiện có | Trách nhiệm/hợp đồng |
 |---|---|---|
 | [apps/web/lib/client.ts](../../../apps/web/lib/client.ts) | `request`, `speak` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
-| [packages/backend/src/db.ts](../../../packages/backend/src/db.ts) | `CachedConnection`, `globalWithMongoose`, `cache`, `connectDb` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/content-store.ts](../../../packages/backend/src/content-store.ts) | `CachedConnection`, `globalWithMongoose`, `cache`, `connectDb` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/backend/src/logger.ts](../../../packages/backend/src/logger.ts) | `RequestContext`, `LogLevel`, `LogFields`, `requestContext`, `correlationId`, `levelWeight`, `configuredLevel`, `redact`, `safeFields`, `log`, `logError` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/backend/src/redis.ts](../../../packages/backend/src/redis.ts) | `state`, `redis`, `getGradingQueue` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/backend/src/orm.ts](../../../packages/backend/src/orm.ts) | `ormDataSource`, `initializeOrm`, `databaseReady` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
@@ -55,3 +55,7 @@ Tài liệu/ảnh developer-facing, không đổi UI hay runtime: [canonical arc
 - [tests/integration/worker-runtime.ts](../../../tests/integration/worker-runtime.ts): Kiểm regression hành vi bằng ORM mock hoặc native runtime.
 
 Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.
+
+## PostgreSQL-only — 2026-11-01
+
+Current persistence: [content store](../../../packages/backend/src/content-store.ts), [mapped envelopes](../../../packages/backend/src/content-entities.ts), [atomic offline importer](../../../packages/backend/src/content-import.ts). Mongo models/connectDb are removed; existing routes, validation, ownership, version/CAS and snapshots remain. [Canonical migration contract](../postgresql-only/README.md) supersedes the earlier Mongo persistence descriptions; historical evidence is not new verification.

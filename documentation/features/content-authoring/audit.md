@@ -33,3 +33,7 @@ Cần audit nguồn/quyền học liệu trước phát hành rộng. Một tran
 
 ## 2026-10-31 — word set authoring integration
 New /admin entry links to separately specified vocabulary-catalog editor; existing knowledge authoring contract unchanged. Actual admin-only catalog create → explicit review → publish PASS, mobile/keyboard/dirty-link guard PASS. [Catalog audit](../vocabulary-catalog/audit.md); not a claim all legacy authoring paths rerun.
+
+## PostgreSQL-only re-audit — 2026-11-01
+
+PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.

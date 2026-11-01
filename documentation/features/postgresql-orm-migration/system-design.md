@@ -11,3 +11,7 @@ Rate limit PostgreSQL authoritative thay vì dual Redis/PG counter: atomic count
 Entity metadata25 bao gồm24 bảng cũ +rate_limit_buckets; orm_migrations do MigrationExecutor quản lý. Fresh DB có24 business tables (không schema_migrations cũ) +ORM history; upgrade giữ bảng legacy history bất biến để provenance. Không còn runner SQL/Pool legacy; 001–008 là lịch sử bất biến hỗ trợ bootstrap.
 
 Redis request client commandTimeout2s và readiness kiểm connection status trước PING, tránh probe chờ vòng reconnect. API Compose không chờ Redis healthy để khởi động; worker vẫn phụ thuộc Redis. Queues tự reconnect; lỗi HTTP mang requestId theo global filter.
+
+## PostgreSQL-only — 2026-11-01
+
+Current persistence: [content store](../../../packages/backend/src/content-store.ts), [mapped envelopes](../../../packages/backend/src/content-entities.ts), [atomic offline importer](../../../packages/backend/src/content-import.ts). Mongo models/connectDb are removed; existing routes, validation, ownership, version/CAS and snapshots remain. [Canonical migration contract](../postgresql-only/README.md) supersedes the earlier Mongo persistence descriptions; historical evidence is not new verification.

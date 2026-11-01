@@ -9,7 +9,7 @@ Phiên bản khóa bởi [lockfile](../../package-lock.json); dependencies sở 
 | Worker | Nest ApplicationContext + @nestjs/bullmq12/BullMQ6.5, WorkerHost grading và speech |
 | Auth | @nestjs/jwt RS256, node crypto scrypt tương thích hash cũ; native Google jose/PKCE, Nodemailer SMTP |
 | SQL | PostgreSQL17/pgvector, node-postgres; numbered SQL migrations, không Drizzle |
-| Học liệu | MongoDB8/Mongoose; versioned sentence/exam/knowledge/vocabulary catalogue |
+| Học liệu | PostgreSQL/TypeORM + JSONB; versioned sentence/exam/knowledge/vocabulary catalogue |
 | Queue/cache | Redis7/ioredis/BullMQ; PostgreSQL durable jobs/state |
 | Learning | ts-fsrs6.0.0 FSRS-7 retention0.9; shared contracts browser-safe |
 | Provider | OpenRouter/Zod/jsonrepair; dictionary; optional Google STT/S3; explicit Whisper/Gemini speech |

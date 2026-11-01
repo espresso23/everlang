@@ -44,3 +44,7 @@ Prioritize accurate endpoint/component relationships, unambiguous arrowheads, re
 ## ORM revision2026-11-01
 
 DOT/SVG/PNG updated from runtime source: TypeORM at API/workers→PostgreSQL, Mongoose at API→MongoDB; rate limits move from Redis to PostgreSQL. Earlier generation prompt retained as provenance; current canonical DOT governs actual image.
+
+## PostgreSQL-only revision2026-11-01
+
+Canonical DOT removes Mongo node/edge; PostgreSQL contains versioned content and legacy archive. Previous prompts are historical provenance. SVG/PNG rendered deterministically from DOT; no new AI diagram inference.

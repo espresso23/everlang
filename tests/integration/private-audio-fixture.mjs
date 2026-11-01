@@ -2,7 +2,7 @@ import {initializeOrm,closeOrm} from '@everlang/backend/orm';
 import {Entities} from '@everlang/backend/entities';
 import {writeSpeechAudio,removeSpeechAudio} from '@everlang/backend/speech/storage';
 import {createHash,randomUUID} from 'node:crypto';
-if(!new URL(process.env.DATABASE_URL).pathname.endsWith('/everlang_nest_qa_20261101'))throw new Error('This fixture only operates on the isolated migration QA database.');
+if(!/^\/everlang_(?:nest_qa|pgonly_qa)_20261101$/.test(new URL(process.env.DATABASE_URL).pathname))throw new Error('This fixture only operates on the isolated migration QA database.');
 const[action,userId,id]=process.argv.slice(2);
 const key=createHash('sha256').update(userId).digest('hex')+'/'+id+'.wav';
 try{

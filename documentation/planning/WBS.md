@@ -170,6 +170,10 @@ Dùng thật ngoài localhost với kiểm chứng đầy đủ
 - **WBS-5.40 / PB-040 — Migrate PostgreSQL access to TypeORM; preserve Mongoose ODM** (P0, Core, Unscheduled).
   - PB-040-T01 — Entity mapping and runtime ORM migration
   - PB-040-T02 — Independent audit, migration adoption and integration verification
+- **WBS-5.41 / PB-041 — Replace MongoDB with PostgreSQL primary business storage** (P0, Core, Unscheduled).
+  - PB-041-T01 — PostgreSQL-only migration increment: learning/admin, preservation and runnable demo
+  - PB-041-T02 — Owner QA PostgreSQL-only learning and authoring increment
+  - PB-041-T03 — Owner merge and release decision after QA
 
 
 ## WBS-6 / Mở rộng sau beta

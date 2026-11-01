@@ -4,6 +4,24 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — PostgreSQL-only đã triển khai, demo và local cutover
+
+- TypeORM e0ad32f đã fast-forward local main theo quyết định owner; phần PostgreSQL-only thực hiện trên refactor/postgresql-only, chưa merge/push branch mới. Đầu ra chạy thật: localhost3000 dùng PostgreSQL cho cả người học và học liệu, Redis chỉ queue/cache; không Mongo/Mongoose runtime/env prerequisite, Mongo container cũ đã dừng nhưng volume/backup giữ nguyên.
+- Nhập6collections/172documents:100sentences/1exam/13knowledge/53catalogue +5legacy reports/0states; archive nguồn trong PG, giữID/revision/snapshot. Thêm migration10/5tables,30mappings; existing admin review/publish/CAS, latest-before-search và pinned sense/FSRS giữ hợp đồng. Không auto-publish13knowledge/53catalogue draft.
+- PASS80unit/16files, lint/workspace+tools typecheck, backend/docs/plan gates, Docker build;29candidate E2E2.6m và2postcutover smoke5.2s. Fresh10/rerun0/quota24→7/JSONB/vector, restored PG import/preservation/atomic conflict/CAS/pinned search/exam bootstrap, explicit legacy1new/0repeat/owner guard đều PASS. Candidate đầu còn config MONGODB_URI đã bắt bằng startup failure, sửa có red/green test rồi rerun29/29.
+- Cutover18:40–18:42+07:00: queues0, stopAPI/worker, backup20261101-184025 PG/Redis/media +Mongo archive/finalexport private; restorelatestbackup và probe trước main PASS. Main1migration/rerun0; import172/rerun0;25oldtables/schema/index/constraint bằng nhau trước restart. Sau traffic,24stabletable rows và toàn bộ schema/index/constraint vẫn bằng nhau; rate_limit_buckets đổi expiry bình thường qua auth smoke (ghi rõ trong audit), không nhận là learner data loss hoặc giả PASS25tables sau traffic.
+- [PRD/5docs](documentation/features/postgresql-only/README.md), [audit](documentation/features/postgresql-only/audit.md), [evidence/demo desktop-mobile](documentation/features/postgresql-only/assets/verification.md), [integration audit](documentation/audits/postgresql-only-integration.md); diagram DOT/SVG/PNG và shared contracts/source-map cập nhật. Task-ownedQAcontainers/PG/media đã dọn; nguồn Mongo/restore namespace/production volumes và rollback images giữ nguyên.
+- Tracking refine thành một increment tích hợp PB-041-T01 Review/Pass (schema/cutover phụ thuộc chặt), T02/T03 giữID làm ownerQA/merge-decision gates. Không tự đánh dấu dependencyDone hoặc sprintDone;41PBI/89tasks/6Proposed. Owner chọn tiếp vòng học khép kín; corpus/audio/provider/production gates chưa được chứng nhận. Không gọi cloud hoặc đổi billing/speech profile.
+
+
+### 2026-11-01 — PostgreSQL-only implementation checkpoint (đang xác minh)
+
+- Theo yêu cầu owner, TypeORM commit e0ad32f đã fast-forward vào local main; không push. Branch mới refactor/postgresql-only triển khai PB-041, ba lát cắt có phụ thuộc, scope/REQ tại documentation/features/postgresql-only. Không tự chốt ngày/capacity sprint hoặc coi toàn bộ tự học Done.
+- Đã chuyển sentence/exam/knowledge/catalogue + explicit legacy archive sang TypeORM/PG; bỏ Mongo/Mongoose runtime, Compose/env prerequisite và model cũ. Giữ ID/API/revision/ownership/FSRS; source/backups riêng được giữ.
+- Dry run phục hồi PG vào container tách biệt PASS: nhập172documents/6collections, bảo toàn25bảng nghiệp vụ PG, rerun0, conflict rollback, sentenceCAS, latest-before-search/pinned sense. Fresh10migrations/30mappings/quota24→7 PASS; legacy import1new/0repeat/owner guard PASS;78unit/typecheck/lint/backend gates PASS. Docker build/candidate browser regression đang chạy; chưa cutover live trong checkpoint này.
+- Next: xác minh image cuối, full candidate E2E, self-review, backup/export nhất quán/cutover local và demo; cập nhật audit/evidence/tracking Review theo kết quả thực tế. Snapshot/backup ở .local/backups/pgonly-20261101 là private; không ghi dữ liệu/token/URI credentials vào docs.
+
+
 ### 2026-11-01 — Owner yêu cầu merge ORM và triển khai PostgreSQL-only
 
 - Owner chỉ định merge TypeORM vào main rồi tiếp tục bỏ MongoDB; đây là quyết định merge trực tiếp, không tự coi owner đã QA mọi provider hoặc đánh dấu Done.

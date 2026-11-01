@@ -6,7 +6,7 @@
 
 [CorrelatedQueue](../../packages/backend/src/queue.ts) đưa trace.requestId vào job data; [grading](../../apps/worker/src/grading.processor.ts) và [speech](../../apps/worker/src/speech.processor.ts) khôi phục ALS, thêm jobId/attempt/duration và job.started/finished/failed. Job mới được reconcile từ durable DB sau Redis mất có requestId mới nếu trace cũ không còn; không tuyên bố giữ cùng trace qua mất Redis.
 
-[Process handlers](../../packages/backend/src/process-errors.ts): unhandledRejection/uncaughtException log an toàn rồi exit1; guardedTask cho interval/recovery, PG idle error listener; Compose restart. Graceful SIGTERM API15s, worker150s; app.close để drain, đóng pool/redis/Mongo. Grading429 cooldown queue/retry hữu hạn, không đổi model/billing; lỗi permanent không giả điểm.
+[Process handlers](../../packages/backend/src/process-errors.ts): unhandledRejection/uncaughtException log an toàn rồi exit1; guardedTask cho interval/recovery, PG idle error listener; Compose restart. Graceful SIGTERM API15s, worker150s; app.close để drain, đóng DataSource/Redis. Grading429 cooldown queue/retry hữu hạn, không đổi model/billing; lỗi permanent không giả điểm.
 
 Bằng chứng: [unit boundary](../../tests/unit/nest-boundary.test.ts), [runtime errors](../../tests/unit/runtime-errors.test.ts), [JWT unit](../../tests/unit/nest-jwt.test.ts), [HTTP auth](../../tests/e2e/nest-auth.spec.ts), [worker tests](../../tests/unit/grading-worker.test.ts). Kết quả trong [audit migration](../features/backend-nestjs-migration/audit.md).
 

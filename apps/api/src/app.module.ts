@@ -6,25 +6,14 @@ import { AuthService } from "./auth/auth.service.js";
 import { JwtGuard } from "./auth/jwt.guard.js";
 import { HealthController } from "./health.controller.js";
 import { DomainsModule } from "./domains/domains.module.js";
+import { validateRuntimeEnvironment } from "./runtime-config.js";
 import { DatabaseModule } from "./database.module.js";
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       ignoreEnvFile: true,
-      validate: (env) => {
-        for (const name of [
-          "DATABASE_URL",
-          "MONGODB_URI",
-          "REDIS_URL",
-          "JWT_PRIVATE_KEY_B64",
-          "JWT_PUBLIC_KEY_B64",
-          "CSRF_SECRET",
-        ])
-          if (!env[name]) throw new Error(name + " must be configured");
-        new URL(env.PUBLIC_ORIGIN || "http://localhost:3000");
-        return env;
-      },
+      validate: validateRuntimeEnvironment,
     }),
     DatabaseModule,
     DomainsModule,

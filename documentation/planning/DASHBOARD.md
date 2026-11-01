@@ -4,7 +4,7 @@
 
 Baseline 4eb249c: 14 feature/domain hiện có, tách khỏi backlog mới. Không tính % hoàn thành toàn bộ dự án.
 
-Phần bổ sung: 40 PBIs; 8/86 tasks (9% count-based). 16 PBIs chưa xếp sprint. Task count không phải effort/burndown.
+Phần bổ sung: 41 PBIs; 8/89 tasks (9% count-based). 17 PBIs chưa xếp sprint. Task count không phải effort/burndown.
 
 | Sprint | Trạng thái | Start | End | Core dev SP* | Stretch dev SP* | Done dev SP* | Tiến độ |
 | --- | --- | --- | --- | --- | --- | --- | --- |

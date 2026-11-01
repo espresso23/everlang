@@ -6,7 +6,7 @@
 |---|---|---|
 | [packages/contracts/src/knowledge-contract.ts](../../../packages/contracts/src/knowledge-contract.ts) | `knowledgeKinds`, `knowledgeLabels`, `short`, `knowledgeSchema`, `KnowledgeContent`, `KnowledgeEntry`, `publicEntry`, `PublicKnowledge`, `normalizeKnowledgeAnswer`, `gradeKnowledge`, `knowledgeKey`, `stateSchema` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/backend/src/knowledge.ts](../../../packages/backend/src/knowledge.ts) | `getKnowledge`, `listKnowledge`, `publicKnowledge`, `knowledgeTitles` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
-| [packages/backend/src/models/Knowledge.ts](../../../packages/backend/src/models/Knowledge.ts) | `KnowledgeDocument`, `schema`, `Knowledge` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/content-store.ts](../../../packages/backend/src/content-store.ts) | `KnowledgeDocument`, `schema`, `Knowledge` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [apps/web/app/knowledge/page.tsx](../../../apps/web/app/knowledge/page.tsx) | `Summary`, `State`, `Feedback`, `emptyState`, `Reader`, `KnowledgeBrowser`, `KnowledgePage` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [apps/api/src/domains/knowledge.service.ts](../../../apps/api/src/domains/knowledge.service.ts) | `KnowledgeService`, `KnowledgeService.get` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
 | [apps/api/src/domains/knowledge-state.service.ts](../../../apps/api/src/domains/knowledge-state.service.ts) | `KnowledgeStateService`, `KnowledgeStateService.get`, `KnowledgeStateService.put` | Service nghiệp vụ: validation, ownership, transaction/provider và response; payload/mã lỗi xem đặc tả feature và schema tại symbol. |
@@ -32,3 +32,7 @@ Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [
 - [apps/api/src/domains/knowledge-attempts.service.ts](../../../apps/api/src/domains/knowledge-attempts.service.ts): CRUD qua mapped entities/QueryBuilder; giữ payload, ownership, version, transaction và trạng thái public.
 
 Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.
+
+## PostgreSQL-only — 2026-11-01
+
+Current persistence: [content store](../../../packages/backend/src/content-store.ts), [mapped envelopes](../../../packages/backend/src/content-entities.ts), [atomic offline importer](../../../packages/backend/src/content-import.ts). Mongo models/connectDb are removed; existing routes, validation, ownership, version/CAS and snapshots remain. [Canonical migration contract](../postgresql-only/README.md) supersedes the earlier Mongo persistence descriptions; historical evidence is not new verification.

@@ -13,16 +13,16 @@ Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 00
 | PostgreSQL | recordings | User → object key riêng tư, transcript/feedback |
 | PostgreSQL | exam_attempts | Snapshot đề, answers, deadline, result/version; unique active attempt |
 | PostgreSQL/pgvector | tutor_chunks | Published content/version/text, embedding 1536 |
-| MongoDB | Sentence, Exam | Nội dung, nguồn/quyền, phiên bản, draft/reviewed/published |
-| MongoDB | Submission/UserState cũ | Giữ lưu trữ; không tự nhập cho user mới |
+| PostgreSQL JSONB | content_sentences, content_exams | Nội dung, nguồn/quyền, phiên bản, draft/reviewed/published |
+| PostgreSQL JSONB | legacy_documents | Giữ lưu trữ; không tự nhập cho user mới |
 | Redis | Queue/cache | Dữ liệu tạm; không thay thế PostgreSQL tiến độ |
 | S3 | Audio riêng tư | Signed URL có hạn, không public bucket |
 
-Sao lưu trước migration/import; PostgreSQL và MongoDB là hai nguồn khác trách nhiệm, không giả định transaction xuyên database. Không chuyển mật khẩu/session/provider token vào response profile hay tài liệu. Các câu SQL dữ liệu cá nhân luôn ràng buộc user lấy từ JWT đã kiểm active session.
+Sao lưu trước migration/import; PostgreSQL là nguồn nghiệp vụ duy nhất; import snapshot offline nguyên tử, giữ archive nguồn cho rollback. Không chuyển mật khẩu/session/provider token vào response profile hay tài liệu. Các câu SQL dữ liệu cá nhân luôn ràng buộc user lấy từ JWT đã kiểm active session.
 
 ## Knowledge library — migration004
 
-MongoDB `knowledge_entries`: key/revision unique, editVersion/status/content/reviewedBy. PostgreSQL `knowledge_state`: user/key unique, note/bookmark/section/read/revision/version; `knowledge_attempts`: user/requestId unique, snapshot/answers/result. Xem [contract](../features/knowledge-library/system-design.md). Không có transaction xuyên hai database; published revision bất biến để snapshot attempt ổn định.
+PostgreSQL `knowledge_entries`: key/revision unique, editVersion/status/content/reviewedBy. PostgreSQL `knowledge_state`: user/key unique, note/bookmark/section/read/revision/version; `knowledge_attempts`: user/requestId unique, snapshot/answers/result. Xem [contract](../features/knowledge-library/system-design.md). Cùng PostgreSQL; published revision bất biến để snapshot attempt ổn định.
 
 ## Private speech attempts
 
@@ -36,4 +36,6 @@ Migrations [005](../../migrations/005_local_speech.sql) và [006](../../migratio
 
 ## ORM và Redis — 2026-11-01
 
-[25 EntitySchemas](../../packages/backend/src/entities.ts) giữ24 mapping cũ và thêm rate_limit_buckets; orm_migrations do TypeORM quản lý. synchronize/dropSchema false; schema_migrations cũ chỉ provenance. [Migrations](../../packages/backend/src/orm-migrations.ts) và [hợp đồng ORM/Redis](architecture.md#orm-và-redis--2026-11-01).
+[25 EntitySchemas nền tảng](../../packages/backend/src/entities.ts) giữ24 mapping cũ và thêm rate_limit_buckets;5schemas content/archive mới ở [content-entities](../../packages/backend/src/content-entities.ts); orm_migrations do TypeORM quản lý. synchronize/dropSchema false; schema_migrations cũ chỉ provenance. [Migrations](../../packages/backend/src/orm-migrations.ts) và [hợp đồng ORM/Redis](architecture.md#postgresql-only-và-redis--2026-11-01).
+
+[Content schemas](../../packages/backend/src/content-entities.ts), [domain store](../../packages/backend/src/content-store.ts), [offline importer](../../packages/backend/src/content-import.ts) thuộc [PostgreSQL-only](../features/postgresql-only/README.md). Envelope id/key/revision/status/version có ràng buộc SQL; document JSONB bảo toàn payload cũ.
