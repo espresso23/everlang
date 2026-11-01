@@ -89,3 +89,7 @@ Theo ảnh user: Library read/listen và Practice reference đã thống nhất 
 ## 2026-10-31 — Cached grading failure và retry action
 
 Branch bugfix/retry-failed-grading.74unitPASS; failed duplicate đổi502→409/machinecode và retry explicit trong alert, giữ draft/dedup/history. [Audit/bằng chứng/final gates](../../audits/grading-retry.md). Chưa xác minh provider thật hồi phục, không chạy cloud hoặc tự tạo report/score.
+
+## 2026-11-01 — Admin workspace scoped review
+
+Owner yêu cầu layout quản trị riêng. Giữ paper/ink/Cobalt/Inter và editor hiện hành; thêm overview/navigation/mode switch. Visual review phát hiện header320px wrap nhưng fixed height gây chồng menu; sửa scoped admin-header auto height, bổ sung bounding-box regression. Ảnh desktop/mobile nằm ở content-authoring/assets/admin-workspace-*.png. Không chứng nhận WCAG/hardware toàn app.

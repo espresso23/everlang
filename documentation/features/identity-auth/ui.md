@@ -9,3 +9,7 @@ Audio riêng tư dùng [PrivateAudio](../../../apps/web/components/private-audio
 ## 2026-11-01 — SMTP without runtime Mailpit
 
 [sendAuthEmail](../../../packages/backend/src/auth-mail.ts) owns configured SMTP transport/timeout/error semantics; AuthService calls it for verification/reset. No host defaults to Mailpit. Missing/failed SMTP returns503 EMAIL_UNAVAILABLE without provider details, fake delivery or verification bypass. Existing verified-user login remains unchanged. Mailpit only exists in disposable test Compose; actual external SMTP delivery remains NOT VERIFIED.
+
+## AW-01 — Role-aware landing
+
+Email login và Google callback /sign-in dùng phiên server để replace admin tới /admin/overview, learner tới /. Token reset/OAuth error không redirect. Google linking từ profile giữ callback profile. Xem content-authoring AW-01–04; live Google smoke vẫn cần owner.

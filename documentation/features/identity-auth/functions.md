@@ -51,3 +51,5 @@ Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../
 ## 2026-11-01 — SMTP without runtime Mailpit
 
 [sendAuthEmail](../../../packages/backend/src/auth-mail.ts) owns configured SMTP transport/timeout/error semantics; AuthService calls it for verification/reset. No host defaults to Mailpit. Missing/failed SMTP returns503 EMAIL_UNAVAILABLE without provider details, fake delivery or verification bypass. Existing verified-user login remains unchanged. Mailpit only exists in disposable test Compose; actual external SMTP delivery remains NOT VERIFIED.
+
+Role landing: apps/web/app/sign-in/page.tsx Form dùng useAuth và router.replace theo user.admin; social callback /sign-in. AuthService callback/Google verification không đổi.

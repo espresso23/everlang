@@ -37,3 +37,7 @@ Theme mới theo [design guide](../design/README.md), [8 màn hình trước/sau
 [/speech](../../apps/web/app/speech/page.tsx) từ /library: hai panel thu/import/preview/consent và history riêng, status poll, playback/delete. Không có điểm phát âm. Provider/cảnh báo Google theo capabilities; giữ wireframe các route cũ. Canonical [UI](../features/self-hosted-speech/ui.md), [audit](../features/self-hosted-speech/audit.md).
 
 /word-sets: search/filter/pagination → bộ pin nghĩa → reveal/examples/TTS/record link/save SRS/known/skipped/preferences. /admin/word-sets: sense/set editor/version workflow. /vocabulary và /admin thêm Link giữ wireframe. [Canonical UI](../features/vocabulary-catalog/ui.md); chưa có nội dung thật được xuất bản tới khi owner duyệt.
+
+## Admin workspace — 2026-11-01
+
+/admin/overview là tổng quan quản trị, liên kết /admin (bài luyện), /admin/knowledge và /admin/word-sets. Shell có navigation theo route và chuyển Học tập/Quản trị. AdminLayout chỉ render editor khi phiên xác nhận admin. Chi tiết AW-01–04 trong content-authoring.

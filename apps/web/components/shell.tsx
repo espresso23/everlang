@@ -19,19 +19,22 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const router = useRouter();
   const authPage = path === "/sign-in";
+  const adminPage = path === "/admin" || path.startsWith("/admin/");
+  const management = adminPage && session?.user.admin;
   return (
     <>
-      <header className="app-header">
+      <header className={session?.user.admin ? "app-header admin-header" : "app-header"}>
         <Link className="brand" href="/">
           <span className="brand-icon" aria-hidden="true">e<span className="brand-spark">✦</span></span>
           EverLang<span className="beta-badge">BETA</span>
         </Link>
         <div className="header-right">
-          <span className="language-pill">🇰🇷 Tiếng Hàn</span>
+          <span className="language-pill">{management ? "Quản trị" : "🇰🇷 Tiếng Hàn"}</span>
           {isPending ? <span className="muted small" role="status">Đang kiểm tra đăng nhập…</span>
           : error ? <button className="soft-button" onClick={() => void refetch()}>Thử lại kết nối</button>
           : session ? (
             <>
+              {session.user.admin && <Link className="soft-button" href={management ? "/" : "/admin/overview"}>{management ? "Học tập" : "Quản trị"}</Link>}
               <Link href="/profile" className="user-link">
                 <UserAvatar name={session.user.name} image={session.user.image} />
                 <span className="user-name">{session.user.name}</span>
@@ -60,20 +63,26 @@ export function Shell({ children }: { children: React.ReactNode }) {
       </header>
       {logoutError && <p className="notice" role="alert">{logoutError}</p>}
       {!authPage && (
-        <nav className="app-nav" aria-label="Điều hướng chính">
-          {[
+        <nav className="app-nav" aria-label={management ? "Điều hướng quản trị" : "Điều hướng chính"}>
+          {(management ? [
+            ["/admin/overview", "Tổng quan", CalendarDays],
+            ["/admin", "Bài luyện", BookOpen],
+            ["/admin/knowledge", "Kiến thức", Layers],
+            ["/admin/word-sets", "Bộ từ", GraduationCap],
+          ] : [
             ["/", "Hôm nay", CalendarDays],
             ["/practice", "Luyện dịch", BookOpen],
             ["/vocabulary", "Kho từ & SRS", Layers],
             ["/library", "Nghe · Đọc · Nói", Headphones],
             ["/exams", "Luyện thi", GraduationCap],
             ["/profile", "Cài đặt", Settings2],
-          ].map(([href, label, Icon]) => {
+          ]).map(([href, label, Icon]) => {
             const I = Icon as typeof BookOpen;
             return (
               <Link
                 key={String(href)}
                 href={String(href)}
+                aria-current={path === href ? "page" : undefined}
                 className={path === href ? "nav-active" : ""}
               >
                 <I size={17} />

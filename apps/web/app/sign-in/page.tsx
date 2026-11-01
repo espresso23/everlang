@@ -2,7 +2,7 @@
 import { apiFetch } from "@/lib/auth";
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { auth } from "@/lib/auth";
+import { auth, useAuth } from "@/lib/auth";
 import { authErrorMessage } from "@/lib/auth-errors";
 function Form() {
   const [mode, setMode] = useState<"login" | "signup" | "forgot" | "reset">(
@@ -22,6 +22,12 @@ function Form() {
       .then((p) => setGoogle(p.google))
       .catch(() => setGoogle(false));
   }, []);
+  const { data: session, isPending } = useAuth();
+  useEffect(() => {
+    if (!isPending && session && !token && !oauthError) {
+      router.replace(session.user.admin ? "/admin/overview" : "/");
+    }
+  }, [isPending, session, token, oauthError, router]);
   const current = token ? "reset" : mode;
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -53,8 +59,7 @@ function Form() {
       if (result.error)
         throw new Error(result.error.message || "Không thể đăng nhập");
       if (current === "login") {
-        router.push("/");
-        router.refresh();
+        // Auth state above selects the landing route for both email and Google.
       } else
         setNotice(
           current === "signup"
@@ -116,7 +121,7 @@ function Form() {
                 try {
                   const result = await auth.signIn.social({
                     provider: "google",
-                    callbackURL: "/",
+                    callbackURL: "/sign-in",
                     errorCallbackURL: "/sign-in",
                   });
                   if (result.error)

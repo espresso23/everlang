@@ -47,6 +47,7 @@ P0: core self-study/release gates. P1: context expansion. P2: sau beta. Core/Str
 | PB-039 / WBS-4.39 | backend-nestjs-migration | Migrate backend NestJS/JWT va structured tracing | P0 | Core | Unscheduled | TBD/content | Review | — | Native Nest API/workers, JWT RAM + HttpOnly rotating refresh, preserve IDs/password/data, global exceptions and correlated redacted logs, no active legacy backend, parity/backup/restore/cutover verified. |
 | PB-040 / WBS-5.40 | postgresql-orm-migration | Migrate PostgreSQL access to TypeORM; preserve Mongoose ODM | P0 | Core | Unscheduled | TBD/content | Review | — | ORM-only PostgreSQL CRUD, native Nest lifecycle/migrations, preserve data/schema/concurrency contracts, fresh/adoption/restore and native regressions verified. |
 | PB-041 / WBS-5.41 | postgresql-only | Replace MongoDB with PostgreSQL primary business storage | P0 | Core | Unscheduled | TBD/content | In progress | — | Preserve content/legacy IDs and revisions; PostgreSQL-only runtime, atomic idempotent import/rollback evidence and observable learning/admin demo. |
+| PB-042 / WBS-5.42 | content-authoring | Không gian quản trị và role-aware login | P0 | Core | Unscheduled | 3 | Review | — | AW-01–04: admin mặc định vào overview, navigation quản trị và chuyển học tập, learner không mount editor; responsive và auth-state gates có evidence. |
 
 *Estimate dev sơ bộ; content/review không được coi là0 effort. Các feature ID mới chưa có source/docs phải tạo5 docs chuẩn trước code. Existing feature dùng đúng canonical docs, không tạo bản spec trùng.
 

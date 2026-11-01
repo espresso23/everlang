@@ -37,3 +37,18 @@ New /admin entry links to separately specified vocabulary-catalog editor; existi
 ## PostgreSQL-only re-audit — 2026-11-01
 
 PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.
+
+## 2026-11-01 — PB-042-T01 / GitHub #9 admin workspace
+
+Branch feature/admin-workspace, base5d84445; owner chọn mặc định Quản trị. Review riêng spec AW-01–04 → source → browser screenshots.
+
+- AW-01: Form/useAuth chọn landing admin /admin/overview, learner /. Google start gửi callback /sign-in; reset-token/OAuth error không tự redirect. Google linking/profile/API callback không đổi.
+- AW-02: Shell navigation theo route, có aria-current và mode switch; overview chỉ liên kết 3 editor thật. Existing /admin vẫn bài luyện. Không thêm count giả, API hay schema.
+- AW-03: AdminLayout không mount children khi chưa có admin; Shell giữ pending/error trước protected tree. API server role guard không đổi, frontend không phải security boundary.
+- AW-04: browser role fixtures kiểm admin email login/Google callback landing/deep links/editor navigation/study reload/back, learner denial không gọi API admin, session pending/error.
+- TDD red: baseline callback không điều hướng; green sau Form effect. Review ảnh bắt header320px overflow rồi fixed-height overlap; red bounding-box link bottom90.3 > header69; scoped autoheight fix.
+- 86unit/18files, lint, workspace typecheck, full Docker build (API/worker/web) PASS. Browser test5cases dùng HTTP role fixtures, không giả là real OAuth/database integration; sign-in deployed smoke không mock PASS. Không gọi cloud/SMTP/Mongo; không đổi DB.
+- NOT VERIFIED: owner live Google login và thao tác trên account thật sau UI update; issue giữ Review/open đến bước này. Không chốt content quality hay #1 Done.
+- Evidence: tests/e2e/admin-workspace.spec.ts; assets/admin-workspace-{1440,390,320}.png. Final commands/results được ghi tiếp sau kiểm tra final image.
+
+Final image: full Docker build PASS; deployed web only localhost3000. Final role-browser5/5 PASS11.7s, sign-in deployed smoke1/1 PASS3.7s. Header/menu containment and no horizontal overflow verified1440/390/320; inspected final320 screenshot. Self-review complete; task Review/Pass, issue open for owner Google smoke.

@@ -27,3 +27,9 @@ Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md
 Trang /admin thêm link tới [editor kiến thức](../knowledge-library/ui.md) tại /admin/knowledge. Workflow Sentence cũ giữ nguyên; knowledge dùng model/contract riêng có canonical docs, không tự publish seed.
 
 /admin thêm Link /admin/word-sets cho biên tập sense/set; giữ bảng translation cũ. Quy trình/phân quyền ở [catalog](../vocabulary-catalog/README.md).
+
+## Admin workspace — AW implemented local 2026-11-01
+
+Thay đổi layout được owner yêu cầu rõ. Header có nhãn Quản trị, nút Học tập trong admin / nút Quản trị khi admin học. Menu admin ngang wrap trên mobile: Tổng quan (/admin/overview), Bài luyện (/admin), Kiến thức (/admin/knowledge), Bộ từ (/admin/word-sets). Tổng quan có heading và 3 module link thật. Learner direct link thấy Không có quyền quản trị và về học tập; không lóe form. Pending/error giữ thông báo + retry trước quyền. Không sidebar mới/theme song song. Existing editors giữ layout.
+
+Header admin cho phép wrap khi không đủ chỗ (320px), giữ nút chuyển chế độ và không tràn ngang; header learner giữ bố cục hiện hành.

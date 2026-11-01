@@ -26,3 +26,14 @@
 ## Giới hạn và việc còn lại
 
 Cần audit nguồn/quyền học liệu trước phát hành rộng. Một trang tạo index có thể gọi provider nhiều lần; chưa có batching UI.
+
+## Admin workspace — quyết định 2026-11-01 (đặc tả trước code, hiện implemented local)
+
+Owner chọn admin đăng nhập mặc định vào Quản trị, có chuyển Học tập. PB-042-T01 là increment riêng, không thay yêu cầu duyệt học liệu của #1.
+
+- AW-01: email/Google login thành công điều hướng admin tới /admin/overview, learner tới /. Google linking tại profile giữ callback hiện tại.
+- AW-02: /admin/* có nhãn Quản trị và menu Tổng quan, Bài luyện, Kiến thức, Bộ từ; active route rõ, chuyển Học tập/Quản trị, responsive và keyboard. Giữ Editorial tokens.
+- AW-03: chưa xác định session chỉ loading/error; learner mở admin không render editor hoặc gọi API admin. API vẫn kiểm quyền server.
+- AW-04: tổng quan chỉ dẫn tới các module có thật, không hiển thị thống kê giả; refresh/deep link/back và chuyển chế độ không lặp redirect.
+
+Non-goals: user management, analytics, thay workflow review/publish, schema/DB/provider. AC: E2E admin login→overview→3editor→study→admin, learner denial, loading/error, Google callback landing contract, desktop1440/mobile390/320; ảnh và audit. Live Google cần owner test, không dùng mock để chứng nhận OAuth upstream.

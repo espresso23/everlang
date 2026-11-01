@@ -1252,6 +1252,25 @@
         "PB-041-T03"
       ],
       "scope": "Core"
+    },
+    {
+      "id": "PB-042",
+      "wbs": "WBS-5.42",
+      "epic": "WBS-5",
+      "title": "Không gian quản trị và role-aware login",
+      "priority": "P0",
+      "sprint": null,
+      "points": 3,
+      "featureId": "content-authoring",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "AW-01–04: admin mặc định vào overview, navigation quản trị và chuyển học tập, learner không mount editor; responsive và auth-state gates có evidence.",
+      "refinement": "Ready",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-042-T01"
+      ],
+      "scope": "Core"
     }
   ],
   "tasks": [
@@ -2660,6 +2679,24 @@
       "verification": "Not run",
       "updated": "2026-11-01",
       "githubIssue": "https://github.com/espresso23/everlang/issues/8"
+    },
+    {
+      "id": "PB-042-T01",
+      "parent": "PB-042",
+      "title": "Admin login → workspace → editor → học tập; role gates và browser audit",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Review",
+      "dependsOn": [],
+      "blocker": "Local UI acceptance passed; owner live Google login on updated UI remains NOT VERIFIED. No automatic product Done or production release.",
+      "evidence": [
+        "documentation/features/content-authoring/audit.md",
+        "documentation/features/content-authoring/assets/admin-workspace-verification.md",
+        "tests/e2e/admin-workspace.spec.ts"
+      ],
+      "verification": "Pass",
+      "updated": "2026-11-01",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/9"
     }
   ],
   "team": {

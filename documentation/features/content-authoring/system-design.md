@@ -36,3 +36,7 @@ Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [sto
 ## PostgreSQL-only — 2026-11-01
 
 Current persistence: [content store](../../../packages/backend/src/content-store.ts), [mapped envelopes](../../../packages/backend/src/content-entities.ts), [atomic offline importer](../../../packages/backend/src/content-import.ts). Mongo models/connectDb are removed; existing routes, validation, ownership, version/CAS and snapshots remain. [Canonical migration contract](../postgresql-only/README.md) supersedes the earlier Mongo persistence descriptions; historical evidence is not new verification.
+
+## Admin workspace AW-01–04 — implemented local 2026-11-01
+
+AuthProvider/useAuth.user.admin từ server là nguồn role. Sign-in sau authenticated (email hoặc Google callback /sign-in) replace theo role; không auto redirect admin đang học tại /. Linking không đổi. Shell chọn navigation theo route, chỉ hiện switch khi user.admin. /admin/layout.tsx là UI gate: pending/error/nonadmin không mount editor children; API JwtGuard là ranh giới bảo mật. /admin/overview dùng các link thật, không thêm API/query/count. Không migration; rollback source UI không đổi dữ liệu.

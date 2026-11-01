@@ -76,7 +76,7 @@
             "Form",
             "SignIn"
           ],
-          "sha256": "df2e8ca9c8fc1f6a32a104d44cec914c7d3617682dd52496e2cda16c9aa0e5b7"
+          "sha256": "882f324c39384665f60b6532c01f12730829296ec7e513ba50393f3d30d86b7e"
         },
         {
           "file": "apps/api/src/auth/auth.controller.ts",
@@ -734,6 +734,27 @@
             "SentencesGenerateController.post"
           ],
           "sha256": "cdc686524a0aeee7979bd1e0d914a75d45e2da2293722ad451a1e39d2a6aa358"
+        },
+        {
+          "file": "apps/web/app/admin/layout.tsx",
+          "symbols": [
+            "AdminLayout"
+          ],
+          "sha256": "c8040ee7395307709a56fd635cd00d461d4df4ecd3f6bb2fe9efce27e3889c96"
+        },
+        {
+          "file": "apps/web/app/admin/overview/page.tsx",
+          "symbols": [
+            "AdminOverview"
+          ],
+          "sha256": "311534a6b61c84bb75cdd26667b0e11002419053f2599bb51d93e7a03eb32d2f"
+        },
+        {
+          "file": "tests/e2e/admin-workspace.spec.ts",
+          "symbols": [
+            "fixture"
+          ],
+          "sha256": "95542e72287a77850beed2d46afe0300de1cafaf2110f2c5e6b541e477323d61"
         }
       ]
     },
@@ -874,7 +895,7 @@
           "symbols": [
             "Shell"
           ],
-          "sha256": "99406b8b0e3c572d485d93f56e83e622d7447a76bc0c0f4cb9d347019dccc0d6"
+          "sha256": "adcd3a200a36476e22a60328ade6873273c9a10aa40bbf2383f81e2039af517d"
         },
         {
           "file": "apps/web/app/layout.tsx",
@@ -887,7 +908,7 @@
         {
           "file": "apps/web/app/globals.css",
           "symbols": [],
-          "sha256": "e4dd9a7e620fc2ff370d1a31903db4e2a821b8f878650358a100824440a40d06"
+          "sha256": "6166c744759e1024e1c96ad358dddba403917131fae522ccc29d4d3fc7335979"
         },
         {
           "file": "apps/web/app/icon.svg",

@@ -4,6 +4,14 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — Admin workspace implemented; GitHub #9 Review
+
+- Owner yêu cầu layout admin và chọn mặc định Quản trị sau login. Tạo PB-042-T01/issue #9 trước code, canonical content-authoring AW-01–04; branch feature/admin-workspace từ5d84445. Quyết định/scope nằm content-authoring/decisions.md. Issue #1 giữ scope, chưa owner duyệt content.
+- Form đăng nhập dùng user.admin để replace /admin/overview hoặc /; Google login callback /sign-in, linking profile giữ nguyên. Shell có admin nav, aria-current và chuyển Học tập/Quản trị; AdminLayout chặn editor khi pending/error/nonadmin; overview link tới3module thật, /admin editor cũ giữ nguyên. Không API/schema/identity/provider change.
+- TDD callback red→green; self-review ảnh bắt overflow/fixed-height overlap320px, thêm bounding-box regression red90.3>69 rồi sửa scoped admin-header autoheight. Final5role-browser PASS11.7s +1deployed smoke PASS3.7s;86unit, lint, workspace typecheck, fullDockerbuild/backend/docs/plan PASS. Role tests dùng HTTP fixtures, không được gọi là live Google/DB integration. Không paid provider calls.
+- Web đã cập nhật local localhost3000; ảnh1440/390/320 +audit/evidence tại documentation/features/content-authoring. PB-042-T01 Review/Pass; issue #9 mở chờ owner logout→Google→overview→editor→Học tập→Quản trị. Không giả human OAuth QA, content review hoặc production Done.42PBI/90tasks/6Proposed, không tự chốt sprint hoặc merge/push.
+
+
 ### 2026-11-01 — Cho phép tài khoản Google hiện có quản trị
 
 - Owner yêu cầu admin đăng nhập Google. Bổ sung tài khoản Google hiện có vào ADMIN_EMAILS trong .env local, giữ admin cũ; recreate riêng API bằng docker compose up -d --no-deps api. Không đổi mật khẩu hoặc credential/identity DB.

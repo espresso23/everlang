@@ -174,6 +174,8 @@ Dùng thật ngoài localhost với kiểm chứng đầy đủ
   - PB-041-T01 — PostgreSQL-only migration increment: learning/admin, preservation and runnable demo
   - PB-041-T02 — Owner QA PostgreSQL-only learning and authoring increment
   - PB-041-T03 — Owner post-merge production release decision after QA
+- **WBS-5.42 / PB-042 — Không gian quản trị và role-aware login** (P0, Core, Unscheduled).
+  - PB-042-T01 — Admin login → workspace → editor → học tập; role gates và browser audit
 
 
 ## WBS-6 / Mở rộng sau beta

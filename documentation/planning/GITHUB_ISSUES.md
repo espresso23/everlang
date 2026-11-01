@@ -18,3 +18,7 @@ Thứ tự: #1 → #2 → #3 → #4 → #5; #6/#7 có đầu vào content/infra 
 Chỉ `work-items.json` giữ trạng thái task, trường `githubIssue` ánh xạ issue thật. GitHub checklist thể hiện acceptance: đạt và self-review có bằng chứng mới đóng completed, cập nhật JSON/plan views/HANDOFF và báo cáo DONE–DOING–NEXT. Không đóng cả issue khi mới xong một task con. Nội dung người duyệt/production go-no-go vẫn cần xác nhận tương ứng.
 
 Tất cả 8 issue đang mở vì còn acceptance chưa đạt; không tính việc tạo issue là hoàn thành sản phẩm. Roadmap ngoài đợt này cần issue trước khi bắt đầu thực thi, không tự lấy vào sprint. [Audit publication](../audits/github-issue-publication-2026-11-01.md).
+
+## Scope bổ sung owner giao
+
+[#9 — Admin workspace](https://github.com/espresso23/everlang/issues/9), PB-042-T01: admin mặc định vào Quản trị, navigation và chuyển Học tập. Increment riêng sau quyết định owner, không đổi scope/sprint của 8 issue trước.
