@@ -39,3 +39,7 @@
 | [tests/integration/worker-runtime.ts](../../../tests/integration/worker-runtime.ts) | `connection`, `name`, `queue`, `events`, `times`, `worker`, `killer` | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
 
 Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.
+
+## System design diagram — 2026-11-01
+
+Tài liệu/ảnh developer-facing, không đổi UI hay runtime: [canonical architecture](../../shared/architecture.md#system-design-diagram), [PNG](assets/everlang-system-design.png), [SVG](assets/everlang-system-design.svg), [editable DOT](assets/everlang-system-design.dot), [generation notes](assets/everlang-system-design.prompt.md). Các module/symbol vẫn theo function map hiện tại; diagram mapping và audit kiểm hướng kết nối, không chứng nhận provider live.

@@ -32,3 +32,7 @@ Local Mailpit không chuyển email tới Gmail. Production cần SMTP/domain/HT
 ## 2026-10-31 — Worker/exception contract
 
 Dùng exception/logging contract chuẩn và xử lý retry/cooldown/recovery có giới hạn; không giả điểm hoặc bỏ lỗi để tiếp tục process hỏng. [Chuẩn dùng chung](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).
+
+## System design diagram — 2026-11-01
+
+Tài liệu/ảnh developer-facing, không đổi UI hay runtime: [canonical architecture](../../shared/architecture.md#system-design-diagram), [PNG](assets/everlang-system-design.png), [SVG](assets/everlang-system-design.svg), [editable DOT](assets/everlang-system-design.dot), [generation notes](assets/everlang-system-design.prompt.md). Các module/symbol vẫn theo function map hiện tại; diagram mapping và audit kiểm hướng kết nối, không chứng nhận provider live.

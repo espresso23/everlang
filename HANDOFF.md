@@ -4,6 +4,12 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — System design diagram và luồng giao tiếp
+
+- User yêu cầu ảnh kiến trúc và lưu trong docs system design. Branch docs/system-design-diagram từ main686d87c/tree sạch. Canonical [architecture](documentation/shared/architecture.md) có PNG và giải thích tiếng Việt browser/gateway/web/API, JWT, PG/Mongo/Redis, hai queue/worker, media, optional providers; thêm entry ở documentation/README và liên kết migration/platform system-design.
+- Assets tại documentation/features/platform-operations/assets/everlang-system-design.{png,svg,dot}; PNG3840×1538, SVG để zoom, DOT để sửa. Imagegen built-in dùng cho draft; final dùng vector/Graphviz vì cần chính xác đầu mút/chữ. [Generation notes/prompt](documentation/features/platform-operations/assets/everlang-system-design.prompt.md). Không API key/provider product calls/dependency hoặc runtime changes.
+- Audit riêng đối chiếu code+source edges và xem ảnh: [platform audit](documentation/features/platform-operations/audit.md). Kiểm links/docs, DOT endpoints và PNG metadata; không rerun product suites cho docs-only. Các giới hạn Google/cloud/production giữ nguyên, không đánh Done feature hoặc thay sprint/tracking. Không tự merge/push tài liệu trong lượt này.
+
 ### 2026-11-01 — Pre-merge recheck theo yêu cầu owner
 
 - Owner cho phép tự kiểm tra, nếu đạt thì merge main và push origin. Baseline6435d04/tree sạch, fetch origin/main4eb249c không có commit phân kỳ; main local đã có8commit chưa push từ các lượt trước.

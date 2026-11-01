@@ -27,3 +27,7 @@ Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md
 ## 2026-10-31 — Worker/exception contract
 
 Không thêm màn hình hoặc đổi layout. Trạng thái job queued/active/completed/failed qua API hiện có; lỗi cuối trả thông báo provider-safe và giữ nháp. Fatal process errors là log vận hành, không đưa stack/connection vào UI. [Chuẩn dùng chung](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).
+
+## System design diagram — 2026-11-01
+
+Tài liệu/ảnh developer-facing, không đổi UI hay runtime: [canonical architecture](../../shared/architecture.md#system-design-diagram), [PNG](assets/everlang-system-design.png), [SVG](assets/everlang-system-design.svg), [editable DOT](assets/everlang-system-design.dot), [generation notes](assets/everlang-system-design.prompt.md). Các module/symbol vẫn theo function map hiện tại; diagram mapping và audit kiểm hướng kết nối, không chứng nhận provider live.

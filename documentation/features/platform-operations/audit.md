@@ -1,3 +1,10 @@
+## 2026-11-01 — System design diagram audit
+
+- Branch docs/system-design-diagram; source snapshot686d87c. PASS: topology đối chiếu Gatewayfile/Compose, apiFetch/AuthService/JwtGuard, JobsService/SubmissionsGradeService, Redis/CorrelatedQueue, hai WorkerHost, SpeechService/storage/SpeechAudioService/PrivateAudio và provider modules.
+- PASS: phân biệt UI routes/API; không browser→database; PG giữ durable progress/jobs, Mongo system content, Redis cache/queue; worker→PG và optional ASR/AI đúng đầu mút. Shared packages là import, không service. Ba luồng auth/grading/speech và direct API integrations có giải thích tiếng Việt tại shared architecture.
+- PASS: ảnh PNG3840×1538 và SVG được render/xem trực quan; DOT source giữ node/edge có thể chỉnh. AI draft ban đầu loại bỏ vì edge dễ hiểu sai; ảnh final dựng vector từ source. Không đổi dependencies/runtime/schema, không gọi provider sản phẩm, không secret trong prompt/diagram.
+- Verification: structural docs:check, DOT edge assertions và PNG metadata; không rerun lint/build/E2E vì chỉ thay tài liệu/assets. Existing provider/live/production NOT VERIFIED giữ nguyên. [Ảnh và walkthrough](../../shared/architecture.md#system-design-diagram), [provenance](assets/everlang-system-design.prompt.md).
+
 ## 2026-11-01 — Native Nest migration regression audit
 
 Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.

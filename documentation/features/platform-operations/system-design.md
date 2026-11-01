@@ -2,6 +2,12 @@
 
 [Đặc tả](README.md) · [Functions](functions.md) · [UI](ui.md)
 
+## Sơ đồ hệ thống — 2026-11-01
+
+![EverLang system design](assets/everlang-system-design.png)
+
+Thuyết minh/traceability chuẩn tại [shared architecture](../../shared/architecture.md#system-design-diagram); ảnh dùng chung với feature migration, không tạo hợp đồng kiến trúc thứ hai. Snapshot686d87c; provider tùy chọn không đồng nghĩa đã verified live. [SVG](assets/everlang-system-design.svg) · [DOT source](assets/everlang-system-design.dot) · [Cách dựng](assets/everlang-system-design.prompt.md).
+
 ## Luồng thực tế
 
 Browser → Caddy gateway → Next web hoặc Nest API → JWT guard/services → SQL/Mongo/Redis/providers; native Nest workers qua BullMQ.

@@ -1,5 +1,7 @@
 # Tài liệu EverLang
 
+[System design diagram và luồng giao tiếp](shared/architecture.md#system-design-diagram) — ảnh tổng quan kiến trúc NestJS/JWT, dữ liệu, queue và các worker.
+
 [WBS / product backlog / sprint tracking — 2026-10-31](planning/README.md) · [Dashboard tiến độ](planning/DASHBOARD.md).
 
 [Checkpoint dự án và ngữ cảnh sprint tiếp theo — 2026-10-31](project-status.md).
