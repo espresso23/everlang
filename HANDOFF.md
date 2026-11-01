@@ -4,6 +4,12 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — Cho phép tài khoản Google hiện có quản trị
+
+- Owner yêu cầu admin đăng nhập Google. Bổ sung tài khoản Google hiện có vào ADMIN_EMAILS trong .env local, giữ admin cũ; recreate riêng API bằng docker compose up -d --no-deps api. Không đổi mật khẩu hoặc credential/identity DB.
+- Kiểm env runtime xác nhận allowlist admin Google và cấu hình Google có mặt. Live OAuth cần owner đăng nhập lại; chưa tuyên bố callback thành công. Mở /admin/knowledge sau login để duyệt bài cho issue #1. Không ghi mật khẩu/key vào tài liệu.
+
+
 ### 2026-11-01 — GitHub issue bắt buộc, publication và task mapping
 
 - Owner yêu cầu các đầu việc có GitHub issue; hoàn tất thì mark Done, review và báo cáo. Lưu chỉ định trong AGENTS/workflow; review trước close completed, không giả content QA/production approval.
