@@ -58,3 +58,7 @@ Auth/validation/error được xác định ở [api.ts](../../../lib/api.ts) v�
 ## 2026-10-31 — Hoàn thiện Nghe câu
 
 `Library` render SampleAudioPlayer cho từng segment (Nghe câu1/2/3), listen/speak key theo lesson/tab. `AnswerDetails` dùng sample player compact, bỏ callback onSpeak và hàm speak cũ trong Practice/ExerciseCard. `Playback`/`release` giữ activePlayback owner, detaches callbacks, reset UI player cũ và chỉ hủy utterance do chính component sở hữu. [Player contract](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).
+
+## 2026-10-31 — Retry failed grading
+
+POST tại app/api/submissions/grade/route.ts thêm409 {error,code:GRADING_PREVIOUS_FAILED,submissionId,retryable:true} khi own dedup row đã failed; completed vẫn cache200, queued/force retry202. Practice.submit và retryGrading trong components/practice.tsx đưa action retry tới alert sau failed409 hoặc failed polling; giữ gradingRequestRef chống double click, localStorage draft và pending job logic. [Audit](../../audits/grading-retry.md).

@@ -33,11 +33,11 @@ Routes: `/`, `/sign-in`, `/practice`, `/vocabulary`, `/word-sets`, `/knowledge`,
 ## Tích hợp và bằng chứng mới nhất
 
 - Knowledge/private speech/catalog cùng migrations004–007 và backup/restore/bridge đã có evidence. Các sửa trong chat bổ sung kho hệ thống ko, worker PG crash/global boundaries/AI429 và player Library/Practice. Không đổi model/key/billing hoặc tự publish seed.
--70/70unit, lint/typecheck, Docker production42routes đạt. Full lint có1warning sẵn trong .local không tracked; targeted lint sạch.
+-74/74unit mới nhất; [retry failed grading](audits/grading-retry.md) bổ sung409/code và retry explicit cạnh lỗi, giữ draft/history. Checkpoint trước đạt lint/typecheck/Docker production42routes. Full lint có1warning sẵn trong .local không tracked; targeted lint sạch.
 - [Audio UX](audits/sentence-audio-controls.md):3Playwright deployed3000/16.7s, lifecycle/read/listen/speak/reference/timeout/unsupported,1440/390/320+spacing. Speech/API fixtures, không là acoustic validation.
 - [Worker/kho hệ thống](audits/system-library-worker-errors.md):2real auth/Mongo/PGE2E34.4s, isolation/CAS/quota/language; Redis cooldown/PG reconnect/fatal child probes,0cloudcalls. QA đã dọn.
 - [Knowledge](audits/self-study-library-integration.md), [speech](audits/self-study-speech-integration.md), [catalog](audits/vocabulary-catalog-integration.md): các gate đã/chưa kiểm theo feature. [Audit checkpoint](audits/sprint-checkpoint-2026-10-31.md) ghi kiểm pre-merge của lượt tổng hợp.
-- Docs17features/152source-config; planning38PBI/82tasks/6Proposed.8/82tasksDone theo tracking không có nghĩa10% hoàn thành toàn dự án.
+- Docs17features/154source-config; planning38PBI/82tasks/6Proposed.8/82tasksDone theo tracking không có nghĩa10% hoàn thành toàn dự án.
 
 ## Runtime và Git
 

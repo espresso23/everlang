@@ -20,3 +20,5 @@ Profile GET có explicit user fields và providers:string[]; PUT strict schema, 
 /api/word-sets GET verified published catalogue, /api/word-sets/learn GET/POST/PUT owner state/server snapshots/preferences, /api/admin/word-sets admin-only CRUD workflow. Không nhận userId/meaning/card/score client khi save; server validates published set membership/revision. New/day quota per-user advisory transaction; self-report không sửa lịch/card. [Detailed contracts](../features/vocabulary-catalog/functions.md).
 
 Kho hệ thống: GET /api/knowledge và /api/word-sets trả metadata language=ko, ownership=system; unsupported language400, session verified vẫn bắt buộc. Học liệu published dùng chung, lưu/bookmark/note/SRS theo session riêng; không tự publish seed. [Error boundaries](error-handling.md).
+
+POST /api/submissions/grade: own cached failed attempt trả409/code GRADING_PREVIOUS_FAILED/retryable:true/submissionId, không502. Force retry là action explicit và requestId mới; completed cache/dedup/ownership giữ nguyên. [Audit](../audits/grading-retry.md).

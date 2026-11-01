@@ -168,7 +168,7 @@
             "DictionaryResultCard",
             "useLookup"
           ],
-          "sha256": "33f29aa25bf6ccf1d7cfae770dd932c57128cb0572babfa80146bee3c0fc0acc"
+          "sha256": "f876fbc2cae857d2182ece98c495d67e9ddce4ca9fbf6cc240273283071a3016"
         },
         {
           "file": "app/api/sentences/route.ts",
@@ -267,7 +267,7 @@
           "symbols": [
             "POST"
           ],
-          "sha256": "1f8f3a0a0f19c5078d3e7885fba13f82abe018922702908ddc581ec8934eaa0c"
+          "sha256": "a4de62444deb522bb0baf38b98cf654b2f028815513d68c6b8529d3151ef0d43"
         },
         {
           "file": "app/api/jobs/route.ts",
@@ -298,6 +298,16 @@
           "file": "tests/unit/grading-worker.test.ts",
           "symbols": [],
           "sha256": "d90dc67d99d4cbc885d6e655f6f232db1018ba7dc2fdf564b9615f0537a417a6"
+        },
+        {
+          "file": "tests/unit/grading-retry.test.ts",
+          "symbols": [],
+          "sha256": "412f845cc3ae14eb40e571217e155d9ce8af30d53ae97aa0f3edf86da936a1a7"
+        },
+        {
+          "file": "tests/e2e/grading-retry.spec.ts",
+          "symbols": [],
+          "sha256": "66a8a7269ece843552b660778fcfb215894cf1b5bf5fdd31787ad6e6428e78d9"
         }
       ]
     },

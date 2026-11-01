@@ -23,3 +23,7 @@ Failed-event SQL write dùng guardedTask; nếu DB lỗi, recovery30s đối chi
 [Unit errors](../../tests/unit/runtime-errors.test.ts), [worker fault injection](../../tests/unit/grading-worker.test.ts), [probe PG/Redis/process](../../tests/integration/worker-runtime.ts), [audit tích hợp](../audits/system-library-worker-errors.md).
 
 Nguồn đối chiếu: [node-postgres pool errors](https://node-postgres.com/features/pooling), [Node fatal exception semantics](https://nodejs.org/api/process.html#event-uncaughtexception), [BullMQ rate limiting](https://docs.bullmq.io/guide/rate-limiting), [OpenRouter limits](https://openrouter.ai/docs/api/reference/limits). API `queue.rateLimit` đối chiếu thêm typings BullMQ cài trong repo; không dùng `worker.rateLimit` đã deprecated.
+
+## Cached grading failure
+
+Một own submission đãfailed không phải upstream error của request mới: POSTgrade trả409/code GRADING_PREVIOUS_FAILED, frontend đưa retry button cạnh error. Force retry chỉ sau click explicit, giữ lịch sử cũ/cooldown/rate-limit. [Audit](../audits/grading-retry.md).

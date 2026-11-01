@@ -33,3 +33,7 @@ Limit hiện tối đa 50, API lịch sử tối đa 200; chưa có server pagin
 ## 2026-10-31 — Rà soát Nghe câu còn sót
 
 Theo ảnh user: Library read/listen và Practice reference đã thống nhất play/pause player; single active owner, reset/cancel/cleanup và accessibility bổ sung. PASS3Playwright29.1s,70unit, targeted lint, responsive1440/390/320+spacing. [Audit/bằng chứng/giới hạn và final deploy](../../audits/sentence-audio-controls.md). Physical speech/native zoom/screenreader NOT VERIFIED; không đóng provider gates legacy.
+
+## 2026-10-31 — Cached grading failure và retry action
+
+Branch bugfix/retry-failed-grading.74unitPASS; failed duplicate đổi502→409/machinecode và retry explicit trong alert, giữ draft/dedup/history. [Audit/bằng chứng/final gates](../../audits/grading-retry.md). Chưa xác minh provider thật hồi phục, không chạy cloud hoặc tự tạo report/score.

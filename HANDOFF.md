@@ -4,6 +4,15 @@ Cập nhật gần nhất: 2026-10-31
 
 ## Trạng thái hiện tại
 
+### 2026-10-31 — Khắc phục502 khi nộp lại lượt chấm đãfailed
+
+- User log request2129d9fd-cdd1-4251-982a-a86bc3ce50e1 lúc21:05:40Asia/Saigon. Trace app/code xác định request gặp cached failed submission, chưa gọi provider mới; API trước trả502 và hướng dẫn nút chấm lại nhưng nút nằm trong report modal không có khi thất bại.
+- Branch bugfix/retry-failed-grading từ main af438bf, tree sạch trước tạo. POSTgrade đổi failed duplicate thành409/code GRADING_PREVIOUS_FAILED/submissionId/retryable, không tự enqueue/update history. Practice hiển thị Chấm lại bằng AI ngay error alert cho cached/worker failure; action explicit forceRegrade/requestId mới, giữ draft/cooldown/rate limit và double-submit guard.
+- Code: app/api/submissions/grade/route.ts, components/practice.tsx. Docs5files AI/practice, shared API/error handling, code-map/project-status và [audit](documentation/audits/grading-retry.md) cập nhật.74unit/typecheck đạt; browser/build/deploy cuối ghi audit. Không đổi worker/model/key/billing/schema/dữ liệu hoặc tự retry cloud; chưa xác minh quota OpenRouter hồi phục. Không commit/merge/push trong lượt sửa này.
+
+
+- Final:74unit/typecheck/targeted lint/Docker42routes đạt; app3000 cập nhật,2Playwright trên deploy16.1s và responsive1440/390/320PASS. docs17features/154source, planning38PBI/82tasks/6Proposed và diff check đạt. Dev3001 dừng; rollback everlang-before-grading-retry:local; không cloud calls/userdata writes hoặc đổi worker. Chưa commit/merge, main vẫnaf438bf.
+
 ### 2026-10-31 — Nén ngữ cảnh và tích hợp main trước sprint tiếp theo
 
 - Pre-merge mới:70/70unit, typecheck, lint0errors (1warning .local có sẵn), docs17features/152source/1531links, planning38PBI/82tasks/6Proposed và working/staged diff checks PASS.85file được rà trước commit, không đưa private/generated paths hoặc credential vào Git; source map/hash và các audit khớp code. Kết quả branch/hash sau fast-forward được báo ở lượt bàn giao, dùng git log main để lấy checkpoint chính xác.

@@ -30,3 +30,7 @@
 ## 2026-10-31 — Worker/exception contract
 
 Dùng exception/logging contract chuẩn và xử lý retry/cooldown/recovery có giới hạn; không giả điểm hoặc bỏ lỗi để tiếp tục process hỏng. [Chuẩn dùng chung](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).
+
+## 2026-10-31 — Retry failed grading
+
+Failed duplicate không phải lỗi gateway mới: POST grade trả409/code GRADING_PREVIOUS_FAILED, giữ draft/attempt cũ và không tự enqueue. Người học có nút Chấm lại bằng AI ngay trong error alert; click explicit tạo lượt mới bằng forceRegrade/requestId mới. [Audit](../../audits/grading-retry.md).

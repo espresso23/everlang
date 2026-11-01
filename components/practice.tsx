@@ -159,6 +159,7 @@ export default function Practice({
   const [report, setReport] = useState<GradeReport | null>(null);
   const [reportSentence, setReportSentence] = useState<Sentence | null>(null);
   const [error, setError] = useState("");
+  const [retryGrading, setRetryGrading] = useState<Sentence | null>(null);
   const [loading, setLoading] = useState(false);
   const [gradingId, setGradingId] = useState("");
   const [loadingSavedId, setLoadingSavedId] = useState("");
@@ -366,6 +367,7 @@ export default function Practice({
     }
     gradingRequestRef.current = true;
     setError("");
+    setRetryGrading(null);
     setGradingId(item._id);
     try {
       const response = await fetch("/api/submissions/grade", {
@@ -379,10 +381,12 @@ export default function Practice({
         }),
       });
       let payload = await response.json();
-      if (!response.ok)
+      if (!response.ok) {
+        if (payload.code === "GRADING_PREVIOUS_FAILED") setRetryGrading(item);
         throw new Error(
           apiErrorMessage(response, payload.error, "Không thể chấm bài."),
         );
+      }
       if (response.status === 202) {
         const jobId = payload.jobId;
         localStorage.setItem(`everlang-pending-job-${userId}`, jobId);
@@ -393,6 +397,7 @@ export default function Practice({
           if (!jr.ok) throw new Error(job.error || "Không đọc được lượt chấm");
           if (job.status === "failed") {
             localStorage.removeItem(`everlang-pending-job-${userId}`);
+            setRetryGrading(item);
             throw new Error(job.error);
           }
           if (job.status === "completed") {
@@ -650,7 +655,19 @@ export default function Practice({
             className="mb-4 flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800"
           >
             <CircleHelp size={17} className="mt-0.5 shrink-0" />
-            {error}
+            <div className="min-w-0 flex-1">
+              <p>{error}</p>
+              {retryGrading && (
+                <button
+                  type="button"
+                  className="soft-button mt-2"
+                  disabled={Boolean(gradingId) || !drafts[retryGrading._id]?.trim()}
+                  onClick={() => void submit(retryGrading, true)}
+                >
+                  Chấm lại bằng AI
+                </button>
+              )}
+            </div>
             <button
               className="ml-auto"
               onClick={() => setError("")}

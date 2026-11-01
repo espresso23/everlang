@@ -33,3 +33,7 @@ Nút nghe mẫu dùng play/pause icon, thanh tiến trình và thời gian đã 
 ## 2026-10-31 — Hoàn thiện Nghe câu
 
 Hoàn thiện icon play/pause+progress tại Library read/listen/speak và Practice AnswerDetails; chỉ1player phát một lúc, đổi câu/bài/tab dừng đúng session. [Player contract](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).
+
+## 2026-10-31 — Retry failed grading
+
+Failed duplicate không phải lỗi gateway mới: POST grade trả409/code GRADING_PREVIOUS_FAILED, giữ draft/attempt cũ và không tự enqueue. Người học có nút Chấm lại bằng AI ngay trong error alert; click explicit tạo lượt mới bằng forceRegrade/requestId mới. [Audit](../../audits/grading-retry.md).

@@ -31,3 +31,7 @@ Play icon44px có accessible name/tooltip; khi phát chuyển pause, khi tạm d
 ## 2026-10-31 — Hoàn thiện Nghe câu
 
 Play/pause icon44px thay text Nghe câu và Nghe câu đầu tiên; player compact210px cho các câu lặp lại. Tên/tooltip riêng từng câu, progress+mm:ss đã phát, loading spinner/aria-busy/live status, lỗi cạnh control. Đổi câu dừng player trước kể cả không nhận canceled event; đổi bài/tab reset audio; tab aria-pressed và lesson aria-current. Giữ lưới/sidebar/nội dung/đường lưu-tra từ. [Player contract](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).
+
+## 2026-10-31 — Retry failed grading
+
+Khi lần chấm cũ thất bại hoặc worker trả failed, alert hiển thị lý do và nút Chấm lại bằng AI; không cần mở report modal vốn không tồn tại khi chấm thất bại. Không tự gọi AI lại. Click explicit giữ textarea, đổi requestId/forceRegrade, khóa submit trong lúc chờ. Mã log vẫn hiển thị qua API helper; đóng alert vẫn giữ nháp. Giữ layout/tokens Editorial. [Audit](../../audits/grading-retry.md).

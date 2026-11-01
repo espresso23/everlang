@@ -81,3 +81,5 @@ Bộ tài liệu baseline đã được backfill cho toàn bộ source/màn hìn
 - [Exception boundaries chuẩn](shared/error-handling.md) và [audit kho hệ thống/worker429](audits/system-library-worker-errors.md) —2026-10-31; nội dung published dùng chung ko, trạng thái học/lưu riêng mỗi tài khoản.
 
 - [Rà soát icon Nghe câu trong read/listen/reference](audits/sentence-audio-controls.md) —2026-10-31; bổ sung phạm vi còn sót sau bản sửa sample player ban đầu.
+
+- [Cached grading failure409 và nút chấm lại tại lỗi](audits/grading-retry.md) —2026-10-31; giữ draft và retry explicit.

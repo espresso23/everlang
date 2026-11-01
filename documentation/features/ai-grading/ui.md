@@ -25,3 +25,7 @@ Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md
 ## 2026-10-31 — Worker/exception contract
 
 Không thêm màn hình hoặc đổi layout. Trạng thái job queued/active/completed/failed qua API hiện có; lỗi cuối trả thông báo provider-safe và giữ nháp. Fatal process errors là log vận hành, không đưa stack/connection vào UI. [Chuẩn dùng chung](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).
+
+## 2026-10-31 — Retry failed grading
+
+Khi lần chấm cũ thất bại hoặc worker trả failed, alert hiển thị lý do và nút Chấm lại bằng AI; không cần mở report modal vốn không tồn tại khi chấm thất bại. Không tự gọi AI lại. Click explicit giữ textarea, đổi requestId/forceRegrade, khóa submit trong lúc chờ. Mã log vẫn hiển thị qua API helper; đóng alert vẫn giữ nháp. Giữ layout/tokens Editorial. [Audit](../../audits/grading-retry.md).

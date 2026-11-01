@@ -60,9 +60,14 @@ export const POST = api("/api/submissions/grade", async (r, u) => {
   )[0];
   if (row.status === "completed") return { ...reportView(row), cached: true };
   if (row.status === "failed")
-    throw new HttpError(
-      502,
-      "Lượt chấm trước thất bại. Dùng Chấm lại bằng AI để tạo lượt mới.",
+    return NextResponse.json(
+      {
+        error: row.error || "Lượt chấm trước chưa xử lý được bài này. Nháp được giữ nguyên; bạn có thể chấm lại.",
+        code: "GRADING_PREVIOUS_FAILED",
+        submissionId: row.id,
+        retryable: true,
+      },
+      { status: 409 },
     );
   await getGradingQueue().add(
     "translation",
