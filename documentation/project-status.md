@@ -1,5 +1,7 @@
 # EverLang — trạng thái hiện tại2026-11-01
 
+Cập nhật runtime mới nhất: dictionary relative URL500 đã sửa; bấm chấm AI mới vượt base-failed cache trong PG, giữ requestId idempotency/lịch sử; bỏ Mailpit runtime.86unit/29E2E + final native idempotency probe/2deployed smoke PASS, [audit](audits/runtime-grading-compose-fix.md). SMTP ngoài chưa cấu hình; provider/content quality vẫn cần nghiệm thu. Owner chỉ định merge/push main, không tự suy human QA/production Done.
+
 PostgreSQL-only increment đã triển khai và local cutover18:40–18:42: TypeORM cho dữ liệu người học và4kho học liệu JSONB, legacy archive172documents; không Mongo/Mongoose runtime, Mongo container cũ đã dừng và giữ backup. App localhost3000 ready. TypeORM e0ad32f đã merge local main theo chỉ định owner; PostgreSQL-only ở refactor/postgresql-only, chờ owner QA/merge.
 
 80unit/29candidate E2E/2postcutover smoke, workspace/tools typecheck/lint/Docker build và fresh10migrations/30mapped schemas PASS. Latest backup restore + import/rerun/conflict/preservation verified; [audit](features/postgresql-only/audit.md) ghi rõ25tables trước start,24stable tables sau traffic và rate-limit bucket expiry bình thường. Không đổi content drafts thành approved/published.

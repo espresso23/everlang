@@ -8,8 +8,8 @@ x-app-env: &app-env
   OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
   OPENROUTER_MODEL: ${OPENROUTER_MODEL:-qwen/qwen3.8-flash}
   KRDICT_API_KEY: ${KRDICT_API_KEY:-}
-  SMTP_HOST: ${SMTP_HOST:-mailpit}
-  SMTP_PORT: ${SMTP_PORT:-1025}
+  SMTP_HOST: ${SMTP_HOST:-}
+  SMTP_PORT: ${SMTP_PORT:-587}
   SMTP_SECURE: ${SMTP_SECURE:-false}
   SMTP_USER: ${SMTP_USER:-}
   SMTP_PASSWORD: ${SMTP_PASSWORD:-}
@@ -51,11 +51,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 12
-  mailpit:
-    image: axllent/mailpit:latest
-    profiles: [local]
-    ports: ["127.0.0.1:8025:8025"]
-    restart: unless-stopped
   migrate:
     image: everlang-worker:local
     build: {context: ., target: worker}

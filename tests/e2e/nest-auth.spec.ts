@@ -18,7 +18,13 @@ test('HTTP submission propagates trace to native worker and preserves failed ret
  const queued=await client.post('/api/submissions/grade',{headers:{'x-request-id':trace},data});expect(queued.status()).toBe(202);expect(queued.headers()['x-request-id']).toBe(trace);
  const jobId=(await queued.json()).jobId;
  await expect.poll(async()=>{const b=await(await client.get('/api/jobs?id='+jobId)).json();return b.status},{timeout:40000,intervals:[500,1000,2000]}).toBe('failed');
- const cached=await client.post('/api/submissions/grade',{data});expect(cached.status()).toBe(409);expect(await cached.json()).toMatchObject({code:'GRADING_PREVIOUS_FAILED',retryable:true,submissionId:jobId});
+ const originalReplay=await client.post('/api/submissions/grade',{data});expect(originalReplay.status()).toBe(409);expect((await originalReplay.json()).submissionId).toBe(jobId);
+ const retryData={...data,requestId:randomUUID()};
+ const retry=await client.post('/api/submissions/grade',{data:retryData});expect(retry.status()).toBe(202);const retryJob=(await retry.json()).jobId;expect(retryJob).not.toBe(jobId);
+ const repeated=await client.post('/api/submissions/grade',{data:retryData});expect(repeated.status()).toBe(202);expect((await repeated.json()).jobId).toBe(retryJob);
+ await expect.poll(async()=>{return (await(await client.get('/api/jobs?id='+retryJob)).json()).status},{timeout:40000}).toBe('failed');
+ const failedReplay=await client.post('/api/submissions/grade',{data:retryData});expect(failedReplay.status()).toBe(409);expect((await failedReplay.json()).submissionId).toBe(retryJob);
+ const lookup=await client.get('/api/dictionary?q=학교');expect(lookup.status()).toBe(200);expect(await lookup.json()).toMatchObject({configured:false,items:[]});
  await client.dispose();
 });
 

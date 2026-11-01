@@ -10,8 +10,8 @@ Beta tự học tiếng Hàn trung–cao cấp: luyện dịch → hiểu lỗi 
 
 1. Sao chép `.env.example` sang `.env`; tạo `POSTGRES_PASSWORD` ngẫu nhiên, chạy `npm run auth:keys` để ghi RSA/CSRF keys vào `.env`. Không có tài khoản/mật khẩu mặc định.
 2. Mọi email đều có thể đăng ký; đặt riêng email quản trị trong `ADMIN_EMAILS`, phân cách dấu phẩy.
-3. Chạy `docker compose --profile local up --build -d`. Migration chạy trước app/worker. Với bản cũ dùng MongoDB, đọc bước snapshot/cutover PostgreSQL-only trước khi chạy runtime mới.
-4. Mở [EverLang](http://localhost:3000/sign-in), đăng ký rồi xác minh email qua [Mailpit local](http://localhost:8025).
+3. Chạy `docker compose up --build -d`. Migration chạy trước app/worker. Với bản cũ dùng MongoDB, đọc bước snapshot/cutover PostgreSQL-only trước khi chạy runtime mới.
+4. Mở [EverLang](http://localhost:3000/sign-in), đăng ký rồi xác minh email qua SMTP đã cấu hình. Khi chưa có SMTP, tài khoản đã xác minh vẫn đăng nhập được; gửi email trả503 EMAIL_UNAVAILABLE.
 5. AI cần `OPENROUTER_API_KEY`; từ điển cần `KRDICT_API_KEY`. Không tạo phản hồi giả khi thiếu khóa.
 
 Node.js 24.11 trở lên. Web dùng Next.js/TypeScript/Tailwind; API và worker dùng NestJS, JWT RS256 và PostgreSQL/TypeORM (pg chỉ là driver). PostgreSQL JSONB giữ cả học liệu; không cần MongoDB/Mongoose; Redis/BullMQ phục vụ cache và hàng đợi. FSRS dùng `ts-fsrs@6.0.0`, FSRS-7, retention 0.9.
@@ -21,7 +21,7 @@ Node.js 24.11 trở lên. Web dùng Next.js/TypeScript/Tailwind; API và worker 
 - Đặt `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` mới; thay secret từng xuất hiện trong ảnh/cuộc trò chuyện.
 - Callback local: `http://localhost:3000/api/auth/callback/google`; production: `https://<domain>/api/auth/callback/google`.
 - Để mọi tài khoản Google dùng được, chuyển OAuth consent screen sang Production; chế độ Testing của Google vẫn giới hạn test users. Email đã tồn tại: đăng nhập phương thức cũ rồi liên kết Google tại Cài đặt, không tự gộp tài khoản.
-- Production dùng SMTP thật qua `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `MAIL_FROM`. Mailpit chỉ dùng cho local.
+- Production dùng SMTP thật qua `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `MAIL_FROM`. Mailpit đã bỏ khỏi runtime; chỉ còn fixture SMTP trong môi trường test tách biệt.
 - JWT Bearer, active session và ownership được kiểm tra trên server; không tin `x-user-id`. Email đăng ký bằng mật khẩu cần được xác minh; không có danh sách mời.
 
 ## API và dữ liệu

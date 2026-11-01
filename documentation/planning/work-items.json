@@ -2629,14 +2629,14 @@
     {
       "id": "PB-041-T03",
       "parent": "PB-041",
-      "title": "Owner merge and release decision after QA",
+      "title": "Owner post-merge production release decision after QA",
       "role": "Dev/QA",
       "owner": "Chủ dự án",
       "status": "Todo",
       "dependsOn": [
         "PB-041-T02"
       ],
-      "blocker": "Wait owner QA; no automatic new branch merge or production release.",
+      "blocker": "Owner explicitly requested main merge/push on2026-11-01 before remaining human QA. This task now tracks post-merge production release approval, still waiting QA; no automatic deploy/provider enablement.",
       "evidence": [],
       "verification": "Not run",
       "updated": "2026-11-01"

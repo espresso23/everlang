@@ -15,3 +15,7 @@ PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một Quer
 ## PostgreSQL-only configuration — 2026-11-01
 
 [validateRuntimeEnvironment](../../../apps/api/src/runtime-config.ts) is used by AppModule: DATABASE_URL/Redis/JWT/CSRF are required; MONGODB_URI is not. Red/green [configuration regression](../../../tests/unit/runtime-config.test.ts) and actual Mongo-free startup verified; token/session/provider behavior unchanged. [Migration audit](../postgresql-only/audit.md).
+
+## 2026-11-01 — SMTP without runtime Mailpit
+
+[sendAuthEmail](../../../packages/backend/src/auth-mail.ts) owns configured SMTP transport/timeout/error semantics; AuthService calls it for verification/reset. No host defaults to Mailpit. Missing/failed SMTP returns503 EMAIL_UNAVAILABLE without provider details, fake delivery or verification bypass. Existing verified-user login remains unchanged. Mailpit only exists in disposable test Compose; actual external SMTP delivery remains NOT VERIFIED.

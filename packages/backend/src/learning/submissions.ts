@@ -5,7 +5,7 @@ export type StoredSubmission = {
   id: string;
   sentence_id: string;
   translation: string;
-  snapshot: Sentence;
+  snapshot: Sentence & { gradingRequestId?: string };
   report: GradeReport | null;
   status: string;
   error: string | null;
@@ -15,10 +15,11 @@ export type StoredSubmission = {
   rubric_version: string;
 };
 export function reportView(row: StoredSubmission) {
+  const { gradingRequestId: _requestId, ...sentence }=row.snapshot;
   return {
     ...row.report,
     submissionId: row.id,
-    sentence: row.snapshot,
+    sentence,
     userTranslation: row.translation,
     submittedAt: row.created_at,
     model: row.model,

@@ -4,6 +4,17 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — Sửa dictionary500, retry AI và dọn Docker; owner chỉ định merge/push
+
+- User log6b5500df-bc0b-4898-998a-5f8fa56ac4bf là GET/api/dictionary18:53:25+07:00: newURL(request.url) không nhận URL tương đối Express. Dùng queryParams/originalUrl; red InvalidURL → green200/400 và authenticated native lookup PASS.
+- AI trả lỗi cũ từ PostgreSQL dedup, không phải process cache: log18:52:01 trả409 do attempt cũfailed,18:52:06 retry202/workercompleted13.1s. Đổi normal click sau basefailed thành một requestId-keyed attempt mới; giữ failed history, cùngUUID không tạo jobtrùng/retryvôhạn, completedcache200 và force vẫn giữ. Không ghi learner text/report vào docs.
+- Bỏ Mailpit khỏi application Compose/default SMTP target; sendAuthEmail quản lý transport/timeout, thiếu/lỗiSMTP trả503 EMAIL_UNAVAILABLE, không bypassverify hoặc fake delivery. Main hiện chưa cấu hình SMTP ngoài; tài khoản đã verified vẫn login. Mailpit chỉ testfixture đã dọn sau QA.
+- PASS86unit/18files, lint/workspace+tools typecheck/backend/docs/plan, Dockerbuild,29candidate E2E2.6m và2deployed smoke3.3s; mainready/queueAvailable true sau cập nhậtAPI/worker. Candidate khôngAIkey; không gọi inference trả phí/SMTP ngoài, không chứng nhận providerquality. [Audit](documentation/audits/runtime-grading-compose-fix.md).
+- Đã xóa23tagimages cũ củaEverLang/langz +2Mongo/Mailpit tags; chỉ còn6images cầnruntime (API/worker/web/PG/Redis/Caddy). XóaoldstoppedMongo/Mailpit/migratecontainers vàQAresources; KHÔNGvolumeprune/systemprune. PG/Mongo/Redis/media namedvolumes vàprivatebackups giữ nguyên; rollbackimage tags cũ đã xóa theo yêu cầu cleanup, có sourceGit/backups để dựng lại.
+- Final self-review: thêm optionalsnapshot.gradingRequestId để replayUUIDgốcfailed không tạo thêmattempt; reportView bỏmarker khỏi report sentence. Nativeprobe PASS original/retryreplayidempotent, newclicknewjob, history2rows, dictionary200/400, missingSMTP503,0providercalls; finalimage đãrebuild/deploy,QAđãdọn.
+- Branch bugfix/runtime-grading-and-compose từ987f594; owner yêu cầu rõ mergevàpushmain, bao gồm PostgreSQL-only trước đó. Gitmerge/push thực hiện sauchecks; không suy humanQA/content/sprintDone. PB-041-T03 giữID và đổi thành post-merge productionrelease gate, vẫn chờQA. Ưu tiênNEXT: ownerduyệt họcliệu → luyện →SRS→tiếnđộ; SMTP thực/corpus/audio/providerquality còn mở.
+
+
 ### 2026-11-01 — PostgreSQL-only đã triển khai, demo và local cutover
 
 - TypeORM e0ad32f đã fast-forward local main theo quyết định owner; phần PostgreSQL-only thực hiện trên refactor/postgresql-only, chưa merge/push branch mới. Đầu ra chạy thật: localhost3000 dùng PostgreSQL cho cả người học và học liệu, Redis chỉ queue/cache; không Mongo/Mongoose runtime/env prerequisite, Mongo container cũ đã dừng nhưng volume/backup giữ nguyên.

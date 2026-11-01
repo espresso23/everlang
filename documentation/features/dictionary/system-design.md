@@ -31,3 +31,7 @@ API cá nhân luôn lấy user từ session ở [api](../../../apps/api/src/auth
 Chưa xác minh chất lượng mọi dạng chia động từ; fallback không phải Mecab/KoNLPy. TTS dùng trình duyệt, không đảm bảo có giọng ko-KR.
 
 Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [storage/migrations](../../shared/data-model.md), [vận hành](../../shared/operations.md). Chỉ tên biến môi trường được ghi ở docs; không đưa token, cookie hay credential vào ví dụ/log.
+
+## 2026-11-01 — Native request URL correction
+
+DictionaryService uses the shared queryParams(Request) helper for Express originalUrl. A relative /api/dictionary?q=학교 no longer triggers Invalid URL; invalid input400 and unconfigured provider200/configured:false remain. Unit relative-URL/invalid-query regression and native authenticated request cover the boundary; provider quality limits unchanged.

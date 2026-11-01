@@ -20,7 +20,7 @@ function text(value: unknown): string {
   return "";
 }
 async function handleGet(request: Request) {
-  const query = new URL(request.url).searchParams.get("q")?.trim() ?? "";
+  const query = queryParams(request).get("q")?.trim() ?? "";
   if (!query || query.length > 48 || !/[가-힣ㄱ-ㅎㅏ-ㅣ]/u.test(query)) {
     return HttpResult.json(
       { error: "검색어 tiếng Hàn không hợp lệ." },
@@ -168,7 +168,7 @@ async function handleGet(request: Request) {
 }
 import { Injectable } from '@nestjs/common';
 import type { Request } from 'express';
-import { HttpResult } from '@everlang/backend/http';
+import { HttpResult, queryParams } from '@everlang/backend/http';
 import type { Viewer } from '@everlang/backend/http';
 @Injectable()
 export class DictionaryService {

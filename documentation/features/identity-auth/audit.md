@@ -48,3 +48,7 @@ OAuth từng lỗi redirect_uri_mismatch đã khắc phục; log 2026-10-30 ghi 
 ## PostgreSQL-only re-audit — 2026-11-01
 
 PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.
+
+## 2026-11-01 — Runtime fix verification
+
+See [dictionary/grading/SMTP/cleanup audit](../../audits/runtime-grading-compose-fix.md):85unit,29candidate E2E,2deployed smoke PASS. Relative native dictionary URL corrected; fresh ordinary grading click retries older failure using requestId idempotency; Mailpit removed from application runtime and unconfigured SMTP gives503 EMAIL_UNAVAILABLE. Scope/limits and no-provider-call evidence are explicit there; existing human/provider quality gates retained.

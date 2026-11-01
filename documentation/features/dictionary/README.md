@@ -25,3 +25,7 @@
 ## Giới hạn và việc còn lại
 
 Chưa xác minh chất lượng mọi dạng chia động từ; fallback không phải Mecab/KoNLPy. TTS dùng trình duyệt, không đảm bảo có giọng ko-KR.
+
+## 2026-11-01 — Native request URL correction
+
+DictionaryService uses the shared queryParams(Request) helper for Express originalUrl. A relative /api/dictionary?q=학교 no longer triggers Invalid URL; invalid input400 and unconfigured provider200/configured:false remain. Unit relative-URL/invalid-query regression and native authenticated request cover the boundary; provider quality limits unchanged.

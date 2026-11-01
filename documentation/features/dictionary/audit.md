@@ -30,3 +30,7 @@ Quyền/validation, contract hai đầu, snapshot/state và lỗi cần đối c
 Chưa xác minh chất lượng mọi dạng chia động từ; fallback không phải Mecab/KoNLPy. TTS dùng trình duyệt, không đảm bảo có giọng ko-KR.
 
 Điều kiện nâng trạng thái verified: yêu cầu bắt buộc trong [README](README.md) có bằng chứng tương ứng, không còn lỗi bắt buộc, docs/symbol/hash đúng và provider đã kiểm trong môi trường mục tiêu. Lịch sử kiểm tra trước đây giữ ở [FEATURE_AUDIT](../../../FEATURE_AUDIT.md); đây không phải khẳng định đã chạy lại mọi ca trong lượt tài liệu này.
+
+## 2026-11-01 — Runtime fix verification
+
+See [dictionary/grading/SMTP/cleanup audit](../../audits/runtime-grading-compose-fix.md):85unit,29candidate E2E,2deployed smoke PASS. Relative native dictionary URL corrected; fresh ordinary grading click retries older failure using requestId idempotency; Mailpit removed from application runtime and unconfigured SMTP gives503 EMAIL_UNAVAILABLE. Scope/limits and no-provider-call evidence are explicit there; existing human/provider quality gates retained.

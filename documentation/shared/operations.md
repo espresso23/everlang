@@ -2,6 +2,8 @@
 
 Runtime uses PostgreSQL + Redis + private media; MongoDB/Mongoose removed. Backup script now saves PG/Redis/media. Do not delete retained Mongo volumes/snapshots: they are rollback artifacts, never a live fallback. Source export: run scripts/export-mongo-snapshot.js through mongosh against the explicit source DB, redirect privately. Backup target, run migration10, then node --import tsx scripts/import-mongo-snapshot.ts <private-snapshot.json> --confirm-snapshot. Import atomically checks every archive/operational document and rejects differing targets. Cutover evidence: [PostgreSQL-only audit](../features/postgresql-only/audit.md). After writes on the new runtime, rollback requires reconciliation of new PG data; never blindly restore an older snapshot.
 
+Mailpit removed from application Compose. Configure SMTP_HOST/SMTP_PORT/SMTP_SECURE/SMTP_USER/SMTP_PASSWORD/MAIL_FROM for actual email. Missing or failed SMTP returns503 EMAIL_UNAVAILABLE; no verification bypass or fake delivery. Existing verified-account login remains available. Optional speech/production profiles remain opt-in supported features, not obsolete runtime images. Obsolete project image tags are cleaned only after replacement runtime verification; data volumes/backups remain untouched.
+
 ## Historical operations notes
 
 The sections below record earlier migrations; references to Mongo apply to those snapshots, not a runtime prerequisite.

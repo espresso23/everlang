@@ -170,18 +170,18 @@
 <!-- support -->
 <g id="node12" class="node">
 <title>support</title>
-<path fill="white" stroke="#b7771e" stroke-width="1.5" stroke-dasharray="5,2" d="M2280.78,-141.64C2280.78,-141.64 2087.81,-141.64 2087.81,-141.64 2081.81,-141.64 2075.81,-135.64 2075.81,-129.64 2075.81,-129.64 2075.81,-28.36 2075.81,-28.36 2075.81,-22.36 2081.81,-16.36 2087.81,-16.36 2087.81,-16.36 2280.78,-16.36 2280.78,-16.36 2286.78,-16.36 2292.78,-22.36 2292.78,-28.36 2292.78,-28.36 2292.78,-129.64 2292.78,-129.64 2292.78,-135.64 2286.78,-141.64 2280.78,-141.64"/>
+<path fill="white" stroke="#b7771e" stroke-width="1.5" stroke-dasharray="5,2" d="M2285.34,-141.64C2285.34,-141.64 2083.25,-141.64 2083.25,-141.64 2077.25,-141.64 2071.25,-135.64 2071.25,-129.64 2071.25,-129.64 2071.25,-28.36 2071.25,-28.36 2071.25,-22.36 2077.25,-16.36 2083.25,-16.36 2083.25,-16.36 2285.34,-16.36 2285.34,-16.36 2291.34,-16.36 2297.34,-22.36 2297.34,-28.36 2297.34,-28.36 2297.34,-129.64 2297.34,-129.64 2297.34,-135.64 2291.34,-141.64 2285.34,-141.64"/>
 <text xml:space="preserve" text-anchor="middle" x="2184.29" y="-119.5" font-family="Segoe UI" font-size="15.00" fill="#111111">API integrations [optional]</text>
 <text xml:space="preserve" text-anchor="middle" x="2184.29" y="-83.5" font-family="Segoe UI" font-size="15.00" fill="#111111">Google OAuth: sign&#45;in / linking</text>
-<text xml:space="preserve" text-anchor="middle" x="2184.29" y="-65.5" font-family="Segoe UI" font-size="15.00" fill="#111111">SMTP / Mailpit: verify / reset</text>
+<text xml:space="preserve" text-anchor="middle" x="2184.29" y="-65.5" font-family="Segoe UI" font-size="15.00" fill="#111111">SMTP [configured]: verify / reset</text>
 <text xml:space="preserve" text-anchor="middle" x="2184.29" y="-47.5" font-family="Segoe UI" font-size="15.00" fill="#111111">KRdict: dictionary</text>
 <text xml:space="preserve" text-anchor="middle" x="2184.29" y="-29.5" font-family="Segoe UI" font-size="15.00" fill="#111111">S3 + Google STT: recordings</text>
 </g>
 <!-- api&#45;&gt;support -->
 <g id="edge15" class="edge">
 <title>api&#45;&gt;support</title>
-<path fill="none" stroke="#b7771e" stroke-width="1.5" stroke-dasharray="5,2" d="M962.5,-145.24C970.3,-142.18 978.14,-139.39 985.89,-137 1073.41,-110.02 1098.95,-118.08 1190.17,-110 1505.47,-82.08 1879.02,-78.26 2065.31,-78.33"/>
-<polygon fill="#b7771e" stroke="#b7771e" stroke-width="1.5" points="2065.13,-81.13 2073.13,-78.34 2065.14,-75.53 2065.13,-81.13"/>
+<path fill="none" stroke="#b7771e" stroke-width="1.5" stroke-dasharray="5,2" d="M962.5,-145.24C970.3,-142.18 978.14,-139.39 985.89,-137 1073.41,-110.02 1098.95,-118.08 1190.17,-110 1502.73,-82.32 1872.53,-78.33 2060.41,-78.33"/>
+<polygon fill="#b7771e" stroke="#b7771e" stroke-width="1.5" points="2060.32,-81.13 2068.33,-78.34 2060.33,-75.53 2060.32,-81.13"/>
 <text xml:space="preserve" text-anchor="middle" x="1603.98" y="-92.99" font-family="Segoe UI" font-size="12.00" fill="#855817">OAuth / email / dictionary / recordings</text>
 </g>
 <!-- grading -->

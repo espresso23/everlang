@@ -28,7 +28,6 @@
             "AuthService.refresh",
             "AuthService.authenticate",
             "AuthService.logout",
-            "AuthService.mail",
             "AuthService.oneTime",
             "AuthService.signup",
             "AuthService.verifyEmail",
@@ -38,7 +37,7 @@
             "AuthService.googleStart",
             "AuthService.googleCallback"
           ],
-          "sha256": "5979ba45be6daee43b5d0b0f87d16a32fa8afff196862bae725aa8f846977ea8"
+          "sha256": "5d25251be96f2a83360d4d6f19d24cdbdd92f19ed5f98cc87d4ca3c1906d3748"
         },
         {
           "file": "apps/web/lib/auth.tsx",
@@ -149,7 +148,7 @@
           "symbols": [
             "routes"
           ],
-          "sha256": "f29408ef21590ff4ed160e18b67b54ad755d8ae791edff4d034fe41c4956937d"
+          "sha256": "403d226f727191cc994b1cdc9e2e4bfca330bd278f6cb6e2734e22e78d7a092e"
         },
         {
           "file": "tests/unit/auth-crypto.test.ts",
@@ -168,6 +167,18 @@
           "file": "tests/unit/nest-jwt.test.ts",
           "symbols": [],
           "sha256": "b7186c8f7846d0d66b9850c80383d8ec8c9ffc1b16f472c5d89db1baa35c6b1d"
+        },
+        {
+          "file": "packages/backend/src/auth-mail.ts",
+          "symbols": [
+            "sendAuthEmail"
+          ],
+          "sha256": "381ad0fb3846d31519f5c8a3784963a1da82cdfd6a010554e4de87a6eda68038"
+        },
+        {
+          "file": "tests/unit/auth-mail.test.ts",
+          "symbols": [],
+          "sha256": "4297c4634184563409b1347e2137c587a975f22c46d9e25db5ccc85741cf2650"
         }
       ]
     },
@@ -360,7 +371,7 @@
             "reportView",
             "statistics"
           ],
-          "sha256": "e9e4ff7990e2c776edf6495d1c0314b71897f61413c998602f6a00441bd3527b"
+          "sha256": "631dc8527fd1621fb85b0d5c808d2d3ba3ac518d077645e340923a881903b8f6"
         },
         {
           "file": "scripts/import-records.ts",
@@ -415,7 +426,7 @@
             "SubmissionsGradeService",
             "SubmissionsGradeService.post"
           ],
-          "sha256": "de6ecab5d40736a37bf8b22c877978ffd9c35cd37513023f5fdcaeb9aafa5ce3"
+          "sha256": "08eebd72d1d8d805b29d7f6f0684d85b2824c85b15a205376d35152df9bf1026"
         },
         {
           "file": "apps/api/src/domains/jobs.service.ts",
@@ -479,7 +490,7 @@
             "POST",
             "request"
           ],
-          "sha256": "28cd543632f12b951dae29b658bbd5b41a5f7e51af4aa324699a14f41aa3ebc9"
+          "sha256": "8504a957c49f9eb02907bd56d11ee07ccf3c86820c877d727d7ea4daaacfa9e4"
         },
         {
           "file": "tests/e2e/grading-retry.spec.ts",
@@ -501,6 +512,11 @@
             "SubmissionsGradeController.post"
           ],
           "sha256": "5e73e739947e89619bf7384703e086cf49246c54d62c2ee893292f89787b60ea"
+        },
+        {
+          "file": "tests/integration/grading-click.ts",
+          "symbols": [],
+          "sha256": "bb85861792e92b7ad1b3d2aa58d13fdfda91443bd14c6425c52460689b54045c"
         }
       ]
     },
@@ -631,7 +647,7 @@
             "DictionaryService",
             "DictionaryService.get"
           ],
-          "sha256": "7d098a9d8f198ed42d5e1a590fc0026ea1ac96401507e5d9f92f2f853675fa2e"
+          "sha256": "dd8707a59d48c0639d31b75f07f0fa7512dc9e5576d065a44e6af44f78b4b3ec"
         },
         {
           "file": "apps/api/src/domains/dictionary.controller.ts",
@@ -640,6 +656,11 @@
             "DictionaryController.get"
           ],
           "sha256": "aa059606d16ee29420ac496915ba9139b90d399fc5c9021f059465b736d5e55a"
+        },
+        {
+          "file": "tests/unit/dictionary-request.test.ts",
+          "symbols": [],
+          "sha256": "b6afe74d3a59616299026835cc350620a0387659b171d5c6ba9d0514c528febd"
         }
       ]
     },
@@ -1044,7 +1065,7 @@
         {
           "file": "docker-compose.yml",
           "symbols": [],
-          "sha256": "0f19321f841940907b2d2dc84643fb87c8160aa7351dc16c6a4ef1c73e6b9a30"
+          "sha256": "ad7f9a52fb0f125fc5d956b257ef00240aa3f911df69913b6e8e2897d51f661e"
         },
         {
           "file": "Caddyfile",
@@ -1876,7 +1897,7 @@
         {
           "file": ".env.example",
           "symbols": [],
-          "sha256": "23e86cf636006970e91b90ea220fe230f3d9088290ab22dd07cc75026fe6034f"
+          "sha256": "c46708372c4fb6fa1d4a90f5df9000312349ea3a8f04ca4ba1c508c3aaf091b3"
         },
         {
           "file": "tsconfig.tools.json",
@@ -1928,7 +1949,7 @@
         {
           "file": "tests/integration/compose.nest-qa.yml",
           "symbols": [],
-          "sha256": "ee96c3037137530ed627cbb9db49bc2fe709de3f55458186454c7ec94dc7b64e"
+          "sha256": "fec44ab33eb30abcf0d066f5001c31516d8c9b6f78967b5900008fed8616348c"
         },
         {
           "file": "tests/integration/NestQaGatewayfile",

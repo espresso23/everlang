@@ -12,3 +12,7 @@
 | Google PKCE/state/nonce/browser binding, explicit link, giữ identity | AuthService.googleStart,googleCallback | callback rejection verified; Google live NOT VERIFIED sau migration |
 
 Old sessions và verify/reset links vô hiệu sau008. User ID, Google provider subject, credential password hash và business FK giữ nguyên. SMTP local verified qua Mailpit; SMTP production cần cấu hình thật. Không xem Google đã verified trên backend cũ là bằng chứng cho Nest mới.
+
+## 2026-11-01 — SMTP without runtime Mailpit
+
+[sendAuthEmail](../../../packages/backend/src/auth-mail.ts) owns configured SMTP transport/timeout/error semantics; AuthService calls it for verification/reset. No host defaults to Mailpit. Missing/failed SMTP returns503 EMAIL_UNAVAILABLE without provider details, fake delivery or verification bypass. Existing verified-user login remains unchanged. Mailpit only exists in disposable test Compose; actual external SMTP delivery remains NOT VERIFIED.

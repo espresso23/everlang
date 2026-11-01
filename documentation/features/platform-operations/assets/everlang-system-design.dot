@@ -38,7 +38,7 @@ digraph EverLang {
     node [color="#B7771E", style="rounded,filled,dashed", fillcolor=white];
     openrouter [label="OpenRouter\nGrading / Tutor / AI drafts"];
     asr [label="Whisper.cpp OR Gemini\nSpeech transcription\n\nWhisper.cpp = local CPU\nGemini = cloud API\nOne provider profile at a time"];
-    support [label="API integrations [optional]\n\nGoogle OAuth: sign-in / linking\nSMTP / Mailpit: verify / reset\nKRdict: dictionary\nS3 + Google STT: recordings"];
+    support [label="API integrations [optional]\n\nGoogle OAuth: sign-in / linking\nSMTP [configured]: verify / reset\nKRdict: dictionary\nS3 + Google STT: recordings"];
     {rank=same; openrouter; asr; support;}
   }
 

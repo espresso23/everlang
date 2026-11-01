@@ -15,7 +15,7 @@ import {
   timingSafeEqual,
   createHash,
 } from "node:crypto";
-import nodemailer from "nodemailer";
+import { sendAuthEmail } from "@everlang/backend/auth-mail";
 
 import { HttpError, type Viewer } from "@everlang/backend/http";
 import {
@@ -384,28 +384,6 @@ export class AuthService {
     this.cookie(res);
     return { success: true };
   }
-  private async mail(to: string, subject: string, url: string) {
-    await nodemailer
-      .createTransport({
-        host: process.env.SMTP_HOST || "mailpit",
-        port: Number(process.env.SMTP_PORT || 1025),
-        secure: process.env.SMTP_SECURE === "true",
-        ...(process.env.SMTP_USER
-          ? {
-              auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASSWORD,
-              },
-            }
-          : {}),
-      })
-      .sendMail({
-        from: process.env.MAIL_FROM || "EverLang <hello@everlang.local>",
-        to,
-        subject,
-        text: `${subject}\n\n${url}\n\nNếu không yêu cầu, bạn có thể bỏ qua email này.`,
-      });
-  }
   private async oneTime(userId: string, purpose: "verify" | "reset") {
     const token = randomToken();
     await ormDataSource
@@ -480,7 +458,7 @@ export class AuthService {
       await c.release();
     }
     const token = await this.oneTime(id, "verify");
-    await this.mail(
+    await sendAuthEmail(
       email,
       "Xác minh email EverLang",
       `${origin()}/api/auth/verify-email?token=${token}`,
@@ -539,7 +517,7 @@ export class AuthService {
     )[0];
     if (user) {
       const token = await this.oneTime(user.id, "reset");
-      await this.mail(
+      await sendAuthEmail(
         email,
         "Đặt lại mật khẩu EverLang",
         `${origin()}/sign-in?token=${token}`,

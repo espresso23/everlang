@@ -10,7 +10,7 @@ REQ03: export every Mongo collection to a private JSON snapshot; import atomical
 REQ04: API/worker/seed/import/readiness and Compose run without MongoDB/Mongoose. No Mongo compatibility facade. Migration tooling consumes offline export, not runtime Mongo connection.
 REQ05: fresh install, restored existing data, auth/read/admin/learning/SRS/job regressions and browser demo verified. Human QA/release gates retained.
 
-Delivery: PB-041-T01 is the integrated, assigned migration increment: import → browse/admin → learner save/review/progress → Mongo-free cutover/demo. Shared schema plus atomic cutover made the initially proposed three development slices one coupled deliverable. PB-041-T02 is owner acceptance QA; PB-041-T03 is the owner merge/release decision after QA. IDs retained, explicit dependencies; no invented sprint dates/capacity or auto Done. See decisions.md for this tracking refinement.
+Delivery: PB-041-T01 is the integrated, assigned migration increment: import → browse/admin → learner save/review/progress → Mongo-free cutover/demo. Shared schema plus atomic cutover made the initially proposed three development slices one coupled deliverable. PB-041-T02 is owner acceptance QA; PB-041-T03 is the owner post-merge production release decision after QA. IDs retained, explicit dependencies; no invented sprint dates/capacity or auto Done. See decisions.md for this tracking refinement.
 
 Non-goals: change layout, replace Redis/media, add new pedagogy/scoring, claim reviewed corpus or full self-study completion. Next product priority remains reviewed content → practice → SRS → progress.
 
@@ -26,4 +26,4 @@ Non-goals: change layout, replace Redis/media, add new pedagogy/scoring, claim r
 | REQ04 | AppModule/validateRuntimeEnvironment, API+worker lifecycle, Compose/package lock/backup | Red/green config test, clean image, local runtime with Mongo stopped |
 | REQ05 | unchanged browser routes; full native candidate and local cutover |80unit/29E2E/2deployed smoke; [audit](audit.md) |
 
-Code links/symbols: [function map](functions.md). Remaining: owner QA and merge decision; content approval/provider gates are unchanged product work, not hidden unfinished database migration.
+Code links/symbols: [function map](functions.md). Remaining: owner QA and production release decision; content approval/provider gates are unchanged product work, not hidden unfinished database migration.

@@ -42,3 +42,7 @@ Branch `bugfix/sample-audio-player`, HEAD13d432b + working changes. PASS theo ph
 ## 2026-10-31 — Cached grading failure và retry action
 
 Branch bugfix/retry-failed-grading.74unitPASS; failed duplicate đổi502→409/machinecode và retry explicit trong alert, giữ draft/dedup/history. [Audit/bằng chứng/final gates](../../audits/grading-retry.md). Chưa xác minh provider thật hồi phục, không chạy cloud hoặc tự tạo report/score.
+
+## 2026-11-01 — Runtime fix verification
+
+See [dictionary/grading/SMTP/cleanup audit](../../audits/runtime-grading-compose-fix.md):85unit,29candidate E2E,2deployed smoke PASS. Relative native dictionary URL corrected; fresh ordinary grading click retries older failure using requestId idempotency; Mailpit removed from application runtime and unconfigured SMTP gives503 EMAIL_UNAVAILABLE. Scope/limits and no-provider-call evidence are explicit there; existing human/provider quality gates retained.

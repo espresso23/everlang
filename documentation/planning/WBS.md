@@ -173,7 +173,7 @@ Dùng thật ngoài localhost với kiểm chứng đầy đủ
 - **WBS-5.41 / PB-041 — Replace MongoDB with PostgreSQL primary business storage** (P0, Core, Unscheduled).
   - PB-041-T01 — PostgreSQL-only migration increment: learning/admin, preservation and runnable demo
   - PB-041-T02 — Owner QA PostgreSQL-only learning and authoring increment
-  - PB-041-T03 — Owner merge and release decision after QA
+  - PB-041-T03 — Owner post-merge production release decision after QA
 
 
 ## WBS-6 / Mở rộng sau beta

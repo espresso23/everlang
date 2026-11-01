@@ -29,3 +29,9 @@ Không thêm màn hình hoặc đổi layout. Trạng thái job queued/active/co
 ## 2026-10-31 — Retry failed grading
 
 Khi lần chấm cũ thất bại hoặc worker trả failed, alert hiển thị lý do và nút Chấm lại bằng AI; không cần mở report modal vốn không tồn tại khi chấm thất bại. Không tự gọi AI lại. Click explicit giữ textarea, đổi requestId/forceRegrade, khóa submit trong lúc chờ. Mã log vẫn hiển thị qua API helper; đóng alert vẫn giữ nháp. Giữ layout/tokens Editorial. [Audit](../../audits/grading-retry.md).
+
+## 2026-11-01 — New click after a failed attempt
+
+A new ordinary POST grade request no longer stops at the old base failed dedup row. The service preserves that history and resolves a separate requestId-keyed attempt, returning202/queue. Replaying the same UUID resolves the same attempt (including409 if that exact retry has failed); a new button click has a new UUID. Completed base reports still return200 cached:true, explicit forceRegrade still works. No automatic new attempt from polling/process recovery and no infinite retry loop. Dedup/error state is durable PostgreSQL data, not in-memory response cache. Implementation: SubmissionsGradeService.post; tests/unit/grading-retry.test.ts and native nest-auth E2E. This supersedes the earlier always409-on-base-failed behavior.
+
+Original request UUID is retained in snapshot.gradingRequestId to distinguish a new click from replay of that original failed request. reportView strips it from returned report sentence. Legacy snapshots without this optional marker remain readable.

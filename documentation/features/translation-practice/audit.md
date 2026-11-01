@@ -54,3 +54,5 @@ Branch bugfix/retry-failed-grading.74unitPASS; failed duplicate đổi502→409/
 ## PostgreSQL-only re-audit — 2026-11-01
 
 PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.
+
+2026-11-01: backend retry behavior corrected without UI source/layout change; [runtime audit](../../audits/runtime-grading-compose-fix.md),29E2E/85unit pass. Existing alert/explicit force fallback remains compatible.
