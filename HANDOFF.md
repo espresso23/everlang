@@ -4,6 +4,22 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — Research CMS/LMS và quản lý học liệu tiếng Hàn
+
+- Owner yêu cầu research vì admin thiếu phân trang và thao tác thủ công khó. Dùng everlang-ux-ui/everlang-ba, đọc primary docs Moodle/Open edX/Strapi/Directus và public NIKL/Sejong. Không tuyên bố khảo sát hết thị trường hoặc truy cập CMS nội bộ tiếng Hàn.
+- [Research/source ledger](documentation/research/admin-learning-cms-benchmark.md): knowledge hardlimit200/no paging, sentence admin no paging contract, catalog đã offset50; đề xuất content table/filter/server pagination, focused editor/review queue, bulk metadata/import dryrun và Korean taxonomy/reuse/version controls. Không code/UI/data/provider changes hoặc tự chốt sprint.
+- Branch externally changed to chore/everlang-ux-ui-skill với edits AGENTS/HANDOFF/workflow/skill có sẵn; giữ nguyên, chỉ thêm report/index/entry này, không commit/switch/reset. Docs check tương xứng; source-only findings không là live usability audit.
+
+
+### 2026-11-01 — Skill EverLang UX/UI Designer (#10)
+
+- DONE: acceptance tạo skill đạt, self-review có evidence; GitHub #10 đã đóng completed theo chỉ định owner. DOING: không có implementation frontend trong scope. NEXT: audit route/luồng cụ thể khi được giao.
+
+- Tạo `.agents/skills/everlang-ux-ui/SKILL.md` và `agents/openai.yaml`; tự discover theo mặc định, nguồn repo, chưa cài bản cá nhân. Dùng skill-creator và everlang-session; branch `chore/everlang-ux-ui-skill`, tree sạch trước bắt đầu. [Issue #10](https://github.com/espresso23/everlang/issues/10) tạo qua plugin trước thực thi, marker `everlang-tooling:everlang-ux-ui` không trùng kết quả tìm kiếm.
+- Skill kiểm frontend/component, hành trình học, UI states, Editorial Design, responsive/accessibility và đề xuất bố trí có bằng chứng; tối đa hai phương án mỗi quyết định. Phân biệt fact/risk/hypothesis, không giả nghiên cứu hay kinh nghiệm cá nhân; giữ quyền layout/implementation/QA theo scope.
+- Thêm routing trong AGENTS.md và documentation/workflow/README.md. [Audit/self-review](documentation/audits/everlang-ux-ui-skill.md) map acceptance và giới hạn. Không sửa runtime/UI, không mở rộng sprint hoặc cập nhật trạng thái product.
+- Kiểm tra: validator skill, docs:check (2007 links), plan:check (42PBI/90tasks/6Proposed) và diff check PASS; self-review nội dung/metadata hoàn tất. Runtime suites N/A cho Markdown/YAML. Chưa forward-test trên màn hình thật; bước tiếp là dùng `$everlang-ux-ui` với route/luồng cụ thể được giao. Không push/merge/deploy.
+
 ### 2026-11-01 — Admin workspace implemented; GitHub #9 Review
 
 - Owner yêu cầu layout admin và chọn mặc định Quản trị sau login. Tạo PB-042-T01/issue #9 trước code, canonical content-authoring AW-01–04; branch feature/admin-workspace từ5d84445. Quyết định/scope nằm content-authoring/decisions.md. Issue #1 giữ scope, chưa owner duyệt content.

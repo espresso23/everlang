@@ -30,6 +30,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 | Phiên mới, tiếp nối sau reset/compact hoặc nhận bàn giao | [everlang-session](.agents/skills/everlang-session/SKILL.md) | Đối chiếu checkpoint với repo; xác định issue, quyền tự chủ và bước tiếp theo |
 | Feature mới hoặc thay đổi đáng kể yêu cầu sản phẩm | [everlang-prd](.agents/skills/everlang-prd/SKILL.md) | PRD chuẩn trong README feature; quyết định/giả định rõ trước code |
 | Quyết định sản phẩm/thiết kế còn mở, cần phản biện để hiểu chung | `grill-me` trong danh sách skills của phiên | Một quyết định mỗi lượt, tối đa hai phương án; ghi câu trả lời thực tế |
+| Audit frontend, phản biện UX/UI hoặc đề xuất bố trí component EverLang | [everlang-ux-ui](.agents/skills/everlang-ux-ui/SKILL.md) | Findings có bằng chứng, đối chiếu Editorial Design, đề xuất tối đa hai phương án mỗi quyết định; phân biệt đề xuất và triển khai |
 | Chuyển PRD đã thống nhất thành task/issue hoặc đăng GitHub Issues khi được yêu cầu | [prd-to-issue](.agents/skills/prd-to-issue/SKILL.md) | Vertical slices có AC/dependencies, map task ID; kiểm trùng trước đăng |
 | Triển khai/sửa lỗi theo issue đã được giao và đủ Ready | [issue-afk](.agents/skills/issue-afk/SKILL.md) | Code + kiểm tra + self-review + docs/audit/HANDOFF; chuyển Review cho chủ dự án QA |
 

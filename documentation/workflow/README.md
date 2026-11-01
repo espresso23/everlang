@@ -67,6 +67,8 @@ UI/API gọi một interface nghiệp vụ rõ thay vì tự lắp transaction, 
 
 ## Skills và tính di động
 
+Review UX/UI dùng [everlang-ux-ui](../../.agents/skills/everlang-ux-ui/SKILL.md): kiểm component, luồng học, trạng thái, responsive/accessibility theo Editorial Design; phản biện có bằng chứng và đề xuất bố trí. Review không tự cấp quyền sửa layout. Skill này được lưu trong repo; chưa cài bản cá nhân. [Audit thiết lập](../audits/everlang-ux-ui-skill.md), [GitHub #10](https://github.com/espresso23/everlang/issues/10).
+
 Nguồn versioned: `.agents/skills/*/SKILL.md`. Bản cài cá nhân tại `C:/Users/TAN/.codex/skills/` có cùng nội dung tại thời điểm bàn giao; khi đổi skill, cập nhật và kiểm tra lại bản cài. Máy mới dùng nguồn repo; nếu chưa discover skill, yêu cầu agent đọc đường dẫn SKILL.md trong bảng trên. Không phụ thuộc chat cũ để bắt đầu.
 
 Không cài runner, tạo GitHub issue thật, push, merge hay deploy trong lượt thiết lập workflow này. Quy trình đã được review cấu trúc; việc vận hành end-to-end trên một issue sản phẩm thật vẫn cần kiểm chứng riêng.

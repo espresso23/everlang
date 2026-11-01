@@ -92,3 +92,5 @@ Bộ tài liệu baseline đã được backfill cho toàn bộ source/màn hìn
 - [Backend NestJS/JWT migration](features/backend-nestjs-migration/README.md) —2026-11-01, implemented/cutover local đã kiểm; owner Google và provider gates còn NOT VERIFIED, PB-039 Review.
 
 - [PostgreSQL-only primary database](features/postgresql-only/README.md) — migration in progress.
+
+- [Admin learning CMS benchmark (2026-11-01)](research/admin-learning-cms-benchmark.md) — public-source comparison and proposed editorial workspace, not implemented.

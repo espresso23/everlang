@@ -1,0 +1,4 @@
+interface:
+  display_name: "EverLang UX/UI Designer"
+  short_description: "Audit EverLang UI and improve learning experiences"
+  default_prompt: "Use $everlang-ux-ui to audit the requested EverLang screen against its design system and propose the best UX improvements."
