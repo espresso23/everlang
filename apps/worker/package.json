@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json",
     "start": "node dist/main.js"
   },
   "dependencies": {
@@ -16,8 +16,9 @@
     "@everlang/backend": "*",
     "@everlang/contracts": "*",
     "bullmq": "^6.5.1",
-    "ioredis": "^6.0.0",
+    "ioredis": "5.11.1",
     "zod": "^4.6.7",
-    "mongoose": "^9.11.4"
+    "mongoose": "^9.11.4",
+    "@nestjs/typeorm": "12.0.2"
   }
 }

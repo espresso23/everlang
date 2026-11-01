@@ -11,3 +11,7 @@
 - Chấm:202/jobId khi queued,200 cached completed; cached failed409 GRADING_PREVIOUS_FAILED/submissionId/retryable. Retry explicit với requestId mới; không tự retry submit đã có side effect.
 
 GET profile chỉ explicit user fields và providers; không password/provider tokens. Không lưu Google access/refresh/id token. [Identity](../features/identity-auth/README.md) · [Logging](error-handling.md).
+
+## ORM và Redis — 2026-11-01
+
+AuthService dùng TypeORM transaction cho refresh family/token và credential, giữ RS256/CSRF/ownership. Rate limit không phụ thuộc Redis; xem [hợp đồng ORM/Redis chuẩn](architecture.md#orm-và-redis--2026-11-01) và [audit](../features/postgresql-orm-migration/audit.md).

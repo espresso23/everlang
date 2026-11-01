@@ -36,3 +36,10 @@ Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [
 | AuthProvider/useAuth/apiFetch/auth | RAM/Bearer,bootstrap/singleflight/tab lock,one expiry retry,CSRF auth POST,logout broadcast; no persistent browser token |
 
 Methods are native AuthController decorators; body schemas strict Zod. Callback Location has whitelisted account_not_linked or generic google_login_failed; never raw query/provider text. Actual verification in audit.
+
+## ORM — 2026-11-01
+
+- [apps/api/src/auth/auth.service.ts](../../../apps/api/src/auth/auth.service.ts): AuthService login/refresh/authenticate dùng explicit alias/password/used_at; transaction/replay/ownership giữ nguyên.
+- [tests/unit/nest-jwt.test.ts](../../../tests/unit/nest-jwt.test.ts): Kiểm regression hành vi bằng ORM mock hoặc native runtime.
+
+Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.

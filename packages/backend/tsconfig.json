@@ -15,9 +15,6 @@
     "paths": {
       "@everlang/backend/*": [
         "./src/*"
-      ],
-      "@everlang/backend/sql": [
-        "./src/sql/index.ts"
       ]
     }
   },

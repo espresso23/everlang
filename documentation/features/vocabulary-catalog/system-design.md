@@ -17,3 +17,7 @@ Tìm bộ bằng q cũng tra term/meaning của đúng pinned published sense qu
 ## Kho hệ thống theo ngôn ngữ — 2026-10-31
 
 Nội dung chuẩn là tài sản hệ thống, dùng chung cho các tài khoản verified, không lọc theo người tạo học liệu. GET nhận `language=ko` (mặc định), từ chối ngôn ngữ chưa hỗ trợ thay vì trả nhầm corpus; response thêm `language` và `ownership=system`. Chưa triển khai corpus đa ngôn ngữ. Chỉ nội dung published được xem/lưu; admin quản lý draft/review/publish. Bookmark/note/read-state/attempt/SRS vẫn theo owner hiện hành; lưu cá nhân không thay bản gốc. Không tự publish các seed đang chờ duyệt.
+
+## ORM data access — 2026-11-01
+
+PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.

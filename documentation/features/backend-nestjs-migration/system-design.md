@@ -7,3 +7,7 @@ Browser→same-origin gateway→Next web hoặc Nest API; API/worker dùng backe
 API contracts nghiệp vụ giữ nguyên (gồm failed409 explicit retry), controllers/services native. Global exception filter {statusCode,code,error,requestId}; log UTC/level/service/environment/event/requestId/method/route/status/duration, stack server-only. Queue metadata requestId propagated by AsyncLocalStorage; workers log jobId/attempt/provider and guarded shutdown/fatal exit.
 
 Migration008 rename và loại bỏ auth session/verification/provider tokens cũ theo kế hoạch invalidation; preserve userID/account provider/password, business FKs và source snapshots. Pause writes/drain workers→backup PG/Mongo/Redis/media→restore rehearsal→candidate→single cutover. Chưa cutover khi restore/parity/auth gate thất bại. Old images/backup offline, không runtime fallback. Lịch sử migrations/docs giữ snapshot provenance, không để code adapter cũ.
+
+## ORM data access — 2026-11-01
+
+PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.

@@ -22,7 +22,7 @@ test("catalogue editor keyboard/mobile, successful human workflow and dirty navi
       api,
       request,
       baseURL!,
-      "catalogue-qa-admin@example.test",
+      process.env.E2E_CATALOG_UI_EMAIL || "catalogue-qa-admin@example.test",
       randomUUID() + "aA1!",
       "/admin/word-sets",
     );

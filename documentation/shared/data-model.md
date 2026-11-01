@@ -1,6 +1,6 @@
 # Nguồn dữ liệu và schema
 
-Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 002](../../migrations/002_vectors.sql), [migration 003](../../migrations/003_exam_concurrency.sql). [Auth migration008](../../migrations/008_nest_auth.sql) và [SQL pool](../../packages/backend/src/sql/index.ts).
+Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 002](../../migrations/002_vectors.sql), [migration 003](../../migrations/003_exam_concurrency.sql). [Auth migration008](../../migrations/008_nest_auth.sql) và [TypeORM DataSource](../../packages/backend/src/orm.ts).
 
 | Nơi lưu | Nhóm dữ liệu | Ràng buộc / sử dụng |
 |---|---|---|
@@ -15,7 +15,7 @@ Schema thực thi: [migration 001](../../migrations/001_beta.sql), [migration 00
 | PostgreSQL/pgvector | tutor_chunks | Published content/version/text, embedding 1536 |
 | MongoDB | Sentence, Exam | Nội dung, nguồn/quyền, phiên bản, draft/reviewed/published |
 | MongoDB | Submission/UserState cũ | Giữ lưu trữ; không tự nhập cho user mới |
-| Redis | Queue/cache/rate limit | Dữ liệu tạm; không thay thế PostgreSQL tiến độ |
+| Redis | Queue/cache | Dữ liệu tạm; không thay thế PostgreSQL tiến độ |
 | S3 | Audio riêng tư | Signed URL có hạn, không public bucket |
 
 Sao lưu trước migration/import; PostgreSQL và MongoDB là hai nguồn khác trách nhiệm, không giả định transaction xuyên database. Không chuyển mật khẩu/session/provider token vào response profile hay tài liệu. Các câu SQL dữ liệu cá nhân luôn ràng buộc user lấy từ JWT đã kiểm active session.
@@ -33,3 +33,7 @@ Migrations [005](../../migrations/005_local_speech.sql) và [006](../../migratio
 [Migration007](../../migrations/007_vocabulary_catalog.sql) bổ sung vocabulary.sense_key default'' và content_snapshot; manual unique user/term/kind partial, catalog unique user/sense partial; không thay card/review_logs. catalog_progress CAS self-report, catalog_preferences0–30/day, catalog_introductions unique sense lifetime + counted flag. Explicit attach manual giữ lịch/note và không tiêu quota. [Contracts](../features/vocabulary-catalog/functions.md); rollback chỉ bridge/newer (old ON CONFLICT target không tương thích).
 
 008 rename giữ tất cả business FK/ID/hash, xóa session/verification/provider tokens cũ có chủ đích. Replay dùng used_at giữ tới session hết hạn, refresh30d absolute; revocation DB có hiệu lực ngay dù access JWT còn hạn. [Schema008](../../migrations/008_nest_auth.sql).
+
+## ORM và Redis — 2026-11-01
+
+[25 EntitySchemas](../../packages/backend/src/entities.ts) giữ24 mapping cũ và thêm rate_limit_buckets; orm_migrations do TypeORM quản lý. synchronize/dropSchema false; schema_migrations cũ chỉ provenance. [Migrations](../../packages/backend/src/orm-migrations.ts) và [hợp đồng ORM/Redis](architecture.md#orm-và-redis--2026-11-01).

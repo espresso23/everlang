@@ -1,7 +1,7 @@
 digraph EverLang {
   graph [rankdir=LR, bgcolor="#F4F4F2", pad="0.45", nodesep="0.3", ranksep="0.65", splines=spline, compound=true,
     fontname="Segoe UI", fontsize=24, labelloc=t,
-    label="EverLang — System Design\nNative NestJS backend · Code snapshot 686d87c · 2026-11-01"];
+    label="EverLang — System Design\nNestJS + TypeORM backend · ORM migration snapshot · 2026-11-01"];
   node [shape=box, style="rounded,filled", fillcolor=white, color="#244CE0", penwidth=1.5,
     fontname="Segoe UI", fontsize=15, margin="0.17,0.12", fontcolor="#111111"];
   edge [color="#244CE0", penwidth=1.5, arrowsize=0.8, fontname="Segoe UI", fontsize=12, fontcolor="#1838AE"];
@@ -21,9 +21,9 @@ digraph EverLang {
   subgraph cluster_data {
     label="03  DATA & JOB QUEUES"; fontsize=18; color="#A6D4CC"; style="rounded,filled"; fillcolor="#F0F9F7";
     node [color="#207F76", fillcolor="#FFFFFF"];
-    pg [shape=cylinder, label="PostgreSQL + pgvector\n\nUsers / Sessions / Refresh hashes\nProgress / FSRS / Review logs\nDurable jobs / Reports / Tutor vectors"];
+    pg [shape=cylinder, label="PostgreSQL + pgvector\n\nUsers / Sessions / Refresh hashes\nProgress / FSRS / Review logs / Rate limits\nDurable jobs / Reports / Tutor vectors"];
     mongo [shape=cylinder, label="MongoDB\n\nVersioned system content\nSentences / Exams / Knowledge / Catalogue"];
-    redis [shape=cylinder, label="Redis + BullMQ\n\nCache / Rate limits\neverlang-grading\neverlang-speech\nNot the durable progress store"];
+    redis [shape=cylinder, label="Redis + BullMQ\n\nCache / Job queues\neverlang-grading\neverlang-speech\nNot the durable progress store"];
     media [shape=folder, label="Private speech_media volume\n\nUploaded audio\nAPI + speech worker access\nBrowser playback via owner-only API"];
     {rank=same; pg; mongo; redis; media;}
   }
@@ -45,14 +45,14 @@ digraph EverLang {
 
   gateway -> web [label="/  UI routes", dir=both];
   gateway -> api [label="/api/*  JSON + Bearer\nRefresh cookie: /api/auth only", dir=both];
-  api -> pg [label="SQL · user-scoped reads / writes", dir=both];
-  api -> mongo [label="Content reads / writes", dir=both];
-  api -> redis [label="Cache / rate limit / enqueue"];
+  api -> pg [label="TypeORM · user-scoped reads / writes", dir=both];
+  api -> mongo [label="Mongoose · Content reads / writes", dir=both];
+  api -> redis [label="Cache / enqueue"];
   api -> media [label="Upload / authorized audio read", dir=both];
   redis -> grading [label="Consume grading jobs"];
   redis -> speech [label="Consume speech jobs"];
-  grading -> pg [label="Read job snapshot / write result", constraint=false];
-  speech -> pg [label="Read attempt / write result", constraint=false];
+  grading -> pg [label="TypeORM · Read job / write result", constraint=false];
+  speech -> pg [label="TypeORM · Read attempt / write result", constraint=false];
   speech -> media [label="Read audio / cleanup", dir=both, constraint=false];
 
   edge [style=dashed, color="#B7771E", fontcolor="#855817"];

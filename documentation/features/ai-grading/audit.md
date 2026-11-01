@@ -1,5 +1,9 @@
 ## 2026-11-01 — Native Nest migration regression audit
 
+## 2026-11-01 — ORM regression
+
+Branch refactor/typeorm-data-access. HTTP→PG→BullMQ→WorkerHost→failed/409 retry trace PASS;429/cooldown containment unit/runtime PASS. Live AI inference NOT VERIFIED. Global78unit/29E2E final candidate PASS. [Canonical ORM audit](../postgresql-orm-migration/audit.md) ghi commands, preservation/locks/error paths và external limits; [integration audit](../../audits/postgresql-orm-migration.md). Không đánh feature product Done hoặc giả xác minh provider live.
+
 Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
 
 - PASS: HTTP→SQL→BullMQ→native WorkerHost, 3 attempts/no key failure, cached409; unit429 cooldown và recovery.

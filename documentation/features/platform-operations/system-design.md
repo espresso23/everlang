@@ -26,7 +26,7 @@ Sơ đồ khái quát ranh giới; chuỗi phía trên nêu rõ worker/provider/
 
 Internal planning data: work-items.json → validatePlanning → buildViews → generated WBS/backlog/sprint/task/dashboard + CSV. Source ở documentation/planning, owner platform-operations; không nằm trong runtime/app DB. Check mode không sửa file, sync mode chỉ sinh7 views cố định. Dependencies và evidence là guard cấu trúc, không thay PO review hoặc quality audit. Solo/reviewer do user xác nhận; hours/capacity/date chưa chốt nên các sprint Proposed.
 
-Migrations001–008 giữ lịch sử và auth cutover; packages/backend/src/sql/index.ts dùng pg Pool. Redis queue có AOF/noeviction; packages/contracts chứa hợp đồng browser-safe.
+Migrations001–008 giữ lịch sử và auth cutover; packages/backend/src/orm.ts dùng TypeORM DataSource/EntitySchema; migration runner nhận lịch sử001–008 vào orm_migrations. Redis queue có AOF/noeviction; packages/contracts chứa hợp đồng browser-safe.
 
 API cá nhân luôn lấy user từ session ở [api](../../../apps/api/src/auth/jwt.guard.ts), không nhận user_id tùy ý từ request. Mutation dùng JSON/Origin; lỗi auth 401/403 không phải dữ liệu trống hợp lệ.
 
@@ -46,3 +46,7 @@ Phụ thuộc chung: [session/authorization](../../shared/auth-and-api.md), [sto
 Tái sử dụng `log`/`logError` và Nest boundary requestLogging→JwtGuard→GlobalExceptionFilter. Pool idle errors có listener không nhận/log client; worker listeners/startup/recovery/shutdown đều có catch. Fatal process exception/rejection được log an toàn rồi exit1 để supervisor khởi động lại, không tiếp tục process hỏng. AI429 giữ HTTP status và Retry-After kể cả body không phải JSON; cooldown Redis toàn grading queue, retry hữu hạn3lần, lỗi cuối không lưu điểm giả, thông báo giữ nháp. Không đổi model/billing. Kiểm unit fault injection + real Redis/BullMQ cooldown + build/container.
 
 Hợp đồng triển khai đầy đủ: [error handling](../../shared/error-handling.md).
+
+## ORM data access — 2026-11-01
+
+PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.

@@ -1,5 +1,9 @@
 ## 2026-11-01 — System design diagram audit
 
+## 2026-11-01 — ORM regression
+
+Branch refactor/typeorm-data-access. Final Docker build, migration adoption/fresh/data/schema preservation, PG reconnect, fatal handler, Redis outage/queue recovery and private backups PASS scoped. Global78unit/29E2E final candidate PASS. [Canonical ORM audit](../postgresql-orm-migration/audit.md) ghi commands, preservation/locks/error paths và external limits; [integration audit](../../audits/postgresql-orm-migration.md). Không đánh feature product Done hoặc giả xác minh provider live.
+
 - Branch docs/system-design-diagram; source snapshot686d87c. PASS: topology đối chiếu Gatewayfile/Compose, apiFetch/AuthService/JwtGuard, JobsService/SubmissionsGradeService, Redis/CorrelatedQueue, hai WorkerHost, SpeechService/storage/SpeechAudioService/PrivateAudio và provider modules.
 - PASS: phân biệt UI routes/API; không browser→database; PG giữ durable progress/jobs, Mongo system content, Redis cache/queue; worker→PG và optional ASR/AI đúng đầu mút. Shared packages là import, không service. Ba luồng auth/grading/speech và direct API integrations có giải thích tiếng Việt tại shared architecture.
 - PASS: ảnh PNG3840×1538 và SVG được render/xem trực quan; DOT source giữ node/edge có thể chỉnh. AI draft ban đầu loại bỏ vì edge dễ hiểu sai; ảnh final dựng vector từ source. Không đổi dependencies/runtime/schema, không gọi provider sản phẩm, không secret trong prompt/diagram.

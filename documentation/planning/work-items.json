@@ -1211,6 +1211,26 @@
         "PB-039-T02"
       ],
       "scope": "Core"
+    },
+    {
+      "id": "PB-040",
+      "wbs": "WBS-5.40",
+      "epic": "WBS-5",
+      "title": "Migrate PostgreSQL access to TypeORM; preserve Mongoose ODM",
+      "priority": "P0",
+      "sprint": null,
+      "points": null,
+      "featureId": "postgresql-orm-migration",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "ORM-only PostgreSQL CRUD, native Nest lifecycle/migrations, preserve data/schema/concurrency contracts, fresh/adoption/restore and native regressions verified.",
+      "refinement": "Ready",
+      "contentCapacity": "N/A technical migration",
+      "tasks": [
+        "PB-040-T01",
+        "PB-040-T02"
+      ],
+      "scope": "Core"
     }
   ],
   "tasks": [
@@ -2517,6 +2537,40 @@
         "documentation/audits/nestjs-jwt-migration.md"
       ],
       "verification": "Not run",
+      "updated": "2026-11-01"
+    },
+    {
+      "id": "PB-040-T01",
+      "parent": "PB-040",
+      "title": "Entity mapping and runtime ORM migration",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Review",
+      "dependsOn": [],
+      "blocker": "Local ORM migration/audit/cutover passed:78unit,29E2E,24table preservation,fresh/adoption/restore/Redis outage. Await human QA; no auto Done/merge/push. Existing external provider gates stay in their features.",
+      "evidence": [
+        "documentation/features/postgresql-orm-migration/audit.md",
+        "documentation/features/postgresql-orm-migration/assets/verification.md",
+        "documentation/audits/postgresql-orm-migration.md"
+      ],
+      "verification": "Pass",
+      "updated": "2026-11-01"
+    },
+    {
+      "id": "PB-040-T02",
+      "parent": "PB-040",
+      "title": "Independent audit, migration adoption and integration verification",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Review",
+      "dependsOn": [],
+      "blocker": "Local ORM migration/audit/cutover passed:78unit,29E2E,24table preservation,fresh/adoption/restore/Redis outage. Await human QA; no auto Done/merge/push. Existing external provider gates stay in their features.",
+      "evidence": [
+        "documentation/features/postgresql-orm-migration/audit.md",
+        "documentation/features/postgresql-orm-migration/assets/verification.md",
+        "documentation/audits/postgresql-orm-migration.md"
+      ],
+      "verification": "Pass",
       "updated": "2026-11-01"
     }
   ],

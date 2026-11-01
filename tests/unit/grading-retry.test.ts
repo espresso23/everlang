@@ -1,8 +1,10 @@
 import { beforeEach, afterEach, expect, it, vi } from "vitest";
 import type { Request } from "express";
+import { createOrmMock } from "../helpers/orm-mock";
 
 const state = vi.hoisted(() => ({ query: vi.fn(), add: vi.fn(), session: { user: { id: "qa-owner", name: "QA", email: "qa@example.test", emailVerified: true } } as unknown }));
-vi.mock("@everlang/backend/sql", () => ({ query: state.query }));
+vi.mock("@everlang/backend/orm", () => ({ ormDataSource: createOrmMock(state.query) }));
+vi.mock("@everlang/backend/rate-limit",()=>({rateLimit:async()=>true}));
 vi.mock("@everlang/backend/redis", () => ({ rateLimit: async () => true, getGradingQueue: () => ({ add: state.add }) }));
 vi.mock("@everlang/backend/content", () => ({ publishedSentence: async () => ({ _id: "lesson", contentVersion: 1, viText: "Câu mẫu", koSampleAnswer: "예문", level: "Trung cấp" }) }));
 import { SubmissionsGradeService } from "../../apps/api/src/domains/submissions-grade.service";
@@ -28,18 +30,18 @@ it("cached failure returns actionable409 without enqueueing or overwriting the f
   expect(response.status).toBe(409);
   expect(await response.json()).toMatchObject({ code: "GRADING_PREVIOUS_FAILED", submissionId: "old-failed", retryable: true });
   expect(state.add).not.toHaveBeenCalled();
-  expect(state.query.mock.calls.some(([sql]) => sql.startsWith("UPDATE"))).toBe(false);
-  expect(state.query.mock.calls[1][1]).toEqual([expect.any(String), "qa-owner"]);
+  expect(state.query.mock.calls.some(([command]) => command.operation === "update")).toBe(false);
+  expect(state.query.mock.calls[1][0].parameters).toEqual({p1:expect.any(String),p2:"qa-owner"});
 });
 
 it("explicit force retry uses a new dedup key and enqueues a separate attempt", async () => {
   state.query.mockResolvedValueOnce([]).mockResolvedValueOnce([{ id: "old", status: "failed" }]);
   await POST(request());
-  const oldHash = state.query.mock.calls[0][1][5];
+  const oldHash = state.query.mock.calls[0][0].parameters.p6;
   state.query.mockResolvedValueOnce([]).mockResolvedValueOnce([{ id: "retry", status: "queued" }]);
   const response = await POST(request(true));
   expect(response.status).toBe(202);
-  expect(state.query.mock.calls[2][1][5]).not.toBe(oldHash);
+  expect(state.query.mock.calls[2][0].parameters.p6).not.toBe(oldHash);
   expect(state.add).toHaveBeenCalledWith("translation", { submissionId: "retry" }, expect.objectContaining({ attempts: 3, jobId: "retry" }));
 });
 

@@ -1,5 +1,9 @@
 ## 2026-11-01 — Pre-merge due-clock regression
 
+## 2026-11-01 — ORM regression
+
+Branch refactor/typeorm-data-access. FSRS review/idempotency/concurrency/version/serverNow clock regression PASS qua beta/catalogue. Global78unit/29E2E final candidate PASS. [Canonical ORM audit](../postgresql-orm-migration/audit.md) ghi commands, preservation/locks/error paths và external limits; [integration audit](../../audits/postgresql-orm-migration.md). Không đánh feature product Done hoặc giả xác minh provider live.
+
 FAIL before: first full27E2E run hid a freshly saved card when browser clock lagged PostgreSQL. PASS after: native GET /api/vocabulary includes serverNow; UI uses server timestamp. Catalogue integration intentionally runs browser -5minutes then +365days; due recall/reveal passes, future reviewed card stays unavailable. Full27E2E rerun PASS2.1m, unit77PASS/lint/typecheck/build. No persisted card/due/rating/FSRS/layout change. [Shared SRS contract](../vocabulary-srs/system-design.md), [test](../../../tests/e2e/vocabulary-catalog.spec.ts), [migration audit](../backend-nestjs-migration/audit.md). External/content gates below remain unchanged.
 
 ## 2026-11-01 — Native Nest migration regression audit

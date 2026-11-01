@@ -167,6 +167,9 @@ Dùng thật ngoài localhost với kiểm chứng đầy đủ
   - PB-024-T01 — Sync5 docs mỗi feature + code-map/HANDOFF, lint/typecheck/build/container
   - PB-024-T02 — Audit tách lượt spec→code→test→UI, xác nhận không còn release blocker
   - PB-024-T03 — Go/no-go và release notes; approval phát hành cụ thể ở bước cuối
+- **WBS-5.40 / PB-040 — Migrate PostgreSQL access to TypeORM; preserve Mongoose ODM** (P0, Core, Unscheduled).
+  - PB-040-T01 — Entity mapping and runtime ORM migration
+  - PB-040-T02 — Independent audit, migration adoption and integration verification
 
 
 ## WBS-6 / Mở rộng sau beta

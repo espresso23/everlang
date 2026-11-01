@@ -1,17 +1,31 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import { randomUUID } from "node:crypto";
 
-
-export type RequestContext = { requestId: string; jobId?: string; attempt?: number };
+export type RequestContext = {
+  requestId: string;
+  jobId?: string;
+  attempt?: number;
+};
 type LogLevel = "debug" | "info" | "warn" | "error";
 type LogFields = Record<string, unknown>;
 export const requestContext = new AsyncLocalStorage<RequestContext>();
-export function correlationId(candidate?: string) { return candidate && /^[a-z\d._-]{8,80}$/i.test(candidate) ? candidate : randomUUID(); }
-const levelWeight: Record<LogLevel, number> = { debug: 10, info: 20, warn: 30, error: 40 };
+export function correlationId(candidate?: string) {
+  return candidate && /^[a-z\d._-]{8,80}$/i.test(candidate)
+    ? candidate
+    : randomUUID();
+}
+const levelWeight: Record<LogLevel, number> = {
+  debug: 10,
+  info: 20,
+  warn: 30,
+  error: 40,
+};
 
 function configuredLevel(): LogLevel {
   const requested = process.env.LOG_LEVEL?.toLowerCase();
-  return requested && requested in levelWeight ? requested as LogLevel : "info";
+  return requested && requested in levelWeight
+    ? (requested as LogLevel)
+    : "info";
 }
 
 function redact(value: string): string {
@@ -30,14 +44,26 @@ function safeFields(fields: LogFields): LogFields {
   function safe(value: unknown, depth: number): unknown {
     if (typeof value === "string") return redact(value).slice(0, 2000);
     if (typeof value === "bigint") return String(value);
-    if (!value || typeof value !== "object") return typeof value === "function" ? "[omitted]" : value;
+    if (!value || typeof value !== "object")
+      return typeof value === "function" ? "[omitted]" : value;
     if (depth > 5 || seen.has(value)) return "[omitted]";
     seen.add(value);
-    if (value instanceof Error) return { name: value.name, message: safe(value.message, depth + 1) };
-    if (Array.isArray(value)) return value.slice(0, 30).map(item => safe(item, depth + 1));
-    return Object.fromEntries(Object.entries(value).slice(0, 40).map(([key, item]) => [key,
-      /password|secret|authorization|cookie|api.?key|connectionstring|^body$|^audio$|^translation$|^prompt$|^client$|^(?:(?:access|refresh|id|session)[_-]?)?token$/i.test(key) ? "[REDACTED]" : safe(item, depth + 1),
-    ]));
+    if (value instanceof Error)
+      return { name: value.name, message: safe(value.message, depth + 1) };
+    if (Array.isArray(value))
+      return value.slice(0, 30).map((item) => safe(item, depth + 1));
+    return Object.fromEntries(
+      Object.entries(value)
+        .slice(0, 40)
+        .map(([key, item]) => [
+          key,
+          /password|secret|authorization|cookie|api.?key|connectionstring|^body$|^audio$|^translation$|^prompt$|^client$|^(?:(?:access|refresh|id|session)[_-]?)?token$/i.test(
+            key,
+          )
+            ? "[REDACTED]"
+            : safe(item, depth + 1),
+        ]),
+    );
   }
   return safe(fields, 0) as LogFields;
 }
@@ -60,9 +86,32 @@ export function log(level: LogLevel, event: string, fields: LogFields = {}) {
   else console.info(line);
 }
 
-export function logError(event: string, error: unknown, fields: LogFields = {}) {
-  const detail = error instanceof Error
-    ? { errorName: error.name, errorMessage: error.message, errorStack: error.stack }
-    : { errorMessage: String(error) };
+export function logError(
+  event: string,
+  error: unknown,
+  fields: LogFields = {},
+) {
+  const databaseError =
+    error instanceof Error &&
+    (error.name === "QueryFailedError" ||
+      ("query" in error && "parameters" in error));
+  const driverCode = databaseError
+    ? (error as Error & { driverError?: { code?: string } }).driverError?.code
+    : undefined;
+  const detail = databaseError
+    ? {
+        errorName: "QueryFailedError",
+        errorMessage: "Database operation failed",
+        ...(driverCode && /^[A-Z0-9]{5}$/.test(driverCode)
+          ? { databaseCode: driverCode }
+          : {}),
+      }
+    : error instanceof Error
+      ? {
+          errorName: error.name,
+          errorMessage: error.message,
+          errorStack: error.stack,
+        }
+      : { errorMessage: String(error) };
   log("error", event, { ...detail, ...fields });
 }

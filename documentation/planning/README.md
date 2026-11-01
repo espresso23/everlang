@@ -31,6 +31,8 @@ Dashboard có Done dev SP theo các PBI hoàn tất để hỗ trợ nhìn lại
 
 ## Definition of Ready
 
+Áp dụng thêm [workflow PRD → vertical issue → AFK → human QA](../workflow/README.md). README feature là PRD chuẩn; issue file/GitHub map về task ID và REQ, không thay nguồn trạng thái JSON. Agent chỉ thực hiện danh sách được giao, chuyển Review sau kiểm tra; chủ dự án QA và quyết định Done/merge/deploy. Không tự đóng GitHub issue khi test xanh.
+
 - Có vấn đề/mục tiêu, acceptance kiểm được, phạm vi Core/Stretch và dependency rõ.
 - Nội dung mẫu/nguồn và reviewer đã xác định; đường đi qua auth/API/DB/UI đã dự kiến.
 - Có owner và capacity thực tế. Khi chốt scope, tính thời gian review do cùng một người làm; giữ khoảng25% dự phòng bug/QA/audit/handoff.

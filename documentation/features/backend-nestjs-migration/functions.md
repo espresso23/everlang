@@ -43,3 +43,13 @@
 | [tests/integration/NestQaGatewayfile](../../../tests/integration/NestQaGatewayfile) | Cấu hình / dữ liệu / schema | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
 
 Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.
+
+## ORM — 2026-11-01
+
+- [apps/api/src/app.module.ts](../../../apps/api/src/app.module.ts): Import DatabaseModule toàn cục.
+- [apps/api/src/health.controller.ts](../../../apps/api/src/health.controller.ts): PG/Mongo readiness; Redis down trảdegraded/queueAvailable false.
+- [apps/api/src/main.ts](../../../apps/api/src/main.ts): TypeOrmModule đóng DataSource khi app.close, bỏ pool.end thủ công.
+- [apps/worker/src/main.ts](../../../apps/worker/src/main.ts): TypeOrmModule dùng cùng databaseOptions, Nest quản lý lifecycle.
+- [packages/backend/src/queue.ts](../../../packages/backend/src/queue.ts): CorrelatedQueue bắt lỗi connection/enqueue, giữtrace, trả503/QUEUE_UNAVAILABLE.
+
+Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.

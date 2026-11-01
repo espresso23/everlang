@@ -27,3 +27,11 @@
 | [apps/web/components/private-audio.tsx](../../../apps/web/components/private-audio.tsx) | `PrivateAudio` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 
 Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.
+
+## ORM — 2026-11-01
+
+- [apps/worker/src/speech.processor.ts](../../../apps/worker/src/speech.processor.ts): CRUD qua mapped entities/QueryBuilder; giữ payload, ownership, version, transaction và trạng thái public.
+- [apps/api/src/domains/speech.service.ts](../../../apps/api/src/domains/speech.service.ts): CRUD qua mapped entities/QueryBuilder; giữ payload, ownership, version, transaction và trạng thái public.
+- [apps/api/src/domains/speech-audio.service.ts](../../../apps/api/src/domains/speech-audio.service.ts): CRUD qua mapped entities/QueryBuilder; giữ payload, ownership, version, transaction và trạng thái public.
+
+Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.

@@ -2,6 +2,8 @@
 
 ## Cập nhật hiện hành — 2026-11-01
 
+ORM cập nhật: API/auth/worker/CLI PostgreSQL dùng TypeORM, MongoDB vẫn Mongoose. Local cutover bảo toàn24bảng/schema/index/constraint;9TypeORMmigration, re-run0.78unit/29E2E PASS, bao gồm Redis outage login/profile/draft CAS vẫn chạy, queue503/recovery202. [ORM audit](features/postgresql-orm-migration/audit.md), PB-040 Review; không đổi sprint Proposed. Phần Nest checkpoint dưới đây giữ lịch sử, source/query pool cũ đã được thay.
+
 Backend hiện chạy native NestJS/JWT sau cutover008 trên localhost:3000: web/API/worker riêng, access RAM/Bearer, rotating HttpOnly refresh, global exception/filter và log requestId xuyên BullMQ. 20 bảng bảo toàn và Mongo6collections/172docs đã restore/hash-check; backup PG/Mongo/Redis/media/env giữ riêng ngoài Git. Old sessions invalidated, đăng nhập lại. Không Better Auth/Next backend runtime, old endpoints404; checkpoint offline trước migration giữ để rollback qua full restore.
 
 77unit và các native auth/business/worker/private-audio/UI gates đã qua. Google live trên Nest, cloud AI/ASR/KRdict/Tutor/SMTPproduction vẫn NOT VERIFIED theo phạm vi; không tái sử dụng kết quả backend cũ như chứng nhận mới. PB-039 ở Review, sprint vẫn Proposed, không full feature Done. Đọc [migration audit](features/backend-nestjs-migration/audit.md) và [verification](features/backend-nestjs-migration/assets/verification.md) trước phát triển tiếp.

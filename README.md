@@ -14,7 +14,7 @@ Beta tự học tiếng Hàn trung–cao cấp: luyện dịch → hiểu lỗi 
 4. Mở [EverLang](http://localhost:3000/sign-in), đăng ký rồi xác minh email qua [Mailpit local](http://localhost:8025).
 5. AI cần `OPENROUTER_API_KEY`; từ điển cần `KRDICT_API_KEY`. Không tạo phản hồi giả khi thiếu khóa.
 
-Node.js 24 trở lên. Web dùng Next.js/TypeScript/Tailwind; API và worker dùng NestJS, JWT RS256 và PostgreSQL/pg. MongoDB giữ học liệu; Redis/BullMQ phục vụ cache và hàng đợi. FSRS dùng `ts-fsrs@6.0.0`, FSRS-7, retention 0.9.
+Node.js 24.11 trở lên. Web dùng Next.js/TypeScript/Tailwind; API và worker dùng NestJS, JWT RS256 và PostgreSQL/TypeORM (pg chỉ là driver). MongoDB/Mongoose giữ học liệu; Redis/BullMQ phục vụ cache và hàng đợi. FSRS dùng `ts-fsrs@6.0.0`, FSRS-7, retention 0.9.
 
 ## Google và email
 
@@ -65,3 +65,5 @@ Xem [FEATURE_AUDIT.md](FEATURE_AUDIT.md) và [HANDOFF.md](HANDOFF.md) cho bằng
 `npm ci`, `npm run build`, `npm run typecheck`, `npm test`, `npm run lint`, `npm run backend:check`, `npm run docs:check`, `npm run plan:check`. Host dev cần DB/Mongo/Redis và env endpoints truy cập được: `npm run dev` khởi động bốn process. Docker là cách chạy đầy đủ mặc định. Swagger `/api/docs`, health `/api/health/ready`. `npm run start` chỉ khởi gateway cho các runtime đã chạy; production dùng Compose.
 
 Migration008 giữ ID/password/Google identity/business data, vô hiệu phiên và link verify/reset cũ. Không rollback bằng image cũ trên schema mới: phục hồi đủ snapshot PG/Mongo/Redis/media vào môi trường riêng. Google thật trên Nest cần chủ tài khoản xác nhận; không dùng xác minh backend cũ để kết luận backend mới.
+
+Data layer: [TypeORM migration/design/audit](documentation/features/postgresql-orm-migration/README.md); [system design](documentation/shared/architecture.md). PostgreSQL kiểm soát rate limit, tiến độ/auth hoạt động khi Redis down; queue trả503 có requestId và phục hồi khi Redis trở lại.

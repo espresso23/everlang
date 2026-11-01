@@ -21,6 +21,7 @@ COPY apps/worker/package.json apps/worker/package.json
 COPY packages/backend/package.json packages/backend/package.json
 COPY packages/contracts/package.json packages/contracts/package.json
 RUN npm ci
+RUN mkdir -p apps/api/node_modules apps/worker/node_modules packages/backend/node_modules
 
 FROM speech-native AS speech-native-avx
 RUN cd /tmp/whisper && \
@@ -36,7 +37,10 @@ COPY . .
 RUN npm run build
 
 FROM base AS worker
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/apps/api/node_modules ./apps/api/node_modules
+COPY --from=deps /app/apps/worker/node_modules ./apps/worker/node_modules
+COPY --from=deps /app/packages/backend/node_modules ./packages/backend/node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
 COPY --from=builder /app/apps/api/package.json ./apps/api/package.json

@@ -8,6 +8,37 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## Workflow agent — áp dụng từ 2026-11-01
+
+- Đọc [workflow chuẩn](documentation/workflow/README.md); phiên mới bắt đầu tại [NEW_SESSION.md](documentation/workflow/NEW_SESSION.md). Quy trình: context → grill-me → PRD → vertical issues → AFK → self-review/audit → human QA.
+- Trước code hành vi mới, dùng `grill-me` cho các quyết định sản phẩm còn mở: hỏi một quyết định mỗi lượt, tối đa hai phương án có khuyến nghị; không hỏi lại điều đã chốt hoặc có thể đọc trong repo. Chỉ sửa code khi các quyết định ảnh hưởng implementation đã rõ; yêu cầu nhỏ rõ ràng dùng PRD/issue ngắn tương xứng.
+- PRD chuẩn là `documentation/features/<feature-id>/README.md`, không tạo bản PRD cạnh tranh. Lưu kết luận phỏng vấn, giả định và câu trả lời tại feature; không suy diễn im lặng là đồng ý. Năm tài liệu feature hiện có vẫn bắt buộc.
+- Chia issue thành lát cắt có kết quả quan sát được xuyên các lớp cần thiết; lát đầu là tracer bullet chạy end-to-end. Dependency phải rõ, không gọi các issue chung schema/file là độc lập.
+- AFK chỉ xử lý issue được giao và đã Ready; tự triển khai, kiểm tra, sửa lỗi trong scope, cập nhật docs/evidence/HANDOFF rồi chuyển Review. Chủ dự án QA, quyết định Done/merge/deploy; không tự mở rộng backlog, push/merge/deploy hoặc đóng GitHub issue chỉ vì test xanh.
+- Dùng TDD cho thay đổi logic/bug khi có test hành vi hữu ích: red có đúng nguyên nhân → green → refactor. Docs/UI nhỏ dùng kiểm tra phù hợp, ghi N/A có lý do. Self-review là lượt riêng sau implementation và trước human QA.
+- Ưu tiên module sâu: interface nhỏ, giữ invariant/transaction/retry bên trong module nghiệp vụ; không tự đại tu kiến trúc hoặc tạo wrapper chỉ chuyển tiếp để đạt số lớp.
+- Context chỉ chứa issue và phụ thuộc cần thiết; dưới khoảng 100k token là ngân sách làm việc nội bộ, không phải giới hạn kỹ thuật/đảm bảo chất lượng chung. Ưu tiên checkpoint bền vững rồi clear/chat mới khi đổi scope hoặc quá tải; không tự xóa chat. Nếu môi trường tự compact, tiếp tục từ checkpoint, không làm lại phần đã xong.
+- Skills chuẩn theo repo nằm ở `.agents/skills/`: `everlang-prd`, `prd-to-issue`, `issue-afk`, `everlang-session`. Đọc SKILL.md liên quan nếu phiên mới chưa tự liệt kê; `grill-me` hiện có là skill phỏng vấn dùng chung. Tạo skill không đồng nghĩa được phép đăng GitHub issues.
+
+## Bắt buộc chọn và dùng skill đúng công việc
+
+- Khi bắt đầu nhiệm vụ, xác định kết quả được giao, kiểm tra branch/status và chọn skill theo bảng dưới. Nếu người dùng gọi tên skill, phải đọc `SKILL.md` của skill đó trước khi thực hiện. Khi công việc khớp rõ mô tả skill, chủ động dùng; không chờ người dùng nhắc.
+- Bản skill chuẩn của dự án nằm trong `.agents/skills/`. Nếu danh sách skill của phiên chưa hiển thị hoặc trùng với bản cài cá nhân, đọc bản trong repo. Chỉ nạp skill và tài liệu tham chiếu cần cho bước hiện tại; không nạp toàn bộ skills vào context.
+
+| Công việc / dấu hiệu cần dùng | Skill và hướng dẫn | Kết quả cần có |
+|---|---|---|
+| Phiên mới, tiếp nối sau reset/compact hoặc nhận bàn giao | [everlang-session](.agents/skills/everlang-session/SKILL.md) | Đối chiếu checkpoint với repo; xác định issue, quyền tự chủ và bước tiếp theo |
+| Feature mới hoặc thay đổi đáng kể yêu cầu sản phẩm | [everlang-prd](.agents/skills/everlang-prd/SKILL.md) | PRD chuẩn trong README feature; quyết định/giả định rõ trước code |
+| Quyết định sản phẩm/thiết kế còn mở, cần phản biện để hiểu chung | `grill-me` trong danh sách skills của phiên | Một quyết định mỗi lượt, tối đa hai phương án; ghi câu trả lời thực tế |
+| Chuyển PRD đã thống nhất thành task/issue hoặc đăng GitHub Issues khi được yêu cầu | [prd-to-issue](.agents/skills/prd-to-issue/SKILL.md) | Vertical slices có AC/dependencies, map task ID; kiểm trùng trước đăng |
+| Triển khai/sửa lỗi theo issue đã được giao và đủ Ready | [issue-afk](.agents/skills/issue-afk/SKILL.md) | Code + kiểm tra + self-review + docs/audit/HANDOFF; chuyển Review cho chủ dự án QA |
+
+- Lần đầu dùng một skill trong chat, thông báo ngắn tên skill và mục đích. Thực hiện các bước/hợp đồng liên quan trong skill; chỉ nói tên skill không được coi là đã dùng.
+- Yêu cầu nhỏ đã rõ có thể làm trực tiếp với kiểm tra tương xứng; không ép mọi chỉnh sửa docs/UI qua phỏng vấn hoặc tạo issue mới. Không dùng skill chỉ vì trùng từ khóa. Những skill chuyên biệt khác trong phiên áp dụng khi đúng phạm vi hoặc được người dùng gọi tên.
+- Thiếu skill: tìm trong `.agents/skills/` và vị trí được khai báo trong danh sách skills trước. Nếu vẫn không có, nói rõ giới hạn; không tuyên bố đã dùng. Chỉ tiếp tục phần độc lập bằng quy trình tương đương khi không mất hợp đồng bắt buộc; phần thật sự phụ thuộc phải ghi blocker.
+- Skill không mở rộng quyền được giao: không tự đăng GitHub, gửi thông báo, lấy backlog tiếp theo, gọi nhiều agent, push/merge/deploy hoặc đánh dấu Done. Quyền đã được người dùng cấp trong phiên vẫn có hiệu lực; không hỏi xác nhận lại theo nghi thức.
+- Trước bàn giao, đối chiếu kết quả với issue/PRD và hướng dẫn skill đã dùng; ghi kiểm tra thực tế, phần chưa xác minh và việc còn lại trong audit/HANDOFF. Chỉ cập nhật task status ở `work-items.json` theo quy tắc tracking.
+
 ## Quy tắc bàn giao dự án
 
 - Sau **mọi thay đổi tính năng, sửa lỗi, cấu hình vận hành hoặc thay đổi dữ liệu** được yêu cầu trong dự án, cập nhật `HANDOFF.md` ngay trong cùng lượt làm việc.

@@ -47,6 +47,7 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 | `exam-practice` | Bài luyện TOPIK II PBT | [Đặc tả](features/exam-practice/README.md) | [Functions](features/exam-practice/functions.md) | `implemented` | [Audit](features/exam-practice/audit.md) |
 | `design-system` | App shell và nhận diện | [Đặc tả](features/design-system/README.md) | [Functions](features/design-system/functions.md) | `implemented` | [Audit](features/design-system/audit.md) |
 | `platform-operations` | Hạ tầng, hợp đồng dùng chung và vận hành | [Đặc tả](features/platform-operations/README.md) | [Functions](features/platform-operations/functions.md) | `implemented` | [Audit](features/platform-operations/audit.md) |
+| `postgresql-orm-migration` | PostgreSQL TypeORM data layer và Redis resilience | [Đặc tả](features/postgresql-orm-migration/README.md) | [Functions](features/postgresql-orm-migration/functions.md) | `implemented`, verified local / Review | [Audit](features/postgresql-orm-migration/audit.md) |
 
 14 feature/domain hiện có đã được backfill theo source baseline, gồm các giới hạn và thiếu sót. `implemented` chỉ có nghĩa code đã có; trạng thái xác minh nằm trong audit, không tự coi Google/STT/S3/Tutor/full exam đã hoàn tất.
 
@@ -68,9 +69,11 @@ Chỉ tạo thư mục `shared/`, `audits/`, `assets/` khi có tài liệu hoặ
 
 ## Quy trình
 
+Workflow đầy đủ: [Context → grill-me → PRD → vertical slices → AFK → self-review → human QA](workflow/README.md). Phiên mới đọc [NEW_SESSION](workflow/NEW_SESSION.md); mẫu [interview](templates/workflow/interview.md), [issue](templates/workflow/issue.md), [context](templates/workflow/context.md). Skills có nguồn versioned tại `.agents/skills/`; [audit thiết lập](audits/agent-delivery-workflow.md).
+
 1. Chọn/tái sử dụng branch đúng phạm vi, ví dụ `feature/JIRA-456-add-login-page`.
-2. Sao chép [bộ mẫu feature](templates/feature/README.md) sang `features/<feature-id>/`; thay toàn bộ placeholder, xác định yêu cầu và các kết nối cần kiểm.
-3. Triển khai theo đặc tả; cập nhật tài liệu nếu có quyết định thiết kế mới. Mỗi yêu cầu/hành vi liên kết tới route, file + symbol và cách kiểm tra thực tế.
+2. Grill-me các quyết định còn mở; dùng README trong [bộ mẫu feature](templates/feature/README.md) làm PRD chuẩn tại `features/<feature-id>/`, chuẩn bị năm docs và chia vertical issues có AC/dependency rõ.
+3. Agent triển khai issue được giao đã Ready; TDD theo rủi ro, cập nhật tài liệu khi có quyết định mới. Mỗi yêu cầu/hành vi liên kết tới route, file + symbol và bằng chứng; tự review trước human QA.
 4. Audit feature và các kết nối bị ảnh hưởng. Nếu có nhóm feature liên quan, thêm audit nhóm theo cấu trúc [mẫu audit](templates/feature/audit.md).
 5. Kiểm tra tham chiếu hai chiều, cập nhật mục lục và [HANDOFF.md](../HANDOFF.md). Không ghi credential, token, dữ liệu người dùng thật hoặc URL chứa thông tin xác thực vào bằng chứng.
 

@@ -39,3 +39,7 @@ Migration007 cần app bridge trước khi áp dụng; giữ nguyên FSRS/card i
 ## 2026-11-01 — Due-card clock authority
 
 VocabularyService.get trả serverNow ISO từ PostgreSQL cùng dueCount; Vocabulary.load dùng timestamp này để chọn thẻ due, không dùng đồng hồ thiết bị. Không sửa card/due/rating/FSRS; browser lệch sau không ẩn thẻ đã đến hạn, lệch trước không mở thẻ tương lai. Regression trong tests/e2e/vocabulary-catalog.spec.ts mô phỏng -5phút và +365ngày.
+
+## ORM data access — 2026-11-01
+
+PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.

@@ -38,7 +38,7 @@
             "AuthService.googleStart",
             "AuthService.googleCallback"
           ],
-          "sha256": "e15303a90104f8ac343ea6640cea2bb52cd65e5054dc4dc2e4b7f6c784ed7614"
+          "sha256": "5979ba45be6daee43b5d0b0f87d16a32fa8afff196862bae725aa8f846977ea8"
         },
         {
           "file": "apps/web/lib/auth.tsx",
@@ -167,7 +167,7 @@
         {
           "file": "tests/unit/nest-jwt.test.ts",
           "symbols": [],
-          "sha256": "6ee0c157d3eb801a27eb4c22293587c287cc2c56e974b30638413b1d4e357312"
+          "sha256": "b7186c8f7846d0d66b9850c80383d8ec8c9ffc1b16f472c5d89db1baa35c6b1d"
         }
       ]
     },
@@ -191,7 +191,7 @@
             "ProfileService.get",
             "ProfileService.put"
           ],
-          "sha256": "57cf3415338f9fa31061e3167c0fe76b68e57787c09efae11c6b3307a036ff34"
+          "sha256": "0532f68c14f836eb02feaab0b536ddfc8c5667d249054856311e4226408d328e"
         },
         {
           "file": "apps/web/components/user-avatar.tsx",
@@ -287,7 +287,7 @@
             "SentencesService",
             "SentencesService.get"
           ],
-          "sha256": "61d06692452678a1188621446c076bf4c3b08e980745629101baec581f35a3b9"
+          "sha256": "a529108743abebcd16cf2138a12e7054c7a31d4ac33e157a1a79868aa485f37f"
         },
         {
           "file": "apps/web/components/sample-audio-player.tsx",
@@ -326,7 +326,7 @@
             "DraftsService.get",
             "DraftsService.put"
           ],
-          "sha256": "2f5ea522a4b65d734c0def3ba91ba5935744bd111145c96a9b97a9a7858857ba"
+          "sha256": "7b9acac03159cb4b35549b7c43041d10dfb287780b57a5cd2b7ca4e561594114"
         },
         {
           "file": "apps/api/src/domains/submissions.service.ts",
@@ -334,7 +334,7 @@
             "SubmissionsService",
             "SubmissionsService.get"
           ],
-          "sha256": "433ced0373febbab0bf3930bb3726f468b0770fdbfe8a2e77f12446c41472dae"
+          "sha256": "60eacffe6ddf04498be034c23f403725c2fa9cc3bb86188357d719c3c6aa2e05"
         },
         {
           "file": "apps/api/src/domains/user-favorites.service.ts",
@@ -343,7 +343,7 @@
             "UserFavoritesService.get",
             "UserFavoritesService.post"
           ],
-          "sha256": "cec85663edd59b09d648abd5939d25e2ba84b066e429bdfc81c173ad43115408"
+          "sha256": "d0814b59ba14ca00acd1ad9ea3082942b124d808a1efc4ac344c30172d86cc59"
         },
         {
           "file": "apps/api/src/domains/user-stats.service.ts",
@@ -360,7 +360,7 @@
             "reportView",
             "statistics"
           ],
-          "sha256": "6b5e602d49188c45dd4f702d0f27af62608c1105e3bf23744802c3f355e43424"
+          "sha256": "e9e4ff7990e2c776edf6495d1c0314b71897f61413c998602f6a00441bd3527b"
         },
         {
           "file": "packages/backend/src/models/Submission.ts",
@@ -386,7 +386,7 @@
           "symbols": [
             "c"
           ],
-          "sha256": "3a916fed7821c39cadec70323894ce387a06ad6eb6fc258ea4e9aeddab5ae199"
+          "sha256": "4824ab2bca25394bd097cf70bbb8b81339d67921e53b03a499bd307772fc99df"
         },
         {
           "file": "apps/api/src/domains/drafts.controller.ts",
@@ -434,7 +434,7 @@
             "SubmissionsGradeService",
             "SubmissionsGradeService.post"
           ],
-          "sha256": "de2234835609d2d456db6e65f86936049a5d03e4827f12165e92cb24dbbfd374"
+          "sha256": "de6ecab5d40736a37bf8b22c877978ffd9c35cd37513023f5fdcaeb9aafa5ce3"
         },
         {
           "file": "apps/api/src/domains/jobs.service.ts",
@@ -442,7 +442,7 @@
             "JobsService",
             "JobsService.get"
           ],
-          "sha256": "f0b524aba8b2c419aaca8b09878b7231318b579a866ec972fb820f3331bde73c"
+          "sha256": "fdecb56690ef502e19b77a5e0583eefa77178101e8aeba71708fcac31e88337e"
         },
         {
           "file": "packages/backend/src/ai.ts",
@@ -477,7 +477,7 @@
             "GradingProcessor.persistFailure",
             "GradingProcessor.onError"
           ],
-          "sha256": "c40b8ac4fe53de0b6c680d0a73c9cb7033bfda1718849783142f6c58f18ed9de"
+          "sha256": "d8c8756e1c52b9d5bed522b4f19f141815924aa95f45eb7a71c703819d20ccaf"
         },
         {
           "file": "tests/unit/grading-worker.test.ts",
@@ -487,7 +487,7 @@
             "load",
             "signalListeners"
           ],
-          "sha256": "e3b31b7bfac0f4b3e52ae4814a1fbc1aa55c680f259691651e4ea782fbe49260"
+          "sha256": "db6851c54d20f7986eaba6a15237a9781729047a24e4122ab4a92dfd661bf7b7"
         },
         {
           "file": "tests/unit/grading-retry.test.ts",
@@ -498,7 +498,7 @@
             "POST",
             "request"
           ],
-          "sha256": "10f808e921a3d8bfcfd22ca86e831aef8b536091ef60a53f00e694bfab9d4844"
+          "sha256": "28cd543632f12b951dae29b658bbd5b41a5f7e51af4aa324699a14f41aa3ebc9"
         },
         {
           "file": "tests/e2e/grading-retry.spec.ts",
@@ -545,7 +545,7 @@
             "VocabularyService.post",
             "VocabularyService.put"
           ],
-          "sha256": "435cbc98bd4c2327f6cd7a459ef6c5e193f7ee6b9cd56d8c31e9bce3c1e1cc30"
+          "sha256": "d7cbc5580dc0a783792fa0177712065e276ca75e3a4194293f38c2cecffc9a9d"
         },
         {
           "file": "apps/api/src/domains/reviews.service.ts",
@@ -553,7 +553,7 @@
             "ReviewsService",
             "ReviewsService.post"
           ],
-          "sha256": "87b5798bab06d8abde5665aa63e573272b0703e94d31a5e9974d3d7da20a9dcf"
+          "sha256": "27c45598c7db3fc6aa269d724c0b1c8fd708887b2024c87324e8970b6dfc66bd"
         },
         {
           "file": "packages/backend/src/learning/srs.ts",
@@ -611,7 +611,7 @@
             "DashboardService.get",
             "DashboardService.patch"
           ],
-          "sha256": "fd3b208a849274ca533a1676c82a0beed32a7136837e46a95adbe14f6fb3949a"
+          "sha256": "e2e755bc9d7f98f322e17c12ebbd8323307072a429ec09d7d2e274d726f077e2"
         },
         {
           "file": "packages/contracts/src/learning/schedule.ts",
@@ -684,7 +684,7 @@
             "AdminContentService.post",
             "AdminContentService.patch"
           ],
-          "sha256": "2e019fffed99d06eeae0cb649ea6c2363de6729d7c84ba7ecd90375c76ab81fc"
+          "sha256": "9f45d7770c94bc8546ae4e6a5edcf2e8be2b98651a736872c6ed778727729688"
         },
         {
           "file": "apps/api/src/domains/sentences-generate.service.ts",
@@ -769,7 +769,7 @@
             "RecordingsService.get",
             "RecordingsService.post"
           ],
-          "sha256": "e80df0f6b0e8cc63da8a6eff90974787f84a8c8cb7a511d5a94cb47e733a4a06"
+          "sha256": "c408ad46dd7dc691e3c020d9fdaa74528e7ff787ef749f8059e1179af8ca6653"
         },
         {
           "file": "packages/backend/src/media.ts",
@@ -803,7 +803,7 @@
             "TutorService.post",
             "TutorService.put"
           ],
-          "sha256": "f867bfcfdd8ce66e0a0cf9f6a23221f36351165f723ce1910246088eb1ddef30"
+          "sha256": "2a93d4302c1a37d6dab60bc0d73d95f2ff1a8b34c6e681f928423810456d92c9"
         },
         {
           "file": "packages/backend/src/tutor.ts",
@@ -846,7 +846,7 @@
             "ExamsService.patch",
             "ExamsService.put"
           ],
-          "sha256": "f2cbcd84c97242bac9bff1685af4fb7e7e357056497ee2b505f80e9c3cd54bf7"
+          "sha256": "c6f828ebbd45991ac1fe09422b22324165f0c98a8d13e45d3f36e5cee530759f"
         },
         {
           "file": "packages/contracts/src/exams.ts",
@@ -981,26 +981,16 @@
             "log",
             "logError"
           ],
-          "sha256": "e541e4435068534915f35b60136057b94b3158051e85d72378feb8bf3ecfe3e1"
+          "sha256": "d9cfb976ac7187bb808b90894c4af44ca857dd020eb48db98b39aec403981fd0"
         },
         {
           "file": "packages/backend/src/redis.ts",
           "symbols": [
             "state",
             "redis",
-            "getGradingQueue",
-            "rateLimit"
+            "getGradingQueue"
           ],
-          "sha256": "f0e0a894892b9e7264382ad08b5a2befaf2ed424af7c2eec7617949e05738241"
-        },
-        {
-          "file": "packages/backend/src/sql/index.ts",
-          "symbols": [
-            "shared",
-            "pool",
-            "query"
-          ],
-          "sha256": "836d6e86f4c05ce64542ed64792d39c426c5695ee494cc8242095cdc3f55c85c"
+          "sha256": "8fc92c7a1de3c2d6791ca73fa24565ced84c7bbe08fce7194e93eb0c5dba5e7d"
         },
         {
           "file": "packages/contracts/src/types.ts",
@@ -1021,10 +1011,8 @@
         },
         {
           "file": "scripts/migrate.ts",
-          "symbols": [
-            "client"
-          ],
-          "sha256": "150e977da37b1134e4ccd7041ca5233c1ebadfa14b2dc8e20c9b301825134366"
+          "symbols": [],
+          "sha256": "5b574685a88c70c36eb5b07bc08b41bbf5507a7dc1bbc808c372ab71d3543cac"
         },
         {
           "file": "scripts/gateway.mjs",
@@ -1073,7 +1061,7 @@
         {
           "file": "package-lock.json",
           "symbols": [],
-          "sha256": "da54c20b904528b7e88d58e94c4786a2a1b731172225e272ce6653c9fd1a093d"
+          "sha256": "4665f88a275205894ac508e8951a12fc1830d86d01a0e16bab981a005e248872"
         },
         {
           "file": "apps/web/next.config.ts",
@@ -1097,12 +1085,12 @@
         {
           "file": "Dockerfile",
           "symbols": [],
-          "sha256": "afbd7280509de72d2d813a645f163b813f3380e7c90703140cb6b8f14586ca33"
+          "sha256": "9747d1584ee8b4bea4f21062a60a277865f16b3b73dc67c77e4522fe61da3e34"
         },
         {
           "file": "docker-compose.yml",
           "symbols": [],
-          "sha256": "f06c141bc31281cf37ab6ec906c83392ceec340aab18dc20da95d4bf57ecf2ed"
+          "sha256": "fb27041ea49d407b226e1f80a5cf57c1f8045e54db547038b0452bc18f4221f4"
         },
         {
           "file": "Caddyfile",
@@ -1122,7 +1110,7 @@
         {
           "file": "vitest.config.ts",
           "symbols": [],
-          "sha256": "99b29a5f19080af38ae71982fe7d5cec6d58d913a5a5feb080c8af824f3bc7f5"
+          "sha256": "4493bdedc1590f6786b20ade9b25923233a72bd95b52347cd23570ccd7d17926"
         },
         {
           "file": "scripts/check-documentation.mjs",
@@ -1178,7 +1166,7 @@
         {
           "file": "tests/unit/runtime-errors.test.ts",
           "symbols": [],
-          "sha256": "91fde1c083f6f4e96b586c26d195138a9ebbd94af2b33c3a23c76ed32af6dd11"
+          "sha256": "e71de00bf199183867574ecab7991ee2a92f0395c558b318332db37357c8ff21"
         },
         {
           "file": "tests/integration/worker-runtime.ts",
@@ -1191,7 +1179,7 @@
             "worker",
             "killer"
           ],
-          "sha256": "b3882f7114aa5be65020e4071149491dbcf111dd27a3f20cf99fec7f21d4c2dd"
+          "sha256": "4dc4c89d6fb6bafd221847bb9525bf9a305c8e2cf820a5050f4932cf586558c9"
         }
       ]
     },
@@ -1264,7 +1252,7 @@
             "KnowledgeStateService.get",
             "KnowledgeStateService.put"
           ],
-          "sha256": "e5e93dda70dd78fc1f080447ca8a0d3ddda13e86ebf1cd252cc98dcc3b63991f"
+          "sha256": "faff73a222becf5fb7035c87a9748cb9cd510d367d9410bafd994454fbc4b8e2"
         },
         {
           "file": "apps/api/src/domains/knowledge-attempts.service.ts",
@@ -1273,7 +1261,7 @@
             "KnowledgeAttemptsService",
             "KnowledgeAttemptsService.post"
           ],
-          "sha256": "494e79258c5503836f5163a150207a7dce568bfee3252a3347dc6112cb2724b3"
+          "sha256": "55fd7cd6441dd4cb9ac86219f03884ecf85946bedd5359270d71d060ac0f7585"
         },
         {
           "file": "apps/api/src/domains/admin-knowledge.service.ts",
@@ -1448,7 +1436,7 @@
             "SpeechProcessor.persistFailure",
             "SpeechProcessor.onError"
           ],
-          "sha256": "5422ed36355f8f479647979e91343b3fd76e2020051bc0fdb6944e3b6985b546"
+          "sha256": "25342819e95e7f6f1aab9139e9912d756805967edb2f37f0f3b0fb39b5c59056"
         },
         {
           "file": "scripts/download-speech-model.mjs",
@@ -1468,7 +1456,7 @@
             "SpeechService.post",
             "SpeechService.delete"
           ],
-          "sha256": "baaa81c204f93c6b6745c03e25b0a527b851376f03fd7d0f1abda6452a015b1f"
+          "sha256": "8090f5bc7c82cc6da708c916f00516b5d3b754e3c3deea697378bc1210ebc2f2"
         },
         {
           "file": "apps/api/src/domains/speech-audio.service.ts",
@@ -1476,7 +1464,7 @@
             "SpeechAudioService",
             "SpeechAudioService.get"
           ],
-          "sha256": "4deb47068bf6222395210fdf3c7acb2853bbf5dfd465ad0390a7fae015d7c0b5"
+          "sha256": "0ff013d230e08919abaafbecf690bb44c41407c750376c77a6f76fc32384bd2a"
         },
         {
           "file": "apps/web/app/speech/page.tsx",
@@ -1631,7 +1619,7 @@
             "saveCatalogLearning",
             "saveCatalogPreferences"
           ],
-          "sha256": "c3e70f14f03dd45b22ba6f8136f27592f5164aba3f7e37823cda3ca62785fd17"
+          "sha256": "eb39add15cc8bde1553c173e7152eae0c0c89f84fb142ce4fdf98bd7a682574a"
         },
         {
           "file": "apps/web/lib/korean-audio.ts",
@@ -1741,7 +1729,7 @@
         {
           "file": "tests/e2e/vocabulary-catalog-ui.spec.ts",
           "symbols": [],
-          "sha256": "17503826055429f75dc0df6c44493914b929598074595aa0f32f4421e862b72a"
+          "sha256": "49351d39c9cc90473450dc7813749dfbaa75e73d75730edf76b1931ca105c09a"
         },
         {
           "file": "apps/api/src/domains/admin-word-sets.controller.ts",
@@ -1780,7 +1768,7 @@
         {
           "file": "apps/api/package.json",
           "symbols": [],
-          "sha256": "f8aaf3ee19e5b7fa32ef3ee7434d37cf7725aa360a5a29f3eb1175e312eb7324"
+          "sha256": "b0e81b3072de84ad8b425190eeee9a7c77b0063b2b8c5a19ad496243e7b9e9f8"
         },
         {
           "file": "apps/api/tsconfig.json",
@@ -1805,7 +1793,7 @@
         {
           "file": "apps/worker/package.json",
           "symbols": [],
-          "sha256": "e9d3b38c5a1244728d9ecd7dd724663cccd49f234f5cff6dfe8f8a4715a4f4a7"
+          "sha256": "4ea4b01cdd856b439f9252da3b4f70c3b2f16b7040f69a2786c27fe2025f1389"
         },
         {
           "file": "apps/worker/tsconfig.json",
@@ -1817,7 +1805,7 @@
           "symbols": [
             "AppModule"
           ],
-          "sha256": "600991e5f2d7fb9e4fdbd9b80d4d1d3a8fbc2b2f70789e8451b5110601b7282a"
+          "sha256": "48fb37d74d4f392f5945fd25e5060094407cf3fd3e0e708e92ae0e3f5ce51bf4"
         },
         {
           "file": "apps/api/src/health.controller.ts",
@@ -1826,7 +1814,7 @@
             "HealthController.live",
             "HealthController.ready"
           ],
-          "sha256": "cbea39e0618046ae6c921e6c046c84cc7ff17d0651ce4de9876c411f2fde9738"
+          "sha256": "f5f8054331f9476ea3872b3c7cbf8b5725b3efabf980345d6085b61cd0dd19d0"
         },
         {
           "file": "apps/api/src/http-boundary.ts",
@@ -1845,7 +1833,7 @@
           "symbols": [
             "bootstrap"
           ],
-          "sha256": "15c541ffe68de5d7f10153a70f3abd7b283bac4b42ac4864c3925affe260ed10"
+          "sha256": "ce0a05f0bb0fcfa9d244497659c0dcc2ca448aae89298c78269bcc7a478cd7ab"
         },
         {
           "file": "apps/api/src/domains/domains.module.ts",
@@ -1887,17 +1875,17 @@
             "WorkerModule",
             "main"
           ],
-          "sha256": "9dc481802d204af914d04d824a828ec35b1c4830d3a60da118bc71e62c6ff4d9"
+          "sha256": "e63883f4329a3e4ccfdf9d49b0dc1bea68c5974ef479255eeae5eff65b8fa04d"
         },
         {
           "file": "packages/backend/package.json",
           "symbols": [],
-          "sha256": "a6b9bf58bccf79637307717ee766e5ebe1835cf7dd5548d066a86d7eedc236fa"
+          "sha256": "52efd736a23adbf8507513c1eec657e394ba31247e594db8282718c214050b6b"
         },
         {
           "file": "packages/backend/tsconfig.json",
           "symbols": [],
-          "sha256": "b9efb05dc4b37c96ff74bd67a82b9a01e40c1df0e4952fe83569bfdb254e07bd"
+          "sha256": "351bdab868c0e1991c46953b36709abbf802daee750bb6f0506a79d378f41e9a"
         },
         {
           "file": "packages/contracts/package.json",
@@ -1927,7 +1915,7 @@
             "CorrelatedQueue",
             "CorrelatedQueue.add"
           ],
-          "sha256": "8e188b2e291f95345e0d06373e18626d24705a90c18d8304cffcde3bcaac342b"
+          "sha256": "ea105f53b77bb62d3b78977fd5f47f15ee390465e42ddc0d325943a7d7620b7a"
         },
         {
           "file": "packages/contracts/src/speech.ts",
@@ -1964,7 +1952,7 @@
             "files",
             "lock"
           ],
-          "sha256": "4d4d8eb4295116b385499c62f5a28e22e1270a3410ff2e157fb6fa6facb8af51"
+          "sha256": "c57bc43ce5bcd0ae2009ceb86f9ad84d523266939934b5ac6a0d586fe7907389"
         },
         {
           "file": "scripts/init-auth-keys.mjs",
@@ -1991,7 +1979,7 @@
           "symbols": [
             "key"
           ],
-          "sha256": "7a9f297fcd63b3cb22ba151cef23144d2ea0c1192d37e7b703275afe72d0002a"
+          "sha256": "2f926762d1a96fb1d08a7d79c5dcd86fc1ed0f2af3686c1cd2ca11e92b0e2e7c"
         },
         {
           "file": "tests/unit/nest-boundary.test.ts",
@@ -2009,6 +1997,80 @@
           "file": "tests/integration/NestQaGatewayfile",
           "symbols": [],
           "sha256": "a80415644d41ebfb11af5b8a516857dadd9e95f310e4b6ed69d8cd593abdecaf"
+        }
+      ]
+    },
+    {
+      "id": "postgresql-orm-migration",
+      "status": "implemented",
+      "code": [
+        {
+          "file": "packages/backend/src/entities.ts",
+          "symbols": [
+            "Entities",
+            "ormEntities"
+          ],
+          "sha256": "a1bcf800cd0ea0f08e7c1723873d12b4322f6b33b54fd41f059967119a8457da"
+        },
+        {
+          "file": "packages/backend/src/orm.ts",
+          "symbols": [
+            "databaseOptions",
+            "initializeOrm",
+            "closeOrm",
+            "createQueryRunner",
+            "rollback",
+            "advisoryTransactionLock",
+            "databaseReady",
+            "ormLogger"
+          ],
+          "sha256": "1308193a4bc6f703424a922b118760f69aba51b644cb71cdd3cd31acd52c18e3"
+        },
+        {
+          "file": "packages/backend/src/orm-migrations.ts",
+          "symbols": [
+            "historicalFiles",
+            "historicalMigrations",
+            "ormMigrations",
+            "migrateOrm",
+            "RateLimitFallback1730000000008"
+          ],
+          "sha256": "dec3ac1fbe3b59285adcc7df8740b7d03a282028ceb56e54d5ff2d7dc0ec7d8e"
+        },
+        {
+          "file": "packages/backend/src/rate-limit.ts",
+          "symbols": [
+            "rateLimitBucket",
+            "rateLimit"
+          ],
+          "sha256": "6d7ba230ad3617ded1d2106541faf2813b7af30265633fb6a0b9a5be7c3adfe1"
+        },
+        {
+          "file": "apps/api/src/database.module.ts",
+          "symbols": [
+            "DatabaseModule"
+          ],
+          "sha256": "493cce0395c929845542e23c8beb4358e25fe20625522f472d36a4cde282cea4"
+        },
+        {
+          "file": "tests/helpers/orm-mock.ts",
+          "symbols": [],
+          "sha256": "4e7736cf2ca57482d6b8f09e93047840a35495b4aa0482917c8c2bcd6f5c1605"
+        },
+        {
+          "file": "tests/integration/orm-preservation.ts",
+          "symbols": [],
+          "sha256": "d1e65921233c271ea92477b912ddc1dd78630cda4b792a7bba33ecde595a473a"
+        },
+        {
+          "file": "tests/e2e/orm-resilience.spec.ts",
+          "symbols": [],
+          "sha256": "aaf190c778482526d03148111c9f0dc553ece71c907ecb2af6cb9e0189054212"
+        },
+        {
+          "file": "tests/integration/orm-import-fixture.mjs",
+          "symbols": [],
+          "sha256": "26bf276470aafb59e2d626f12106d91d83c335302a38764f206160dd581e537c"
         }
       ]
     }

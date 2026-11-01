@@ -59,11 +59,17 @@ it("fatal boundary logs normalized errors and exits rather than swallowing fault
   } finally { remove(); }
 });
 
-it("pool idle error is handled without serializing its attached client", async () => {
-  const { pool } = await import("@everlang/backend/sql");
-  const out = vi.spyOn(console, "error").mockImplementation(() => {});
-  expect(pool.listenerCount("error")).toBeGreaterThan(0);
-  expect(() => pool.emit("error", new Error("Connection terminated unexpectedly"), { secretKey: "private" })).not.toThrow();
+it("ORM pool idle error is handled without serializing its attached client", async () => {
+  const {databaseOptions} = await import("@everlang/backend/orm");
+  const out=vi.spyOn(console,"error").mockImplementation(()=>{});
+  const options=databaseOptions();if(options.type!=="postgres")throw new Error("Expected PostgreSQL");
+  expect(options.poolErrorHandler).toBeTypeOf("function");
+  Reflect.apply(options.poolErrorHandler!,null,[new Error("Connection terminated unexpectedly"),{secretKey:"private"}]);
   expect(String(out.mock.calls[0][0])).not.toContain("private");
   expect(JSON.parse(out.mock.calls[0][0]).event).toBe("database.pool.error");
+});
+it("ORM errors never log query text, bindings or driver-echoed input",async()=>{
+  const {logError}=await import("@everlang/backend/logger");const out=vi.spyOn(console,"error").mockImplementation(()=>{});
+  const error=Object.assign(new Error("invalid UUID private-body-value"),{name:"QueryFailedError",query:"SELECT private-query",parameters:["private-token"],driverError:{code:"22P02"}});
+  logError("test.orm",error);const line=String(out.mock.calls[0][0]);expect(line).not.toContain("private-");expect(JSON.parse(line)).toMatchObject({databaseCode:"22P02",errorMessage:"Database operation failed"});
 });

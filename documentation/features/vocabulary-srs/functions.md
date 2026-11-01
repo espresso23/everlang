@@ -14,3 +14,10 @@
 Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.
 
 VocabularyService.get(Request,Viewer) → {items,dueCount,serverNow}; timestamp ISO từ PostgreSQL. Vocabulary.load tại apps/web/app/vocabulary/page.tsx chọn active bằng serverNow, refresh sau save/review. Ownership/suspended/CAS/FSRS không đổi.
+
+## ORM — 2026-11-01
+
+- [apps/api/src/domains/vocabulary.service.ts](../../../apps/api/src/domains/vocabulary.service.ts): CRUD qua mapped entities/QueryBuilder; giữ payload, ownership, version, transaction và trạng thái public.
+- [apps/api/src/domains/reviews.service.ts](../../../apps/api/src/domains/reviews.service.ts): CRUD qua mapped entities/QueryBuilder; giữ payload, ownership, version, transaction và trạng thái public.
+
+Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.

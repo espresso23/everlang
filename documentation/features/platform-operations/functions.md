@@ -7,11 +7,11 @@
 | [apps/web/lib/client.ts](../../../apps/web/lib/client.ts) | `request`, `speak` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/backend/src/db.ts](../../../packages/backend/src/db.ts) | `CachedConnection`, `globalWithMongoose`, `cache`, `connectDb` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/backend/src/logger.ts](../../../packages/backend/src/logger.ts) | `RequestContext`, `LogLevel`, `LogFields`, `requestContext`, `correlationId`, `levelWeight`, `configuredLevel`, `redact`, `safeFields`, `log`, `logError` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
-| [packages/backend/src/redis.ts](../../../packages/backend/src/redis.ts) | `state`, `redis`, `getGradingQueue`, `rateLimit` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
-| [packages/backend/src/sql/index.ts](../../../packages/backend/src/sql/index.ts) | `shared`, `pool`, `query` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/redis.ts](../../../packages/backend/src/redis.ts) | `state`, `redis`, `getGradingQueue` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [packages/backend/src/orm.ts](../../../packages/backend/src/orm.ts) | `ormDataSource`, `initializeOrm`, `databaseReady` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [packages/contracts/src/types.ts](../../../packages/contracts/src/types.ts) | `TOPICS`, `LEVELS`, `Topic`, `Level`, `Sentence`, `GradeReport` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [scripts/backup.ps1](../../../scripts/backup.ps1) | Cấu hình / dữ liệu / schema | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
-| [scripts/migrate.ts](../../../scripts/migrate.ts) | `client` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
+| [scripts/migrate.ts](../../../scripts/migrate.ts) | Top-level initializeOrm/migrateOrm/closeOrm | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [scripts/gateway.mjs](../../../scripts/gateway.mjs) | `port`, `target`, `server` | Module nội bộ; hợp đồng và trạng thái UI/side effect theo README, system-design và ui của feature. |
 | [migrations/001_beta.sql](../../../migrations/001_beta.sql) | Cấu hình / dữ liệu / schema | Schema/version migration; chạy bằng scripts/migrate.ts trong thứ tự số. |
 | [migrations/002_vectors.sql](../../../migrations/002_vectors.sql) | Cấu hình / dữ liệu / schema | Schema/version migration; chạy bằng scripts/migrate.ts trong thứ tự số. |
@@ -43,3 +43,15 @@ Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [
 ## System design diagram — 2026-11-01
 
 Tài liệu/ảnh developer-facing, không đổi UI hay runtime: [canonical architecture](../../shared/architecture.md#system-design-diagram), [PNG](assets/everlang-system-design.png), [SVG](assets/everlang-system-design.svg), [editable DOT](assets/everlang-system-design.dot), [generation notes](assets/everlang-system-design.prompt.md). Các module/symbol vẫn theo function map hiện tại; diagram mapping và audit kiểm hướng kết nối, không chứng nhận provider live.
+
+## ORM — 2026-11-01
+
+- [packages/backend/src/logger.ts](../../../packages/backend/src/logger.ts): logError che query/parameters/driver echo của QueryFailedError.
+- [packages/backend/src/redis.ts](../../../packages/backend/src/redis.ts): Retry kết nối liên tục capped5s; rateLimit chuyển sang module PostgreSQL riêng.
+- [scripts/migrate.ts](../../../scripts/migrate.ts): initializeOrm → migrateOrm → closeOrm trong finally.
+- [Dockerfile](../../../Dockerfile): Copy workspace dependencies lồng nhau; build xóa dist cũ để không còn SQL facade trong image.
+- [vitest.config.ts](../../../vitest.config.ts): Bỏ alias backend/sql đã xóa.
+- [tests/unit/runtime-errors.test.ts](../../../tests/unit/runtime-errors.test.ts): Kiểm pool error/QueryFailedError không lộ dữ liệu.
+- [tests/integration/worker-runtime.ts](../../../tests/integration/worker-runtime.ts): Kiểm regression hành vi bằng ORM mock hoặc native runtime.
+
+Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.

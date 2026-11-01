@@ -8,6 +8,10 @@ Liên quan: [đặc tả](README.md), [functions](functions.md), [UI](ui.md), [a
 
 ## Luồng end-to-end
 
+### Module sâu và lát cắt đầu tiên
+
+<Public interface nhỏ nào được gọi? Module nào giữ invariant/transaction/retry? Dependency direction và regression test qua interface? Nêu tracer bullet xuyên các lớp cần thiết; không tạo abstraction chỉ chuyển tiếp.>
+
 <Sơ đồ kiến trúc và sequence bằng Mermaid hoặc sơ đồ lưu trong assets/; đi từ thao tác người dùng đến phản hồi cuối. Phân biệt thiết kế dự kiến với luồng đã chạy.>
 
 ## Hợp đồng và dữ liệu

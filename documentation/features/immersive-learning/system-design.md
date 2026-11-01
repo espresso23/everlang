@@ -42,3 +42,7 @@ UI → SampleAudioPlayer → SpeechSynthesis ko-KR local → start/boundary/paus
 Thay mọi text action nghe câu trong Library read/listen/speak bằng SampleAudioPlayer; AnswerDetails cũng dùng player chuẩn. Một player phát tại một thời điểm, đổi player dừng và reset player cũ ngay cả khi engine không emit cancel. Cleanup chỉ dừng session do chính component sở hữu; đổi bài/tab dừng đúng audio. Icon44px, compact progress/elapsed, nhãn theo câu, trạng thái loading/live/error rõ; giữ layout và liên kết lưu/tra cứu. Không thêm media duration giả hoặc tua TTS.
 
 Triển khai theo thiết kế trên; [contract/lifecycle chuẩn](../../shared/sample-audio-player.md), [audit](../../audits/sentence-audio-controls.md).
+
+## ORM data access — 2026-11-01
+
+PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.

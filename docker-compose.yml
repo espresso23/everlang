@@ -99,7 +99,6 @@ services:
     depends_on:
       migrate: {condition: service_completed_successfully}
       mongo: {condition: service_healthy}
-      redis: {condition: service_healthy}
     logging: {driver: json-file, options: {max-size: 10m, max-file: "5"}}
   app:
     image: everlang-web:local

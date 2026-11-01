@@ -1,5 +1,9 @@
 ## 2026-11-01 — Native Nest migration regression audit
 
+## 2026-11-01 — ORM regression
+
+Branch refactor/typeorm-data-access. Cloud drafts/historical reports và CLI import1/reimport0/owner guard/Mongo originals PASS. Global78unit/29E2E final candidate PASS. [Canonical ORM audit](../postgresql-orm-migration/audit.md) ghi commands, preservation/locks/error paths và external limits; [integration audit](../../audits/postgresql-orm-migration.md). Không đánh feature product Done hoặc giả xác minh provider live.
+
 Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
 
 - PASS: native draft CAS, history owner guards, favorites/stats routes và isolation.

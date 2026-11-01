@@ -45,3 +45,7 @@ Triển khai theo thiết kế trên; [contract/lifecycle chuẩn](../../shared/
 ## Retry failed grading —2026-10-31 (đặc tả trước sửa)
 
 POST grade gặp cùng dedup_key đã failed trả409/code GRADING_PREVIOUS_FAILED/submissionId/retryable, không502 và không enqueue tự động. UI giữ nháp, hiện nút Chấm lại bằng AI ngay trong alert (không phụ thuộc report modal); click explicit forceRegrade=true với requestId mới. Polling failure cũng có retry tại chỗ. Cache completed/dedup queued/ownership/rate limit/worker cooldown giữ nguyên.
+
+## ORM data access — 2026-11-01
+
+PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.

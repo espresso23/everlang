@@ -39,3 +39,7 @@ Loading → View hoặc loadError/Retry. View → Editing khi CTA, focus name. E
 State owner Profile: data/editing/saving/loadError/saveError/message và focus refs. Uncontrolled form được mount từ saved data, không unmount khi error. saveProfile giữ API/schema/transaction hiện tại. AccountSecurity tách local busy/message, native details đảm nhận open/close; LegacyDraftImport giữ confirm/version0. Không thêm DB hoặc migration.
 
 CSS route-scoped profile-, không thay các route khác. Profile layout đổi theo yêu cầu trực tiếp; structural test loại riêng /profile khỏi comparison với baseline cũ và kiểm state/responsive riêng, không regenerate JSON.
+
+## ORM data access — 2026-11-01
+
+PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.

@@ -25,3 +25,7 @@ Sau normalize, Gemini nhận inline WAV qua HTTPS endpoint cố định generati
 ## 2026-10-31 — Worker boundary dùng chung
 
 `apps/worker/src/speech.processor.ts` dùng `installProcessErrorHandlers`, guarded startup/timer recovery, structured worker error và shutdown có catch/deadline15s. Không đổi UI/consent/provider/ASR semantics. [Contract](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).
+
+## ORM data access — 2026-11-01
+
+PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.

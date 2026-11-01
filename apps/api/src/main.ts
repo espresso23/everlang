@@ -1,30 +1,71 @@
-import 'reflect-metadata';
-import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import cookieParser from 'cookie-parser';
-import { AppModule } from './app.module.js';
-import { GlobalExceptionFilter, ResponseInterceptor, requestLogging, respondError } from './http-boundary.js';
-import { installProcessErrorHandlers } from '@everlang/backend/process-errors';
-import { log, logError } from '@everlang/backend/logger';
-import { pool } from '@everlang/backend/sql';
-import { redis } from '@everlang/backend/redis';
-import mongoose from 'mongoose';
+import "reflect-metadata";
+import { NestFactory } from "@nestjs/core";
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import cookieParser from "cookie-parser";
+import { AppModule } from "./app.module.js";
+import {
+  GlobalExceptionFilter,
+  ResponseInterceptor,
+  requestLogging,
+  respondError,
+} from "./http-boundary.js";
+import { installProcessErrorHandlers } from "@everlang/backend/process-errors";
+import { log, logError } from "@everlang/backend/logger";
+import { redis } from "@everlang/backend/redis";
+import mongoose from "mongoose";
 async function bootstrap() {
-  installProcessErrorHandlers('nest-api');
-  const app=await NestFactory.create(AppModule,{logger:false,bodyParser:false,abortOnError:false});
-  const express=await import('express');
+  installProcessErrorHandlers("nest-api");
+  const app = await NestFactory.create(AppModule, {
+    logger: false,
+    bodyParser: false,
+    abortOnError: false,
+  });
+  const express = await import("express");
   app.use(requestLogging);
-  app.use(express.json({limit:'5mb'}));
+  app.use(express.json({ limit: "5mb" }));
   app.use(cookieParser());
-  app.use((error:unknown,_req:unknown,res:import('express').Response,_next:unknown)=>respondError(error,res));
-  app.setGlobalPrefix('api');
+  app.use(
+    (
+      error: unknown,
+      _req: unknown,
+      res: import("express").Response,
+      _next: unknown,
+    ) => respondError(error, res),
+  );
+  app.setGlobalPrefix("api");
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
-  const doc=SwaggerModule.createDocument(app,new DocumentBuilder().setTitle('EverLang API').setVersion('2').addBearerAuth().build());
-  SwaggerModule.setup('api/docs',app,doc);
-  await app.listen(Number(process.env.API_PORT||4000),'0.0.0.0');
-  log('info','api.ready',{port:Number(process.env.API_PORT||4000)});
-  let stopping=false;
-  for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{if(stopping)return;stopping=true;const deadline=setTimeout(()=>process.exit(1),15000);deadline.unref();void(async()=>{await app.close();await pool.end();await redis.quit();await mongoose.disconnect();clearTimeout(deadline);process.exit(0)})().catch(e=>{logError('api.shutdown.error',e);process.exit(1)})});
+  const doc = SwaggerModule.createDocument(
+    app,
+    new DocumentBuilder()
+      .setTitle("EverLang API")
+      .setVersion("2")
+      .addBearerAuth()
+      .build(),
+  );
+  SwaggerModule.setup("api/docs", app, doc);
+  await app.listen(Number(process.env.API_PORT || 4000), "0.0.0.0");
+  log("info", "api.ready", { port: Number(process.env.API_PORT || 4000) });
+  let stopping = false;
+  for (const signal of ["SIGINT", "SIGTERM"])
+    process.on(signal, () => {
+      if (stopping) return;
+      stopping = true;
+      const deadline = setTimeout(() => process.exit(1), 15000);
+      deadline.unref();
+      void (async () => {
+        await app.close();
+        await redis.quit();
+        await mongoose.disconnect();
+        clearTimeout(deadline);
+        process.exit(0);
+      })().catch((e) => {
+        logError("api.shutdown.error", e);
+        process.exit(1);
+      });
+    });
 }
-void bootstrap().catch(e=>{logError('api.startup.error',e);process.exit(1)});
+void bootstrap().catch((e) => {
+  logError("api.startup.error", e);
+  process.exit(1);
+});

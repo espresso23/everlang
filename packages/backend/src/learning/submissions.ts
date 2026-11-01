@@ -1,4 +1,5 @@
-import { query } from "../sql";
+import { ormDataSource } from "../orm";
+import { Entities } from "../entities";
 import type { GradeReport, Sentence } from "@everlang/contracts/types";
 export type StoredSubmission = {
   id: string;
@@ -26,10 +27,16 @@ export function reportView(row: StoredSubmission) {
   };
 }
 export async function statistics(userId: string) {
-  const rows = await query<StoredSubmission>(
-    "SELECT DISTINCT ON(sentence_id) * FROM submissions WHERE user_id=$1 AND status='completed' ORDER BY sentence_id,created_at DESC",
-    [userId],
-  );
+  const rows = await ormDataSource
+    .createQueryBuilder()
+    .select(["*"])
+    .from(Entities.submissions, "row")
+    .distinctOn(["sentence_id"])
+    .where("user_id=:p1 AND status='completed'")
+    .orderBy("sentence_id", "ASC")
+    .addOrderBy("created_at", "DESC")
+    .setParameters({ p1: userId })
+    .getRawMany<StoredSubmission>();
   const topics = new Map<string, number[]>();
   for (const r of rows) {
     const key = r.snapshot.topic;

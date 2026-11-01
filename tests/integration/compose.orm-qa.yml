@@ -1,0 +1,12 @@
+services:
+  orm-qa-redis:
+    image: redis:7-alpine
+    ports: ["127.0.0.1:56379:6379"]
+    command: [redis-server, --appendonly, "no", --maxmemory-policy, noeviction]
+  nest-qa-api:
+    environment:
+      REDIS_URL: redis://orm-qa-redis:6379
+      ADMIN_EMAILS: nest-admin@example.test,knowledge-admin@example.test,catalogue-qa-admin@example.test,catalogue-qa-ui-admin@example.test,everlang-qa-a@example.test
+  nest-qa-worker:
+    environment:
+      REDIS_URL: redis://orm-qa-redis:6379

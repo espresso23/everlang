@@ -1,9 +1,19 @@
+import {
+  createQueryRunner,
+  rollback,
+  advisoryTransactionLock,
+  closeOrm,
+  type QueryRunner,
+} from "@everlang/backend/orm";
+import { Entities } from "@everlang/backend/entities";
+
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { connectDb } from "@everlang/backend/db";
-import { pool } from "@everlang/backend/sql";
 import mongoose from "mongoose";
 import { gradeSchema } from "@everlang/backend/ai";
+import { installProcessErrorHandlers } from "@everlang/backend/process-errors";
+installProcessErrorHandlers("records-import");
 const [legacyId, email, confirm] = process.argv.slice(2);
 z.string().uuid().parse(legacyId);
 z.email().parse(email);
@@ -11,23 +21,31 @@ if (confirm !== "--confirm-owner")
   throw new Error(
     "Xác nhận quyền sở hữu bằng --confirm-owner sau khi đối chiếu dữ liệu cũ.",
   );
-await connectDb();
-const c = await pool.connect();
+let c: QueryRunner | undefined;
 try {
-  await c.query("BEGIN");
-  await c.query("SELECT pg_advisory_xact_lock(hashtext($1))", [legacyId]);
+  await connectDb();
+  c = await createQueryRunner();
+  await c.startTransaction();
+  await advisoryTransactionLock(c, null, String(legacyId));
   const user = (
-    await c.query(
-      "SELECT id FROM users WHERE email=$1 AND email_verified=true",
-      [email],
-    )
-  ).rows[0];
+    await c.manager
+      .createQueryBuilder()
+      .select(["id"])
+      .from(Entities.users, "row")
+      .where("email=:p1 AND email_verified=true")
+      .setParameters({ p1: email })
+      .getRawMany()
+  )[0];
   if (!user) throw new Error("Cần tài khoản đã xác minh.");
   const prior = (
-    await c.query("SELECT user_id FROM legacy_imports WHERE legacy_id=$1", [
-      legacyId,
-    ])
-  ).rows[0];
+    await c.manager
+      .createQueryBuilder()
+      .select(["user_id"])
+      .from(Entities.legacy_imports, "row")
+      .where("legacy_id=:p1")
+      .setParameters({ p1: legacyId })
+      .getRawMany()
+  )[0];
   if (prior && prior.user_id !== user.id)
     throw new Error("Dữ liệu đã gắn với tài khoản khác.");
   const db = mongoose.connection.db!;
@@ -43,41 +61,88 @@ try {
     if (!sentence) continue;
     const report = gradeSchema.parse(row);
     const id = randomUUID();
-    const result = await c.query(
-      "INSERT INTO submissions(id,user_id,sentence_id,translation,snapshot,report,status,dedup_key,model,prompt_version,rubric_version,created_at,completed_at) VALUES($1,$2,$3,$4,$5,$6,'completed',$7,'legacy','legacy','legacy',$8,$8) ON CONFLICT(dedup_key) DO NOTHING",
-      [
-        id,
-        user.id,
-        String(row.sentenceId),
-        row.userTranslation,
-        JSON.stringify({ ...sentence, _id: String(sentence._id) }),
-        JSON.stringify(report),
-        "legacy-" + row._id,
-        row.submittedAt,
-      ],
-    );
-    count += result.rowCount || 0;
+    const result = await c.manager
+      .createQueryBuilder()
+      .insert()
+      .into(Entities.submissions, [
+        "id",
+        "user_id",
+        "sentence_id",
+        "translation",
+        "snapshot",
+        "report",
+        "status",
+        "dedup_key",
+        "model",
+        "prompt_version",
+        "rubric_version",
+        "created_at",
+        "completed_at",
+      ])
+      .values({
+        id: () => ":p1",
+        user_id: () => ":p2",
+        sentence_id: () => ":p3",
+        translation: () => ":p4",
+        snapshot: () => ":p5",
+        report: () => ":p6",
+        status: () => "'completed'",
+        dedup_key: () => ":p7",
+        model: () => "'legacy'",
+        prompt_version: () => "'legacy'",
+        rubric_version: () => "'legacy'",
+        created_at: () => ":p8",
+        completed_at: () => ":p8",
+      })
+      .updateEntity(false)
+      .orUpdate([], ["dedup_key"])
+      .returning("id")
+      .setParameters({
+        p1: id,
+        p2: user.id,
+        p3: String(row.sentenceId),
+        p4: row.userTranslation,
+        p5: JSON.stringify({ ...sentence, _id: String(sentence._id) }),
+        p6: JSON.stringify(report),
+        p7: "legacy-" + row._id,
+        p8: row.submittedAt,
+      })
+      .execute()
+      .then((result) => result.raw);
+    count += result.length || 0;
   }
   const favorites = await db
     .collection("usersentencestates")
     .find({ userId: legacyId, favorite: true })
     .toArray();
   for (const f of favorites)
-    await c.query(
-      "INSERT INTO favorites(user_id,sentence_id) VALUES($1,$2) ON CONFLICT DO NOTHING",
-      [user.id, String(f.sentenceId)],
-    );
-  await c.query(
-    "INSERT INTO legacy_imports(legacy_id,user_id) VALUES($1,$2) ON CONFLICT DO NOTHING",
-    [legacyId, user.id],
-  );
-  await c.query("COMMIT");
+    await c.manager
+      .createQueryBuilder()
+      .insert()
+      .into(Entities.favorites, ["user_id", "sentence_id"])
+      .values({ user_id: () => ":p1", sentence_id: () => ":p2" })
+      .updateEntity(false)
+      .orIgnore()
+      .setParameters({ p1: user.id, p2: String(f.sentenceId) })
+      .execute()
+      .then((result) => result.raw);
+  await c.manager
+    .createQueryBuilder()
+    .insert()
+    .into(Entities.legacy_imports, ["legacy_id", "user_id"])
+    .values({ legacy_id: () => ":p1", user_id: () => ":p2" })
+    .updateEntity(false)
+    .orIgnore()
+    .setParameters({ p1: legacyId, p2: user.id })
+    .execute()
+    .then((result) => result.raw);
+  await c.commitTransaction();
   console.info(`Imported ${count} reports; MongoDB originals preserved.`);
 } catch (e) {
-  await c.query("ROLLBACK");
+  if (c) await rollback(c);
   throw e;
 } finally {
-  c.release();
-  await pool.end();
+  if (c) await c.release();
+  await closeOrm();
   await mongoose.disconnect();
 }

@@ -4,6 +4,51 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — Owner yêu cầu merge ORM và triển khai PostgreSQL-only
+
+- Owner chỉ định merge TypeORM vào main rồi tiếp tục bỏ MongoDB; đây là quyết định merge trực tiếp, không tự coi owner đã QA mọi provider hoặc đánh dấu Done.
+- Kết quả re-audit ở mục dưới được giữ nguyên. Chuẩn bị commit đầy đủ ORM + workflow đã được cho phép, fast-forward local main; không push remote. Tiếp theo branch riêng chuyển học liệu/legacy records sang PostgreSQL, bảo toàn ID/version/dữ liệu và demo chạy thật; không chỉ viết ý tưởng. Ưu tiên vòng học khép kín vẫn giữ.
+
+
+### 2026-11-01 — Re-audit TypeORM và phản biện system design/scope
+
+- Theo yêu cầu owner, đối chiếu handoff/spec/code trên `refactor/typeorm-data-access`, HEAD25b96d3. Kết luận: conditional technical GO, chưa merge ngay; implementation ORM vẫn uncommitted/untracked, PB-040 Review chờ human QA. Không phát hiện blocker code mới trong phạm vi đã rà, không chứng nhận toàn repo/provider.
+- Chạy lại PASS78unit/15files, lint/typecheck/build toàn workspace, backend/docs/planning gates, fresh PG riêng25mappings/9migrations/rerun0/JSONB/vector/conflict/rollback/history guard/quota24→7,2Playwright deployed smoke6.8s và ready/queueAvailable true. Full29E2E/restore/adoption/Redis outage/Docker build dùng evidence cũ, không chạy lại lượt này. Container PG audit riêng đã xóa; không đổi live DB/runtime/config.
+- [Báo cáo re-audit và phản biện](documentation/audits/typeorm-reaudit-2026-11-01.md), [audit ORM](documentation/features/postgresql-orm-migration/audit.md). Ghi rõ giới hạn typing/raw QueryBuilder, chi phí PG limiter, recovery quét toàn backlog, readiness200degraded và drift trong summary tiến độ. Đây là đề xuất theo rủi ro, không tự mở refactor hoặc đổi công nghệ.
+- Owner chọn mốc tiếp theo **học liệu duyệt → luyện → SRS → tiến độ**, giữ mục tiêu toàn bộ tự học. Chưa chốt lô/AC hoặc giao triển khai mới; chưa đổi tracking/sprint. Còn lại: gom commit đủ file mới, owner QA trước merge; refine canonical PRD và đồng bộ summary khi lập mốc vòng học. Giữ mọi edits có sẵn, không commit/push/merge/deploy.
+
+### 2026-11-01 — Bắt buộc định tuyến và tuân thủ skill trong AGENTS.md
+
+- Theo yêu cầu chủ dự án, bổ sung bảng công việc → skill → đầu ra vào `AGENTS.md`: session, PRD, grill-me, PRD-to-issue, issue-AFK. Agent phải chủ động chọn skill đúng phạm vi, đọc SKILL.md, thông báo lần đầu dùng và đối chiếu đầu ra; ưu tiên bản repo khi trùng bản cài cá nhân.
+- Quy định xử lý skill thiếu, tránh nạp toàn bộ context/ép workflow cho việc nhỏ; giữ quyền tự chủ đã chốt và human QA. Cập nhật liên kết trong [workflow](documentation/workflow/README.md); kết quả kiểm tra tại [audit](documentation/audits/agent-delivery-workflow.md).
+- Kiểm tra: self-review routing/đầu ra PASS; `docs:check` PASS (19 features/232 source files/1.835 links), scoped `git diff --check` PASS. Tự động dùng skill trong phiên tương lai chưa xác minh.
+- Giữ branch `refactor/typeorm-data-access` theo ngoại lệ đã được cho phép; không thay code, skills, tracking hoặc các thay đổi ORM sẵn có. Lint/typecheck/build/runtime tests N/A cho chỉnh sửa hướng dẫn Markdown này.
+
+### 2026-11-01 — TypeORM migration, Redis resilience và local cutover
+
+- Branch refactor/typeorm-data-access từ25b96d3; PostgreSQL của API/auth/backend learning/catalogue/2worker processors/import CLI dùng25typed EntitySchemas + TypeORM QueryBuilder/repositories. Xóa SQL pool/facade/export/alias; pg chỉ là driver TypeORM. Mongoose ODM giữ nguyên. Đối chiếu AST inventory206calls/26files, chuyển196calls/24files gồm transaction primitives; ước lượng tìm kiếm224 ở mục khởi đầu không phải số CRUD cuối.
+- Nest TypeOrmModule quản lý DataSource init/shutdown; QueryRunner giữ row/advisory locks/CAS/idempotency/JSONB/pgvector1536. TypeORM nhận lịch sử001–008 vào orm_migrations, migration9 thêm rate_limit_buckets; fresh/adopt/re-run/history corruption đều kiểm thực tế; synchronize/dropSchema false. Global handlers/QueryFailedError logging không dump SQL/params/client; CLI dùng fatal handlers chung.
+- Theo câu trả lời làm những gì tốt nhất về Redis: PostgreSQL authoritative rate limit, hashed minute bucket/counter nguyên tử/expiry cleanup. Redis down: login/profile/draft+CAS tiếp tục, ready200 degraded, queue503/QUEUE_UNAVAILABLE/requestId; reconnect và recovery202 đã kiểm. Redis commandTimeout2s, API khởi động không chờ Redis healthy. Không suy rộng availability sang provider/cache riêng.
+- PASS78unit/29E2E(2.8m), lint/workspace+tools typecheck/Docker build/docs/plan/backend gates. Native PG pool reconnect, Redis cooldown1345ms/fatal exit1; import CLI1new/0repeat/owner guard/Mongo original/cleanup. Full29run đầu27PASS/2FAIL đã sửa readiness timeout và trùng QA admin giữa2suite; rerun29/29PASS. Profile/progress upsert và insert count RETURNING được rà soát riêng.
+- Local cutover15:50–15:52+07:00: queue wait/active/delayed0, dừng API/worker, backup PG/Mongo/Redis/private media20261101-155035 dưới .local/backups (private). Restore backup PG mới vào QA và kiểm adoption24table hash PASS; local áp dụng1migration, re-run0. Sau recreate API/worker/web/gateway, readiness ready/queueAvailable true;24table row/column/index/constraint hashes giống trước cả trước và sau startup;2post-cutover smoke PASS. Không invalidate JWT/session hoặc thay dữ liệu học hiện hữu.
+- Docs: [ORM5docs/audit](documentation/features/postgresql-orm-migration/README.md), [evidence](documentation/features/postgresql-orm-migration/assets/verification.md), [integration audit](documentation/audits/postgresql-orm-migration.md),15feature function/design/audits/shared contracts, project-status/README và diagramDOT/SVG/PNG3840×1516. Source-map19features/232files; lịch sử cũ giữ nguyên, screenshots do test ghi lại được phục hồi.
+- PB-040-T01/T02 Review/verification Pass, sprint vẫn Proposed; human QA/Done/merge/push còn phía owner. Google/cloud inference/ASR/KRdict/production gates cũ NOT VERIFIED, không tuyên bố release Done. Không commit/merge/push; giữ nguyên workflow/skills edits đồng thời ở AGENTS/docs/.agents. Images trước ORM giữ offline làm rollback checkpoint. QA-owned resources đã dọn theo danh sách trong evidence; không xóa namespace/backup sẵn có.
+
+
+### 2026-11-01 — Workflow Context → PRD → issues → AFK và skills
+
+- Chủ dự án xác nhận agent tự triển khai/kiểm tra issue được giao; chủ dự án QA, quyết định Done/merge/deploy. Cho phép bổ sung ngay trên `refactor/typeorm-data-access` đang có thay đổi ORM; giữ nguyên edits sẵn có, không switch/reset/stash/commit/push.
+- Cập nhật `AGENTS.md`, mục lục docs, planning guide và templates feature PRD/system-design. Thêm [workflow chuẩn](documentation/workflow/README.md), [quyết định](documentation/workflow/decisions.md), [hướng dẫn phiên mới](documentation/workflow/NEW_SESSION.md), templates interview/vertical issue/context. README feature giữ PRD chuẩn; JSON giữ trạng thái task, không tự thay sprint/backlog.
+- Bốn skills có nguồn tại `.agents/skills/`: `everlang-prd`, `prd-to-issue`, `issue-afk`, `everlang-session`; đã cài cùng nội dung vào thư mục skills cá nhân và kiểm hash. PRD → issue có mapping/duplicate guard/partial-failure recovery; AFK dừng Review cho human QA. Không tạo GitHub issues thật hoặc cài background runner trong lượt này.
+- Kiểm tra: 4/4 `quick_validate.py` PASS, `plan:check` PASS (40 PBI/86 tasks/6 Proposed), `git diff --check` PASS; 1.786 relative links/157 Markdown files tồn tại (không kiểm anchors). `docs:check` baseline đã FAIL vì ORM source/hash drift; lần kiểm sau còn báo `scripts/import-records.ts`, không refresh hash ngoài phạm vi. Kết quả ghi tại [audit workflow](documentation/audits/agent-delivery-workflow.md).
+- Còn lại: xác minh vòng chạy skill trên issue sản phẩm/GitHub thật khi được giao; human QA cho workflow. Không chứng nhận runtime ORM, provider hoặc toàn bộ legacy architecture qua lượt docs này. Lint/typecheck/build/application tests N/A vì không sửa executable code/config.
+
+### 2026-11-01 — Bắt đầu ORM migration
+
+- User yêu cầu migrate ORM toàn backend. Branch refactor/typeorm-data-access từ25b96d3/tree sạch; giữ commit docs diagram. Chọn TypeORM cho PostgreSQL, giữ Mongoose ODM cho MongoDB; không thay DB/data/UI/Redis behavior. Đặc tả trước code tại documentation/features/postgresql-orm-migration.
+- Inventory224query calls/26files gồm transaction/refresh row locks/FSRS/quota/vector. Chuyển CRUD sang EntitySchema/repository/QueryBuilder, không bọc nguyên SQL bằng ORM; native SQL chỉ historical migrations và infrastructure advisory/readiness có audit.
+- PB-040 unscheduled/Ready, implementation In progress; sprint Proposed giữ nguyên. Chưa thay live runtime/schema/data; audit/restore/parity chưa verified.
+
 ### 2026-11-01 — System design diagram và luồng giao tiếp
 
 - User yêu cầu ảnh kiến trúc và lưu trong docs system design. Branch docs/system-design-diagram từ main686d87c/tree sạch. Canonical [architecture](documentation/shared/architecture.md) có PNG và giải thích tiếng Việt browser/gateway/web/API, JWT, PG/Mongo/Redis, hai queue/worker, media, optional providers; thêm entry ở documentation/README và liên kết migration/platform system-design.

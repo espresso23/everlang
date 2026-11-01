@@ -40,3 +40,7 @@ And a small legend: "Solid = core traffic   Dashed = optional integration   Dott
 Small factual note: "Refresh rotates; reuse revokes session family. Client never connects directly to data stores."
 Prioritize accurate endpoint/component relationships, unambiguous arrowheads, readable labels, no overlapping lines or text. No Kubernetes, no Kafka, no invented public ports, no Better Auth, no Next.js API handlers, no cloud-provider success badges. This diagram describes code topology, not proof that every integration is live.
 ```
+
+## ORM revision2026-11-01
+
+DOT/SVG/PNG updated from runtime source: TypeORM at API/workers→PostgreSQL, Mongoose at API→MongoDB; rate limits move from Redis to PostgreSQL. Earlier generation prompt retained as provenance; current canonical DOT governs actual image.

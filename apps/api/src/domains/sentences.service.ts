@@ -1,5 +1,6 @@
-import { type Viewer } from '@everlang/backend/http';
-import { query } from "@everlang/backend/sql";
+import { ormDataSource } from "@everlang/backend/orm";
+import { Entities } from "@everlang/backend/entities";
+import { type Viewer } from "@everlang/backend/http";
 import { connectDb } from "@everlang/backend/db";
 import { Sentence } from "@everlang/backend/models/Sentence";
 import { ensureContent } from "@everlang/backend/content";
@@ -25,10 +26,16 @@ async function handleGet(request: Request, viewer: Viewer) {
       filter._id = sentenceId;
     }
     if (params.get("mistakes") === "true") {
-      const rows = await query(
-        "SELECT DISTINCT sentence_id FROM submissions WHERE user_id=$1 AND status='completed' AND jsonb_array_length(report->'grammarErrors')>0",
-        [viewer.id],
-      );
+      const rows = await ormDataSource
+        .createQueryBuilder()
+        .select(["sentence_id"])
+        .from(Entities.submissions, "row")
+        .distinct(true)
+        .where(
+          "user_id=:p1 AND status='completed' AND jsonb_array_length(report->'grammarErrors')>0",
+        )
+        .setParameters({ p1: viewer.id })
+        .getRawMany();
       filter._id = { $in: rows.map((r) => r.sentence_id) };
     }
     const search = params.get("search")?.trim().slice(0, 100);
@@ -80,11 +87,12 @@ async function handleGet(request: Request, viewer: Viewer) {
     );
   }
 }
-import { Injectable } from '@nestjs/common';
-import type { Request } from 'express';
-import { HttpResult, queryParams } from '@everlang/backend/http';
+import { Injectable } from "@nestjs/common";
+import type { Request } from "express";
+import { HttpResult, queryParams } from "@everlang/backend/http";
 @Injectable()
 export class SentencesService {
-async get(r: Request, u: Viewer) {return handleGet(r, u);
-}
+  async get(r: Request, u: Viewer) {
+    return handleGet(r, u);
+  }
 }

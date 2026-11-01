@@ -4,7 +4,7 @@ import { ensureContent } from "@everlang/backend/content";
 import { Sentence } from "@everlang/backend/models/Sentence";
 import { TOPICS, LEVELS } from "@everlang/contracts/types";
 import { generateExercises } from "@everlang/backend/ai";
-import { rateLimit } from "@everlang/backend/redis";
+import { rateLimit } from "@everlang/backend/rate-limit";
 const body = z.object({
   topic: z.enum(TOPICS),
   level: z.enum(LEVELS),

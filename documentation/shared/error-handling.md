@@ -9,3 +9,7 @@
 [Process handlers](../../packages/backend/src/process-errors.ts): unhandledRejection/uncaughtException log an toàn rồi exit1; guardedTask cho interval/recovery, PG idle error listener; Compose restart. Graceful SIGTERM API15s, worker150s; app.close để drain, đóng pool/redis/Mongo. Grading429 cooldown queue/retry hữu hạn, không đổi model/billing; lỗi permanent không giả điểm.
 
 Bằng chứng: [unit boundary](../../tests/unit/nest-boundary.test.ts), [runtime errors](../../tests/unit/runtime-errors.test.ts), [JWT unit](../../tests/unit/nest-jwt.test.ts), [HTTP auth](../../tests/e2e/nest-auth.spec.ts), [worker tests](../../tests/unit/grading-worker.test.ts). Kết quả trong [audit migration](../features/backend-nestjs-migration/audit.md).
+
+## ORM và Redis — 2026-11-01
+
+GlobalExceptionFilter vẫn chuẩn hóa error/requestId. QueryFailedError chỉ log tên/code an toàn, không log query/parameters/driver echo; CorrelatedQueue có error listener và enqueue503/QUEUE_UNAVAILABLE. Xem [hợp đồng availability](architecture.md#orm-và-redis--2026-11-01), [logger](../../packages/backend/src/logger.ts) và [unit](../../tests/unit/runtime-errors.test.ts).

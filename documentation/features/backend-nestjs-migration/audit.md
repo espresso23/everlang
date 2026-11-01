@@ -1,5 +1,9 @@
 # Audit — backend-nestjs-migration
 
+## 2026-11-01 — ORM regression
+
+Branch refactor/typeorm-data-access. Native TypeOrmModule lifecycle và49private domain route guard inventory/JWT/HTTP→worker trace PASS. Global78unit/29E2E final candidate PASS. [Canonical ORM audit](../postgresql-orm-migration/audit.md) ghi commands, preservation/locks/error paths và external limits; [integration audit](../../audits/postgresql-orm-migration.md). Không đánh feature product Done hoặc giả xác minh provider live.
+
 ## 2026-11-01 — Pre-merge verification after6435d04
 
 Owner authorized merge/push after recheck. First full run26PASS/1FAIL exposed a real device/server clock mismatch: newly saved due card hidden by client Date.now (PG/Docker ~1.7s ahead). VocabularyService.get now returns PostgreSQL serverNow ISO, Vocabulary.load uses that timestamp. No schema/card/due/FSRS/layout change. Regression clocks -5minutes/+365days: due card visible, future card stays closed.

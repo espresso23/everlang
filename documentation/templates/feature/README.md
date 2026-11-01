@@ -12,6 +12,19 @@
 
 <Người dùng nào, vấn đề nào, hành vi mong đợi; phần ngoài phạm vi và giới hạn đã thống nhất.>
 
+## PRD — đích đến đã thống nhất
+
+README này là PRD chuẩn của feature, không tạo thêm bản PRD cạnh tranh. Điền phần này trước implementation; dùng [biên bản phỏng vấn](../../templates/workflow/interview.md) khi có quyết định còn mở.
+
+- Người dùng/vấn đề và bằng chứng:
+- Outcome đo được và cách đánh giá:
+- Non-goals / giới hạn / nội dung cần người dùng QA:
+- Quyết định đã chốt và nguồn xác nhận:
+- Giả định chấp nhận; rủi ro; câu hỏi còn mở và phần bị chặn:
+- Acceptance theo Given/When/Then; lỗi/quyền/retry liên quan:
+- Tracer bullet và các vertical slice dự kiến; dependency:
+- Human QA / điều kiện phát hành:
+
 ## Yêu cầu và đối chiếu code
 
 Mỗi ID là duy nhất trong feature và giữ ổn định khi refactor. Liên kết file dùng đường dẫn tương đối; symbol/route ghi chính xác. Hàm hỗ trợ dùng chung tham chiếu tài liệu chuẩn, không nhân bản mô tả.

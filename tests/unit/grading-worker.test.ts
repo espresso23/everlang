@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import type { Job } from "bullmq";
+import { createOrmMock, type OrmCommand } from "../helpers/orm-mock";
 
 const state = vi.hoisted(() => ({
   processor: undefined as unknown as (job: Job) => Promise<void>,
@@ -8,7 +9,7 @@ const state = vi.hoisted(() => ({
   query: vi.fn(), grade: vi.fn(), rateLimit: vi.fn(), add: vi.fn(), getJob: vi.fn(), logError: vi.fn(),
 }));
 vi.mock("ioredis", () => ({ default: class { on() { return this; } quit = vi.fn(); } }));
-vi.mock("@everlang/backend/sql", () => ({ query: state.query, pool: { end: vi.fn() } }));
+vi.mock("@everlang/backend/orm", () => ({ ormDataSource: createOrmMock(state.query) }));
 vi.mock("@everlang/backend/redis", () => ({ redis: { quit: vi.fn() }, getGradingQueue: () => ({ add: state.add, getJob: state.getJob, rateLimit: state.rateLimit, close: vi.fn() }) }));
 vi.mock("@everlang/backend/logger", async original => ({...(await original<object>()),log:vi.fn(),logError:state.logError}));
 vi.mock("@everlang/backend/process-errors", async original => ({ ...(await original<object>()), installProcessErrorHandlers: vi.fn() }));
@@ -36,7 +37,7 @@ it("429 cools the shared queue and preserves the original error for bounded retr
   state.grade.mockRejectedValue(error);
   await expect(state.processor({ name: "translation", data: { submissionId: "s1" }, id: "s1" } as Job)).rejects.toBe(error);
   expect(state.rateLimit).toHaveBeenCalledWith(120000);
-  expect(state.query.mock.calls.some(([sql]) => sql.includes("status='completed'"))).toBe(false);
+  expect(state.query.mock.calls.some(([command]) => command.changes.status?.() === "'completed'")).toBe(false);
 });
 
 it("an async failed listener SQL failure is contained by the existing structured logger", async () => {
@@ -57,9 +58,9 @@ it("startup outage does not crash and recovery can retry on the next tick", asyn
 });
 
 it("reconciles terminal Redis failures after an SQL outage without re-enqueuing AI", async () => {
-  state.query.mockImplementation(async (sql: string) => sql.startsWith("SELECT id FROM submissions") ? [{ id: "s1" }] : []);
+  state.query.mockImplementation(async (command: OrmCommand) => command.operation === "select" && command.entity === "submissions" ? [{ id: "s1" }] : []);
   state.getJob.mockResolvedValue({ getState: async () => "failed" });
   await load();
-  expect(state.query).toHaveBeenCalledWith(expect.stringContaining("status='failed'"), expect.arrayContaining(["s1"]));
+  expect(state.query.mock.calls.some(([command]) => command.operation === "update" && command.entity === "submissions" && command.parameters.p1 === "s1")).toBe(true);
   expect(state.add).not.toHaveBeenCalled();
 });

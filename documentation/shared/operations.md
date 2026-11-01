@@ -39,3 +39,9 @@ Trước007, deploy bridge targetless /api/vocabulary.POST (`everlang-vocabulary
 6. Rollback offline: stop runtimes mới, restore PG/Mongo/Redis/media vào databases/volumes mới, gắn image checkpoint cũ và env snapshot riêng tư. Không chạy image Better Auth trên schema008, không chỉ đổi image rồi bỏ qua schema. Không down/drop live tables/volumes.
 
 Web image chỉ standalone assets, không server secrets; api/worker có env server, chưa public port. Structured JSON log rotation max10MB/5files trên API/web và worker. API SIGTERM15s, workers150s. `/api/health/ready` kiểm PG/Mongo/Redis. Không xem `/api/docs` có schema đầy đủ cho mọi body: native services dùng Zod, route inventory và canonical feature docs là payload contracts hiện tại.
+
+## ORM và Redis — 2026-11-01
+
+[Availability contract](architecture.md#orm-và-redis--2026-11-01): PG/Mongo readiness bắt buộc; Redis down giữ HTTP200 degraded, queue503. Theo dõi queueAvailable/queue.enqueue.failed và khôi phục Redis để gửi lại tác vụ, không reset database hoặc mất tiến độ.
+
+Migration: `npm run db:migrate` gọi TypeORM MigrationExecutor, khóa advisory814921; adopt prefix001–008 vào orm_migrations và thêm rate_limit_buckets bằng migration1730000000008. Fresh install chạy đủ9 migration; không cần tạo schema_migrations (bảng lịch sử cũ được giữ trên DB nâng cấp). History lạ/hở/DB populated thiếu history bị chặn. Re-run không ghi lại migration. Backup trước thay đổi, rollback dùng snapshot kiểm chứng hoặc forward migration; down phá dữ liệu bị cấm. pg chỉ là driver nội bộ TypeORM. API/worker đóng DataSource qua Nest TypeOrmModule, CLI đóng trong finally.

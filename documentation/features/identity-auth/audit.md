@@ -1,5 +1,9 @@
 ## 2026-11-01 — Native Nest migration regression audit
 
+## 2026-11-01 — ORM regression
+
+Branch refactor/typeorm-data-access. JWT/CSRF/RBAC/rotation/replay/logout/password reset/two tabs PASS qua native JWT và extended beta. Global78unit/29E2E final candidate PASS. [Canonical ORM audit](../postgresql-orm-migration/audit.md) ghi commands, preservation/locks/error paths và external limits; [integration audit](../../audits/postgresql-orm-migration.md). Không đánh feature product Done hoặc giả xác minh provider live.
+
 Branch `feature/nestjs-jwt-migration`, baseline `0b34a97`; review riêng sau implementation.
 
 - PASS: JWT/CSRF/RBAC/rotation/replay/logout/reset, expiry/issuer/audience/algorithm, 2 tabs; Google callback rejection.
