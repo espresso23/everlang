@@ -82,3 +82,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `audit.md` phải ghi ngày, phạm vi/phiên bản hoặc branch, yêu cầu đã kiểm, kết quả `PASS`/`FAIL`/`NOT VERIFIED`/`N/A`, lệnh hoặc bước tái hiện, bằng chứng, phát hiện và việc còn lại. Nhóm audit phải chỉ rõ các kết nối giữa feature đã/ chưa được xác minh.
 - Không đánh dấu feature hoàn tất khi còn yêu cầu bắt buộc lỗi/chưa kiểm chứng, hợp đồng không khớp hoặc liên kết docs–code bị thiếu. Nếu thiếu credential/dịch vụ ngoài, ghi `blocked`/`NOT VERIFIED` đúng phạm vi và nêu điều kiện để kiểm tra tiếp; không giả kết quả thành công.
 - Trước bàn giao, kiểm tra liên kết tương đối, file/symbol được tham chiếu, UI/contract và trạng thái trong mục lục. Cập nhật `HANDOFF.md` ở root bằng tóm tắt và đường dẫn tới tài liệu/audit trong `/documentation`, đồng thời giữ lịch sử cũ.
+
+## Chỉ định tracking GitHub — 2026-11-01
+
+- Mỗi đầu việc được giao phải có GitHub issue trước thực thi, đối chiếu marker/tracking để không tạo trùng. Ưu tiên plugin GitHub; fallback CLI khi thiếu quyền/capability.
+- Owner cho phép mark Done/đóng completed khi acceptance đã đạt và review có bằng chứng; đồng bộ work-items.json, plan views, audit/HANDOFF rồi báo cáo DONE–DOING–NEXT. Không coi tạo issue hoặc test xanh là hoàn tất khi còn human content QA/production gate. Xem documentation/planning/GITHUB_ISSUES.md.

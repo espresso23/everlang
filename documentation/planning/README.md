@@ -59,3 +59,7 @@ Sprint1 nên bắt đầu bằng PB-001-T01 (spec ngữ pháp) và PB-004-T01 (d
 [planning.mjs](../../scripts/planning.mjs) kiểm reference, cycle, states, evidence, dependency và drift; không kiểm năng lực giáo viên, không tự gọi AI, không sửa app/DB, không liên kết Jira/Linear và không tạo thông báo lịch tự động. CSV là view chỉ để đọc/lọc; đổi JSON rồi sinh lại để tránh nhiều nguồn trạng thái.
 
 Căn cứ: [hiện trạng](../project-status.md), [audit hiện có](../audits/baseline-integration.md), [ý tưởng](../../project-idea/Project_IDEA.md). Nghiên cứu tham khảo đã dùng cho hướng product: [Hàn Quốc Lý Thú](https://hanquoclythu.com/2023/02/ngu-phap-tieng-han-topik-ii/), [Tiếng Hàn Thú Vị](https://www.tienghanthuvi.edu.vn/2026/08/tram-ngu-phap-tieng-han.html), [Online Sejong](https://www.iksi.or.kr/lms/main/curriculum.do), [LingQ](https://www.lingq.com/en/learn-korean-online/). Đây là đầu vào lập kế hoạch, không là yêu cầu sao chép học liệu hoặc chứng nhận chất lượng.
+
+## GitHub tracking bắt buộc
+
+[Issue đã đăng và mapping](GITHUB_ISSUES.md): 8 issue cho 20 task trong ưu tiên hiện tại. Quyền đóng issue khi hoàn tất đã được owner cấp; điều kiện review/evidence theo [workflow](../workflow/README.md). Không đổi sprint Proposed hoặc coi roadmap còn lại đã được giao.

@@ -4,6 +4,15 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-01 — GitHub issue bắt buộc, publication và task mapping
+
+- Owner yêu cầu các đầu việc có GitHub issue; hoàn tất thì mark Done, review và báo cáo. Lưu chỉ định trong AGENTS/workflow; review trước close completed, không giả content QA/production approval.
+- Branch docs/github-delivery-issues từ main da15d5f sạch. Dùng everlang-session/prd-to-issue, đọc canonical contracts và task tracking. Plugin xác nhận repo espresso23/everlang nhưng create 403 Resource not accessible by integration; dùng gh đã authenticated tạo tuần tự, plugin fetch xác minh 8 issue thật.
+- Đã đăng [#1–#8](https://github.com/espresso23/everlang/issues), map 20 task hiện có trong work-items.json/githubIssue và [index](documentation/planning/GITHUB_ISSUES.md). Scope: vòng học khép kín, catalogue content, SMTP/OAuth và PostgreSQL acceptance. Không tuyên bố toàn bộ roadmap đã đăng hoặc triển khai.
+- Kiểm trùng cả open/closed, stable markers trước từng create; persist URL ngay sau create. Chuỗi #1→#2→#3→#4→#5; #6/#7 external inputs; #8 post-merge QA/release. Tất cả mở vì còn AC; không đánh Done sản phẩm từ publication. Giữ lịch sử và 41PBI/89tasks/6Proposed.
+- [Audit](documentation/audits/github-issue-publication-2026-11-01.md): kiểm remote/local mapping, dependency, plan/docs/diff gates. Docs/tracking-only, không chạy lại runtime suites/provider calls, không triển khai hay push/merge thay đổi docs.
+
+
 ### 2026-11-01 — Sửa dictionary500, retry AI và dọn Docker; owner chỉ định merge/push
 
 - User log6b5500df-bc0b-4898-998a-5f8fa56ac4bf là GET/api/dictionary18:53:25+07:00: newURL(request.url) không nhận URL tương đối Express. Dùng queryParams/originalUrl; red InvalidURL → green200/400 và authenticated native lookup PASS.

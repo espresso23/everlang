@@ -1307,7 +1307,8 @@
         "documentation/audits/self-study-library-integration.md"
       ],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/1"
     },
     {
       "id": "PB-002-T01",
@@ -1322,7 +1323,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/2"
     },
     {
       "id": "PB-002-T02",
@@ -1337,7 +1339,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/2"
     },
     {
       "id": "PB-002-T03",
@@ -1352,7 +1355,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/2"
     },
     {
       "id": "PB-003-T01",
@@ -1368,7 +1372,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/3"
     },
     {
       "id": "PB-003-T02",
@@ -1383,7 +1388,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/3"
     },
     {
       "id": "PB-003-T03",
@@ -1398,7 +1404,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/3"
     },
     {
       "id": "PB-004-T01",
@@ -1547,7 +1554,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/4"
     },
     {
       "id": "PB-007-T02",
@@ -1562,7 +1570,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/4"
     },
     {
       "id": "PB-007-T03",
@@ -1577,7 +1586,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/4"
     },
     {
       "id": "PB-008-T01",
@@ -1593,7 +1603,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/5"
     },
     {
       "id": "PB-008-T02",
@@ -1608,7 +1619,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/5"
     },
     {
       "id": "PB-008-T03",
@@ -1623,7 +1635,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/5"
     },
     {
       "id": "PB-009-T01",
@@ -2228,7 +2241,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/7"
     },
     {
       "id": "PB-022-T02",
@@ -2243,7 +2257,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/7"
     },
     {
       "id": "PB-022-T03",
@@ -2258,7 +2273,8 @@
       "blocker": "",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/7"
     },
     {
       "id": "PB-023-T01",
@@ -2524,7 +2540,8 @@
         "documentation/features/vocabulary-catalog/README.md"
       ],
       "verification": "Not run",
-      "updated": "2026-10-31"
+      "updated": "2026-10-31",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/6"
     },
     {
       "id": "PB-039-T01",
@@ -2609,7 +2626,8 @@
         "documentation/audits/postgresql-only-integration.md"
       ],
       "verification": "Pass",
-      "updated": "2026-11-01"
+      "updated": "2026-11-01",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/8"
     },
     {
       "id": "PB-041-T02",
@@ -2624,7 +2642,8 @@
       "blocker": "Owner accepts T01, then verifies the app using existing content/account; code and technical evidence already delivered in T01.",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-11-01"
+      "updated": "2026-11-01",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/8"
     },
     {
       "id": "PB-041-T03",
@@ -2639,7 +2658,8 @@
       "blocker": "Owner explicitly requested main merge/push on2026-11-01 before remaining human QA. This task now tracks post-merge production release approval, still waiting QA; no automatic deploy/provider enablement.",
       "evidence": [],
       "verification": "Not run",
-      "updated": "2026-11-01"
+      "updated": "2026-11-01",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/8"
     }
   ],
   "team": {

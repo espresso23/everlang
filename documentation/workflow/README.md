@@ -70,3 +70,9 @@ UI/API gọi một interface nghiệp vụ rõ thay vì tự lắp transaction, 
 Nguồn versioned: `.agents/skills/*/SKILL.md`. Bản cài cá nhân tại `C:/Users/TAN/.codex/skills/` có cùng nội dung tại thời điểm bàn giao; khi đổi skill, cập nhật và kiểm tra lại bản cài. Máy mới dùng nguồn repo; nếu chưa discover skill, yêu cầu agent đọc đường dẫn SKILL.md trong bảng trên. Không phụ thuộc chat cũ để bắt đầu.
 
 Không cài runner, tạo GitHub issue thật, push, merge hay deploy trong lượt thiết lập workflow này. Quy trình đã được review cấu trúc; việc vận hành end-to-end trên một issue sản phẩm thật vẫn cần kiểm chứng riêng.
+
+## Chỉ định owner 2026-11-01 — GitHub issue bắt buộc
+
+Mỗi đầu việc được giao thực thi phải có GitHub issue; dùng plugin GitHub trước, CLI khi connector thiếu quyền/capability. Đối chiếu marker ở cả issue mở và đóng trước khi tạo. [Đợt đầu và task mapping](../planning/GITHUB_ISSUES.md).
+
+Owner đã yêu cầu: làm xong thì mark Done, review và báo cáo. Thực hiện review riêng trước khi đóng: AC đạt, evidence và audit có thật → cập nhật task Done/Pass → plan:sync/check → đóng GitHub completed → báo cáo DONE–DOING–NEXT. Chỉ định này cấp quyền đóng issue đã đủ điều kiện, thay cho giới hạn không tự đóng mặc định ở trên; không cấp quyền giả human content QA, tự duyệt production hoặc coi test xanh là toàn bộ acceptance. Nếu còn blocker, giữ mở và ghi rõ. Quyền tạo issue không tự chọn toàn bộ backlog để chạy.
