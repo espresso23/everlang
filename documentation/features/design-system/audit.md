@@ -97,3 +97,14 @@ Owner yêu cầu layout quản trị riêng. Giữ paper/ink/Cobalt/Inter và ed
 ## 2026-11-01 — Editorial workbench
 
 Scope3admin tables/preview. Owner authorized layout improvement. Internal table scroll, bounded controls at320/390/1440, native dialog focus/escape, answer reveal text, semantic table/labels; actual native catalog keyboard/text-spacing and learner regression passed. Evidence at content-authoring/assets/editorial-*.png and vocabulary-catalog/assets/admin-*.png. Full screenreader/physicaldevices NOT VERIFIED; no blanket WCAG claim.
+
+
+## 2026-11-02 — DS-08 component xác nhận
+
+PASS: 5 scoped mocked-browser tests (2 confirmation + 3 editorial); cancel/focus/keyboard/async selection/batch partial conflict/import và mobile. Lint/typecheck/build PASS. TDD red native dialog rồi green; phát hiện Tab thoát dialog đã sửa. Live backend/provider và full app navigation NOT VERIFIED trong scope này.
+
+[Hợp đồng dùng chung](../../shared/confirmation-ui.md) · [Audit tích hợp và giới hạn](../../audits/confirmation-ui-2026-11-02.md).
+
+Final audit: `useConfirmation` gắn AbortController theo vòng đời caller; caller unmount (kể cả browser Back) hủy pending decision và đóng dialog. Test regression tại confirmation.spec.ts; không bảo vệ mọi navigation khi chưa có dialog mở.
+
+Final audit #14: PASS scoped;17mock UI tests trên dev và production standalone,88unit tests (1worker), lint/typecheck/build/docs/plan PASS. Đã sửa lỗi pending dialog khi caller unmount/browser Back bằng AbortController. [Bằng chứng, lệnh và giới hạn](../../audits/confirmation-ui-2026-11-02.md#final-audit-và-quyền-merge-của-owner). Owner ủy quyền self-test/audit rồi merge nếu đạt; không suy thành QA content/live provider.

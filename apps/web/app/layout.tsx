@@ -4,6 +4,7 @@ import "./globals.css";
 import "./editorial.css";
 import { AuthProvider } from "@/lib/auth";
 import { Shell } from "@/components/shell";
+import { ConfirmationProvider } from "@/components/confirmation";
 
 export const metadata: Metadata = {
   title: "EverLang | Tự học tiếng Hàn mỗi ngày",
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="vi">
       <body>
-        <AuthProvider><Shell>{children}</Shell></AuthProvider>
+        <AuthProvider><ConfirmationProvider><Shell>{children}</Shell></ConfirmationProvider></AuthProvider>
       </body>
     </html>
   );

@@ -25,3 +25,10 @@ PUT /api/profile nhận đúng 5 trường REQ-02 và trả {saved:true}; 400 va
 
 [System design](system-design.md) · [Functions](functions.md) · [UI](ui.md) · [Audit](audit.md).
 Không hỗ trợ upload ảnh riêng hoặc đổi email. Dùng ảnh Google/session nếu có. SMTP production là điều kiện để người dùng thật nhận reset/verify; Mailpit chỉ inbox phát triển.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[LegacyDraftImport](../../../apps/web/app/profile/page.tsx). Nhập local drafts có dialog Nhập nháp/Hủy; khóa nút khi đang nhập và mở lại trong finally, giữ nguyên không ghi đè nháp cloud.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

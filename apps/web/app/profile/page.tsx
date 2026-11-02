@@ -1,4 +1,5 @@
 "use client";
+import { useConfirmation } from "@/components/confirmation";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
@@ -510,6 +511,8 @@ function AccountSecurity({ data }: { data: ProfileResponse }) {
   );
 }
 function LegacyDraftImport({ onMessage }: { onMessage: (s: string) => void }) {
+  const confirm = useConfirmation();
+  const [importing, setImporting] = useState(false);
   return (
     <div className="profile-import-content">
       <p className="muted">
@@ -518,13 +521,14 @@ function LegacyDraftImport({ onMessage }: { onMessage: (s: string) => void }) {
       </p>
       <button
         className="soft-button"
+        disabled={importing}
         onClick={async () => {
+          if (importing) return;
           if (
-            !window.confirm(
-              "Nhập nháp cũ trên thiết bị này vào tài khoản đang đăng nhập?",
-            )
+            !(await confirm({ message: "Nhập nháp cũ trên thiết bị này vào tài khoản đang đăng nhập?", confirmLabel: "Nhập nháp" }))
           )
             return;
+          setImporting(true);
           try {
             const id = localStorage.getItem("kr-practice-user-id");
             const old = JSON.parse(
@@ -548,6 +552,8 @@ function LegacyDraftImport({ onMessage }: { onMessage: (s: string) => void }) {
             );
           } catch {
             onMessage("Không đọc được nháp cũ.");
+          } finally {
+            setImporting(false);
           }
         }}
       >

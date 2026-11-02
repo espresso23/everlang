@@ -41,3 +41,10 @@ Canonical requirements EW-01–05: documentation/features/content-authoring/READ
 - [editorial contracts](../../../packages/contracts/src/editorial.ts): bounded25/50/100 pages, offset0..1M, literal search, status/sort whitelist and sentence import schema. Three admin services map queryParams into content-store filters/count before page; sort ties key/revision orid.
 - Sentence importKey SHA256 -> user-scoped deterministic24hexID; same payload returns duplicate without overwrite, changed payload409; races reconcile unique conflict. Knowledge/catalog repeated keys409, never overwrite. No schema migration. Reviewed sentence edit resets draft and requires review again.
 - Metadata export/CSV mapping/whole-dataset select-all and automatic review are outside this increment. Existing list shows explicit versions, not fabricated grouped logical totals. New modules retain existing topic/level taxonomies.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[Admin](../../../apps/web/app/admin/page.tsx), [KnowledgeAdmin](../../../apps/web/app/admin/knowledge/page.tsx) và [EditorialDesk](../../../apps/web/components/editorial-desk.tsx): `choose`, `open`, `importDrafts`, `batch`. Đổi editor, duyệt knowledge, import và batch dùng dialog; onSelect cho phép Promise, active item chỉ đổi sau chấp thuận. Bỏ native beforeunload trong knowledge editor.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

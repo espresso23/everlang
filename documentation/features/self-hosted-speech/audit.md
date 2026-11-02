@@ -40,3 +40,12 @@ Final deployed disabled-mode check: main localhost3000 updated, E2E6.6s (suite9.
 ## 2026-10-31 — Kho hệ thống và xử lý exception worker
 
 Branch `bugfix/sample-audio-player`, HEAD13d432b + working changes. PASS theo phạm vi ghi nhận:70unit, Redis cooldown/PG idle reconnect/fatal child probes,2real library E2E34.4s và UI scoped. Xem [audit tích hợp](../../audits/system-library-worker-errors.md) cho yêu cầu/code/steps/evidence/cleanup và final build/deploy. NOT VERIFIED với live provider recovery, speech hardware, chất lượng nội dung/điểm phát âm và các gate legacy ngoài phạm vi. Không coi toàn feature Done.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[SpeechSession](../../../apps/web/app/speech/page.tsx): `remove`. Xóa audio/transcript có dialog Xóa bản ghi/Hủy; chỉ true mới tăng generation và gửi DELETE; busy/error/ownership không đổi.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md). Static review PASS cho caller; test UI mock/giới hạn thực tế ghi tại audit tích hợp, không suy thành kiểm tra backend/provider hoặc nghiệm thu toàn feature.
+
+Final audit #14: PASS scoped;17mock UI tests trên dev và production standalone,88unit tests (1worker), lint/typecheck/build/docs/plan PASS. Đã sửa lỗi pending dialog khi caller unmount/browser Back bằng AbortController. [Bằng chứng, lệnh và giới hạn](../../audits/confirmation-ui-2026-11-02.md#final-audit-và-quyền-merge-của-owner). Owner ủy quyền self-test/audit rồi merge nếu đạt; không suy thành QA content/live provider.

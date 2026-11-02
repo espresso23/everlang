@@ -21,3 +21,12 @@ Palette nhẹ: bỏ black fill ở title/date/Beta/completed-task/auth art note;
 
 ## Mobile text spacing — 2026-10-31
 Wordmark dùng cỡ chữ responsive 20–22px trong breakpoint760px hiện có để header không tràn ở320px khi tăng letter/word spacing. Giữ logo e, Beta, nút tài khoản, thứ tự, padding/gap và khung bố cục. Không che overflow để giấu nội dung. Bằng chứng tại audit vocabulary-catalog.
+
+
+## 2026-11-02 — DS-08 component xác nhận
+
+Dialog surface/ink/Cobalt có message, Hủy và nút hành động cụ thể; focus đầu vào Hủy, Tab vòng kín, Escape hủy và trả focus. Responsive 1440/390/320; không thay wireframe trang. [320px](assets/confirmation-320.png), [390px](assets/confirmation-390.png), [1440px](assets/confirmation-1440.png).
+
+[Hợp đồng dùng chung](../../shared/confirmation-ui.md) · [Audit tích hợp và giới hạn](../../audits/confirmation-ui-2026-11-02.md).
+
+Final audit: `useConfirmation` gắn AbortController theo vòng đời caller; caller unmount (kể cả browser Back) hủy pending decision và đóng dialog. Test regression tại confirmation.spec.ts; không bảo vệ mọi navigation khi chưa có dialog mở.

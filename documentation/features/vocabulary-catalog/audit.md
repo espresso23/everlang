@@ -45,3 +45,12 @@ PASS scoped local regression on refactor/postgresql-only: former Mongo persisten
 ## 2026-11-01 — Editorial workbench EW-01–05
 
 Branch feature/editorial-content-workbench, GitHub #11/PB-043-T01. Separate review against current PRD; [integration audit](../../audits/editorial-workbench-2026-11-01.md) records nativePG/API and browser scopes, PASS/NOT VERIFIED and evidence. Draft/private state/learner answer secrecy/CAS remain; no language quality approval or production go-no-go implied.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[WordSetsAdmin](../../../apps/web/app/admin/word-sets/page.tsx): `choose`, back link, chuyển sense/set; EditorialDesk shared. Đổi loại/chọn bài/rời editor chờ dialog nếu dirty; hủy giữ form và loại đang chọn. Bỏ native beforeunload; chuyển trang nội bộ đang có guard tiếp tục được bảo vệ.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md). Static review PASS cho caller; test UI mock/giới hạn thực tế ghi tại audit tích hợp, không suy thành kiểm tra backend/provider hoặc nghiệm thu toàn feature.
+
+Final audit #14: PASS scoped;17mock UI tests trên dev và production standalone,88unit tests (1worker), lint/typecheck/build/docs/plan PASS. Đã sửa lỗi pending dialog khi caller unmount/browser Back bằng AbortController. [Bằng chứng, lệnh và giới hạn](../../audits/confirmation-ui-2026-11-02.md#final-audit-và-quyền-merge-của-owner). Owner ủy quyền self-test/audit rồi merge nếu đạt; không suy thành QA content/live provider.

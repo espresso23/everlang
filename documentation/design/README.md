@@ -52,6 +52,12 @@ Một hành động học chính mỗi khối; feedback gần hành động, hi�
 
 ## Khả năng tiếp cận và kiểm tra
 
+### Xác nhận thao tác — chỉ định owner 2026-11-02
+
+Mọi thao tác xác nhận phải dùng component do dự án xây dựng, ưu tiên component dùng chung theo Editorial Design. Không dùng `window.confirm`, `confirm` hoặc hộp thoại trình duyệt tương tự (`window.alert`, `window.prompt` và các dạng gọi tương đương) để thay thế giao diện xác nhận.
+
+Component nêu rõ thao tác và hậu quả, có nút xác nhận với nhãn cụ thể và nút hủy. Dialog có accessible name, quản lý focus khi mở/đóng, giữ focus trong modal và hỗ trợ bàn phím; hủy không thực thi thao tác. Với thao tác bất đồng bộ, hiển thị trạng thái đang xử lý/lỗi và ngăn gửi lặp. Đây là quy tắc cho triển khai và review; chưa khẳng định các luồng hiện hữu đã được rà soát hoặc chuyển đổi.
+
 Mục tiêu thiết kế: chữ thường ≥4.5:1, chữ lớn ≥3:1; focus/biên control quan trọng ≥3:1. Tôn trọng text spacing do người dùng đặt và zoom200%; không clip dấu tiếng Việt. Vùng chạm hiện có giữ nguyên; tính năng mới ưu tiên44px, tối thiểu24px hoặc khoảng cách hợp lệ. Không tuyên bố toàn ứng dụng đạt WCAG chỉ vì token đạt.
 
 Nguồn chuẩn: [W3C contrast](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), [text spacing](https://www.w3.org/TR/WCAG22/#text-spacing), [target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html), [Fontsource Inter](https://fontsource.org/fonts/inter/use). Các lựa chọn editorial là quyết định thiết kế của EverLang, không phải tiêu chuẩn bắt buộc của mọi learning platform.

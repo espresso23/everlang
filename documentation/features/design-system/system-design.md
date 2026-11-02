@@ -26,3 +26,12 @@ Regression guard lưu computed display/grid/flex/gap/padding/max-width/width c�
 Light surface update: editorial.css override đủ .notebook h2/h3/eyebrow/p/error-note del/strong/p/a và empty-note để loại white-on-white khi bỏ inverse. Title, Beta/date, completed task, auth art note, layer artwork dùng sáng/tint. CSS cascade globals→editorial giữ nguyên; không đổi API/component signatures. Test editorial-design.spec.ts thêm empty/filled regression và chuyển focus từ trắng sang Cobalt.
 
 Mobile wordmark: editorial.css chỉ override font-size bằng clamp trong media760px hiện có; không thêm breakpoint hoặc đổi layout shell. Kiểm text-spacing thật tại320px do vocabulary-catalog UI audit phát hiện.
+
+
+## 2026-11-02 — DS-08 component xác nhận
+
+RootLayout gắn ConfirmationProvider ngoài Shell; context sở hữu duy nhất một pending decision, dialog lifecycle và focus. Caller giữ API/error/busy và chờ boolean; không thay auth/API/schema/worker.
+
+[Hợp đồng dùng chung](../../shared/confirmation-ui.md) · [Audit tích hợp và giới hạn](../../audits/confirmation-ui-2026-11-02.md).
+
+Final audit: `useConfirmation` gắn AbortController theo vòng đời caller; caller unmount (kể cả browser Back) hủy pending decision và đóng dialog. Test regression tại confirmation.spec.ts; không bảo vệ mọi navigation khi chưa có dialog mở.

@@ -49,3 +49,10 @@ Owner chọn tự build EverLang từ research, thêm preview student trước p
 - EW-05: realPG >200fixtures/filter/page boundary/ownership/CAS, browser preview/cancel/publish/filter/bulk partial errors/mobile/keyboard. Review riêng rồi merge/push theo owner; không chứng nhận language quality/Google live chỉ từ fixtures.
 
 Non-goals: taxonomy/schema mới, CMSintegration, users/analytics, đổiFSRS/media/provider. Publication source/history invariant giữ nguyên. Database migration N/A.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[Admin](../../../apps/web/app/admin/page.tsx), [KnowledgeAdmin](../../../apps/web/app/admin/knowledge/page.tsx) và [EditorialDesk](../../../apps/web/components/editorial-desk.tsx): `choose`, `open`, `importDrafts`, `batch`. Đổi editor, duyệt knowledge, import và batch dùng dialog; onSelect cho phép Promise, active item chỉ đổi sau chấp thuận. Bỏ native beforeunload trong knowledge editor.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

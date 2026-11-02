@@ -13,3 +13,10 @@ Audit correction: khi chờ quyền microphone, khóa thao tác mở mic/gửi/i
 ## 2026-10-31 — Worker boundary dùng chung
 
 `apps/worker/src/speech.processor.ts` dùng `installProcessErrorHandlers`, guarded startup/timer recovery, structured worker error và shutdown có catch/deadline15s. Không đổi UI/consent/provider/ASR semantics. [Contract](../../shared/error-handling.md), [audit](../../audits/system-library-worker-errors.md).
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[SpeechSession](../../../apps/web/app/speech/page.tsx): `remove`. Xóa audio/transcript có dialog Xóa bản ghi/Hủy; chỉ true mới tăng generation và gửi DELETE; busy/error/ownership không đổi.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

@@ -1,4 +1,5 @@
 "use client";
+import { useConfirmation } from "@/components/confirmation";
 import { EditorialDesk } from "@/components/editorial-desk";
 import { StudentPreview, type EditorialItem } from "@/components/editorial-preview";
 import { useEffect, useState } from "react";
@@ -33,6 +34,7 @@ const blank: KnowledgeContent = {
 };
 
 export default function KnowledgeAdmin() {
+  const confirm = useConfirmation();
   const [preview, setPreview] = useState<EditorialItem | null>(null);
   const [items, setItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState<Item | null>(null);
@@ -58,20 +60,13 @@ export default function KnowledgeAdmin() {
       live = false;
     };
   }, []);
-  useEffect(() => {
-    const guard = (e: BeforeUnloadEvent) => {
-      if (dirty) e.preventDefault();
-    };
-    window.addEventListener("beforeunload", guard);
-    return () => window.removeEventListener("beforeunload", guard);
-  }, [dirty]);
   const editable = !selected || selected.status === "draft";
   function change(patch: Partial<KnowledgeContent>) {
     setContent((c) => ({ ...c, ...patch }));
     setDirty(true);
   }
-  function choose(item: Item | null) {
-    if (dirty && !window.confirm("Bỏ thay đổi chưa lưu trong editor?")) return false;
+  async function choose(item: Item | null) {
+    if (dirty && !(await confirm({ message: "Bỏ thay đổi chưa lưu trong editor?", confirmLabel: "Bỏ thay đổi" }))) return false;
     setSelected(item);
     setContent(item ? structuredClone(item.content) : structuredClone(blank));
     setKey(item?.key || "");
@@ -582,11 +577,9 @@ export default function KnowledgeAdmin() {
                   className="soft-button"
                   type="button"
                   disabled={busy || dirty}
-                  onClick={() => {
+                  onClick={async () => {
                     if (
-                      window.confirm(
-                        "Xác nhận đã kiểm nội dung, đáp án, nguồn và quyền sử dụng?",
-                      )
+                      (await confirm({ message: "Xác nhận đã kiểm nội dung, đáp án, nguồn và quyền sử dụng?", confirmLabel: "Xác nhận đã duyệt" }))
                     )
                       void action("review");
                   }}

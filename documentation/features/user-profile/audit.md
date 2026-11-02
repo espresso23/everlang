@@ -47,3 +47,12 @@ Không migration. AccountSecurity tách local status/busy; LegacyDraftImport gi�
 [Audit tích hợp và giới hạn](../../audits/profile-auth-integration.md). [Desktop](assets/profile-desktop.png), [mobile](assets/profile-mobile.png) dùng session Google mô phỏng và cố ý lỗi ảnh; [email QA thật](assets/screen-learner-desktop.png) kiểm save/DB/session.
 
 Google login thật được chủ tài khoản xác nhận và DB kiểm provider/image/active session sau sửa cấu hình. Không dùng ảnh cá nhân thật làm evidence. Chưa kiểm SMTP production hoặc thiết bị thật thứ hai; không có upload avatar/đổi email, không migration mới. Dữ liệu QA đã dọn theo đúng hai địa chỉ fixture.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[LegacyDraftImport](../../../apps/web/app/profile/page.tsx). Nhập local drafts có dialog Nhập nháp/Hủy; khóa nút khi đang nhập và mở lại trong finally, giữ nguyên không ghi đè nháp cloud.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md). Static review PASS cho caller; test UI mock/giới hạn thực tế ghi tại audit tích hợp, không suy thành kiểm tra backend/provider hoặc nghiệm thu toàn feature.
+
+Final audit #14: PASS scoped;17mock UI tests trên dev và production standalone,88unit tests (1worker), lint/typecheck/build/docs/plan PASS. Đã sửa lỗi pending dialog khi caller unmount/browser Back bằng AbortController. [Bằng chứng, lệnh và giới hạn](../../audits/confirmation-ui-2026-11-02.md#final-audit-và-quyền-merge-của-owner). Owner ủy quyền self-test/audit rồi merge nếu đạt; không suy thành QA content/live provider.

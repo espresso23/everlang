@@ -334,8 +334,8 @@ test("real knowledge authoring, learner isolation, concurrency, attempts and rea
     await expect(page.getByLabel("Ghi chú riêng")).toHaveValue(
       "Bản local cần giữ",
     );
-    page.once("dialog", (dialog) => dialog.accept());
     await page.getByRole("button", { name: "Tải ghi chú mới nhất" }).click();
+    await page.getByRole("dialog").getByRole("button", { name: "Tải bản mới", exact: true }).click();
     await expect(page.getByLabel("Ghi chú riêng")).toHaveValue(
       "Đổi từ thiết bị khác",
     );

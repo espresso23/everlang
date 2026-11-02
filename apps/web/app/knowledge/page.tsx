@@ -1,4 +1,5 @@
 "use client";
+import { useConfirmation } from "@/components/confirmation";
 import { KnowledgeSections } from "@/components/knowledge-sections";
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
@@ -39,6 +40,8 @@ const emptyState: State = {
 };
 
 function Reader({ entryKey, back }: { entryKey: string; back: string }) {
+  const confirm = useConfirmation();
+  const router = useRouter();
   const [entry, setEntry] = useState<PublicKnowledge | null>(null);
   const [state, setState] = useState<State>(emptyState);
   const [error, setError] = useState("");
@@ -72,13 +75,6 @@ function Reader({ entryKey, back }: { entryKey: string; back: string }) {
       live = false;
     };
   }, [entryKey, retry]);
-  useEffect(() => {
-    const guard = (event: BeforeUnloadEvent) => {
-      if (dirty) event.preventDefault();
-    };
-    window.addEventListener("beforeunload", guard);
-    return () => window.removeEventListener("beforeunload", guard);
-  }, [dirty]);
   if (error)
     return (
       <section className="panel">
@@ -140,9 +136,7 @@ function Reader({ entryKey, back }: { entryKey: string; back: string }) {
   async function reloadState() {
     if (
       dirty &&
-      !window.confirm(
-        "Thay bản bạn đang sửa bằng bản mới từ tài khoản? Hãy sao chép ghi chú nếu cần đối chiếu.",
-      )
+      !(await confirm({ message: "Thay bản bạn đang sửa bằng bản mới từ tài khoản? Hãy sao chép ghi chú nếu cần đối chiếu.", confirmLabel: "Tải bản mới" }))
     )
       return;
     setBusy(true);
@@ -215,9 +209,11 @@ function Reader({ entryKey, back }: { entryKey: string; back: string }) {
     <>
       <Link
         href={back}
-        onClick={(e) => {
-          if (dirty && !window.confirm("Ghi chú chưa lưu. Rời bài?"))
-            e.preventDefault();
+        onClick={async (e) => {
+          if (!dirty) return;
+          e.preventDefault();
+          const href = e.currentTarget.href;
+          if (await confirm({ message: "Ghi chú chưa lưu. Rời bài?", confirmLabel: "Rời bài" })) router.push(href);
         }}
       >
         ← Về thư viện
@@ -422,9 +418,11 @@ function Reader({ entryKey, back }: { entryKey: string; back: string }) {
                 <Link
                   key={related.key}
                   href={`/knowledge?key=${encodeURIComponent(related.key)}`}
-                  onClick={(e) => {
-                    if (dirty && !window.confirm("Ghi chú chưa lưu. Rời bài?"))
-                      e.preventDefault();
+                  onClick={async (e) => {
+                    if (!dirty) return;
+                    e.preventDefault();
+                    const href = e.currentTarget.href;
+                    if (await confirm({ message: "Ghi chú chưa lưu. Rời bài?", confirmLabel: "Rời bài" })) router.push(href);
                   }}
                 >
                   {related.title} →

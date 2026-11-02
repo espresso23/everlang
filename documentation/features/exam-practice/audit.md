@@ -38,3 +38,12 @@ Chưa có kho đề đầy đủ có quyền sử dụng, chưa chia phiên PBT 
 ## PostgreSQL-only re-audit — 2026-11-01
 
 PASS scoped local regression on refactor/postgresql-only: former Mongo persistence now uses the canonical TypeORM content/archive store; existing native API/auth/ownership/admin/learner contracts verified in29candidate E2E and PG import/preservation probes.80unit/2postcutover smoke; runtime works with Mongo stopped. See [canonical audit/evidence](../postgresql-only/audit.md) for exact coverage, startup finding fixed, rate-limit hash caveat and rollback limits. Previous Mongo evidence above is historical; cloud/quality/owner/production limits remain NOT VERIFIED where recorded, not promoted by the DB migration.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[Exams](../../../apps/web/app/exams/page.tsx): submit button → `save(true)`. Nộp bài có dialog Nộp bài/Hủy; chỉ true mới gọi save(true), server deadline/autosave không đổi.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md). Static review PASS cho caller; test UI mock/giới hạn thực tế ghi tại audit tích hợp, không suy thành kiểm tra backend/provider hoặc nghiệm thu toàn feature.
+
+Final audit #14: PASS scoped;17mock UI tests trên dev và production standalone,88unit tests (1worker), lint/typecheck/build/docs/plan PASS. Đã sửa lỗi pending dialog khi caller unmount/browser Back bằng AbortController. [Bằng chứng, lệnh và giới hạn](../../audits/confirmation-ui-2026-11-02.md#final-audit-và-quyền-merge-của-owner). Owner ủy quyền self-test/audit rồi merge nếu đạt; không suy thành QA content/live provider.

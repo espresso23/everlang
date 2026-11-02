@@ -43,3 +43,10 @@ CSS route-scoped profile-, không thay các route khác. Profile layout đổi t
 ## ORM data access — 2026-11-01
 
 PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[LegacyDraftImport](../../../apps/web/app/profile/page.tsx). Nhập local drafts có dialog Nhập nháp/Hủy; khóa nút khi đang nhập và mở lại trong finally, giữ nguyên không ghi đè nháp cloud.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

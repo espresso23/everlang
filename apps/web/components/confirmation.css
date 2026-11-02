@@ -1,0 +1,17 @@
+.confirmation-dialog {
+  width: min(30rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 1.5rem;
+  overflow: auto;
+  border: 1px solid var(--control-line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.confirmation-dialog::backdrop { background: rgb(17 17 17 / 45%); }
+.confirmation-dialog h2 { margin: 0 0 1rem; }
+.confirmation-dialog p { line-height: 1.7; }
+.confirmation-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; margin-top: 1.5rem; }
+.confirmation-actions button { min-height: 44px; }

@@ -24,3 +24,6 @@ Tất cả 8 issue đang mở vì còn acceptance chưa đạt; không tính vi�
 [#9 — Admin workspace](https://github.com/espresso23/everlang/issues/9), PB-042-T01: admin mặc định vào Quản trị, navigation và chuyển Học tập. Increment riêng sau quyết định owner, không đổi scope/sprint của 8 issue trước.
 
 [#11 — Editorial workbench](https://github.com/espresso23/everlang/issues/11), PB-043-T01: server pagination/filter, draft metadata/import dryrun, student preview before publication. Owner explicitly authorized implementation, review, merge/push and new-session continuation; existing human content/provider gates remain.
+
+
+[#14 — Shared confirmation UI](https://github.com/espresso23/everlang/issues/14), PB-044-T01 / DS-08: owner giao ngày 2026-11-02; scope thay native dialogs, keyboard/focus/mobile/cancel và async editor/navigation; [audit](../audits/confirmation-ui-2026-11-02.md). Không gán sprint mới.

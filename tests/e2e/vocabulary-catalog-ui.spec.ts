@@ -92,15 +92,15 @@ test("catalogue editor keyboard/mobile, successful human workflow and dirty navi
       .getByRole("button", { name: "Tạo mục mới", exact: true })
       .click();
     await key.fill("qa-catalog-discard");
-    page.once("dialog", (d) => d.dismiss());
     await page
       .getByRole("link", { name: "← Quản trị học liệu", exact: true })
       .click();
+    await page.getByRole("dialog").getByRole("button", { name: "Hủy", exact: true }).click();
     await expect(key).toHaveValue("qa-catalog-discard");
-    page.once("dialog", (d) => d.accept());
     await page
       .getByRole("link", { name: "← Quản trị học liệu", exact: true })
       .click();
+    await page.getByRole("dialog").getByRole("button", { name: "Rời trang", exact: true }).click();
     await expect(page).toHaveURL(/\/admin$/);
     await context.close();
   } finally {

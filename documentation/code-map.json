@@ -193,7 +193,7 @@
             "AccountSecurity",
             "LegacyDraftImport"
           ],
-          "sha256": "9e439e09855ed0199c12412ac0bfbbc93f832c00b030443398f211918380f633"
+          "sha256": "5f4e15fa2e14c5dbd9f1380326f3cf82fc449f91031e99493f18c31d132e22b2"
         },
         {
           "file": "apps/api/src/domains/profile.service.ts",
@@ -675,7 +675,7 @@
             "Admin",
             "AdvancedTools"
           ],
-          "sha256": "979f2c364fc65c1d283f5a7db637e1657afe62a22d321b7a0e03ebb6cfbf5546"
+          "sha256": "9112720e7aaea3fc4095a45f9b6112892fdf85fba6cd0bab36cb7b162f9c82c4"
         },
         {
           "file": "apps/api/src/domains/admin-content.service.ts",
@@ -769,7 +769,7 @@
           "symbols": [
             "EditorialDesk"
           ],
-          "sha256": "8341f346b30f3ff82e5a6262d35208437eb39be1f8fe8d34eb1fd2c24bd40a3b"
+          "sha256": "68951feafa5551a28db69f0d91a66128637d3fa39823cce1bfc082d21c21ff03"
         },
         {
           "file": "apps/web/components/editorial-preview.tsx",
@@ -795,7 +795,7 @@
         {
           "file": "tests/e2e/editorial-desk.spec.ts",
           "symbols": [],
-          "sha256": "83ca5382bfd37403a55a030b8142bdf5d618551427eba80d7ac976103d85c404"
+          "sha256": "62af06b25e45a8397e592dce8364bb66f35c89ea1a6d8d6c6ab59b04d9062a53"
         },
         {
           "file": "tests/integration/editorial-workbench.ts",
@@ -894,7 +894,7 @@
             "Attempt",
             "Exams"
           ],
-          "sha256": "13d4c62c0820875e1c5ec9f351a8b98c61a9b564872411b4488908bc0c250ba6"
+          "sha256": "204076fdc55ceaaf33ee82dfde23210aa88c8ff213349a74409f26d6cad9eb67"
         },
         {
           "file": "apps/api/src/domains/exams.service.ts",
@@ -949,7 +949,7 @@
             "metadata",
             "RootLayout"
           ],
-          "sha256": "bf4498d6d8817bd44fa602abb684d6870fe91076d921dff93b19dfc2c39e077b"
+          "sha256": "780d594f284184864107cde150741a477dde0ce996052a0a86da04972adede87"
         },
         {
           "file": "apps/web/app/globals.css",
@@ -993,6 +993,24 @@
             "dir"
           ],
           "sha256": "c8ded905dfdf7d0f8422b43f3f3905ee3a67fdf9c3fcf4dd2283c53ed365cf6d"
+        },
+        {
+          "file": "apps/web/components/confirmation.tsx",
+          "symbols": [
+            "ConfirmationProvider",
+            "useConfirmation"
+          ],
+          "sha256": "74ba37d450839d1e090deccc8cef2f883e7348b41e8dc20db3c73db14cad5511"
+        },
+        {
+          "file": "apps/web/components/confirmation.css",
+          "symbols": [],
+          "sha256": "c712f5055b0e8c4f1957cd4e8b3f374f9acc74aa9ac31f21326915d31c2a769d"
+        },
+        {
+          "file": "tests/e2e/confirmation.spec.ts",
+          "symbols": [],
+          "sha256": "6983ccfb866aa9b384c5a5c3f8b8711edb1839fba71b8110e32ebbd79ff16e88"
         }
       ]
     },
@@ -1122,7 +1140,7 @@
           "symbols": [
             "eslintConfig"
           ],
-          "sha256": "506da8fb45c8b36e38bc3d2884ca8492e4c7d038037290eb0eac8be8fecb267c"
+          "sha256": "e8a30074ef8f9b25620deb9e2528d123f82618616a916ff1018c0e424a61a686"
         },
         {
           "file": "Dockerfile",
@@ -1268,7 +1286,7 @@
             "KnowledgeBrowser",
             "KnowledgePage"
           ],
-          "sha256": "49e21d3ab6ca18ed0c3d58ccc38f4190d95e970fe5de02279b1baa2d60d88201"
+          "sha256": "c38754b96ecef81a13287e9dc353f6becfb61cac6dcf6deece4f1d6973c23876"
         },
         {
           "file": "apps/api/src/domains/knowledge.service.ts",
@@ -1313,7 +1331,7 @@
             "blank",
             "KnowledgeAdmin"
           ],
-          "sha256": "4c6a20b34fa6bbf4de373fd0f5078015df2b0755078b5d582cd49e1f1fce0c63"
+          "sha256": "bb20526353c6e6cf3d9e8b35c9a7737357173ff268ec4a16449a6c7f195c7754"
         },
         {
           "file": "migrations/004_knowledge.sql",
@@ -1344,7 +1362,7 @@
         {
           "file": "tests/e2e/knowledge.spec.ts",
           "symbols": [],
-          "sha256": "421b238a8b9d531c11ffc660ed8101849840f55f9883a9ac87307ed2f189fe9c"
+          "sha256": "b25a10a5a1e390b807a08d3f34ae0fcd7af219e41ab842fe36b210ba5f12ca86"
         },
         {
           "file": "apps/web/app/knowledge/knowledge.css",
@@ -1508,7 +1526,7 @@
             "SpeechSession",
             "SpeechPage"
           ],
-          "sha256": "199b2d90f745d124bea596606ef27da064b235c74f204ce0e1c1df3f7599267d"
+          "sha256": "405133efc20bbc77b1dc9d4ce37cc68eb7a11b5ab3e9b1afcabdd256e2ed0fde"
         },
         {
           "file": "apps/web/app/speech/speech.css",
@@ -1724,7 +1742,7 @@
             "Choice",
             "WordSetsAdmin"
           ],
-          "sha256": "bf17dec1e5a3fc26613a6d74eaece7b2be92aa13a7d11f1ed5c51690822920ea"
+          "sha256": "ab920914f5cb9d51695d280e63418c4bf8a9bccb96cc969e2034e63954fd0c57"
         },
         {
           "file": "migrations/007_vocabulary_catalog.sql",
@@ -1754,7 +1772,7 @@
         {
           "file": "tests/e2e/vocabulary-catalog-ui.spec.ts",
           "symbols": [],
-          "sha256": "e53c9328293b5f44d173d89b1aee6054bdfe72086060ef0347f4dd547f9bf4da"
+          "sha256": "a0aacae3e87f6b2034b9bbed4bf16359bd53a0b3546fadfae7b9328ab8da493b"
         },
         {
           "file": "apps/api/src/domains/admin-word-sets.controller.ts",
