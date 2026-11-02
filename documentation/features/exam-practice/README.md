@@ -27,3 +27,10 @@
 ## Giới hạn và việc còn lại
 
 Chưa có kho đề đầy đủ có quyền sử dụng, chưa chia phiên PBT hoàn chỉnh, không quy đổi điểm thành chứng chỉ. Không triển khai TOPIK Speaking/IBT/IELTS/HSK/JLPT.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[Exams](../../../apps/web/app/exams/page.tsx): submit button → `save(true)`. Nộp bài có dialog Nộp bài/Hủy; chỉ true mới gọi save(true), server deadline/autosave không đổi.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

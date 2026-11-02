@@ -1,8 +1,10 @@
 "use client";
+import { useConfirmation } from "@/components/confirmation";
 import { EditorialDesk } from "@/components/editorial-desk";
 import { StudentPreview, type EditorialItem } from "@/components/editorial-preview";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { request } from "@/lib/client";
 import {
   CATALOG_TAXONOMY_VERSION,
@@ -47,6 +49,8 @@ const statusLabels = {
 };
 type Choice = { key: string; revision: number; title: string; meaning: string };
 export default function WordSetsAdmin() {
+  const confirm = useConfirmation();
+  const router = useRouter();
   const [preview, setPreview] = useState<EditorialItem | null>(null);
   const [kind, setKind] = useState<"sense" | "set">("sense");
   const [offset, setOffset] = useState(0);
@@ -81,21 +85,14 @@ export default function WordSetsAdmin() {
       live = false;
     };
   }, [kind, offset, refresh]);
-  useEffect(() => {
-    const guard = (e: BeforeUnloadEvent) => {
-      if (dirty) e.preventDefault();
-    };
-    window.addEventListener("beforeunload", guard);
-    return () => window.removeEventListener("beforeunload", guard);
-  }, [dirty]);
   const editable = !selected || selected.status === "draft";
   function change(next: CatalogContent) {
     setContent(next);
     setDirty(true);
     setReviewConfirmed(false);
   }
-  function choose(item: CatalogRecord | null, nextKind = kind) {
-    if (dirty && !window.confirm("Bỏ thay đổi chưa lưu trong form?"))
+  async function choose(item: CatalogRecord | null, nextKind = kind) {
+    if (dirty && !(await confirm({ message: "Bỏ thay đổi chưa lưu trong form?", confirmLabel: "Bỏ thay đổi" })))
       return false;
     setSelected(item);
     setKey(item?.key || "");
@@ -204,9 +201,11 @@ export default function WordSetsAdmin() {
     <main className="page">
       <Link
         href="/admin"
-        onClick={(e) => {
-          if (dirty && !window.confirm("Bỏ thay đổi chưa lưu để rời trang?"))
-            e.preventDefault();
+        onClick={async (e) => {
+          if (!dirty) return;
+          e.preventDefault();
+          const href = e.currentTarget.href;
+          if (await confirm({ message: "Bỏ thay đổi chưa lưu để rời trang?", confirmLabel: "Rời trang" })) router.push(href);
         }}
       >
         ← Quản trị học liệu
@@ -226,8 +225,8 @@ export default function WordSetsAdmin() {
           className="soft-button"
           disabled={busy}
           aria-pressed={kind === "sense"}
-          onClick={() => {
-            if (choose(null, "sense")) {
+          onClick={async () => {
+            if (await choose(null, "sense")) {
               setKind("sense");
               setOffset(0);
             }
@@ -239,8 +238,8 @@ export default function WordSetsAdmin() {
           className="soft-button"
           disabled={busy}
           aria-pressed={kind === "set"}
-          onClick={() => {
-            if (choose(null, "set")) {
+          onClick={async () => {
+            if (await choose(null, "set")) {
               setKind("set");
               setOffset(0);
             }

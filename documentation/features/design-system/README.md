@@ -17,3 +17,12 @@ Cập nhật theo phản hồi người dùng: bugfix/lighten-editorial-surfaces
 | DS-07 | Frontend tương lai tuân thủ design guide và traceability | [AGENTS](../../../AGENTS.md), [guide](../../design/README.md), [code-map](../../code-map.json) |
 
 Không API/schema/quyền/auth/worker thay đổi. Các feature giữ nguyên hành vi; [system design](system-design.md), [functions](functions.md), [UI](ui.md), [audit](audit.md).
+
+
+## 2026-11-02 — DS-08 component xác nhận
+
+DS-08: Mọi xác nhận dùng component của dự án; Hủy/Escape không thực thi, focus/keyboard/mobile hợp lệ; callback chọn bài và link chờ quyết định. Cấm hộp thoại native qua lint. [Issue #14](https://github.com/espresso23/everlang/issues/14), PB-044-T01.
+
+[Hợp đồng dùng chung](../../shared/confirmation-ui.md) · [Audit tích hợp và giới hạn](../../audits/confirmation-ui-2026-11-02.md).
+
+Final audit: `useConfirmation` gắn AbortController theo vòng đời caller; caller unmount (kể cả browser Back) hủy pending decision và đóng dialog. Test regression tại confirmation.spec.ts; không bảo vệ mọi navigation khi chưa có dialog mở.

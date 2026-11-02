@@ -1,4 +1,5 @@
 "use client";
+import { useConfirmation } from "@/components/confirmation";
 import { EditorialDesk } from "@/components/editorial-desk";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
@@ -18,6 +19,7 @@ type Content = {
   keyVocab: string[];
 };
 export default function Admin() {
+  const confirm = useConfirmation();
   const [items, setItems] = useState<Content[]>([]);
   const [message, setMessage] = useState("");
   const [edit, setEdit] = useState<Content | null>(null);
@@ -43,7 +45,7 @@ export default function Admin() {
         toàn lịch sử.
       </p>
       {message && <p className="notice">{message}</p>}
-      <EditorialDesk endpoint="/api/admin/content" refreshToken={items} onSelect={row => { if (edit && !window.confirm("Mở bài khác? Hãy lưu thay đổi hiện tại trước.")) return false; setEdit(row as Content); return true; }} />
+      <EditorialDesk endpoint="/api/admin/content" refreshToken={items} onSelect={async row => { if (edit && !(await confirm({ message: "Mở bài khác? Hãy lưu thay đổi hiện tại trước.", confirmLabel: "Mở bài khác" }))) return false; setEdit(row as Content); return true; }} />
       <div className="dashboard-grid">
         <section className="panel">
           <h2>{edit ? "Sửa bản nháp" : "Biên soạn bài mới"}</h2>

@@ -1,4 +1,5 @@
 "use client";
+import { useConfirmation } from "@/components/confirmation";
 import { useCallback, useEffect, useState, useRef } from "react";
 import { request } from "@/lib/client";
 type Q = {
@@ -26,6 +27,7 @@ type Attempt = {
   } | null;
 };
 export default function Exams() {
+  const confirm = useConfirmation();
   const [list, setList] = useState<{
     items: { id: string; title: string; kind: string; minutes: number }[];
     attempts: { id: string; submitted_at: string | null }[];
@@ -287,7 +289,7 @@ export default function Exams() {
               className="primary-button spaced"
               disabled={busy}
               onClick={async () => {
-                if (!window.confirm("Nộp bài và kết thúc lượt thi này?"))
+                if (!(await confirm({ message: "Nộp bài và kết thúc lượt thi này?", confirmLabel: "Nộp bài" })))
                   return;
                 setBusy(true);
                 await save(true);

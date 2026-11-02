@@ -1,10 +1,10 @@
 > Generated view — chỉnh work-items.json rồi chạy npm run plan:sync
 
-# Tracking EverLang — 2026-11-01
+# Tracking EverLang — 2026-11-02
 
 Baseline 4eb249c: 14 feature/domain hiện có, tách khỏi backlog mới. Không tính % hoàn thành toàn bộ dự án.
 
-Phần bổ sung: 43 PBIs; 9/91 tasks (10% count-based). 19 PBIs chưa xếp sprint. Task count không phải effort/burndown.
+Phần bổ sung: 44 PBIs; 10/92 tasks (11% count-based). 20 PBIs chưa xếp sprint. Task count không phải effort/burndown.
 
 | Sprint | Trạng thái | Start | End | Core dev SP* | Stretch dev SP* | Done dev SP* | Tiến độ |
 | --- | --- | --- | --- | --- | --- | --- | --- |

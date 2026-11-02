@@ -15,3 +15,12 @@
 | [tests/e2e/editorial-design.spec.ts](../../../tests/e2e/editorial-design.spec.ts) | `seed`, `user`, `lesson`, `fixtures`, `selectors`, `properties`, `dir` | Bằng chứng kiểm tra có thể tái chạy; kết quả thực tế và giới hạn ở audit. |
 
 Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [exception/logging](../../shared/error-handling.md). Payload, SQL và Zod schema tại service là điểm thực thi; không có Next Route Handler hay adapter Better Auth. HTTP route inventory: [49 domain methods](../backend-nestjs-migration/routes.json). Audit cũ trước 2026-11-01 là bằng chứng của phiên bản cũ, không chứng nhận backend Nest hiện tại.
+
+
+## 2026-11-02 — DS-08 component xác nhận
+
+[confirmation.tsx](../../../apps/web/components/confirmation.tsx): `ConfirmationProvider`, `useConfirmation`; [layout.tsx](../../../apps/web/app/layout.tsx): `RootLayout`; [confirmation.css](../../../apps/web/components/confirmation.css): style modal; [eslint.config.mjs](../../../eslint.config.mjs): `eslintConfig` chặn native dialogs; [confirmation.spec.ts](../../../tests/e2e/confirmation.spec.ts): hủy/focus/navigation/async editor.
+
+[Hợp đồng dùng chung](../../shared/confirmation-ui.md) · [Audit tích hợp và giới hạn](../../audits/confirmation-ui-2026-11-02.md).
+
+Final audit: `useConfirmation` gắn AbortController theo vòng đời caller; caller unmount (kể cả browser Back) hủy pending decision và đóng dialog. Test regression tại confirmation.spec.ts; không bảo vệ mọi navigation khi chưa có dialog mở.

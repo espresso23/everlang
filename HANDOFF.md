@@ -4,6 +4,28 @@ Cập nhật gần nhất: 2026-11-01
 
 ## Trạng thái hiện tại
 
+### 2026-11-02 — #14 final audit PASS, owner ủy quyền merge
+
+- Owner yêu cầu tự test/audit lần cuối và merge main nếu ổn. Tách scope vào managed worktree `bugfix/14-custom-confirmation-dialogs` từ main e69f357; giữ nguyên dirty checkout gốc, không lấy pilot/tracer/workflow/skills chưa commit vào merge. knowledge.spec.ts chỉ đổi native dialog handler sang component.
+- Final audit tìm được pending dialog còn trên trang mới khi browser Back. RED tái hiện → sửa useConfirmation với AbortController theo caller lifecycle → GREEN: caller unmount hủy Promise/đóng dialog, không thực thi stale action. [Audit và giới hạn](documentation/audits/confirmation-ui-2026-11-02.md), [hợp đồng](documentation/shared/confirmation-ui.md).
+- PASS:17/17UI (7confirmation+3editorial+7profile) trên dev và production standalone;88/88unit với1worker; lint/typecheck/build18routes,4negative lint probes. Lượt unit mặc định đang build có2timeout5s; không sửa code/timeout, rerun1worker PASS. Source review13callers và scan native dialogs PASS; ảnh ngoài scope từ test được khôi phục.
+- PB-044-T01 Done/Pass theo quyền self-test/audit→merge của owner; #14 được đóng completed khi merge. Docs/plan/diff kiểm trước commit. Live PG/auth/ASR/exam scoring, opt-in backend suites và full WCAG/hardware không được chứng nhận; không deploy/content changes. Ba native beforeunload đã bỏ, cần lưu trước đóng tab/reload; không có guard mọi SPA/browser Back nếu chưa có dialog mở.
+- Kết quả merge/commit sẽ báo sau khi GitHub xác nhận; không đổi branch hoặc reset/stash các edits có sẵn trong D:/Project/langz.
+
+
+### 2026-11-02 — #14 thay toàn bộ native confirmation bằng component
+
+- Đã thay 13 window.confirm ở learner/admin bằng `ConfirmationProvider/useConfirmation` trong apps/web/components/confirmation.tsx + confirmation.css, gắn RootLayout. Hủy/Escape không tiếp tục, focus đầu Hủy/Tab vòng kín/return focus, label cụ thể; chặn pending decision trùng. EditorialDesk.onSelect hỗ trợ await, word-set kind và link navigation chỉ đổi sau true; profile legacy import khóa khi pending. Thêm ESLint guard no-alert + window/globalThis/self properties.
+- Bỏ 3 beforeunload native guard theo chỉ định owner; không thể hiển thị custom dialog khi tab đóng/reload. Chưa có autosave/recovery hoặc guard toàn SPA/browser Back; cần lưu trước. Không thay auth/API/schema/data/provider. [Shared contract](documentation/shared/confirmation-ui.md), [audit tích hợp/self-review](documentation/audits/confirmation-ui-2026-11-02.md), cập nhật5docs của design-system và6features liên quan.
+- Kiểm PASS: TDD red đúng native dialog; 2confirmation +3editorial mock E2E, viewport1440/390/320, ảnh320 đã xem; lint/typecheck/build. Typecheck đầu chạy chồng build gây missing generated backend declarations; rerun tuần tự PASS. Mock không chứng nhận live PG/auth/providers; hai opt-in acceptance suite knowledge/catalog chưa chạy lại. Chi tiết/repro/giới hạn trong audit.
+- PB-044-T01 Review/Pass, issue #14 giữ mở cho QA; không tự Done từ mock. Giữ branch docs/knowledge-tracer-acceptance và edits sẵn có; không commit/push/merge/deploy. Next tự kiểm trên candidate localhost:3101 và owner QA; app3000 đang baseline, chưa cập nhật runtime đó. docs:check PASS (20 features/250 source files/2225 links); plan:sync/check PASS (44 PBIs/92 tasks), diff whitespace đã sửa và kiểm lại.
+
+### 2026-11-02 — Quy tắc component xác nhận UI
+
+- Theo chỉ định owner, bổ sung vào [AGENTS](AGENTS.md) và [Editorial Design](documentation/design/README.md): dùng component của dự án cho mọi xác nhận; cấm `window.confirm`/`confirm` và hộp thoại trình duyệt tương tự dùng thay UI xác nhận. Quy định nút hủy/xác nhận rõ, keyboard/focus, trạng thái xử lý/lỗi và chống gửi lặp.
+- Phạm vi chỉ docs/rule; giữ branch và các thay đổi có sẵn. Self-review: hai nguồn quy tắc thống nhất với yêu cầu; không đổi runtime, tracking hoặc tạo GitHub issue. `npm run docs:check` PASS (20 features, 247 source/config files, 2097 local links); lint/typecheck/build/TDD N/A vì không sửa code. Chưa rà soát/chuyển đổi các luồng UI hiện hữu.
+
+
 ### 2026-11-01 — Editorial workbench/preview completed; owner authorized merge-all and new session
 
 - DONE PB-043-T01/#11: custom EverLang, noexternalCMS; server25/50/100pagination/search/status/level/topic/sort+total for3admin modules; compact table, existing editors/previous-next, bounded draftsource-rights metadata with explicitversion+peritem outcomes; JSON50/1MB dry-run→servervalidatedimport, repeatedsentence import idempotent/conflictingchanges409, knowledge/catalogduplicate409. Noauto-review/publish.

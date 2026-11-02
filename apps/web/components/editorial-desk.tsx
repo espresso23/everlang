@@ -1,4 +1,5 @@
 "use client";
+import { useConfirmation } from "./confirmation";
 import { useCallback, useEffect, useState } from "react";
 import { knowledgeKey, knowledgeSchema } from "@everlang/contracts/knowledge-contract";
 import { catalogKey, catalogContentSchema } from "@everlang/contracts/vocabulary-catalog-contract";
@@ -12,7 +13,8 @@ const labels: Record<string, string> = { draft: "Nháp", reviewed: "Đã duyệt
 type Query = { q: string; status: string; level: string; topic: string; sort: string; limit: number; offset: number };
 const initial: Query = { q: "", status: "", level: "", topic: "", sort: "updated", limit: 25, offset: 0 };
 type Outcome = { id: string; ok: boolean; message: string };
-export function EditorialDesk({ endpoint, kind = "", onSelect, refreshToken }: { endpoint: string; kind?: string; onSelect: (item: EditorialItem) => void | boolean; refreshToken?: unknown }) {
+export function EditorialDesk({ endpoint, kind = "", onSelect, refreshToken }: { endpoint: string; kind?: string; onSelect: (item: EditorialItem) => void | boolean | Promise<void | boolean>; refreshToken?: unknown }) {
+  const confirm = useConfirmation();
   const [activeId, setActiveId] = useState("");
   const [query, setQuery] = useState<Query>(initial);
   const [ready, setReady] = useState(false);
@@ -60,7 +62,7 @@ export function EditorialDesk({ endpoint, kind = "", onSelect, refreshToken }: {
     }, 180);
     return () => { active = false; clearTimeout(timer); };
   }, [endpoint, kind, query, ready, version, refreshToken]);
-  function open(item: EditorialItem) { if (onSelect(item) !== false) setActiveId(itemIdentity(item)); }
+  async function open(item: EditorialItem) { if (await onSelect(item) !== false) setActiveId(itemIdentity(item)); }
   const activeIndex = rows.findIndex(row => itemIdentity(row) === activeId);
   async function batch() {
     setBusy(true); setError(""); const output: Outcome[] = []; const failed: EditorialItem[] = [];
@@ -95,7 +97,7 @@ export function EditorialDesk({ endpoint, kind = "", onSelect, refreshToken }: {
     } catch (e) { setError((e as Error).message); }
   }
   async function importDrafts() {
-    if (!importRows || !window.confirm(`Tạo ${importRows.length} bản nháp? Không tự duyệt hoặc xuất bản.`)) return;
+    if (!importRows || !(await confirm({ message: `Tạo ${importRows.length} bản nháp? Không tự duyệt hoặc xuất bản.`, confirmLabel: "Tạo bản nháp" }))) return;
     setBusy(true); const output: Outcome[] = []; const failed: unknown[] = [];
     for (const [i, row] of importRows.entries()) {
       try {
@@ -116,7 +118,7 @@ export function EditorialDesk({ endpoint, kind = "", onSelect, refreshToken }: {
     {!loading && !error && rows.length === 0 && <p>Không có học liệu khớp bộ lọc.</p>}
     <div className="task-actions"><button className="soft-button" disabled={busy || loading || query.offset === 0} onClick={() => update({ offset: Math.max(0, query.offset - query.limit) })}>Trang trước</button><span aria-live="polite">{total ? `${Math.min(query.offset + 1, total)}–${Math.min(query.offset + rows.length, total)}` : "0"} / {total} phiên bản</span><button className="soft-button" disabled={busy || loading || query.offset + query.limit >= total} onClick={() => update({ offset: query.offset + query.limit })}>Trang sau</button></div>
     {activeIndex >= 0 && <div className="task-actions"><span>Đang biên tập: {itemTitle(rows[activeIndex])}</span><button className="soft-button" disabled={busy || loading || activeIndex === 0} onClick={() => open(rows[activeIndex - 1])}>Biên tập mục trước</button><button className="soft-button" disabled={busy || loading || activeIndex + 1 >= rows.length} onClick={() => open(rows[activeIndex + 1])}>Biên tập mục tiếp theo</button></div>}
-    <details><summary>Cập nhật nguồn/quyền cho các nháp đã chọn ({selected.length})</summary><p>Chỉ áp dụng trường có nhập. Phiên bản thay đổi đồng thời sẽ báo lỗi riêng, không ghi đè.</p><label>Nguồn hàng loạt<input maxLength={500} value={source} onChange={e => setSource(e.target.value)} /></label><label>Quyền sử dụng hàng loạt<input maxLength={1000} value={rights} onChange={e => setRights(e.target.value)} /></label><button className="primary-button" disabled={busy || !selected.length || (!source.trim() && !rights.trim())} onClick={() => { if (window.confirm(`Cập nhật ${selected.length} nháp đã chọn?`)) void batch(); }}>Cập nhật nháp đã chọn</button><p>Chỉ những mục thất bại còn được chọn. Lỗi xung đột cần tải bản mới và chọn lại.</p></details>
+    <details><summary>Cập nhật nguồn/quyền cho các nháp đã chọn ({selected.length})</summary><p>Chỉ áp dụng trường có nhập. Phiên bản thay đổi đồng thời sẽ báo lỗi riêng, không ghi đè.</p><label>Nguồn hàng loạt<input maxLength={500} value={source} onChange={e => setSource(e.target.value)} /></label><label>Quyền sử dụng hàng loạt<input maxLength={1000} value={rights} onChange={e => setRights(e.target.value)} /></label><button className="primary-button" disabled={busy || !selected.length || (!source.trim() && !rights.trim())} onClick={async () => { if (await confirm({ message: `Cập nhật ${selected.length} nháp đã chọn?`, confirmLabel: "Cập nhật nháp" })) void batch(); }}>Cập nhật nháp đã chọn</button><p>Chỉ những mục thất bại còn được chọn. Lỗi xung đột cần tải bản mới và chọn lại.</p></details>
     <details><summary>Nhập nháp hàng loạt · JSON</summary><p>Tối đa 50 mục. {endpoint.endsWith("content") ? "Mảng các bài luyện với topic, level, viText, koSampleAnswer, keyGrammar, keyVocab, source, rights." : "Mảng {key, content} theo schema hiện có; không nhận status/reviewer từ tệp."} Nhập nháp không tự duyệt nội dung.</p><label>JSON bản nháp<textarea rows={6} value={raw} onChange={e => { setRaw(e.target.value); setImportRows(null); setResults([]); }} /></label><div className="task-actions"><button className="soft-button" disabled={busy || !raw.trim()} onClick={dryRun}>Kiểm tra trước khi nhập</button><button className="primary-button" disabled={busy || !importRows?.length} onClick={() => void importDrafts()}>Nhập {importRows?.length || 0} nháp đã kiểm tra</button></div></details>
     {results.length > 0 && <div role="status"><h3>Kết quả từng mục</h3><ul>{results.map((r, i) => <li key={`${r.id}:${i}`}>{r.ok ? "✓" : "!"} {r.id}: {r.message}</li>)}</ul></div>}
     {preview && <StudentPreview key={itemIdentity(preview)} item={preview} endpoint={endpoint} onClose={() => setPreview(null)} onPublished={() => { setSelected([]); reload(); }} />}

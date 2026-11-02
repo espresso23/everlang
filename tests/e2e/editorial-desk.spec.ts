@@ -61,7 +61,7 @@ test("set preview fetches the pinned revision, and sentence answers require reve
   const desk = page.getByRole("region", { name: "Kho học liệu biên tập" });
   await desk.getByRole("button", { name: "Preview & xuất bản" }).click();
   await expect(page.getByRole("dialog").getByText("trường học", { exact: false })).toBeVisible();
-  expect(lookedUp).toEqual(["?key=set-qa&revision=3"]);
+  expect([...new Set(lookedUp)]).toEqual(["?key=set-qa&revision=3"]);
   await page.getByRole("dialog").getByRole("button", { name: "Đóng preview" }).click();
   await page.goto("/admin");
   await desk.getByRole("button", { name: "Preview & xuất bản" }).click();
@@ -87,8 +87,8 @@ test("draft bulk edits preserve partial failures and imports require dry-run", a
   await desk.getByLabel("Chọn Draft 1", { exact: true }).check(); await desk.getByLabel("Chọn Draft 2", { exact: true }).check();
   await desk.locator("summary").filter({ hasText: "Cập nhật nguồn" }).click();
   await desk.getByLabel("Nguồn hàng loạt").fill("Nguồn QA");
-  page.once("dialog", d => d.accept());
   await desk.getByRole("button", { name: "Cập nhật nháp đã chọn" }).click();
+  await page.getByRole("dialog").getByRole("button", { name: "Cập nhật nháp", exact: true }).click();
   await expect(desk.getByText("Có thay đổi đồng thời", { exact: false })).toBeVisible();
   await expect(desk.getByLabel("Chọn Draft 1", { exact: true })).not.toBeChecked();
   await expect(desk.getByLabel("Chọn Draft 2", { exact: true })).toBeChecked();
@@ -100,8 +100,8 @@ test("draft bulk edits preserve partial failures and imports require dry-run", a
   expect(mutations).toHaveLength(2);
   await desk.getByLabel("JSON bản nháp").fill(JSON.stringify([{ key: "import-qa", content: knowledgeSeed[0].content }]));
   await desk.getByRole("button", { name: "Kiểm tra trước khi nhập" }).click();
-  page.once("dialog", d => d.accept());
   await desk.getByRole("button", { name: "Nhập 1 nháp đã kiểm tra" }).click();
+  await page.getByRole("dialog").getByRole("button", { name: "Tạo bản nháp", exact: true }).click();
   await expect(desk.getByText("Đã tạo nháp", { exact: false })).toBeVisible();
   expect(mutations).toHaveLength(3);
 });

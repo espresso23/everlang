@@ -1,4 +1,5 @@
 "use client";
+import { useConfirmation } from "@/components/confirmation";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -27,6 +28,7 @@ const labels: Record<Item["status"], string> = {
   deleted: "Đang hoàn tất xóa file",
 };
 function SpeechSession() {
+  const confirm = useConfirmation();
   const params = useSearchParams();
   const [reference, setReference] = useState(
     (params.get("reference") || "").slice(0, 300),
@@ -212,7 +214,7 @@ function SpeechSession() {
     }
   }
   async function remove(item: Item) {
-    if (!window.confirm("Xóa audio và nội dung nhận dạng của bản ghi này?"))
+    if (!(await confirm({ message: "Xóa audio và nội dung nhận dạng của bản ghi này?", confirmLabel: "Xóa bản ghi" })))
       return;
     generation.current.value++;
     setBusy(true);

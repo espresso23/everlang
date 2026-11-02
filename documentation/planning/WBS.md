@@ -178,6 +178,8 @@ Dùng thật ngoài localhost với kiểm chứng đầy đủ
   - PB-042-T01 — Admin login → workspace → editor → học tập; role gates và browser audit
 - **WBS-5.43 / PB-043 — Editorial workbench và student publication preview** (P0, Core, Unscheduled).
   - PB-043-T01 — Editorial list → edit/batch/import → student preview → publish with CAS
+- **WBS-5.44 / PB-044 — Component xác nhận UI dùng chung, bỏ hộp thoại trình duyệt** (P0, Core, Unscheduled).
+  - PB-044-T01 — Replace native confirmations, verify cancellation/focus/navigation and lint guard
 
 
 ## WBS-6 / Mở rộng sau beta

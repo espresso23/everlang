@@ -20,3 +20,10 @@ Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [
 - [apps/api/src/domains/profile.service.ts](../../../apps/api/src/domains/profile.service.ts): CRUD qua mapped entities/QueryBuilder; giữ payload, ownership, version, transaction và trạng thái public.
 
 Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[LegacyDraftImport](../../../apps/web/app/profile/page.tsx). Nhập local drafts có dialog Nhập nháp/Hủy; khóa nút khi đang nhập và mở lại trong finally, giữ nguyên không ghi đè nháp cloud.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

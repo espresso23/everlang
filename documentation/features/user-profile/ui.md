@@ -15,3 +15,10 @@ Source: [Profile/saveProfile/AccountSecurity/LegacyDraftImport](../../../apps/we
 Ảnh QA: [view desktop](assets/profile-desktop.png), [view mobile](assets/profile-mobile.png), [edit desktop](assets/profile-edit-desktop.png), [edit mobile](assets/profile-edit-mobile.png). Fixture synthetic Google/session chỉ chứng minh UI; [beta E2E](../../../tests/e2e/beta.spec.ts) kiểm API/DB/session thật. [UI tests](../../../tests/e2e/profile-ui.spec.ts) kiểm cancel/failure/lock/success/focus/320px.
 
 [Audit](audit.md).
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[LegacyDraftImport](../../../apps/web/app/profile/page.tsx). Nhập local drafts có dialog Nhập nháp/Hủy; khóa nút khi đang nhập và mở lại trong finally, giữ nguyên không ghi đè nháp cloud.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

@@ -44,3 +44,10 @@ Current persistence: [content store](../../../packages/backend/src/content-store
 ## Editorial workbench — planned2026-11-01
 
 Canonical requirements EW-01–05: documentation/features/content-authoring/README.md. Admin GET query params validated, TypeORM list filters/count/order; shared EditorialDesk calls existing mutations with explicit saved version. StudentPreview read-only saved snapshot and exact references; confirm calls current publish transition, no preview writes. Shared UI: table/filter/pager, batch source/rights, JSON dryrun/import, focused existing editor. No schema migration; retain permission/CAS/published-only learner rules.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[WordSetsAdmin](../../../apps/web/app/admin/word-sets/page.tsx): `choose`, back link, chuyển sense/set; EditorialDesk shared. Đổi loại/chọn bài/rời editor chờ dialog nếu dirty; hủy giữ form và loại đang chọn. Bỏ native beforeunload; chuyển trang nội bộ đang có guard tiếp tục được bảo vệ.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

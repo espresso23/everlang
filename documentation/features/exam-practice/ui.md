@@ -23,3 +23,10 @@ Chưa có kho đề đầy đủ có quyền sử dụng, chưa chia phiên PBT 
 Ảnh QA 2026-10-30, viewport 1440×1000: [màn hình learner](assets/screen-learner-desktop.png). Đây là bằng chứng render màn hình, không thay audit mọi thao tác/provider.
 
 Giao diện hiện tại tuân thủ [EverLang Editorial](../../design/README.md); [gallery trước/sau](../../design/screens.md) thay appearance của ảnh lịch sử trong tài liệu này. Layout và contract feature giữ nguyên.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[Exams](../../../apps/web/app/exams/page.tsx): submit button → `save(true)`. Nộp bài có dialog Nộp bài/Hủy; chỉ true mới gọi save(true), server deadline/autosave không đổi.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

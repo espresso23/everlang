@@ -29,3 +29,10 @@ Sau normalize, Gemini nhận inline WAV qua HTTPS endpoint cố định generati
 ## ORM data access — 2026-11-01
 
 PostgreSQL dùng TypeORM EntitySchema/QueryBuilder; transaction dùng một QueryRunner, giữ ownership, row lock, CAS/version, JSONB và idempotency. MongoDB vẫn Mongoose. Hợp đồng dùng chung tại [ORM design](../postgresql-orm-migration/system-design.md); chi tiết regression ở [audit tích hợp](../../audits/postgresql-orm-migration.md). UI/layout không thay đổi.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[SpeechSession](../../../apps/web/app/speech/page.tsx): `remove`. Xóa audio/transcript có dialog Xóa bản ghi/Hủy; chỉ true mới tăng generation và gửi DELETE; busy/error/ownership không đổi.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

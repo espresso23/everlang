@@ -47,3 +47,10 @@ AuthProvider/useAuth.user.admin từ server là nguồn role. Sign-in sau authen
 Canonical requirements EW-01–05: documentation/features/content-authoring/README.md. Admin GET query params validated, TypeORM list filters/count/order; shared EditorialDesk calls existing mutations with explicit saved version. StudentPreview read-only saved snapshot and exact references; confirm calls current publish transition, no preview writes. Shared UI: table/filter/pager, batch source/rights, JSON dryrun/import, focused existing editor. No schema migration; retain permission/CAS/published-only learner rules.
 
 EW architecture: admin table→existing admin JwtGuard/controller→validated query→TypeORM content-store (filter/count/page); mutations remain single-domain version transitions. Browser orchestrates bounded per-row metadata/import requests so partial failures are explicit; no cross-row atomicity claim. Import dry-run is client validation, commit revalidates server; other-admin races return409. No newqueue/provider/wrapper/DDL. Preview does not grant public read to drafts and is not a substitute for server ownership/status checks.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[Admin](../../../apps/web/app/admin/page.tsx), [KnowledgeAdmin](../../../apps/web/app/admin/knowledge/page.tsx) và [EditorialDesk](../../../apps/web/components/editorial-desk.tsx): `choose`, `open`, `importDrafts`, `batch`. Đổi editor, duyệt knowledge, import và batch dùng dialog; onSelect cho phép Promise, active item chỉ đổi sau chấp thuận. Bỏ native beforeunload trong knowledge editor.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

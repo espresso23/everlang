@@ -1,6 +1,6 @@
 {
   "project": "EverLang - beta tự học tiếng Hàn",
-  "asOf": "2026-11-01",
+  "asOf": "2026-11-02",
   "baselineCommit": "4eb249c",
   "sourceOfTruth": "work-items.json",
   "assumptions": [
@@ -1288,6 +1288,25 @@
       "contentCapacity": "N/A",
       "tasks": [
         "PB-043-T01"
+      ],
+      "scope": "Core"
+    },
+    {
+      "id": "PB-044",
+      "wbs": "WBS-5.44",
+      "epic": "WBS-5",
+      "title": "Component xác nhận UI dùng chung, bỏ hộp thoại trình duyệt",
+      "priority": "P0",
+      "sprint": null,
+      "points": 2,
+      "featureId": "design-system",
+      "dependsOn": [],
+      "external": [],
+      "acceptance": "DS-08: 13 confirmation calls replaced; cancel preserves data; async selection/navigation waits; keyboard/focus and mobile checked; native beforeunload removed with documented limitation.",
+      "refinement": "Ready",
+      "contentCapacity": "N/A",
+      "tasks": [
+        "PB-044-T01"
       ],
       "scope": "Core"
     }
@@ -2735,6 +2754,24 @@
       "verification": "Pass",
       "updated": "2026-11-01",
       "githubIssue": "https://github.com/espresso23/everlang/issues/11"
+    },
+    {
+      "id": "PB-044-T01",
+      "parent": "PB-044",
+      "title": "Replace native confirmations, verify cancellation/focus/navigation and lint guard",
+      "role": "Dev/QA",
+      "owner": "Chủ dự án",
+      "status": "Done",
+      "dependsOn": [],
+      "blocker": "",
+      "evidence": [
+        "documentation/audits/confirmation-ui-2026-11-02.md",
+        "documentation/features/design-system/audit.md",
+        "tests/e2e/confirmation.spec.ts"
+      ],
+      "verification": "Pass",
+      "updated": "2026-11-02",
+      "githubIssue": "https://github.com/espresso23/everlang/issues/14"
     }
   ],
   "team": {

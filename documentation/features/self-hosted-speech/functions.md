@@ -35,3 +35,10 @@ Hợp đồng auth/error dùng chung: [JWT/API](../../shared/auth-and-api.md), [
 - [apps/api/src/domains/speech-audio.service.ts](../../../apps/api/src/domains/speech-audio.service.ts): CRUD qua mapped entities/QueryBuilder; giữ payload, ownership, version, transaction và trạng thái public.
 
 Hợp đồng kết nối/lifecycle/migration/rate-limit dùng [ORM chuẩn](../postgresql-orm-migration/functions.md); bằng chứng tích hợp tại [ORM audit](../postgresql-orm-migration/audit.md). Không tạo SQL compatibility facade.
+
+
+## 2026-11-02 — Xác nhận UI dùng chung (#14)
+
+[SpeechSession](../../../apps/web/app/speech/page.tsx): `remove`. Xóa audio/transcript có dialog Xóa bản ghi/Hủy; chỉ true mới tăng generation và gửi DELETE; busy/error/ownership không đổi.
+
+[Hợp đồng component](../../shared/confirmation-ui.md) · [Audit tích hợp](../../audits/confirmation-ui-2026-11-02.md).

@@ -7,6 +7,15 @@ const eslintConfig = defineConfig([
   ...nextTs,
   { settings: { next: { rootDir: "apps/web/" } } },
   { rules: { "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }] } },
+  {
+    files: ["apps/web/**/*.{ts,tsx,js,jsx}"],
+    rules: {
+      "no-alert": "error",
+      "no-restricted-properties": ["error", ...["window", "globalThis", "self"].flatMap(object =>
+        ["confirm", "alert", "prompt"].map(property => ({ object, property, message: "Use the project ConfirmationProvider/component." }))
+      )],
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
